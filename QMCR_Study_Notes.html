@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QMCR Endsem Notes</title>
+<style>
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --surface-2:#f4f2ed; --border:#e3ded4;
+  --text:#22201c; --muted:#6b655c; --accent:#8a5a2b; --accent-soft:#f3e8da;
+  --blue:#2b5f8a; --blue-soft:#e4eef6; --green:#2f6b4f; --green-soft:#e2f0e8;
+  --red:#a33b34; --red-soft:#fae7e5; --purple:#6b4a8a; --purple-soft:#eee6f5;
+  --radius:10px; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --serif:Georgia,"Iowan Old Style",'Times New Roman',serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#161513; --surface:#1e1d1a; --surface-2:#26241f; --border:#34312b;
+    --text:#eae6de; --muted:#a49d92; --accent:#d29b5e; --accent-soft:#3a2a18;
+    --blue:#7fb3dd; --blue-soft:#1a2a38; --green:#7cc3a0; --green-soft:#162c22;
+    --red:#e08c84; --red-soft:#33201e; --purple:#b795db; --purple-soft:#271c33;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#161513; --surface:#1e1d1a; --surface-2:#26241f; --border:#34312b;
+  --text:#eae6de; --muted:#a49d92; --accent:#d29b5e; --accent-soft:#3a2a18;
+  --blue:#7fb3dd; --blue-soft:#1a2a38; --green:#7cc3a0; --green-soft:#162c22;
+  --red:#e08c84; --red-soft:#33201e; --purple:#b795db; --purple-soft:#271c33;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:16.5px;line-height:1.68;-webkit-text-size-adjust:100%}
+.layout{display:flex;max-width:1500px;margin:0 auto;gap:0}
+/* ---------- sidebar ---------- */
+#sidebar{width:290px;flex:0 0 290px;position:sticky;top:0;height:100vh;overflow-y:auto;
+  border-right:1px solid var(--border);background:var(--surface);padding:22px 14px 60px}
+#sidebar h2{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 4px;padding:0 10px}
+#sidebar .brand{font-family:var(--serif);font-size:1.22rem;font-weight:700;padding:0 10px;margin-bottom:2px;line-height:1.25}
+#sidebar .sub{padding:0 10px;font-size:.78rem;color:var(--muted);margin-bottom:16px}
+#sidebar a{display:block;padding:5px 10px;color:var(--text);text-decoration:none;
+  font-size:.855rem;border-radius:6px;border-left:2px solid transparent}
+#sidebar a:hover{background:var(--surface-2)}
+#sidebar a.mod{font-weight:650;margin-top:11px;color:var(--accent)}
+#sidebar a.sub2{padding-left:22px;font-size:.8rem;color:var(--muted)}
+#sidebar a.active{background:var(--accent-soft);border-left-color:var(--accent);color:var(--text)}
+/* ---------- main ---------- */
+main{flex:1;min-width:0;padding:34px 46px 140px;max-width:960px}
+h1{font-family:var(--serif);font-size:2.15rem;line-height:1.18;margin:0 0 6px;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-size:1.62rem;margin:56px 0 4px;padding-top:14px;
+  border-top:2px solid var(--accent);letter-spacing:-.01em}
+h2 .num{display:inline-block;font-family:var(--mono);font-size:.68em;color:var(--accent);
+  margin-right:10px;vertical-align:.12em}
+h3{font-size:1.16rem;margin:32px 0 6px;color:var(--accent);font-weight:680}
+h4{font-size:1rem;margin:20px 0 4px;font-weight:680}
+p{margin:.55em 0}
+ul,ol{margin:.5em 0;padding-left:1.35em}
+li{margin:.3em 0}
+li::marker{color:var(--accent)}
+b,strong{font-weight:680}
+code{font-family:var(--mono);font-size:.87em;background:var(--surface-2);
+  padding:1px 5px;border-radius:4px}
+a{color:var(--blue)}
+.lede{color:var(--muted);font-size:1.02rem;margin-bottom:18px}
+/* ---------- boxes ---------- */
+.box{border:1px solid var(--border);border-radius:var(--radius);padding:14px 17px;margin:16px 0;background:var(--surface)}
+.box .bt{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;
+  margin-bottom:6px;display:block}
+.def{background:var(--blue-soft);border-color:transparent}
+.def .bt{color:var(--blue)}
+.exam{background:var(--green-soft);border-color:transparent}
+.exam .bt{color:var(--green)}
+.warn{background:var(--red-soft);border-color:transparent}
+.warn .bt{color:var(--red)}
+.mnem{background:var(--purple-soft);border-color:transparent}
+.mnem .bt{color:var(--purple)}
+.eg{background:var(--surface-2);border-color:transparent}
+.eg .bt{color:var(--muted)}
+.box p:first-of-type{margin-top:0}
+.box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:16px 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;background:var(--surface)}
+th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--surface-2);font-weight:680;font-size:.82rem;letter-spacing:.02em}
+tbody tr:last-child td{border-bottom:none}
+td:first-child{font-weight:620}
+/* ---------- misc ---------- */
+.chain{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:16px 0;
+  padding:13px;background:var(--surface-2);border-radius:var(--radius);font-size:.86rem}
+.chain span{background:var(--surface);border:1px solid var(--border);padding:5px 11px;border-radius:20px;font-weight:620}
+.chain i{color:var(--accent);font-style:normal;font-weight:700}
+.pill{display:inline-block;background:var(--accent-soft);color:var(--accent);
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 8px;border-radius:20px;vertical-align:middle;margin-left:8px}
+.src{font-size:.78rem;color:var(--muted);font-style:italic}
+hr{border:none;border-top:1px solid var(--border);margin:30px 0}
+#top{position:fixed;bottom:22px;right:22px;background:var(--accent);color:#fff;
+  border:none;width:42px;height:42px;border-radius:50%;font-size:1.1rem;cursor:pointer;
+  box-shadow:0 3px 14px rgba(0,0,0,.25);display:none}
+#top.show{display:block}
+#themeBtn{position:fixed;top:14px;right:18px;background:var(--surface);color:var(--text);
+  border:1px solid var(--border);border-radius:20px;padding:6px 13px;font-size:.78rem;
+  cursor:pointer;z-index:50;font-family:var(--sans)}
+.menuBtn{display:none}
+/* ---------- mobile ---------- */
+@media (max-width:900px){
+  .layout{flex-direction:column}
+  #sidebar{position:static;width:100%;flex:none;height:auto;max-height:none;
+    border-right:none;border-bottom:1px solid var(--border);padding:16px}
+  #sidebar.collapsed .navlinks{display:none}
+  .menuBtn{display:block;background:var(--surface-2);border:1px solid var(--border);
+    color:var(--text);border-radius:8px;padding:7px 12px;font-size:.85rem;width:100%;cursor:pointer}
+  main{padding:20px 16px 90px}
+  h1{font-size:1.7rem} h2{font-size:1.34rem} body{font-size:16px}
+}
+@media print{
+  #sidebar,#top,#themeBtn{display:none}
+  main{max-width:100%;padding:0}
+  body{background:#fff;color:#000;font-size:10.5pt}
+  h2{page-break-after:avoid;break-after:avoid} h3{page-break-after:avoid}
+  .box,.tw,table{page-break-inside:avoid}
+  a{color:#000;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<button id="themeBtn" onclick="tgl()">◐ theme</button>
+<div class="layout">
+<nav id="sidebar" class="collapsed">
+  <div class="brand">QMCR — Endsem Notes</div>
+  <div class="sub">Qualitative Methods for Community Research · IRMA · full syllabus, in slide order</div>
+  <button class="menuBtn" onclick="document.getElementById('sidebar').classList.toggle('collapsed')">☰ Contents</button>
+  <div class="navlinks">
+  <h2>Contents</h2>
+  <a class="mod" href="#m0">How to use this</a>
+  <a class="mod" href="#m1">1 · Primer to Research</a>
+  <a class="sub2" href="#m1-1">What research means</a>
+  <a class="sub2" href="#m1-2">What is Science (3 aspects)</a>
+  <a class="sub2" href="#m1-3">Hierarchy &amp; social science</a>
+  <a class="sub2" href="#m1-4">4 ways of knowing (Peirce)</a>
+  <a class="sub2" href="#m1-5">5 traits of scientific method</a>
+  <a class="mod" href="#m2">2 · Problem &amp; Research Question</a>
+  <a class="sub2" href="#m2-1">Purpose &amp; motivations</a>
+  <a class="sub2" href="#m2-2">Finding a research problem</a>
+  <a class="sub2" href="#m2-3">Unpacking a problem</a>
+  <a class="sub2" href="#m2-4">Problem → question (5 steps)</a>
+  <a class="sub2" href="#m2-5">Question → hypothesis</a>
+  <a class="sub2" href="#m2-6">Steps in research</a>
+  <a class="mod" href="#m3">3 · Research Processes</a>
+  <a class="sub2" href="#m3-1">Why methods matter</a>
+  <a class="sub2" href="#m3-2">4 phases / 8 steps</a>
+  <a class="sub2" href="#m3-3">Inductive vs deductive</a>
+  <a class="sub2" href="#m3-4">Ontology &amp; epistemology</a>
+  <a class="sub2" href="#m3-5">Understanding qualitative</a>
+  <a class="sub2" href="#m3-6">Validity &amp; reliability</a>
+  <a class="sub2" href="#m3-7">Qual vs Quant + mixing</a>
+  <a class="sub2" href="#m3-8">Two impact stories</a>
+  <a class="mod" href="#m4">4 · Literature Review &amp; Writing</a>
+  <a class="sub2" href="#m4-1">Why review literature</a>
+  <a class="sub2" href="#m4-2">Original source (Kuznets)</a>
+  <a class="sub2" href="#m4-3">The L-L-F rule</a>
+  <a class="sub2" href="#m4-4">Referencing, ethics, plagiarism</a>
+  <a class="sub2" href="#m4-5">Presenting data &amp; findings</a>
+  <a class="mod" href="#m5">5 · Research Design</a>
+  <a class="sub2" href="#m5-1">Similarities &amp; differences</a>
+  <a class="sub2" href="#m5-2">The 3 poverties example</a>
+  <a class="sub2" href="#m5-3">What is a research design</a>
+  <a class="sub2" href="#m5-4">4 sampling types</a>
+  <a class="sub2" href="#m5-5">Saturation &amp; sample size</a>
+  <a class="sub2" href="#m5-6">4 qualitative designs</a>
+  <a class="mod" href="#m6">6 · Data Collection Tools</a>
+  <a class="sub2" href="#m6-1">In-depth interviews</a>
+  <a class="sub2" href="#m6-2">5 key features of IDI</a>
+  <a class="sub2" href="#m6-3">Key informants &amp; gatekeepers</a>
+  <a class="sub2" href="#m6-4">Question formulation rules</a>
+  <a class="sub2" href="#m6-5">Focus group discussions</a>
+  <a class="sub2" href="#m6-6">Observation</a>
+  <a class="mod" href="#m7">7 · Thematic Analysis</a>
+  <a class="sub2" href="#m7-1">Types of analysis</a>
+  <a class="sub2" href="#m7-2">Thick description</a>
+  <a class="sub2" href="#m7-3">The six steps</a>
+  <a class="sub2" href="#m7-4">Keyword vs code vs theme</a>
+  <a class="sub2" href="#m7-5">Conceptual model</a>
+  <a class="sub2" href="#m7-6">Writing findings (sandwich)</a>
+  <a class="mod" href="#m8">8 · Ethics &amp; PRA</a>
+  <a class="sub2" href="#m8-1">Informed consent</a>
+  <a class="sub2" href="#m8-2">Reflexivity &amp; positionality</a>
+  <a class="sub2" href="#m8-3">RRA vs PRA</a>
+  <a class="sub2" href="#m8-4">5 key principles</a>
+  <a class="sub2" href="#m8-5">Other principles + facilitator</a>
+  <a class="sub2" href="#m8-6">The 9 PRA tools</a>
+  <a class="mod" href="#m9">9 · Exam Toolkit</a>
+  <a class="sub2" href="#m9-1">One-page cheat sheet</a>
+  <a class="sub2" href="#m9-2">Names to cite</a>
+  <a class="sub2" href="#m9-3">Confusable pairs</a>
+  <a class="sub2" href="#m9-4">Likely exam questions</a>
+  <a class="sub2" href="#m9-5">Full glossary</a>
+  </div>
+</nav>
+<main>
+<h1>Qualitative Methods for Community Research</h1>
+<p class="lede">Complete end-term revision notes — every topic from the course deck, in the order it was taught. Sessions 1–9 (264 slides), plus an exam toolkit at the end.</p>
+
+<section id="m0">
+<div class="box exam">
+<span class="bt">How to use this document</span>
+<p><b>If you have 3+ days:</b> read Modules 1–8 straight through. Every definition box is something that can be asked as a 2-mark question; every table is a potential 5-marker.</p>
+<p><b>If you have 1 day:</b> read all the <span style="color:var(--blue)">DEFINITION</span> and <span style="color:var(--green)">EXAM FOCUS</span> boxes, then Module 9 (cheat sheet + likely questions). Then skim Modules 5–8 — that is where the bulk of the examinable technical content lives (sampling, IDI/FGD, thematic analysis, PRA tools).</p>
+<p><b>If you have 2 hours:</b> Module 9 only, then come back for Module 7 (six-step thematic analysis) and Module 8 (nine PRA tools). Those two are the highest-probability long-answer topics.</p>
+<p><b>Printing:</b> Cmd+P gives you a clean print layout — the sidebar drops away automatically.</p>
+</div>
+</section>
+
+<!-- ============================ MODULE 1 ============================ -->
+<h2 id="m1"><span class="num">01</span>Primer to Research — Introduction to Research Thinking</h2>
+<p class="lede">Session 1. The philosophical foundation: what research <i>is</i>, what science <i>is</i>, why science beats the alternatives, and the five traits that make a method "scientific".</p>
+
+<h3 id="m1-1">1.1 What does "research" actually mean?</h3>
+<p>The word breaks into <b>"Re" (again) + "Search" (find)</b> — literally <i>searching again and again</i>. That etymology carries the whole idea: research is a <b>continuous process, and nothing is ever final</b>.</p>
+
+<div class="box def"><span class="bt">Definition — the four framings you should be able to reproduce</span>
+<ol>
+<li><b>Booth et al. (2016), <i>The Craft of Research</i>:</b> Research is a <b>"never-ending conversation"</b> which helps us (the researcher community) free all of us (the general public) from <b>ignorance, prejudice, and the half-baked ideas</b> that so many charlatans try to impose on us.</li>
+<li><b>Western Sydney University (2023):</b> Research is the <b>creation of new knowledge</b> and/or the <b>use of existing knowledge in a new and creative way</b> so as to generate new concepts, methodologies and understandings — <i>including</i> synthesis and analysis of previous research, to the extent it leads to new and creative outcomes.</li>
+<li><b>Dictionary / definitional aspect:</b> a careful, <b>systematic investigation</b> of a subject to establish facts or principles, or to discover new information (Oxford, Collins, Cambridge, Britannica, Merriam-Webster, American Heritage all converge on this).</li>
+<li><b>Bhattacherjee (2012) — the two-condition test.</b> See below; this is the one most likely to be examined.</li>
+</ol>
+</div>
+
+<div class="box exam"><span class="bt">Exam focus — Bhattacherjee's two conditions</span>
+<p>For work to count as <b>research</b>, <b>BOTH</b> must hold:</p>
+<ol><li>It must <b>add to the body of knowledge</b>.</li>
+<li>The <b>process must be scientific</b>.</li></ol>
+<p>If only one holds, it is <b>not</b> research:</p>
+<ul>
+<li><b>Only (i) — adds knowledge, no scientific method:</b> the <i>'5+2' observation in the Corona death case</i> (Nathan &amp; Posina, 2020) — a pattern was noticed in Worldometer COVID data and it told us something, but no systematic method produced it.</li>
+<li><b>Only (ii) — scientific process, adds nothing new:</b> a perfectly executed study that merely re-confirms something already firmly established, or a methodologically flawless survey with no new insight.</li>
+</ul>
+<p><i>A very common exam framing: "Is X research? Justify." → Apply the two conditions explicitly.</i></p>
+</div>
+
+<div class="box eg"><span class="bt">Why are PhD theses never graded?</span>
+<p>Because a thesis is judged on whether it makes an original contribution to knowledge — a binary "does it advance the conversation or not" — not on a scale. Knowledge is not a marks-out-of-100 thing; the "never-ending conversation" either gains something or it doesn't.</p>
+</div>
+
+<h3 id="m1-2">1.2 What is Science? — three aspects</h3>
+<p>The course approaches "science" from three angles. Learn the <b>three-aspect structure</b> — it is the cleanest way to answer "What is science?" in an exam.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:22%">Aspect</th><th>Core idea</th></tr></thead>
+<tbody>
+<tr><td>Conceptual</td><td>Science is about <b>how we know what we know</b> — validating ideas — not merely what we know.</td></tr>
+<tr><td>Disciplinary</td><td>Science has <b>no disciplinary boundary</b>; it covers natural, social and formal sciences.</td></tr>
+<tr><td>Comparative<br>(ways of knowing)</td><td>Science is one of <b>four ways of fixing belief</b>, and the only self-testing one.</td></tr>
+</tbody></table></div>
+
+<h4>(a) Conceptual aspect</h4>
+<p>From Latin <i><b>scientia</b></i> = <b>'knowledge'</b> of a fact or situation, or <b>'understanding'</b> of a subject — <b>as opposed to 'mere belief'</b> (Oxford Latin Dictionary, 1968).</p>
+<div class="box eg"><span class="bt">The two examples used in class</span>
+<ul>
+<li>If we <b>merely believe</b> that obese children are more likely to become obese adults than their thinner peers — <b>that is not science</b>.</li>
+<li>If we <b>merely believe</b> that women-headed households are more likely to adopt modern cooking fuels than male-headed ones — <b>that is not science</b>.</li>
+</ul>
+<p>It becomes science <b>only</b> when we encounter scientific evidence for these claims, or arrive at them ourselves through systematic study.</p>
+</div>
+<ul>
+<li>Science is <b>essentially a method, not so much its outcome</b>.</li>
+<li>Its outcomes are <b>not definitive — they are tentative</b>. <b>Karl Popper</b> (<i>The Logic of Scientific Discovery</i>, 2002): there is a <b>perpetual necessity for every scientific statement to remain tentative forever</b>.</li>
+<li>In the realm of science there is <b>no absolute book, no absolute person, no absolute authority</b>.</li>
+</ul>
+<div class="box def"><span class="bt">Quotable — Clark et al. (2017, pp.16–17)</span>
+<p>"Science isn't about certainty, it isn't merely about the orderly collection of facts, and it isn't about invoking authority to protect our ideas from uncomfortable evidence. Instead science is about <b>asking tough questions and providing answers that invite criticism</b>. Science is about <b>recognizing the limits of our knowledge without lapsing into irresponsible cynicism</b>. And science is about using the best logic, methods, and evidence available to provide answers today, <b>even though we recognize that they may be overturned tomorrow</b>."</p>
+<p style="margin-top:8px">→ Science therefore invokes strong <b>morality, humility, responsibility, courage, and commitment to truth</b>.</p>
+</div>
+
+<h4>(b) Disciplinary aspect</h4>
+<p>Conventionally, dictionaries define science as knowledge of the <b>physical/natural world</b>, provable by experiment. <b>This is a limitation</b> — the words 'human', 'society' and 'social' are <b>missing</b> from them (Heintz, 2009). They reinforce that science = knowledge, and they emphasise the 'how', but they exclude the social.</p>
+<div class="box def"><span class="bt">The Science Council's corrective definition <span class="pill">memorise</span></span>
+<p>"Science is the <b>pursuit and application of knowledge and understanding of the natural <u>and social</u> world</b> following a <b>systematic methodology based on evidence</b>."</p>
+</div>
+<div class="tw"><table>
+<thead><tr><th style="width:24%">Branch</th><th>Examples</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>Natural sciences</td><td>Physics, chemistry, biology, geology</td><td rowspan="2" style="font-weight:400">The boundary <b>blurs</b> — e.g. <b>epidemiology</b> sits across both.</td></tr>
+<tr><td>Social sciences</td><td>Economics, psychology, sociology</td></tr>
+<tr><td>Formal sciences</td><td>Logic, mathematics, statistics, theoretical linguistics</td><td style="font-weight:400">Formal sciences are the <b>"grammar"</b> of natural and social science — the <b>syntax of symbols</b> used to convey ideas; tools/rules running through both.</td></tr>
+</tbody></table></div>
+<p><b>Hansson (2013, p.64):</b> science in the broad sense seeks knowledge about nature (natural science), about ourselves (psychology, medicine), about our societies (social science, history), about our physical constructions (technological science), and about our thought constructions (linguistics, literary studies, mathematics, philosophy).</p>
+<div class="box exam"><span class="bt">The line worth quoting</span>
+<p>"<b>Science is not partial to any discipline. Rather, disciplines are partial to science. Disciplines which use science less may benefit by doing it more.</b>"</p>
+</div>
+
+<h3 id="m1-3">1.3 The hierarchy of science, and where social science sits</h3>
+<p><b>Comte (19th century)</b> arranged the sciences in a hierarchy. The diagram used in class maps the <b>scale of the universe</b> (from particle → atom → cell → human → Earth → solar system → galaxy → visible universe) onto branches of science:</p>
+<div class="chain"><span>Formal (logic, maths)</span><i>→</i><span>Physical (physics, chemistry)</span><i>→</i><span>Life (cellular &amp; functional biology)</span><i>→</i><span>Social (psychology, sociology, economics)</span><i>→</i><span>Earth &amp; Space</span></div>
+<p>Logic and mathematics sit at the base as the most general/abstract; sociology, law, ethics and economics sit at the "human scale". The point of the diagram: the social sciences are <b>not outside</b> the hierarchy of science.</p>
+
+<h4>What social science does</h4>
+<ul>
+<li><b>Analysing and studying the phenomena of society</b> — inequality? social chaos?</li>
+<li><b>Predicting the behaviour of people</b></li>
+<li><b>Inferring decisions from social phenomena</b></li>
+</ul>
+<p>Note how closely this mirrors <b>a rural manager's role</b> — which is exactly why this course exists.</p>
+
+<div class="box warn"><span class="bt">Why studying society is hard</span>
+<ul>
+<li>We have <b>less definitive tools</b> that can predict society.</li>
+<li>Our understanding of society is <b>ever evolving</b>.</li>
+<li>It involves <b>complex relationships between people</b> — and are humans really rational?</li>
+<li>"It is like doing a <b>very unpredictable lab experiment</b>."</li>
+</ul>
+<p>This is precisely why <b>qualitative methods</b> are needed — instruments that capture meaning, context and subjectivity rather than only numbers.</p>
+</div>
+
+<h3 id="m1-4">1.4 Is science the only way of knowing? — Peirce's four methods</h3>
+<p><b>Charles Peirce, <i>The Fixation of Belief</i> (1877)</b> (as discussed via Johnstone, 1962; Ray, 2021). Practically, there are <b>four ways of fixing belief</b>. This is an almost guaranteed exam question — know all four with examples.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:16%">Method</th><th style="width:34%">What it is</th><th style="width:25%">Example</th><th>Limitation</th></tr></thead>
+<tbody>
+<tr><td>1. Tenacity</td><td>"We have <b>always known it to be this way</b>." Acceptance through <b>familiarity</b> — statements presented repeatedly are accepted as true and rarely examined. Reiterating ourselves.</td><td>Television advertising; political sloganeering; "a black cat crossing brings bad luck".</td><td>Efficient for learning in toddlerhood, but <b>limiting as adults</b>.</td></tr>
+<tr><td>2. Authority</td><td>Belief fixed <b>for the community</b> by an expert or respected source. Institutions <b>propagate doctrines</b>, <b>prevent contrary doctrines</b> from being taught/advocated/expressed, and suspected persons found guilty of forbidden belief are subjected to <b>signal punishment</b>.</td><td>Religious/state institutions; expert pronouncements.</td><td><b>Useful when we know nothing</b> — but the <b>source of the authority's information must itself be examined</b>.</td></tr>
+<tr><td>3. A priori (reason)</td><td>Fixing beliefs that are <b>agreeable to reason</b> — reasoning or knowledge <b>independent of experience or observation</b>. Philosophy uses it; one can't deny it without contradicting oneself.</td><td>"Humans are selfish" / the rational-human assumption in economics.</td><td><b>Impeccable logic on a wrong assumption.</b> What is reasonable to one may not be to another.</td></tr>
+<tr><td>4. Science</td><td>The <b>best way to validate an idea</b> — it has the powerful method to evaluate. The <b>only method that can distinguish true from false</b>, and <b>the only one that can test itself</b>.</td><td>Systematic study with evidence.</td><td>—  it is "infested with <b>checks and balances</b>".</td></tr>
+</tbody></table></div>
+<div class="box mnem"><span class="bt">Mnemonic</span><p><b>T-A-A-S</b> → <b>T</b>enacity, <b>A</b>uthority, <b>A</b> priori, <b>S</b>cience. Or remember the ladder: <i>habit → someone told me → it stands to reason → I tested it.</i></p></div>
+
+<h3 id="m1-5">1.5 Characteristics of the scientific method of research <span class="pill">high yield</span></h3>
+<p>Five characteristics. Expect "Explain the characteristics of the scientific method" as a 10-marker.</p>
+
+<h4>(1) Replicability</h4>
+<p><b>Others should be able to repeat the study and get the same/similar result under the same environment</b> (Freese &amp; Peterson, 2017). This is straightforward for <b>quantitative</b> social science.</p>
+<div class="box warn"><span class="bt">Replication in QUALITATIVE social science — why it is problematic</span>
+<p>Four reasons (Freese &amp; Peterson, 2017):</p>
+<ol>
+<li><b>Anonymity</b> — participants are promised confidentiality, so raw data often cannot be shared for re-analysis.</li>
+<li><b>Evolution during research</b> — the research enquiries and questions <b>themselves evolve</b> during the study.</li>
+<li><b>Interpretative enterprise</b> — analysis depends on interpretation, which is researcher-specific.</li>
+<li><b>Interviewer is part of the observation</b> — the interview is part of a larger setting and of the interviewer's own experience.</li>
+</ol>
+<p>Hence the line: "<b>Field notes lose much of their value when divorced from the note taker.</b>"</p>
+</div>
+
+<h4>(2) Precision</h4>
+<p><b>Concepts must be defined with precision</b> (Bhattacherjee, 2012). Precision is needed while:</p>
+<ul><li><b>defining variables</b>;</li><li>choosing <b>data collection instruments/methods</b>;</li><li>choosing the <b>measurement scale</b> (if any);</li>
+<li><b>concluding what is found</b> — e.g. not confusing <b>correlation with causation</b> (Kazdin, 2016).</li></ul>
+<p><i>Examples of hard-to-define concepts:</i> measurement of learning abilities; quality of education imparted; quality of students.</p>
+
+<h4>(3) Falsifiability</h4>
+<p>Attributed to <b>Karl Popper</b>. A theory or hypothesis must be stated <b>in such a way that it can be disproved</b> if new data or information comes along (Bhattacherjee, 2012). It is <b>the difference between science and non-science</b>, and requires a <b>testable hypothesis</b> (Kazdin, 2016).</p>
+<div class="box eg"><span class="bt">Example</span><p>"A higher spending in health contributes to greater human capital formation." — this is falsifiable: data could show health spending rising while human capital indicators stay flat. A claim that can never be contradicted by any possible evidence is <b>not scientific</b>.</p></div>
+
+<h4>(4) Parsimony</h4>
+<p>Attributed to <b>Ockham</b> (Occam's razor). <b>Parsimony examines how much of a phenomenon is explained with how few variables.</b> When multiple explanations exist for the same phenomenon, <b>the simplest explanation that adequately fits the evidence is usually preferred</b>.</p>
+<ul>
+<li>It does <b>not</b> mean the simplest explanation is always true — only that it is generally the <b>best starting point</b>.</li>
+<li>A <b>more complex explanation takes precedence only if the simplest one becomes inadequate</b>.</li>
+<li>If there are <b>competing, equally complex explanations — all will remain</b>.</li>
+</ul>
+<div class="box eg"><span class="bt">Example</span><p>How can we improve children's health? Start the enquiry with <b>food intake</b> (a direct link) rather than arguing about <b>trade deals on infant foods</b> (distant/indirect).</p></div>
+
+<div class="box mnem"><span class="bt">Mnemonic for the characteristics</span>
+<p><b>R-P-F-P</b> → <b>R</b>eplicability, <b>P</b>recision, <b>F</b>alsifiability, <b>P</b>arsimony. ("<i>Real Professors Find Problems</i>")</p>
+</div>
+
+<!-- ============================ MODULE 2 ============================ -->
+<h2 id="m2"><span class="num">02</span>Research Problem and Research Question</h2>
+<p class="lede">Session 2. How a vague concern becomes a researchable question, and then (sometimes) a hypothesis.</p>
+
+<h3 id="m2-1">2.1 Purpose and motivations of research</h3>
+<div class="box def"><span class="bt">Definitions</span>
+<ul>
+<li><b>SOAS (2019):</b> "Research is a <b>systematic enquiry that seeks answers to a problem</b>."</li>
+<li><b>Srivastava &amp; Rego (2011)</b> — in management: research "guides <b>managers to make informed decisions</b> to deal with problems, collect facts/observations, and present them in a <b>systematic/logical manner</b>."</li>
+</ul>
+</div>
+<ul>
+<li>Research is an <b>attempt towards</b> solving problems — <b>not all problems get solved</b> by research.</li>
+<li>If you are in the <b>research mould</b>, it is more likely you will find something <b>new</b> — including <b>the knowledge that we don't know something</b>.</li>
+</ul>
+
+<h4>Five motivations of research (Srivastava &amp; Rego, 2011)</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:24%">Motivation</th><th>Illustration</th></tr></thead>
+<tbody>
+<tr><td>Problems</td><td>From own experience, observations, consultations.</td></tr>
+<tr><td>Competition</td><td>What strategies are competitors using to capture the market?</td></tr>
+<tr><td>Policies</td><td>Did the policy lead to better outcomes? Can research lead to better policy?</td></tr>
+<tr><td>Social consideration</td><td>Can a water purifier be made more affordable so everyone can access safe drinking water?</td></tr>
+<tr><td>Environmental consideration</td><td>Are agricultural practices leading to over-extraction of groundwater?</td></tr>
+</tbody></table></div>
+
+<h3 id="m2-2">2.2 How to find a research problem</h3>
+<div class="box def"><span class="bt">What is a "problem"? (O'Leary, 2005)</span>
+<p>A problem is <b>a situation where there is a gap between what is real and what is ideal or desired</b>.</p>
+<p>But <b>what counts as "ideal"</b> is <b>not always straightforward</b> — there is an <b>"element of subjectivity"</b>, and it <b>evolves with cultural shifts</b>.</p>
+<p><i>Examples:</i> the state of the environment (the shift from <b>MDGs to SDGs</b> changed what "ideal" means); <b>gender wage difference</b> (once unremarkable, now a problem).</p>
+</div>
+<p><b>Problem vs. research problem:</b> a <b>research problem</b> must <b>bridge the gap</b> — it must make a difference. And selecting one is debatable, because of the <b>practicality aspect: political and financial realities</b>.</p>
+
+<h4>Five sources for identifying gaps</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:26%">Source</th><th>Example given in class</th></tr></thead>
+<tbody>
+<tr><td>Real-life issues</td><td>Political leaders switching parties post-election.</td></tr>
+<tr><td>Own experience</td><td>Late diagnosis of diseases and survival rate.</td></tr>
+<tr><td>Literature review</td><td>Papers state their <b>limitations</b> and give the <b>future scope</b> of research — e.g. the <b>GDI measure</b> in human development.</td></tr>
+<tr><td>Stakeholder consultation</td><td>Assessing the views of those who have a stake — note "<b>your problem</b>" vs "<b>my problem</b>" (Nathan, 2018).</td></tr>
+<tr><td>Media coverage / newspapers</td><td>Emerging issues surfacing in public discourse.</td></tr>
+</tbody></table></div>
+
+<h3 id="m2-3">2.3 Unpacking a research problem</h3>
+<div class="box def"><span class="bt">O'Leary's three-circle model of an 'unpacked' problem</span>
+<p>An <b>'unpacked' problem</b> sits at the intersection of three explorations:</p>
+<ol>
+<li><b>Exploring dominant worldviews</b> — what does the mainstream/received wisdom assume?</li>
+<li><b>Exploring stakeholder perspectives</b> — how do those affected see it?</li>
+<li><b>Exploring personal perspectives</b> — what are <i>my</i> assumptions and biases?</li>
+</ol>
+<p>Draw this as three overlapping circles with 'Unpacked Problems' in the centre — it is an easy diagram mark.</p>
+</div>
+
+<h4>Problem diagnosing</h4>
+<p>Problems are generally <b>complex, multi-faceted and inconsistent</b> in nature — <b>look closely</b>.</p>
+<div class="box eg"><span class="bt">Worked example — "Why higher mortality from non-communicable diseases (say cancer)?"</span>
+<ul>
+<li>Is there <b>no treatment facility</b>?</li>
+<li>Is <b>access to treatment inadequate</b>?</li>
+<li>Is it <b>late diagnosis because of poor awareness</b>?</li>
+</ul>
+<p>Each sub-diagnosis points to a completely different study.</p>
+</div>
+<p><b>Also explore the assumptions embedded in the problem definition:</b></p>
+<ul>
+<li>"What kind of health-seeking behaviour do people have?" — <b>assumes accessibility</b>.</li>
+<li>"Utilization of public health care facilities" — <b>assumes availability</b>.</li>
+</ul>
+
+<h4>Practicality while choosing a research problem</h4>
+<ul>
+<li>Is it <b>feasible for you to do as a small-scale research study</b>?</li>
+<li><b>Limited budget?</b> (e.g. the threat of a major asteroid strike is a <i>real</i> problem for the human race — but not one you can research.)</li>
+<li><b>Support and funding</b> are enabling conditions.</li>
+<li><b>Unpopular research is welcome</b> — but you may have to garner support for it.</li>
+</ul>
+
+<h3 id="m2-4">2.4 From problem to research question</h3>
+<p><b>Why narrow the problem down?</b> To make it clearer; to <b>define investigations and boundaries</b>; to <b>give direction</b>; to <b>benchmark your decision making</b> (O'Leary, 2005). The research question is <b>"the door to a research study"</b> (Flick, 2014).</p>
+<div class="box eg"><span class="bt">Easterly (2008) on the MDGs</span>
+<p><b>Problem:</b> Africa is not doing well on the MDGs.<br>
+<b>One possible research question:</b> "Were the MDGs <i>designed</i> to be unfair to Africa?"<br>
+<b>Key lesson: the same problem can lead to entirely different research questions.</b></p>
+</div>
+
+<div class="box eg"><span class="bt">Narrowing funnel — worked example</span>
+<p>What am I interested in? → <i>Women's issues? Health of a society? Rural entrepreneurship?</i><br>
+Say <b>health of society</b>. What particularly?</p>
+<ul>
+<li>Why are non-communicable diseases now more prevalent?</li>
+<li>What kind of health-seeking behaviour do people have?</li>
+<li>What is the rate of utilization of public health care facilities?</li>
+<li>How does health expenditure impact overall household welfare?</li>
+</ul>
+</div>
+
+<h4>O'Leary's five-step process for articulating research questions <span class="pill">high yield</span></h4>
+<div class="tw"><table>
+<thead><tr><th style="width:14%">Step</th><th>What you do</th></tr></thead>
+<tbody>
+<tr><td>Step I<br>Brainstorm</td><td>Answer five prompts:<br>• <b>What is your topic?</b> (chronic back pain, recycling, independent learning…)<br>• <b>What is the context?</b> (a school, local government authority, a hospital, a community…)<br>• <b>What do you want to achieve?</b> (to discover, describe, change, explore, explain, develop, understand…)<br>• <b>What is the nature of your question?</b> (a <i>what, who, where, how, when</i> or <i>why</i> question)<br>• <b>Are there potential relationships to explore?</b> (impacts, increases, decreases, relationships, correlations, causes…)</td></tr>
+<tr><td>Step II<br>Generate</td><td>Combine those answers into <b>several alternative questions</b> from the same topic. See the recycling example below.</td></tr>
+<tr><td>Step III<br>Select</td><td><b>Selecting from multiple questions</b> — pick the one that is best for you and your context.</td></tr>
+<tr><td>Step IV<br>Refine</td><td><b>Remove ambiguities</b> in wording.</td></tr>
+<tr><td>Step V<br>Check</td><td>Run the <b>question checklist</b> (below).</td></tr>
+</tbody></table></div>
+
+<div class="box eg"><span class="bt">Step II in action — one topic (recycling), three very different questions</span>
+<ul>
+<li><b>Topic:</b> recycling · <b>Context:</b> domestic/community · <b>Goal:</b> explore why there is a lack of efficiency · <b>Nature:</b> who and why · <b>Relationship:</b> correlation between demographic characteristics and inefficient recycling<br>
+→ <i>"Is there a relationship between household recycling behaviours and demographic characteristics?"</i> <b>(quantitative)</b></li>
+<li><b>Topic:</b> recycling · <b>Context:</b> domestic/households · <b>Goal:</b> understand how individuals go about the task of recycling · <b>Nature:</b> how · <b>Relationship:</b> N/A<br>
+→ <i>"How do individuals engage in decision-making processes related to household domestic waste management?"</i> <b>(qualitative/exploratory)</b></li>
+<li><b>Topic:</b> recycling · <b>Context:</b> domestic/community · <b>Goal:</b> describe the nature of recycling inefficiencies so an effective community awareness campaign can be developed · <b>Nature:</b> what · <b>Relationship:</b> N/A<br>
+→ <i>"What are the most common non-recyclable items found in household recycle bins?"</i> <b>(descriptive)</b></li>
+</ul>
+</div>
+
+<div class="box exam"><span class="bt">Step V — the six-point question checklist <span class="pill">memorise</span></span>
+<ol>
+<li>Is the question <b>right for you</b>?</li>
+<li>Is it <b>significant for the organization</b>?</li>
+<li>Would it <b>lead to improvement</b>?</li>
+<li>Is it <b>articulated well enough</b>?</li>
+<li>Is it <b>researchable</b>?</li>
+<li>Does it have <b>political support</b>?</li>
+</ol>
+</div>
+
+<h4>Types of research questions (by purpose)</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:16%">Type</th><th style="width:40%">Purpose of the study</th><th>Typical research question</th></tr></thead>
+<tbody>
+<tr><td>Exploratory</td><td>Investigate little-understood phenomena; identify/discover important variables; generate hypotheses for future research.</td><td>What is happening here? What are the salient themes, patterns and categories in participants' meaning structures? How are these patterns linked?</td></tr>
+<tr><td>Explanatory</td><td>Explain the forces causing the phenomenon; identify plausible causal networks shaping it.</td><td>What events, beliefs, attitudes and policies are shaping this phenomenon? How do these forces interact to result in the phenomenon?</td></tr>
+<tr><td>Critical</td><td>Uncover implicit assumptions and biases (and structures) on which the predominant argument/narrative rests.</td><td>What are the assumptions about human nature, society, reality and knowledge that define existing views? Are they right? Are they fair?</td></tr>
+<tr><td>Descriptive</td><td>Document the phenomenon of interest.</td><td>What are the salient behaviours, events, beliefs, attitudes, structures and processes occurring here?</td></tr>
+<tr><td>Action-oriented</td><td>Change the phenomenon by educating and mobilizing the people involved in and affected by it.</td><td>How do the target group see the phenomenon? How can they change it?</td></tr>
+<tr><td>Predictive</td><td>Predict the outcomes of the phenomenon; forecast events and behaviours resulting from it.</td><td>What will occur as a result of this phenomenon? Who will be affected? In what ways?</td></tr>
+</tbody></table></div>
+
+<h3 id="m2-5">2.5 From question to hypothesis</h3>
+<div class="box def"><span class="bt">Definition (O'Leary, 2005)</span>
+<p>A hypothesis is a <b>logical conjecture — a hunch or an educated guess</b>: the <b>nature of relationships between two or more variables, expressed as a testable statement</b>.</p>
+</div>
+<div class="chain"><span>Problem</span><i>→</i><span>Research question</span><i>→</i><span>Hypothesis (your hunch)</span><i>→</i><span>Variables</span><i>→</i><span>Relationship to be tested</span></div>
+<div class="box eg"><span class="bt">The recycling example, all the way through</span>
+<ul>
+<li><b>Question:</b> "Is there a relationship between household recycling behaviours and demographic characteristics?"</li>
+<li><b>Hunch:</b> recycling behaviour ~ <b>age</b> of household members.</li>
+<li><b>Hypothesis:</b> "<i>Children and teenagers are more likely than adults to put inappropriate materials in recycle bins.</i>"</li>
+<li><b>Variables:</b> recycling behaviour and age. <b>Relationship tested:</b> recycling behaviour depends on age.</li>
+</ul>
+</div>
+<div class="box exam"><span class="bt">When there is NO scope for a hypothesis</span>
+<p>"<b>How do individuals engage in decision-making processes related to household domestic waste management?</b>" — this is an <b>exploratory study</b>. You are <b>exploring and uncovering a process</b>, so <b>no hypothesis is needed</b>.</p>
+<p>Another example: "<i>What are the reasons behind the high incidence of water-borne diseases in this area?</i>"</p>
+<p><b>This happens more often in qualitative research.</b> Course refrain: <b>"No hypothesis — no problem."</b></p>
+</div>
+
+<div class="box eg"><span class="bt">In-class activity (know the drill — it can be set as an exam scenario)</span>
+<p><b>Scenario:</b> A district in rural Gujarat has seen a sharp rise in diabetes and hypertension over the last decade. Despite this, most Primary Health Centres report very few patients coming for regular check-ups or early screening. Local health workers say people mostly show up only after symptoms become severe.</p>
+<p><b>The four-step drill:</b></p>
+<ol><li><b>Diagnose the broad problem</b> (gap between real and ideal; unpack assumptions — availability? awareness? affordability? trust? gendered mobility?)</li>
+<li><b>Generate research questions by the nature of your enquiry</b> — same problem, different questions (descriptive / exploratory / explanatory / action-oriented).</li>
+<li><b>Test with the six-point checklist.</b></li>
+<li><b>Develop a hypothesis</b> — or state explicitly why this is exploratory and needs none.</li></ol>
+</div>
+
+<h3 id="m2-6">2.6 Steps in research (Privitera, 2022)</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:16%">Step</th><th>Activity</th></tr></thead>
+<tbody>
+<tr><td>Step I</td><td>Identify a problem</td></tr>
+<tr><td>Step II</td><td>Develop a research plan</td></tr>
+<tr><td>Step III</td><td>Conduct the study</td></tr>
+<tr><td>Step IV</td><td>Analyse and evaluate the data</td></tr>
+<tr><td>Step V</td><td>Communicate the results</td></tr>
+<tr><td>Step VI</td><td>Generate further new ideas</td></tr>
+</tbody></table></div>
+<p><b>Key point:</b> Step VI loops back to Step I — <b>research is cyclical</b>, so the researcher must strive for continuous refinement.</p>
+
+<!-- ============================ MODULE 3 ============================ -->
+<h2 id="m3"><span class="num">03</span>Research Processes &amp; Understanding 'Qualitative'</h2>
+<p class="lede">Session 3. The full architecture of a research study, the inductive/deductive loop, and the philosophical basis of qualitative enquiry.</p>
+
+<h3 id="m3-1">3.1 Why does research need a method? (Kazdin, 2016)</h3>
+<ul>
+<li><b>Without methods, scientists cannot communicate</b> — method is the shared language.</li>
+<li><b>Research is a serious affair.</b></li>
+<li>Methods <b>aid in drawing inferences</b> from data and answering questions.</li>
+<li>Methods provide <b>reliable information/data</b>.</li>
+<li>Methods help us <b>minimize bias, overcome limitations, and survive well</b>.</li>
+</ul>
+
+<h3 id="m3-2">3.2 The four phases and eight steps of research (Kumar, 2014) <span class="pill">memorise</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:30%">Phase</th><th style="width:14%">Step</th><th>Activity</th></tr></thead>
+<tbody>
+<tr><td rowspan="1"><b>Phase I</b> — Deciding <b>WHAT</b> to research</td><td>Step I</td><td>Formulating the research problem and research question</td></tr>
+<tr><td rowspan="4"><b>Phase II</b> — Planning <b>HOW</b> to conduct the study</td><td>Step II</td><td>Conceptualizing a research design</td></tr>
+<tr><td>Step III</td><td>Constructing an instrument for data collection</td></tr>
+<tr><td>Step IV</td><td>Selecting a sample</td></tr>
+<tr><td>Step V</td><td>Writing the research proposal</td></tr>
+<tr><td rowspan="3"><b>Phase III</b> — Actually <b>DOING</b> the study</td><td>Step VI</td><td>Collecting data</td></tr>
+<tr><td>Step VII</td><td>Processing and displaying data</td></tr>
+<tr><td>Step VIII</td><td>Writing the research report</td></tr>
+<tr><td><b>Phase IV</b> — Research <b>ADVOCACY</b></td><td>—</td><td>Taking the findings out into policy/practice</td></tr>
+</tbody></table></div>
+<div class="box mnem"><span class="bt">Mnemonic</span><p><b>WHAT → HOW → DO → ADVOCATE.</b> Steps: 1 in Phase I, 4 in Phase II, 3 in Phase III. (1-4-3.)</p></div>
+
+<h4>The iterative nature of the research process (Kumar, 2014)</h4>
+<div class="chain"><span>Define problem</span><i>→</i><span>Specify research questions / hypotheses</span><i>→</i><span>Design research<br>(sampling, data collection, processing, analysis)</span><i>→</i><span>Select units of study</span><i>→</i><span>Collect data</span><i>→</i><span>Analyse data</span><i>→</i><span>Write report</span></div>
+<p>The diagram in the deck has <b>arrows looping backwards from every later stage to every earlier stage</b> — that is the whole point. You can go back from analysis to redesign, from data collection to re-specifying questions, and so on. <b>Research is iterative, not linear.</b></p>
+
+<h3 id="m3-3">3.3 Research approaches: inductive and deductive <span class="pill">high yield</span></h3>
+<div class="box def"><span class="bt">Definitions</span>
+<p><b>Deduction</b> is the process of drawing conclusions about a phenomenon or behaviour <b>based on theoretical or logical reasons and an initial set of premises</b>. <i>General → specific (top-down).</i></p>
+<p><b>Induction</b> is the process of drawing conclusions <b>based on facts or observed evidence</b>. Induction occurs when <b>we observe a fact and ask, "Why is this happening?"</b> <i>Specific → general (bottom-up).</i></p>
+</div>
+<div class="tw"><table>
+<thead><tr><th style="width:22%"></th><th>Inductive</th><th>Deductive</th></tr></thead>
+<tbody>
+<tr><td>Purpose</td><td>To seek <b>insights into an observed phenomenon</b></td><td>To <b>test or validate a theory</b></td></tr>
+<tr><td>Outcome</td><td><b>Theory building</b></td><td><b>Theory testing</b></td></tr>
+<tr><td>Direction</td><td>Specific → general (bottom-up); <b>depth</b></td><td>General → specific (top-down); <b>breadth</b></td></tr>
+<tr><td>Typical strategy</td><td><b>Exploratory</b> — associated with qualitative research</td><td><b>Confirmatory</b> — associated with quantitative research</td></tr>
+<tr><td>Examples in class</td><td>Relationship between heights of parents and children (Galton's observation of regression to the mean — you observe the data and then ask why)</td><td>Flat-earth theory; theory of demand; Prospect Theory (you start with the theory and go test it)</td></tr>
+</tbody></table></div>
+<div class="box eg"><span class="bt">The heights example, explained</span>
+<p>Plot fathers' heights against sons' heights. The average height of sons of <b>tall</b> fathers is lower than their fathers' average; the average height of sons of <b>short</b> fathers is higher than their fathers' average. Both drift back toward the overall average. <b>You observed this from data first, then asked "why is this happening?" — that is induction</b> (and it produced the concept of regression to the mean).</p>
+</div>
+<div class="box exam"><span class="bt">The cycle (Bhattacherjee, 2012) — a favourite diagram question</span>
+<p>Induction and deduction are <b>not rivals — they form a loop</b>:</p>
+<div class="chain" style="margin-top:8px"><span>Observations</span><i>→ INDUCTIVE →</i><span>Theory</span><i>→ DEDUCTIVE →</i><span>Hypotheses / predictions</span><i>→</i><span>New observations</span><i>→ back to theory</i></div>
+<p><b>This cyclical process helps improve a theory.</b> Induction builds it; deduction tests it; the test throws up new observations; those refine the theory again.</p>
+</div>
+
+<h3 id="m3-4">3.4 Ontology and Epistemology <span class="pill">high yield</span></h3>
+<div class="box def"><span class="bt">The two words you must define precisely</span>
+<p><b>Ontology</b> = your assumption about <b>the nature of reality</b> — what we think reality looks like and how we view the world.</p>
+<p><b>Epistemology</b> = your assumption about <b>how we can know that reality</b> — what counts as knowledge.</p>
+</div>
+<div class="box exam"><span class="bt">Why it matters</span>
+<p><b>"Researchers can follow the same steps and still design completely different studies — because their ontology and epistemology differ."</b></p>
+<p>Someone who believes there is <b>one objective social reality out there</b> (realist ontology) and that we know it through <b>measurement</b> (positivist epistemology) will run a survey. Someone who believes reality is <b>socially constructed and multiple</b> (relativist/constructivist ontology) and is known through <b>people's interpretations</b> (interpretivist epistemology) will run interviews. Same topic, different study.</p>
+<p>The <b>choice of research approach is shaped by three things: Ontology, Epistemology, and the Research Goal.</b></p>
+</div>
+
+<h3 id="m3-5">3.5 Understanding 'Qualitative' Research</h3>
+<div class="box def"><span class="bt">Definition (Hennink et al., 2015)</span>
+<p>Qualitative research <b>allows one to examine people's experience in detail</b> using research methods such as <b>in-depth interviews (IDIs), focus group discussions (FGDs), observations, life histories and ethnography</b>.</p>
+<p><b>Approach:</b> identify issues <b>from the perspective of the study participants</b> and understand <b>the meanings and interpretations they give to their behaviour</b> — this is the <b>interpretive approach</b>.</p>
+</div>
+
+<h4>Embracing subjectivity (Yardley, 2024)</h4>
+<ul>
+<li><b>"People don't behave like matter — solid, liquid, or gases."</b> The human experience is rich and diverse.</li>
+<li>Qualitative research <b>acknowledges the subjective nature of human experience</b>.</li>
+<li>That subjective nature is <b>coloured by personal beliefs, values, attitudes, feelings and experiences</b>.</li>
+<li><b>Subjectivity has value</b> — it is not a defect to be eliminated.</li>
+</ul>
+
+<div class="box def"><span class="bt">Emic vs Etic <span class="pill">memorise</span></span>
+<p><b>Emic = the insiders' perspective.</b> <b>Etic = the outsiders' perspective.</b> <b>Qualitative research is emic.</b></p>
+<p><b>The classroom example:</b> <i>a household has a toilet, but the women do not use it.</i></p>
+<ul>
+<li><b>Etic (outsider) reading:</b> "They are ignorant / lack awareness / the behaviour-change campaign failed."</li>
+<li><b>Emic (insider) reading:</b> the toilet has no water supply; using it is considered polluting to the home; there is no privacy/lock; going to the fields is a social occasion with other women; the structure is used for storage. Only the insider's account explains the behaviour.</li>
+</ul>
+</div>
+
+<h4>Applications of qualitative research (Hennink et al., 2015)</h4>
+<p>Qualitative research is used to:</p>
+<ul>
+<li><b>understand behaviour, beliefs, opinions and emotions from the perspective of study participants themselves;</b></li>
+<li><b>understand and explain people's views and behaviour;</b></li>
+<li><b>understand processes</b> — such as how people make decisions, negotiate a job, or manage a business;</li>
+<li><b>uncover the meaning</b> that people give to their experiences;</li>
+<li><b>understand social interactions</b> among people and the <b>norms and values</b> they share;</li>
+<li><b>identify the social, cultural, economic or physical context</b> in which activities take place;</li>
+<li><b>give voice</b> to the issues of a certain study population;</li>
+<li>provide <b>depth, detail, nuance and context</b>;</li>
+<li><b>examine sensitive issues</b> in detail — sexuality, violence, personal relationships;</li>
+<li><b>study complex issues</b> — human trafficking, drug use — which are too complex or hidden to be easily disentangled by quantitative research.</li>
+</ul>
+<p>Also: <b>exploring new topics</b>, explaining beliefs and behaviour, and <b>identifying the cultural norms of a society</b>.</p>
+
+<h4>What qualitative research is good at answering</h4>
+<ul>
+<li><b>Why</b> people behave the way they do</li>
+<li><b>How</b> opinions and attitudes are formed</li>
+<li>How people are <b>affected by the events going on around them</b></li>
+<li><b>How and why cultures have developed</b></li>
+<li>The <b>differences between social groups</b></li>
+</ul>
+<p><b>When to choose qualitative:</b> when you want to <b>deeply understand</b> something; when you are interested in the <b>lived experiences of a particular group</b> and want to <b>highlight those experiences, not just generalize about them</b>.</p>
+
+<h4>What the qualitative researcher must be</h4>
+<ul>
+<li><b>Embrace and understand the contextual influence</b> on the research issue.</li>
+<li>Be <b>open-minded, curious, empathic, flexible, and a thorough listener</b>.</li>
+<li>Be <b>transparent about the method</b>.</li>
+<li><b>Ask very open questions</b> and give the participant all the space to talk.</li>
+<li>Use <b>rapport building</b> to create a comfortable atmosphere in which participants can disclose sensitive things.</li>
+</ul>
+
+<h3 id="m3-6">3.6 Validity and reliability in qualitative research <span class="pill">high yield</span></h3>
+<div class="box def"><span class="bt">The core reframing (Yardley, 2024)</span>
+<p>In qualitative work, validity and reliability become the <b>authenticity / trustworthiness</b> of the information — i.e. <b>credibility</b> — and <b>being transparent about how one found it, or showing how one did it</b> — i.e. <b>dependability</b>.</p>
+</div>
+<div class="tw"><table>
+<thead><tr><th style="width:26%">Concern</th><th>Quantitative</th><th>Qualitative</th></tr></thead>
+<tbody>
+<tr><td>Validity means</td><td><b>Accuracy of measurement</b></td><td><b>Credibility</b> — authenticity/trustworthiness of the account</td></tr>
+<tr><td>Reliability means</td><td><b>Replicability</b></td><td><b>Dependability</b> — transparency about how you got there</td></tr>
+<tr><td>Role of researcher</td><td>Strives for <b>objectivity</b>; researcher is external to the instrument</td><td>The <b>researcher is another research tool</b>; subjectivity is acknowledged and used</td></tr>
+</tbody></table></div>
+<p><b>Every study is time-bound and context-bound, and is done by a particular researcher</b> — hence the <b>temporal, spatial and personal context</b> all matter and must be reported.</p>
+
+<h3 id="m3-7">3.7 Qualitative vs Quantitative — the master comparison <span class="pill">guaranteed question</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:17%"></th><th>Qualitative research</th><th>Quantitative research</th></tr></thead>
+<tbody>
+<tr><td>Objective</td><td>To gain a <b>detailed understanding of underlying reasons, beliefs, motivations</b></td><td>To <b>quantify data and extrapolate results to a broader population</b></td></tr>
+<tr><td>Purpose</td><td>To understand <b>why? how? what is the process? what are the influences or contexts?</b></td><td>To <b>measure, count, quantify</b> a problem. <b>How much? How often? What proportion?</b> Relationships in data.</td></tr>
+<tr><td>Data</td><td>Data are <b>words</b> (textual data)</td><td>Data are <b>numbers</b> (numerical data)</td></tr>
+<tr><td>Study population</td><td><b>Small number</b> of participants, selected <b>purposively (non-randomly)</b></td><td><b>Large sample</b> of <b>representative</b> cases</td></tr>
+<tr><td>Nomenclature</td><td>Called <b>participants</b> or <b>interviewees</b></td><td>Called <b>respondents</b> or <b>subjects</b></td></tr>
+<tr><td>Data collection</td><td><b>In-depth interviews, observation, group discussions</b></td><td><b>Population surveys, opinion polls, exit interviews</b></td></tr>
+<tr><td>Analysis</td><td>Analysis is <b>interpretive</b></td><td>Analysis is <b>statistical</b></td></tr>
+<tr><td>Outcome</td><td>To develop an <b>initial understanding</b>; to identify and explain behaviour, beliefs or actions</td><td>To identify <b>prevalence, averages and patterns</b>; to <b>generalize</b> to a broader population</td></tr>
+<tr><td>Strategy</td><td><b>Exploratory &amp; inductive</b> (specific→general, bottom-up, <b>depth</b>)</td><td><b>Confirmatory &amp; deductive</b> (general→specific, top-down, <b>breadth</b>)</td></tr>
+</tbody></table></div>
+<div class="box mnem"><span class="bt">Compressed memory line</span>
+<p><b>Qualitative = words, few, purposive, interpretive, why/how, depth, emic, inductive, participants.</b><br>
+<b>Quantitative = numbers, many, random, statistical, how much/how often, breadth, etic, deductive, respondents.</b></p>
+</div>
+
+<h4>Foundational SIMILARITIES (don't forget these — they are often the second half of the question)</h4>
+<ul>
+<li>Both use a <b>systematic research approach</b> with <b>established protocols designed to detect patterns</b>.</li>
+<li>Both are <b>built on empirical evidence / observable reality</b> — that which can be <b>observed, experienced, documented, or otherwise encountered in the social world</b>.</li>
+</ul>
+<p><b>Foundational difference, stated simply:</b> quantitative research uses methodological techniques that <b>represent the human experience in numerical categories</b> (statistics); qualitative research provides <b>detailed description and analysis of the quality — the substance — of the human experience</b>.</p>
+<div class="box warn"><span class="bt">A point the lecturer stressed</span>
+<p>"Quantitative is often perceived as <b>'better'</b> than qualitative — but this is often based on a <b>misunderstanding of the advantages and disadvantages of both approaches</b>." Neither is superior; they answer different questions.</p>
+</div>
+
+<h4>Integration of qualitative and quantitative (Miles &amp; Huberman, 1994, p.41; Flick, 2014, p.29)</h4>
+<p><b>Four designs for mixing methods</b> — know all four:</p>
+<div class="tw"><table>
+<thead><tr><th style="width:8%">#</th><th style="width:38%">Design</th><th>How it works</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>QUAL + QUANT in parallel</b></td><td>Continuous collection of <b>both sorts of data</b> at the same time, throughout.</td></tr>
+<tr><td>2</td><td><b>QUANT waves + continuous QUAL</b></td><td>Continuous qualitative field research runs throughout, with <b>quantitative waves 1, 2, 3</b> conducted at intervals within it.</td></tr>
+<tr><td>3</td><td><b>QUAL → QUANT → QUAL</b></td><td>Qualitative <b>exploration</b> → quantitative <b>questionnaire</b> → qualitative <b>deepening and assessing of results</b>.</td></tr>
+<tr><td>4</td><td><b>QUANT → QUAL → QUANT</b></td><td>Quantitative <b>survey</b> → qualitative <b>field study</b> → quantitative <b>experiment</b>.</td></tr>
+</tbody></table></div>
+
+<h3 id="m3-8">3.8 Two stories: how a simple idea became a large impact (Kumar, 2014)</h3>
+<p>With <b>evidence-based practice</b> becoming the norm in service delivery, research becomes indispensable. Both examples are IRMA-adjacent and make excellent illustrations in a long answer.</p>
+
+<h4>(a) Brij Kothari — Same Language Subtitling (SLS)</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:14%">Year</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td>1996</td><td><b>The idea</b> — while watching a Spanish movie with English subtitles: what if Hindi songs had <i>Hindi</i> subtitles? People would read along without trying.</td></tr>
+<tr><td>1998</td><td><b>An experimental study</b> with low-income primary school children (Kothari et al., 2002).</td></tr>
+<tr><td>1999</td><td><b>Piloting in Gujarat</b> on Gujarati film songs — a <b>natural setting</b>. Improvement in reading skills (Kothari et al., 2004).</td></tr>
+<tr><td>2002</td><td><b>Scaled to <i>Rangoli</i> and <i>Chitrahaar</i></b> in a phased manner; evaluated by <b>third-party evaluators</b>; improvements confirmed (Kothari &amp; Bandyopadhyay, 2007).</td></tr>
+</tbody></table></div>
+<p><b>Result:</b> a literacy revolution at a cost of <b>less than one paisa per person per year</b>.</p>
+<p class="src">The research-process lesson: idea → controlled experiment → pilot in a natural setting → phased scale-up → independent evaluation. That is the cycle of Module 3.2 in real life.</p>
+
+<h4>(b) Girja Sharan — Passive Condensation</h4>
+<ul>
+<li>The phenomenon was <b>come across accidentally</b> (condensation forming on a greenhouse in Kutch).</li>
+<li>Idea: <b>harvest dew</b> passively, using condenser surfaces.</li>
+<li>Purpose: <b>supplement drinking water in a water-scarce region</b> (Sharan, 2005).</li>
+</ul>
+<p class="src">Lesson: serendipitous observation + systematic follow-up = research. Compare this with Peirce — an accidental observation only becomes knowledge once the scientific method is applied to it.</p>
+
+<!-- ============================ MODULE 4 ============================ -->
+<h2 id="m4"><span class="num">04</span>Essentials of Literature Review and Research Writing</h2>
+<p class="lede">Session 4. Why you read before you write, how to handle sources honestly, and how to write research that people can actually follow.</p>
+
+<h3 id="m4-1">4.1 Why do a literature review? (Kumar, 2014; Bryman, 2008)</h3>
+<ol>
+<li><b>To place your findings in the context of the body of knowledge.</b></li>
+<li><b>Not to reinvent the wheel</b> — avoid duplicating concepts.</li>
+<li><b>To compare your findings with others'.</b></li>
+<li><b>To broaden the knowledge base</b> — including <b>resolving inconsistencies</b> in the existing literature.</li>
+<li><b>To establish the theoretical and conceptual framework</b> for your study.</li>
+<li><b>To justify your selection of research questions</b> — by finding <b>gaps and neglected aspects</b>.</li>
+<li><b>To become conversant with the methods</b> used in your field.</li>
+</ol>
+
+<div class="box exam"><span class="bt">'Literature review' vs 'summary of literature' <span class="pill">likely 2-marker</span></span>
+<p>A <b>summary of literature</b> lists what each study said, one after another ("A found X. B found Y. C found Z."). It is a <b>catalogue</b>.</p>
+<p>A <b>literature review</b> <b>synthesises, organises by theme, compares, contrasts, identifies patterns, resolves inconsistencies, and argues towards a gap</b> that your study will fill. It has a <b>direction and a conclusion</b>.</p>
+<p>The governing principle: "<b>The whole is more than the sum of its parts.</b>"</p>
+</div>
+
+<h4>Can reviews contribute to original research?</h4>
+<ul>
+<li>Reviews are <b>catalogues of original findings but not original by themselves</b> — and writers <b>shy away from considering a review at par with original research</b>.</li>
+<li><b>But</b>: "the whole is more than the sum of its parts". Reviews <b>can give new insights</b>, particularly through the <b>interdisciplinary acumen of the authors</b>.</li>
+<li>A review offers the scope for <b>viewing an issue through a kaleidoscope of multiple disciplines</b>.</li>
+<li><b>Standalone literature review papers</b> are a legitimate publication type.</li>
+</ul>
+<div class="box eg"><span class="bt">The Kanizsa illusion — why this was shown in class</span>
+<p>The <b>Kanizsa triangle</b> and <b>Kanizsa square</b>: three or four 'pac-man' shapes arranged so that you clearly perceive a bright triangle or square <b>that is not actually drawn</b>. The edges exist only in your perception of the whole.</p>
+<p><b>The point:</b> individually, each source (each pac-man) shows you nothing. Assembled and synthesised, a shape appears that no single study contained. <b>That emergent shape is what a good literature review produces</b> — it is where a review becomes original.</p>
+</div>
+
+<h3 id="m4-2">4.2 Always go to the original source of data — the Kuznets case <span class="pill">favourite example</span></h3>
+<p><b>Rule: it is always advisable to go to the original source of data, as far as possible.</b> The Kuznets curve is the course's extended cautionary tale.</p>
+<div class="tw"><table>
+<thead><tr><th style="width:20%">Stage</th><th>What happened</th></tr></thead>
+<tbody>
+<tr><td>The hypothesis</td><td><b>Kuznets (1955)</b> proposed the <b>growth–inequality relationship</b>: as an economy develops (agriculture → industry, greater urbanization of the labour force), inequality first <b>rises</b> and then <b>falls</b> — the inverted-U "Kuznets curve". Inequality measured via the <b>Gini coefficient</b>; the implication drawn by others was that <b>a free market will deliver prosperity <i>and</i> equity</b>.</td></tr>
+<tr><td>What Kuznets himself said</td><td>In the <b>same paper</b> (1955, p.26) he wrote: "<i>I am acutely conscious of the meagreness of reliable information presented. The paper is perhaps <b>5 per cent empirical information and 95 per cent speculation</b>, some of it possibly tainted by wishful thinking.</i>" He repeatedly warned the data were little more than "<b>pure guesswork</b>", and that even if valid they pertained to "<b>an extremely limited period of time and to exceptional historical experiences</b>."</td></tr>
+<tr><td>What the field did</td><td><b>The warnings were ignored.</b> The Kuznets curve was <b>"raised to the level of law"</b> by other economists (Fogel, 1987).</td></tr>
+<tr><td>The correction</td><td><b>Piketty (2013)</b>, using the <b>top decile's share of US national income, 1910–2010</b>, argues Kuznets <b>mistook the 1930–1950 decrease in inequality for the endpoint of its development</b>. Since 1950 inequality has <b>again reached pre-WWII levels</b>; similar trends are visible across European countries.</td></tr>
+</tbody></table></div>
+<div class="box exam"><span class="bt">The moral, in one line</span>
+<p>If you cite a secondary account, you inherit its distortions. <b>Had researchers read Kuznets's own paper, a speculative hypothesis would never have become an economic "law".</b> Always go to the original.</p>
+</div>
+
+<h3 id="m4-3">4.3 Writing your research — the L-L-F rule <span class="pill">memorise</span></h3>
+<div class="box def"><span class="bt">L — Language · L — Logic · F — Flow</span>
+<p><b>LANGUAGE</b></p>
+<ul><li><b>Keep revising</b> — writing continuously improves with revision.</li>
+<li>Maintain the <b>connection between sentences</b>.</li>
+<li>There must be <b>a message in every paragraph</b>.</li></ul>
+<p><b>LOGIC</b></p>
+<ul><li><b>Provide a basis for opinions, with the help of facts.</b> "Bidi consumption is higher in rural households" — <b>who says?</b></li>
+<li><b>Facts</b> = both the <b>'data'</b> and the <b>'interpretations'/'views' of others</b>.</li></ul>
+<p><b>FLOW</b></p>
+<ul><li>Use <b>genuine breaks</b> — sections should break where the argument actually turns, not arbitrarily.</li></ul>
+</div>
+
+<h3 id="m4-4">4.4 Referencing, data care, authorship and plagiarism</h3>
+<h4>Referencing</h4>
+<ul>
+<li><b>Attribute data to its reference.</b></li>
+<li><b>Cite in text</b> as (author, year).</li>
+<li>Use <b>footnotes</b> where appropriate.</li>
+<li>Maintain a proper <b>reference section</b>; follow the <b>journal guideline</b>.</li>
+<li>Keep a <b>file-naming convention</b>; use <b>Google Scholar</b> for retrieval and citation export.</li>
+</ul>
+<h4>Data care</h4>
+<ul><li>Care in <b>data collection</b> and in <b>sharing data</b> (ethical aspects).</li>
+<li><b>No Type I and Type II errors</b> — do not claim an effect that isn't there (Type I / false positive), and do not miss one that is (Type II / false negative).</li></ul>
+<h4>Authorship care</h4>
+<ul>
+<li>Authorship <b>should be based on contribution</b>.</li>
+<li><b>No honorary authorship, no gift authorship.</b></li>
+<li>On a multi-authored paper, <b>be aware of all parts of the work</b> — you are answerable for all of it.</li>
+<li>The <b>contribution of each author must be stated clearly</b>.</li>
+</ul>
+<h4>Plagiarism</h4>
+<ul>
+<li>It is a <b>serious issue</b>. <b>"You know it."</b></li>
+<li><b>Plagiarism software</b> exists — check with the library.</li>
+<li><b>The onus lies with the authors</b> — not the reviewers, not the software.</li>
+<li>Even very senior scientists have been caught (the C.N.R. Rao case was cited) — <b>seniority is no protection</b>.</li>
+<li><b>Best strategy:</b> read, understand, close the source, and write it in your own words — then cite. Never paraphrase with the source open in front of you.</li>
+</ul>
+
+<h3 id="m4-5">4.5 Presentation of data and findings</h3>
+<h4>Tabulation</h4>
+<ul>
+<li>Tables must be <b>self-explanatory</b> — readable without the surrounding text.</li>
+<li>Table footnotes need to be placed as <b>Notes</b>.</li>
+<li><b>Optimize the information and optimize the entries</b> — do not dump every cross-tabulation you produced.</li>
+</ul>
+<div class="box eg"><span class="bt">The table shown in class — "Community responses on 'company is an asset to our community'"</span>
+<p>A 5-point scale (strongly agree → strongly disagree) broken down by <b>total, marital status, gender, age</b> (four age bands), all in percentages, N=271. The shortcoming to identify: <b>far too many disaggregations in one table</b> for the reader to extract a message; no clear takeaway; percentages without base counts per column; the reader has to do the analysis themselves. <b>Optimise entries — show the cut that carries the finding.</b></p>
+</div>
+<h4>Charts</h4>
+<p><b>Correctness</b> above all — the chart type must match the data, axes must be honest, and the visual must not imply a pattern the data does not support.</p>
+
+<h4>Presentation of findings</h4>
+<p>Follow <i>Nature</i>'s "<b>Here we show…</b>" convention — state plainly what <i>your</i> study found.</p>
+<ul>
+<li>Report <b>findings from your own study</b>, not generic conclusions.</li>
+<li>Report <b>trends</b>.</li>
+<li>Report <b>unexpected findings</b>.</li>
+<li>Report data that <b>reinforces or contradicts</b> other data.</li>
+<li>Report <b>extreme values</b>.</li>
+<li>Report <b>data that raises questions</b>.</li>
+<li>Present data <b>point-wise</b> on certain occasions.</li>
+</ul>
+<h4>Nuances of the write-up</h4>
+<ul>
+<li><b>Radical recommendations require greater explanation.</b></li>
+<li><b>Heading length</b> — not too long, not too short.</li>
+<li><b>Number of sections/sub-sections</b> — not too many, not too few.</li>
+<li><b>Section length</b> — not too long, not too short.</li>
+<li><b>PowerPoint is indicative</b>, not the report.</li>
+<li><b>Read your own report imagining you are the consumer of it.</b></li>
+</ul>
+<h4>Overall</h4>
+<ul>
+<li>Have an <b>imagination of the final product</b> before you start.</li>
+<li><b>Make your analysis apparent.</b></li>
+<li>In a <b>long report, bring the important points upfront</b>.</li>
+<li><b>Provide a hook</b> — e.g. the main points in the <b>executive summary</b>.</li>
+<li><b>Give it time.</b></li>
+<li><b>Acknowledge all from whom you have benefited.</b></li>
+</ul>
+
+<!-- ============================ MODULE 5 ============================ -->
+<h2 id="m5"><span class="num">05</span>Formulating a Research Design</h2>
+<p class="lede">Session 5. Sampling in qualitative research, saturation, and the four classic qualitative research designs.</p>
+
+<h3 id="m5-1">5.1 Foundational similarities and differences (recap, formalised)</h3>
+<p><b>Similarities:</b> both approaches are <b>systematic</b>, with established protocols designed to detect patterns; both are built on <b>empirical evidence / observable reality</b> — what can be observed, experienced, documented or otherwise encountered in the social world.</p>
+<p><b>Difference:</b> quantitative represents human experience in <b>numerical categories</b>; qualitative gives <b>detailed description and analysis of the quality — the substance — of the human experience</b>. The <b>major difference stems from the researcher's underlying strategy</b>: quantitative is <b>confirmatory and deductive</b> (general→specific, top-down, breadth); qualitative is <b>exploratory and inductive</b> (specific→general, bottom-up, depth).</p>
+
+<h3 id="m5-2">5.2 The three descriptions of poverty — the class exercise</h3>
+<p>Three accounts of the same phenomenon were compared. This is the single clearest illustration of what qualitative data adds, and it is very likely to appear as an "explain with an example" prompt.</p>
+<div class="tw"><table>
+<thead><tr><th style="width:12%">Version</th><th style="width:16%">Type</th><th>The text</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Quantitative</b></td><td>"Rural poverty in Tanzania has been <b>halved</b> in the period from 1985 to 2001. At present about <b>38 percent</b> of people living in rural areas are classified as poor. This progress is reflected in the UNDP's <b>Human Development Index</b> for Tanzania, which rose from <b>0.3 in 1991 to 0.4 in 2002</b>."</td></tr>
+<tr><td>2</td><td><b>Visual / photographic</b></td><td>An image of poverty — conveying material conditions directly, without numbers or words.</td></tr>
+<tr><td>3</td><td><b>Qualitative (voices)</b></td><td>• "Poverty is like living in jail, living under bondage, waiting to be free." <i>(a saying from Jamaica)</i><br>• "If you want to do something and have no power to do it, it is <i>talauchi</i> (poverty)." <i>(a proverb from Nigeria)</i><br>• "For a poor person everything is terrible — illness, humiliation, shame. We are cripples; we are afraid of everything; we depend on everyone. No one needs us. We are like garbage that everyone wants to get rid of." <i>(a blind woman from Tiraspol, Moldova)</i></td></tr>
+</tbody></table></div>
+<div class="box exam"><span class="bt">How to answer the three questions asked in class</span>
+<p><b>Q1. How did each describe/explain poverty?</b> (1) as a <b>measurable rate</b> — a headcount ratio and an index, trackable over time and comparable across countries; (2) as a <b>visible material condition</b>; (3) as a <b>lived experience</b> — powerlessness, dependence, humiliation, shame, loss of social worth.</p>
+<p><b>Q2. What made 2 and 3 different from 1?</b> Version 1 tells you <b>how much and how many</b> but nothing about <b>what poverty <i>is</i> for the person living it</b>. Versions 2 and 3 carry <b>meaning, emotion, context, and the insider's (emic) definition</b> — poverty as <b>unfreedom and loss of dignity</b>, not as a number below a line. They also reveal <b>dimensions the HDI does not measure</b> (shame, fear, dependence, social exclusion).</p>
+<p><b>Q3. Which is most convincing?</b> The expected answer is <b>not</b> "the third". It is: <b>they answer different questions and are strongest together</b>. Version 1 is essential for <b>tracking progress, allocating budgets and comparing regions</b>; version 3 is essential for <b>designing an intervention that addresses what people actually experience</b>. A policy built on (1) alone may halve a headcount without touching humiliation or powerlessness.</p>
+</div>
+
+<h3 id="m5-3">5.3 What is a research design?</h3>
+<div class="box def"><span class="bt">Definition <span class="pill">memorise verbatim</span></span>
+<p>A research design is "a <b>blueprint or framework used to conduct a research study</b>. It involves <b>outlining the overall approach and methods that will be used to collect and analyze data</b> in order to <b>answer research questions or test hypotheses</b>."</p>
+</div>
+<p>Broadly, research designs divide into <b>qualitative</b> and <b>quantitative</b>. Compared step by step:</p>
+<div class="tw"><table>
+<thead><tr><th style="width:22%">Step</th><th>Quantitative research design</th><th>Qualitative research design</th></tr></thead>
+<tbody>
+<tr><td>Step 1 — Selection of participants (sample)</td><td><b>Large, representative</b> — a precondition of statistical analysis (otherwise error, biased results)</td><td><b>Theoretical consideration</b> drives selection</td></tr>
+<tr><td>Recruitment of participants (sampling)</td><td><b>Random</b></td><td><b>Non-random</b></td></tr>
+<tr><td>Step 2 — Data collection (how data is recorded)</td><td>Researchers <b>quantify their observations using a pre-coded form</b> referred to as a <b>survey</b></td><td>Data is composed of <b>detailed descriptions of the case</b> instead of numerical codes</td></tr>
+<tr><td>Step 3 — Data analysis</td><td>Dominant mode is <b>statistical analysis</b> to draw <b>causal inferences, correlations and associations</b></td><td>More concerned with understanding <b>meaning, context, processes, experiences and social relationships</b></td></tr>
+</tbody></table></div>
+
+<h3 id="m5-4">5.4 The four types of qualitative sampling <span class="pill">guaranteed question</span></h3>
+
+<h4>1. Convenience sampling</h4>
+<ul>
+<li>Selection is based on <b>who is most accessible</b> (most convenient).</li>
+<li><b>May result in poor quality data and lack intellectual credibility.</b></li>
+<li><b>Useful for conducting pilot studies.</b></li>
+<li>Used under <b>time/budget constraints</b>.</li>
+</ul>
+
+<h4>2. Judgement sampling (= purposive / purposeful)</h4>
+<ul>
+<li>The idea is to select the <b>most 'productive' sample to answer the research question(s)</b>.</li>
+<li>It is <b>more than a simple demographic framework</b> based on age, gender, socio-economic status.</li>
+<li>It may include other characteristics such as <b>position in the household</b>, <b>engaging in a particular occupation</b>, or <b>experience of a specific event or situation</b>.</li>
+</ul>
+<p class="src">This is the default sampling strategy in most qualitative studies — including, almost certainly, your PRA/VFS fieldwork.</p>
+
+<h4>3. Theoretical sampling</h4>
+<ul>
+<li>It is <b>theory-driven rather than data-driven</b>.</li>
+<li>Primarily associated with the <b>grounded theory</b> research design.</li>
+<li>Participants are selected <b>progressively as the study develops</b>, rather than all being decided at the beginning.</li>
+<li>Sampling is <b>guided by emerging concepts and categories from the data</b>: the question you keep asking is "<b>Who or what should I study next to refine this?</b>"</li>
+</ul>
+<div class="chain"><span>Collect data</span><i>→</i><span>Analyse</span><i>→</i><span>Identify emerging concept</span><i>→</i><span>Select next participant</span><i>→</i><span>Collect more data</span><i>→</i><span>Refine concept</span><i>↺</i></div>
+
+<h4>4. Snowball sampling</h4>
+<ul>
+<li>Relies on <b>existing participants to refer new subjects</b>, allowing the researcher to build a larger sample over time.</li>
+<li><b>Useful for studying specific, often hard-to-reach populations</b>, or individuals with <b>unique experiences</b>.</li>
+<li>Can <b>foster trust</b> among participants, as referrals come from acquaintances — which may encourage greater willingness to participate.</li>
+</ul>
+<div class="box mnem"><span class="bt">Mnemonic</span><p><b>C-J-T-S</b>: <b>C</b>onvenient (whoever's there) · <b>J</b>udgement (whoever's most useful) · <b>T</b>heoretical (whoever the emerging theory demands next) · <b>S</b>nowball (whoever the last person knows).</p></div>
+
+<h3 id="m5-5">5.5 How big should the sample be? — Saturation</h3>
+<div class="box def"><span class="bt">The answer, and the concept</span>
+<p><b>Marshall (1996, p.523):</b> "…an appropriate sample size for a qualitative study is one that <b>adequately answers the research question</b>."</p>
+<p>The operational criterion is <b>Theoretical Saturation</b> (or <b>Data Saturation</b>), which is reached when:</p>
+<ol>
+<li><b>No new or relevant data or themes seem to emerge</b>; and</li>
+<li>The <b>emerging categories and relationships are sufficiently developed to support the theoretical explanation</b>.</li>
+</ol>
+<p><i>Note: qualitative sample size is NOT fixed in advance the way a quantitative sample size is calculated in advance. You stop when you stop learning.</i></p>
+</div>
+
+<h3 id="m5-6">5.6 The four qualitative research designs <span class="pill">guaranteed question</span></h3>
+
+<div class="tw"><table>
+<thead><tr><th style="width:17%">Design</th><th style="width:26%">Core question it asks</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><b>1. Grounded Theory</b></td><td>"<b>Why does this happen, and how?</b>"</td><td>Data are <b>collected and analysed, and then a theory is developed that is grounded in the data</b>. Aim: <b>to produce or construct an explanatory theory that uncovers a process inherent to the substantive area of inquiry</b>. Appropriate when <b>little is known about a phenomenon</b>. Uses <b>theoretical sampling</b>.</td></tr>
+<tr><td><b>2. Phenomenological Studies</b></td><td>"<b>How does the world appear to you?</b>"</td><td>Focused on <b>'lived experiences'</b> — examining <b>human experiences and the meaning they hold for the people involved</b>. Analysis requires the researcher to "<b>dwell with the subjects' descriptions in quiet contemplation</b>". <b>Themes and patterns are sought in the data.</b> Requires <b>bracketing</b>.</td></tr>
+<tr><td><b>3. Ethnographic Studies</b></td><td>"<b>What is it like to belong to this group?</b>"</td><td>Ethnography is a <b>method of describing a culture or society</b>. It involves <b>immersing oneself in a form of life, as a member of a community or group</b>. Data are generally collected through <b>participant observation, in-depth interviews, and field notes</b>.</td></tr>
+<tr><td><b>4. Action Research</b></td><td>"<b>How do we change this, together?</b>"</td><td><b>Collaboration between the study participants and the researcher in ALL steps</b> of the study: determining the problem, the research methods to use, the analysis of data, and how the results will be used. <b>The participants and the researcher are co-researchers throughout the entire study.</b></td></tr>
+</tbody></table></div>
+
+<div class="box def"><span class="bt">Bracketing — define this precisely <span class="pill">likely 2-marker</span></span>
+<p><b>Bracketing</b> means <b>putting aside your preconceived notions and beliefs about the phenomenon under consideration</b>, to keep them <b>from biasing your observations</b>. It belongs to <b>phenomenology</b>.</p>
+<p><i>Contrast with reflexivity (Module 8): bracketing tries to </i>set aside<i> the researcher's self; reflexivity </i>examines and declares<i> it. Know the difference — they are easy to confuse.</i></p>
+</div>
+
+<div class="box mnem"><span class="bt">How to tell the four designs apart in one line each</span>
+<ul>
+<li><b>Grounded theory</b> → I want to <b>build a theory</b> of a process.</li>
+<li><b>Phenomenology</b> → I want the <b>meaning of an experience</b> as lived.</li>
+<li><b>Ethnography</b> → I want to <b>describe a culture</b> from inside it.</li>
+<li><b>Action research</b> → I want to <b>solve a problem with the community as co-researchers</b>.</li>
+</ul>
+<p>Sample-question trap: if a scenario says "the researcher and the villagers jointly decided what to study and what to do with the results" → <b>action research</b>. If it says "the researcher lived in the village for eight months and took field notes" → <b>ethnography</b>.</p>
+</div>
+
+<!-- ============================ MODULE 6 ============================ -->
+<h2 id="m6"><span class="num">06</span>Qualitative Data Collection Tools</h2>
+<p class="lede">Session 6. The three workhorses: in-depth interviews, focus group discussions, and observation.</p>
+
+<h3 id="m6-1">6.1 In-depth interviews (IDIs)</h3>
+<div class="box def"><span class="bt">Definition</span>
+<p>In-depth interviews are <b>one of the main methods of data collection used in qualitative research</b>, often described as <b>"a form of conversation with a purpose"</b>.</p>
+</div>
+
+<h4>Types of qualitative interviews</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:18%">Type</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><b>Unstructured</b></td><td><b>Most closely resemble a conversation</b>, because the respondent is <b>least constrained in their responses</b> by the questions asked. You have a <b>broad idea of the things you want to discuss</b>, and there may be <b>a single question that starts the interview</b>. After the initial response, you <b>pick up different themes from the response</b>.</td></tr>
+<tr><td><b>Semi-structured</b></td><td>Contain a <b>mix of closed-ended and open-ended questions</b>. Some questions are <b>more structured than others</b>; you may <b>introduce additional questions</b> to get more information about particular topics. <b>This is NOT a questionnaire</b>, because the interviewee can <b>respond freely</b> to what is asked.</td></tr>
+<tr><td><b>Structured</b></td><td>(For contrast) A fixed set of questions asked exactly as worded — this uses an <b>interview schedule</b> and belongs mainly to quantitative studies.</td></tr>
+</tbody></table></div>
+
+<div class="box exam"><span class="bt">Interview GUIDE vs Interview SCHEDULE <span class="pill">classic 2-marker</span></span>
+<div class="tw" style="margin:8px 0 0"><table>
+<thead><tr><th style="width:22%"></th><th>Interview Guide</th><th>Interview Schedule</th></tr></thead>
+<tbody>
+<tr><td>What it is</td><td>A <b>small subset of key words</b> tailored to the topics considered directly relevant to a given interview</td><td>A <b>set of questions designed to be asked exactly as worded</b></td></tr>
+<tr><td>Used in</td><td><b>Unstructured interviews</b>, and in <b>qualitative studies</b></td><td><b>Structured interviews</b>, and mainly in <b>quantitative studies</b></td></tr>
+<tr><td>Rule of thumb</td><td><b>"Guide, not script."</b></td><td>It <i>is</i> the script.</td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="m6-2">6.2 The five key features of the in-depth interview <span class="pill">guaranteed question</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:6%">#</th><th style="width:26%">Feature</th><th>Explanation</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Combines <b>structure with flexibility</b></td><td>There is <b>some form of topic guide</b> setting out the key topics and themes — the <b>'interview guide'</b>. It allows the researcher to <b>probe and explore participants' responses in depth</b>, while enabling interviewees to <b>spontaneously introduce issues that may not have been anticipated</b>. <b>A guide, not a script.</b></td></tr>
+<tr><td>2</td><td>Is <b>interactive</b> in nature</td><td>The <b>initial question should encourage the interviewee to talk freely</b>. The <b>next intervention by the interviewer is usually determined by the participant's answer</b> — not by the next item on a list.</td></tr>
+<tr><td>3</td><td>Uses a <b>range of probes</b></td><td>Probes achieve <b>depth of answer</b> in terms of <b>penetration, exploration and explanation</b>. They <b>fully explore the factors that underpin participants' answers</b> — their <b>reasons, feelings, opinions and beliefs</b> — producing what is called <b>'explanatory evidence'</b>.</td></tr>
+<tr><td>4</td><td>Is <b>generative</b></td><td><b>New knowledge or thoughts are likely, at some stage, to be created</b> — thoughts the participant has <b>not explored before</b>. Participants may be <b>invited to put forward ideas and suggestions</b> and to <b>propose solutions</b> for problems raised during the interview.</td></tr>
+<tr><td>5</td><td>Data captured in its <b>natural form</b></td><td>Generally <b>tape recorded</b>, since <b>note-taking by the researcher would change the form of the data</b>. Qualitative interviews are <b>almost always conducted face-to-face</b>, to capture <b>social cues</b> — the <b>verbal and non-verbal signals</b> (facial expressions, body posture, tone of voice) that people use to share feelings and guide conversation.</td></tr>
+</tbody></table></div>
+<div class="box mnem"><span class="bt">Mnemonic</span><p><b>F-I-P-G-N</b>: <b>F</b>lexible-with-structure, <b>I</b>nteractive, <b>P</b>robing, <b>G</b>enerative, <b>N</b>atural-form data.</p></div>
+
+<h3 id="m6-3">6.3 Key terminologies: Key Informants and Gatekeepers</h3>
+<div class="box def"><span class="bt">Two terms that are frequently confused <span class="pill">likely 2-marker</span></span>
+<p><b>Key Informants</b> are generally <b>people who are associated and involved with the participants</b> — they could also be <b>experts</b>. They <b>act as the researcher's advisors and supporters throughout the study</b>, and you must <b>work towards establishing a trusting relationship</b> with them.<br>
+<i>Village examples:</i> the schoolteacher, the ASHA/Anganwadi worker, a retired postmaster, an active SHG leader, the village elder who knows the history.</p>
+<p><b>Gatekeepers</b> are <b>people who hold some type of authority or control over access to one or more other individuals</b>. Because they have the <b>power to give or deny access to the population of interest</b>, you may need to make a serious effort to <b>develop a strong, positive relationship</b> with them.<br>
+<i>Village examples:</i> the sarpanch, the panchayat secretary, an NGO field coordinator, a factory manager, a husband/mother-in-law controlling access to women respondents, a school principal.</p>
+<p><b>The distinction in one line:</b> a <b>key informant gives you information</b>; a <b>gatekeeper gives you access</b>. One person can be both.</p>
+</div>
+
+<h4>Requirements of a qualitative interviewer</h4>
+<ul>
+<li><b>Listening</b> — <b>hear, digest and comprehend</b> the participant's answers in order to decide <b>how to probe further</b>.</li>
+<li><b>A clear and logical mind</b> — think quickly to <b>distil the essential points</b> of what the participant is saying, <b>exercise judgement about what to pursue</b>, and <b>simultaneously formulate relevant follow-up questions</b>.</li>
+<li><b>A good memory</b> — to <b>make a mental note of a point</b> and <b>return to it at a judicious moment</b> to seek further clarification or elaboration.</li>
+<li><b>Establish good rapport</b> — a good working relationship with <b>people from all walks of life: powerful, marginalised, vulnerable</b>; <b>put the participant at ease</b> and <b>create a climate of trust</b>; have a <b>real desire to understand from the interviewee's perspective</b>.</li>
+</ul>
+
+<h3 id="m6-4">6.4 Question formulation — the rules <span class="pill">high yield, very examinable</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:24%">Rule</th><th style="width:36%">Wrong</th><th>Right</th></tr></thead>
+<tbody>
+<tr><td><b>Ask open questions</b></td><td>A series of yes/no questions</td><td>Researchers must <b>work hard to ask questions that encourage a fulsome response</b>. (There is <b>some scope</b> for close-ended questions.)</td></tr>
+<tr><td><b>Avoid leading questions</b> — an IDI is <b>designed to yield a full answer, not to influence the answer</b></td><td>"<i>Were you furious when he said that?</i>"<br>or<br>"<i>You must have been furious when he said that.</i>"</td><td>"<b><i>How did you react when he said that?</i></b>"</td></tr>
+<tr><td><b>Neutralise</b> a question that seems to invite a particular response by adding <b>'or not?'</b></td><td>"<i>Did you find the training useful?</i>"<br>"<i>Did you experience difficulties while accessing the service?</i>"</td><td>"<b><i>Did you find the training useful, or not?</i></b>"<br>"<b><i>Did you experience any difficulties while accessing the service, or not?</i></b>"</td></tr>
+<tr><td><b>Ask clear questions</b> — short and clear, <b>leaving no uncertainty</b> about the information sought. <b>Don't preface a question</b>; don't put too much interpretation into the question itself. <b>'Think simple.'</b></td><td>"<i>Given that you had mentioned earlier that your manager was perhaps not very supportive, and considering the difficulties you described in managing your workload, would you say that you felt that your manager's lack of support contributed to your decision to leave?</i>"</td><td>"<b><i>What role did your manager play in your decision to leave?</i></b>"</td></tr>
+<tr><td><b>Avoid double questions</b> — the participant finds it <b>confusing to remember or answer both halves</b>, and their inclination is to <b>answer the easier part — so the one that would generate richer data is lost</b></td><td>"<i>How old were you when that happened <b>and</b> what effect did it have on you?</i>"</td><td>Split it into two separate questions, asked in sequence.</td></tr>
+<tr><td><b>Avoid questions that are too abstract or theorised</b> — the most effective questions are those <b>the interviewee can relate to directly</b></td><td>"<i>How would you characterise the intersection of gender norms and agricultural labour allocation in your household?</i>"</td><td><b>Translate it into a simple, concrete question in everyday language</b>: "<i>Who in your house does which work in the field? How is that decided?</i>"</td></tr>
+<tr><td><b>Be sensitive to language</b> — and to the terminologies people use, and <b>'mirror' them as far as possible</b></td><td>Replacing the respondent's word with your technical term</td><td><b>Explore the specific terms people use</b>, where this might <b>shed light on their underlying perceptions, values or attitudes</b>. (E.g. if they say <i>talauchi</i>, or <i>majboori</i>, use their word and ask what it means to them.)</td></tr>
+</tbody></table></div>
+
+<div class="box warn"><span class="bt">The four DON'Ts of a qualitative interview <span class="pill">memorise</span></span>
+<ol>
+<li><b>Never assume</b> — watch your biases and preconceived notions.</li>
+<li><b>Refrain from commenting on an answer</b> — no judgements.</li>
+<li><b>Refrain from summarising the interviewee's answer.</b> Instead, check your understanding: "<i>Can I just check that I have got this right? Is what you are saying …? Have I understood that right, or have I missed something?</i>"</li>
+<li><b>Refrain from finishing off an answer</b> — <b>don't predict</b> what they are about to say.</li>
+</ol>
+</div>
+
+<h4>IDI — Strengths and Limitations</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:50%">Strengths</th><th>Limitations</th></tr></thead>
+<tbody>
+<tr><td>Gain information on people's <b>personal experiences, life stories, feelings</b></td><td><b>One-to-one interview — no feedback from others</b></td></tr>
+<tr><td>Useful for <b>sensitive topics</b></td><td>Need <b>skills to establish rapport, use motivational probes, listen and react</b> to interviewees</td></tr>
+<tr><td>Gain <b>in-depth information</b></td><td><b>Flexibility needed to change topic order</b> in the interview guide, following the interviewee's story</td></tr>
+<tr><td>Get <b>contextual information</b></td><td><b>A lot of transcription is needed</b></td></tr>
+<tr><td>Get <b>personal stories and experiences</b> of people</td><td></td></tr>
+</tbody></table></div>
+
+<h3 id="m6-5">6.5 Focus Group Discussions (FGDs)</h3>
+<div class="box def"><span class="bt">Definition <span class="pill">memorise</span></span>
+<p>An FGD is "a discussion conducted by a <b>trained moderator</b> among a <b>small group of respondents</b> in an <b>unstructured and natural manner</b>."</p>
+<p>Break the name down: <b>"Focus"</b> = focused <b>on the topic</b>; <b>"Group"</b> = a group <b>having certain characteristics</b> — it should be <b>homogeneous</b> in demographic and socio-economic characteristics.</p>
+<p><b>The defining feature: data are generated by the INTERACTION BETWEEN GROUP PARTICIPANTS.</b> This is what distinguishes an FGD from a set of simultaneous interviews.</p>
+</div>
+<ul>
+<li>Participants <b>present their own views and experience, but they also hear from other people</b> — they <b>listen, reflect on what is said, and in the light of this consider their own standpoint further</b>.</li>
+<li>The <b>value of the technique lies in discovering unexpected findings</b>, often obtained from a <b>free-flowing group discussion</b>.</li>
+<li>There is a <b>range of stimuli</b> — which may come from <b>other group members or from the moderator</b>.</li>
+</ul>
+
+<h4>Characteristics of an FGD <span class="pill">table worth memorising</span></h4>
+<div class="tw"><table>
+<thead><tr><th style="width:24%">Characteristic</th><th>Specification</th></tr></thead>
+<tbody>
+<tr><td>Key benefit</td><td>Group members <b>'feed' off each other</b> and <b>creatively reveal ideas that the researcher may not have thought of or dared to tackle</b></td></tr>
+<tr><td>Key drawback</td><td>Group members may feel <b>intimidated or shy and may not reveal anything</b></td></tr>
+<tr><td><b>Group size</b></td><td><b>6 to 12</b></td></tr>
+<tr><td>Group composition</td><td><b>Homogeneous; respondents pre-screened</b></td></tr>
+<tr><td>Physical setting</td><td><b>Relaxed, informal atmosphere</b></td></tr>
+<tr><td><b>Time duration</b></td><td><b>1.5 to 6 hours</b></td></tr>
+<tr><td>Recording</td><td>Use of <b>audiocassettes, videotapes and notes from observations</b></td></tr>
+<tr><td>Moderator</td><td>Needs <b>observational, interpersonal and communication skills</b></td></tr>
+</tbody></table></div>
+
+<h4>Things to keep in mind when running an FGD</h4>
+<ul>
+<li>Respondents should be <b>carefully screened to meet certain criteria</b> — <b>similar experiences</b>.</li>
+<li><b>The physical setting is important</b>: a <b>relaxed, informal atmosphere helps group members forget they are being questioned and observed</b>.</li>
+<li>State a <b>broad purpose</b> — <b>don't go into the specifics of the topic</b>, to <b>avoid influencing what people say</b> during the discussion.</li>
+<li>Use <b>open-ended questions</b> that invite an in-depth response rather than a single phrase or a "yes"/"no". <i>e.g. "What kind of agricultural challenges does the village face?" / "What do you think can be solutions to come out of these crises?"</i></li>
+<li><b>Obtain informed consent</b> — verbal or written.</li>
+</ul>
+
+<div class="box exam"><span class="bt">The four Dos of FGD moderation <span class="pill">memorise</span></span>
+<ol>
+<li><b>Kindness with firmness</b> — empathy and rapport, but <b>firmness to stop someone dominating the discussion</b>.</li>
+<li><b>Permissiveness</b> — <b>allow the flow of discussion</b>.</li>
+<li><b>Involvement</b> — <b>encourage and stimulate intense personal involvement</b>.</li>
+<li><b>Encouragement</b> — draw in the <b>unresponsive members</b>.</li>
+</ol>
+<p><i>The "Wrong / Right" slide illustrated seating and moderator posture: wrong = moderator standing over a scattered group, dominant speaker holding the floor; right = everyone seated in a circle at the same level, moderator as part of the circle.</i></p>
+</div>
+
+<h4>FGD — Strengths and Limitations <span class="pill">Hennink (2007)</span></h4>
+<div class="tw"><table>
+<thead><tr><th style="width:50%">Strengths</th><th>Limitations</th></tr></thead>
+<tbody>
+<tr><td><b>Social setting:</b> replicates social interaction; naturalistic setting; comfortable and enjoyable</td><td><b>Skills required:</b> requires a skilled moderator; less controlled environment; needs a comfortable environment</td></tr>
+<tr><td><b>Application:</b> useful for exploratory, explanatory and evaluative research; suitable for group activities; suitable for mixed-method research</td><td><b>Group dynamics:</b> some participants may dominate; influence of social pressure; hierarchies may develop; less confidential; few issues discussed</td></tr>
+<tr><td><b>Group environment:</b> large volume of information; identify a range of views; limited researcher influence; participants identify issues; identify new issues; issues debated and justified</td><td><b>Data and analysis:</b> responses are not independent; not suitable for individual-level data; large volume of data; data analysis complex and time-consuming; can be costly</td></tr>
+</tbody></table></div>
+
+<div class="box def"><span class="bt">The FGD question funnel (Hennink et al., 2011) <span class="pill">easy diagram mark</span></span>
+<p>Draw a funnel. From wide to narrow:</p>
+<div class="tw" style="margin:8px 0 0"><table>
+<thead><tr><th style="width:38%">Stage</th><th>Function</th></tr></thead>
+<tbody>
+<tr><td>1. <b>Introduction</b></td><td>Provides <b>cognition</b> (people understand what this is and why they're here)</td></tr>
+<tr><td>2. <b>Broad opening questions</b></td><td>Provides <b>rapport</b></td></tr>
+<tr><td>3. <b>Specific questions</b> (the narrow stem)</td><td>Provides <b>data</b> — this is the bulk of the session</td></tr>
+<tr><td>4. <b>Closing questions</b></td><td>Provides <b>closure</b></td></tr>
+<tr><td>5. <b>Post-discussion questions</b></td><td>Provides <b>information</b></td></tr>
+</tbody></table></div>
+</div>
+
+<div class="box exam"><span class="bt">IDI vs FGD — when to use which</span>
+<div class="tw" style="margin:8px 0 0"><table>
+<thead><tr><th style="width:26%">Use an IDI when…</th><th>Use an FGD when…</th></tr></thead>
+<tbody>
+<tr><td>The topic is <b>sensitive or personal</b> (illness, violence, debt, sexuality)</td><td>You want to see <b>how a view is formed and negotiated collectively</b></td></tr>
+<tr><td>You need <b>individual-level data</b> and personal life stories</td><td>You want to surface <b>community norms and shared vocabulary</b></td></tr>
+<tr><td>Social pressure would <b>distort</b> the answer</td><td>You want <b>unexpected findings</b> from people feeding off each other</td></tr>
+<tr><td>Participants hold <b>unequal power</b> and would not speak freely together</td><td>You need a <b>range of views quickly</b>, and issues to be <b>debated and justified</b></td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="m6-6">6.6 Observation</h3>
+<div class="box def"><span class="bt">Definition</span>
+<p><b>'Observation' involves situating what we see in relation to what we know about a particular setting.</b></p>
+<p>In qualitative research, <b>observational data is as important as interview data</b>. The researcher might <b>use interviews to make sense of what they observe, and observation to interpret their interview data</b> — this is <b>triangulation</b>.</p>
+</div>
+
+<h4>What to observe?</h4>
+<ul>
+<li>An understanding of the <b>physical, social, cultural and economic contexts</b>.</li>
+<li><b>Social relationships</b> among and between people.</li>
+<li><b>Ideas, norms and events.</b></li>
+<li><b>People's behaviours and activities</b> — what they do, how frequently, and with whom.</li>
+</ul>
+<div class="box eg"><span class="bt">A worked observation checklist — 'Culture' (from the class handout)</span>
+<ul>
+<li>What festivals are celebrated in the village?</li>
+<li>Community functions, gatherings, etc.</li>
+<li>Are festivals celebrated at the <b>whole-village level / specific community levels / only specific household levels</b>? Gather experiences relating to these.</li>
+<li>Does the village <b>participate in social functions outside the village</b>, or do outsiders (neighbouring villages) participate in social functions here?</li>
+<li>Are these events linked to <b>cycles of production</b> (sowing, harvest) or <b>of life</b> (birth, marriage, death)? <b>Keep an eye on expenses incurred during such events and their impact on household finances.</b></li>
+<li>Are there any <b>exploitative practices</b> involved? Do these cultural practices <b>reinforce hierarchies</b>, or are they <b>breaking those inequalities</b>?</li>
+</ul>
+<p>Notice the structure: descriptive questions first, then <b>who is included/excluded</b>, then <b>economic consequence</b>, then <b>power</b>. Use this pattern for any observation theme.</p>
+</div>
+
+<div class="box exam"><span class="bt">The three criteria observation must meet <span class="pill">memorise</span></span>
+<ol>
+<li>It must <b>serve a specific research purpose</b> — the 'data' should be related to your <b>research question/theme and/or your theoretical framework</b>.</li>
+<li>The observation should be <b>systematically planned and carried out</b>.</li>
+<li>The observation must be <b>recorded systematically</b>.</li>
+</ol>
+</div>
+
+<h4>How to record observation data</h4>
+<ul>
+<li>Data consist of the <b>detailed field notes that the researcher records in a field diary</b> — make <b>careful, objective notes</b>.</li>
+<li>Although <b>typically textual</b>, such data may also include <b>maps and other diagrams</b>, such as <b>kinship or organizational charts</b>.</li>
+<li><b>Occasionally it may involve quantification</b> of something and therefore produce <b>numerical data</b> (e.g. counts of how many households have a particular feature, frequency of an activity).</li>
+</ul>
+
+<div class="box def"><span class="bt">Participant observation</span>
+<p>The aim is <b>"to learn what life is like for an 'insider' while remaining, inevitably, an 'outsider'"</b> — to <b>experience and observe at first hand</b> social actions, behaviour, interactions, relationships and events.</p>
+<p><i>Example:</i> someone studying the behaviour of people on public transportation may <b>spend hours riding the subway</b> in an attempt to gain perspective.</p>
+</div>
+
+<h4>The participation continuum <span class="pill">guaranteed question</span></h4>
+<p>From <b>Detachment</b> (left) to <b>Involvement</b> (right):</p>
+<div class="tw"><table>
+<thead><tr><th style="width:22%">Level</th><th>What the researcher does</th></tr></thead>
+<tbody>
+<tr><td>1. <b>Non-participation</b></td><td><b>Observing from outside the setting</b></td></tr>
+<tr><td>2. <b>Passive participation</b></td><td><b>Present but only observing; minimal interaction</b></td></tr>
+<tr><td>3. <b>Moderate participation</b></td><td><b>Balancing observation with participation</b></td></tr>
+<tr><td>4. <b>Active participation</b></td><td><b>Doing what others do, to fully learn practices</b></td></tr>
+<tr><td>5. <b>Complete participation</b></td><td><b>Becomes a functioning member of the group; identity is unknown</b> (covert)</td></tr>
+</tbody></table></div>
+<p class="src">Note the ethical tension at level 5: complete participation means the group does not know they are being studied — which collides directly with informed consent (Module 8).</p>
+
+<h4>Participant observation — Strengths and Weaknesses</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:50%">Strengths</th><th>Weaknesses</th></tr></thead>
+<tbody>
+<tr><td>Allows for <b>insight into contexts, relationships, behaviour</b></td><td><b>Time-consuming</b></td></tr>
+<tr><td>Can provide <b>information previously unknown to researchers</b> that is <b>crucial for project design, data collection, and interpretation of other data</b></td><td><b>Documentation relies on the memory, personal discipline, and diligence of the researcher</b></td></tr>
+<tr><td></td><td><b>Requires conscious effort at objectivity</b>, because the method is <b>inherently subjective</b></td></tr>
+</tbody></table></div>
+
+<!-- ============================ MODULE 7 ============================ -->
+<h2 id="m7"><span class="num">07</span>Thematic Analysis, Coding and Basics of Writing</h2>
+<p class="lede">Session 7. The highest-yield technical module in the course. Know the six steps cold.</p>
+
+<h3 id="m7-1">7.1 What is data analysis? And what types exist?</h3>
+<div class="box def"><span class="bt">Definition</span>
+<p>Data analysis is <b>"connecting the dots"</b> — <b>telling your audience how the pieces of information fit together</b>. It means <b>searching across a data set</b> — be that a number of interviews or focus groups, or a range of observations — <b>to find repeated patterns of meaning</b>.</p>
+<p>Always note: <b>triangulation</b> — cross-checking findings across different data sources and methods.</p>
+</div>
+
+<h4>Types of qualitative analysis</h4>
+<div class="tw"><table>
+<thead><tr><th style="width:22%">Type</th><th>What it examines</th></tr></thead>
+<tbody>
+<tr><td><b>Narrative analysis</b></td><td>The <b>meaning of respondents' lives</b> — i.e. <b>how they interpret their world</b> — and <b>the ways in which they articulate or voice their experiences</b> — i.e. <b>how they tell their stories, and from what position</b>. Moves from the <b>narrative of individuals → a larger common narrative</b>.</td></tr>
+<tr><td><b>Case-study analysis</b></td><td>Goes <b>deeply into the experience of one individual</b> (or one unit/case).</td></tr>
+<tr><td><b>Discourse analysis</b></td><td>How <b>language and communication are used in real-life social context to shape meaning, power and identity</b>.</td></tr>
+<tr><td><b>Ethnographic accounts</b></td><td>Largely <b>descriptive</b> accounts that <b>detail the way of life</b> of particular individuals, groups or organisations.</td></tr>
+<tr><td><b>Thematic analysis</b></td><td>The <b>foundational method</b> — identify and interpret <b>patterns or themes</b> across a data set. (Detailed below.)</td></tr>
+</tbody></table></div>
+
+<div class="box exam"><span class="bt">What all forms of qualitative analysis have in common</span>
+<p><b>Huberman and Miles (1994):</b> all forms of qualitative analysis are based on <b>three procedures</b>:</p>
+<ol><li><b>Data reduction</b></li><li><b>Data display</b></li><li><b>Conclusion: drawing / verifying</b></li></ol>
+<p>And <b>all analysis seeks to identify patterns, processes, structures, meanings, and underlying themes</b> in qualitative data.</p>
+</div>
+
+<h3 id="m7-2">7.2 Thematic analysis and 'thick description'</h3>
+<div class="box def"><span class="bt">Definition</span>
+<p>Thematic analysis is a <b>foundational method for qualitative analysis</b> — "a research method used to <b>identify and interpret patterns or themes in a data set</b>; it often <b>leads to new insights and understanding</b>." It comprises <b>'thick descriptive data'</b>.</p>
+</div>
+
+<div class="box def"><span class="bt">Thick description — Clifford Geertz <span class="pill">likely 2–5 marker</span></span>
+<p><b>Thin description</b> merely <b>reports facts</b>. It is <b>insufficient and potentially misleading</b>.</p>
+<p><b>Thick description</b> goes <b>beyond facts</b> to include:</p>
+<ul><li><b>Context</b></li><li><b>Commentary</b></li><li><b>Interpretation</b></li></ul>
+<p><b>Purpose: culture cannot be understood through factual description alone.</b></p>
+<p><i>Geertz's classic illustration:</i> a rapid contraction of the right eyelid. <b>Thin:</b> "the eyelid contracted." <b>Thick:</b> was it an involuntary twitch, a conspiratorial wink, a parody of someone else's wink, or a rehearsal of that parody? Identical physical fact — four completely different social meanings. <b>Only context, commentary and interpretation can tell them apart.</b></p>
+</div>
+
+<h3 id="m7-3">7.3 The six-step thematic analysis technique <span class="pill">THE most likely long-answer question</span></h3>
+<div class="chain">
+<span>1 · Transcription &amp; familiarisation<br>(select quotations)</span><i>→</i>
+<span>2 · Keywords</span><i>→</i>
+<span>3 · Coding</span><i>→</i>
+<span>4 · Themes</span><i>→</i>
+<span>5 · Conceptualization</span><i>→</i>
+<span>6 · Conceptual model</span>
+</div>
+
+<h4>Step 1 — Transcription, familiarization with the data, and selection of quotations</h4>
+<ul>
+<li>It involves the <b>transcription of data and familiarizing oneself with it</b>.</li>
+<li>Produce a <b>rigorous and thorough transcript — a 'verbatim' account of all verbal (and sometimes non-verbal) utterances</b>.</li>
+<li><b>Immerse yourself in the data</b> to the extent that you are <b>familiar with the depth and breadth of the content</b>.</li>
+<li>Do <b>repeated 'active' reading</b> of the data — <b>searching for meanings, patterns</b> and so on.</li>
+<li>It is <b>ideal to read through the entire data set at least once before you begin coding</b>.</li>
+<li><b>Identify important sections</b> — select quotes that <b>bring the data to life</b>.</li>
+</ul>
+
+<div class="box def"><span class="bt">Rules for using quotations <span class="pill">examinable list</span></span>
+<ul>
+<li><b>Maintain confidentiality.</b></li>
+<li>Quotes have the <b>potential to animate the data</b> and provide a <b>vivid portrayal of the subject matter</b>.</li>
+<li>They <b>enhance the reader's engagement</b> with the text and <b>underscore unique aspects of the data</b>.</li>
+<li>Incorporate a <b>diverse range of participants' voices</b> — <b>'inclusive representation'</b> (don't quote the same articulate respondent five times).</li>
+<li>Provide <b>adequate context</b> so readers can <b>accurately comprehend the essence of a quote</b>.</li>
+<li>Quotes may serve various purposes: <b>evidence, explanation, illustration, impression, representation, and readability enhancement</b>.</li>
+</ul>
+</div>
+
+<h4>Step 2 — Selection of keywords (prior to coding)</h4>
+<ul>
+<li><b>Start taking notes or marking ideas for coding (keywords)</b> that you will return to in later phases. This is <b>a form of initial coding</b>.</li>
+<li><b>The selection of powerful, meaningful and pertinent words from quotations as keywords paves the way for subsequent code development and data interpretation.</b></li>
+</ul>
+<p><b>How to select keywords — five criteria:</b></p>
+<ol>
+<li>They capture the <b>genuine experiences and perceptions of the participants</b>.</li>
+<li>They are <b>rich in meaning</b> and give a <b>detailed understanding of the phenomenon</b> being studied.</li>
+<li>They <b>frequently occur in the data</b> — signalling <b>significance and relevance</b>.</li>
+<li>They relate to the <b>theoretical foundation of the research</b>.</li>
+<li>They are <b>words central to understanding the phenomenon</b> under study.</li>
+</ol>
+
+<h4>Step 3 — Coding</h4>
+<div class="box def"><span class="bt">Definition</span>
+<p>Coding is the <b>process of cataloguing information</b>: <b>short phrases or words are assigned to segments of data that capture the data's core message, significance, or theme</b>. <b>This step simplifies complex textual data.</b></p>
+<p>A <b>codebook</b> is a <b>list of codes and their descriptions</b>.</p>
+<p><b>Note:</b> your <b>coded data differ from your units of analysis (your themes)</b>, which are <b>(often) broader</b>.</p>
+</div>
+<p><b>Key advice for this phase:</b></p>
+<ul>
+<li><b>Code for as many potential themes/patterns as possible</b> (time permitting) — <b>you never know what might be interesting later</b>.</li>
+<li><b>Code extracts of data inclusively</b> — i.e. <b>keep a little of the surrounding data if relevant</b>.</li>
+<li>Remember you can <b>code individual extracts in as many different 'themes' as they fit into</b> — so an extract may be <b>uncoded, coded once, or coded many times</b>, as relevant. (<b>Multiple meanings.</b>)</li>
+</ul>
+<p><b>How to select codes — five criteria:</b></p>
+<ol>
+<li>It <b>represents the data in a meaningful way</b> — encapsulating various aspects of the data.</li>
+<li><b>Create codes based on keywords</b>, reflecting the <b>relationship between facts and theories</b>.</li>
+<li>Codes should be <b>inferential and descriptive</b>, and <b>closely related to the RQ</b>.</li>
+<li>Codes should be <b>unique and well-defined</b> — to <b>prevent overlaps</b> — and should <b>also include outliers</b>.</li>
+<li>Codes should <b>logically fit</b> and <b>align with the purpose of your research</b>.</li>
+</ol>
+
+<h4>Step 4 — Theme development (categorization)</h4>
+<ul>
+<li>Begins <b>when all data have been coded and collated</b> and you have a <b>long list of different codes</b> — i.e. the <b>codebook is prepared</b>.</li>
+<li>It <b>re-focuses the analysis at the broader level of themes</b> — <b>categorising the different codes into potential themes</b>.</li>
+<li>The question to keep asking: <b>how do different codes combine to form an overarching theme?</b></li>
+</ul>
+<p><b>How to select themes — four criteria:</b></p>
+<ol>
+<li>They <b>highlight the interrelationship between various codes</b>.</li>
+<li>They <b>reflect the recurring patterns identified in the data</b>.</li>
+<li>They <b>align with and address the researcher's aims and objectives</b>.</li>
+<li>They <b>contribute to developing a story</b> that helps understand the studied phenomenon.</li>
+</ol>
+
+<h4>Step 5 — Conceptualization through interpretation of themes</h4>
+<ul>
+<li>For <b>each individual theme</b>, conduct and write a <b>detailed analysis</b>.</li>
+<li>Identify <b>the 'story' that each theme tells</b>.</li>
+<li>Work out <b>how it fits into the broader overall 'story'</b> you are telling about your data.</li>
+<li><b>Consider each theme in relation to the others.</b></li>
+<li>You can have <b>sub-themes</b> — essentially <b>themes-within-a-theme</b> — <b>useful for giving structure to a particularly large and complex theme</b>.</li>
+<li>This is also the point to <b>start thinking about the names you will give them</b> in the final analysis.</li>
+</ul>
+
+<h3 id="m7-4">7.4 Keywords vs Codes vs Themes <span class="pill">near-certain exam question</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:14%"></th><th style="width:34%">What it is</th><th style="width:26%">Where it comes from</th><th>What it is for</th></tr></thead>
+<tbody>
+<tr><td><b>Keywords</b></td><td><b>Specific, literal words or terms that appear directly in the text</b></td><td><b>Extracted directly from the text</b>, or from a preset list</td><td>To <b>index, search, or measure literal word frequency</b></td></tr>
+<tr><td><b>Codes</b></td><td><b>Short, descriptive labels assigned by a researcher to small segments of data</b> (like a sentence or phrase) <b>to capture a specific idea or meaning</b></td><td><b>Generated through the researcher's interpretation</b></td><td>To <b>organize, sort and manage raw data</b></td></tr>
+<tr><td><b>Themes</b></td><td><b>Broader, interpretive constructs that combine multiple related codes</b> to tell a <b>larger, coherent story</b> or make an argument about the overall dataset</td><td><b>Built by clustering and synthesizing related codes</b></td><td>To <b>provide insight and meaning, and answer the research questions</b>. Themes <b>form the core headings, chapters or arguments of the final write-up</b></td></tr>
+</tbody></table></div>
+<div class="box eg"><span class="bt">One worked example running through all three</span>
+<p><b>Raw quote:</b> "The hospital is 40 km away. I have to ask my son to take me on the bike, and he loses a day's wage. So I wait until I really cannot bear it."</p>
+<ul>
+<li><b>Keywords:</b> "40 km", "ask my son", "loses a day's wage", "wait".</li>
+<li><b>Codes:</b> <code>distance-to-facility</code>, <code>dependence-on-male-relative-for-mobility</code>, <code>opportunity-cost-of-care</code>, <code>delayed-care-seeking</code>.</li>
+<li><b>Theme:</b> "<b>Care is rationed by the household, not by the patient</b>" — combining the mobility, cost and delay codes into an argument that answers the research question.</li>
+</ul>
+</div>
+
+<h3 id="m7-5">7.5 Step 6 — Development of the conceptual model</h3>
+<ul>
+<li>The <b>final step</b> in thematic analysis.</li>
+<li>It <b>begins when you have a set of fully worked-out themes</b>, and involves the <b>final analysis and write-up of the report</b>.</li>
+<li>It means <b>creating a unique representation of the data</b>, and is <b>often guided by existing theories</b>.</li>
+<li>It <b>serves to answer the research questions</b> and <b>underscore the study's contribution to knowledge</b>.</li>
+</ul>
+<div class="box def"><span class="bt">Definition — conceptual framework <span class="pill">memorise</span></span>
+<p>"A conceptual framework is a <b>visual or narrative representation of the key concepts or themes in a study and the relationships among them</b>. It <b>provides direction for the research process</b> and <b>helps researchers organize their ideas systematically</b>."</p>
+</div>
+<div class="box exam"><span class="bt">The full six-step pipeline as a diagram (reproduce this if asked)</span>
+<p>Left to right:</p>
+<p><b>Transcripts</b> (getting familiar with the data) → <b>Keywords</b> (several blocks) → <b>CODES</b> (each keyword block feeds one or more codes) → <b>THEMES 1, 2, 3</b> (codes cluster into named themes) → <b>Interpretation → CONCEPTS</b> (conceptualization through interpretation of keywords, codes and themes) → <b>Final conceptual framework</b> (presentation through arrows and boxes) → <b>Name of the model</b>.</p>
+<p>Note the funnel shape: many keywords → fewer codes → fewer themes → a handful of concepts → one model.</p>
+</div>
+
+<h4>The objective of the write-up</h4>
+<ul>
+<li>"To <b>tell the complicated story of your data</b> in a way that <b>convinces the reader of the merit and validity of your analysis</b>."</li>
+<li>Your write-up must provide <b>sufficient evidence of the themes within the data</b> — i.e. <b>enough data extracts to demonstrate the prevalence of the theme</b>.</li>
+<li><b>Go beyond description of the data, and make an argument in relation to your research question.</b></li>
+</ul>
+<p class="src">Example theme statement used in class: <i>"Migration was perceived as causing increased human–wildlife conflicts."</i> — note that it is a <b>claim</b>, not a topic label.</p>
+
+<h4>Braun &amp; Clarke's (2006) 15-point checklist for good thematic analysis <span class="pill">high yield</span></h4>
+<div class="tw"><table>
+<thead><tr><th style="width:15%">Process</th><th style="width:6%">No.</th><th>Criteria</th></tr></thead>
+<tbody>
+<tr><td><b>Transcription</b></td><td>1</td><td>The data have been <b>transcribed to an appropriate level of detail</b>, and the transcripts have been <b>checked against the tapes for 'accuracy'</b>.</td></tr>
+<tr><td rowspan="5"><b>Coding</b></td><td>2</td><td><b>Each data item has been given equal attention</b> in the coding process.</td></tr>
+<tr><td>3</td><td>Themes have <b>not been generated from a few vivid examples</b> (an <b>anecdotal approach</b>); instead the coding process has been <b>thorough, inclusive and comprehensive</b>.</td></tr>
+<tr><td>4</td><td><b>All relevant extracts for each theme have been collated.</b></td></tr>
+<tr><td>5</td><td>Themes have been <b>checked against each other and back to the original data set</b>.</td></tr>
+<tr><td>6</td><td>Themes are <b>internally coherent, consistent and distinctive</b>.</td></tr>
+<tr><td rowspan="4"><b>Analysis</b></td><td>7</td><td>Data have been <b>analysed — interpreted, made sense of — rather than just paraphrased or described</b>.</td></tr>
+<tr><td>8</td><td><b>Analysis and data match each other</b> — the extracts illustrate the analytic claims.</td></tr>
+<tr><td>9</td><td>Analysis tells a <b>convincing and well-organized story</b> about the data and topic.</td></tr>
+<tr><td>10</td><td>A <b>good balance between analytic narrative and illustrative extracts</b> is provided.</td></tr>
+<tr><td><b>Overall</b></td><td>11</td><td><b>Enough time has been allocated</b> to complete all phases of the analysis adequately, <b>without rushing a phase or giving it a once-over-lightly</b>.</td></tr>
+<tr><td rowspan="4"><b>Written report</b></td><td>12</td><td>The <b>assumptions about, and specific approach to, thematic analysis are clearly explicated</b>.</td></tr>
+<tr><td>13</td><td>There is a <b>good fit between what you claim you do and what you show you have done</b> — i.e. described method and reported analysis are <b>consistent</b>.</td></tr>
+<tr><td>14</td><td>The <b>language and concepts used in the report are consistent with the epistemological position</b> of the analysis.</td></tr>
+<tr><td>15</td><td>The <b>researcher is positioned as ACTIVE in the research process; themes do not just 'emerge'</b>.</td></tr>
+</tbody></table></div>
+<div class="box exam"><span class="bt">If you remember only one item, remember #15</span>
+<p>"<b>Themes do not just 'emerge'.</b>" The researcher <b>actively constructs</b> them. This single line connects thematic analysis back to <b>reflexivity, positionality and subjectivity</b> (Module 8) — use it to tie a long answer together.</p>
+</div>
+
+<h3 id="m7-6">7.6 How to present your findings — the sandwich method</h3>
+<ul>
+<li>The <b>bulk of your findings section will usually consist of quotations</b> from your interviews or <b>extended descriptions from field notes</b>.</li>
+<li>It should be <b>organized by theme</b>, rather than being a <b>random list of quotes or observations</b>.</li>
+</ul>
+<h4>Layout of the findings section</h4>
+<ul>
+<li><b>Break the findings/results section into subsections, with each theme explicitly noted in its subsection title.</b></li>
+<li>Within each subsection: <b>describe the overall patterns in the data related to that theme</b>, then give <b>specific cases that back your interpretations</b> of what you observed or what your interviewees said — i.e. <b>provide evidence to back up your themes</b>.</li>
+</ul>
+
+<div class="box def"><span class="bt">The sandwich method <span class="pill">guaranteed question — know the three layers</span></span>
+<div class="tw" style="margin:8px 0 0"><table>
+<thead><tr><th style="width:22%">Layer</th><th>What goes in it</th></tr></thead>
+<tbody>
+<tr><td><b>Top bun</b><br><i>(analytical level)</i></td><td>The <b>analytical point</b> — <b>highlighting a pattern in the data</b>. You state the claim first.</td></tr>
+<tr><td><b>The patty</b><br><i>(empirical level)</i></td><td>The <b>empirical evidence for that pattern</b> — the <b>quote</b> (interview/FGD) or the <b>observation</b> (field note). Precede it with a <b>descriptive account of the participant: pseudonym, context, position in the village</b>.</td></tr>
+<tr><td><b>Bottom bun</b><br><i>(analytical level)</i></td><td>An <b>analytical point giving useful context for situating your example</b> among the many episodes you observed or people you talked to — i.e. how typical/atypical is this? Then <b>transition to the next case</b> — perhaps another full sandwich, or directly to the "meat" of a second example related to the first.</td></tr>
+</tbody></table></div>
+<p style="margin-top:10px"><b>For interviews and FGDs:</b> the <b>quote is the patty</b>, surrounded by <b>two buns of analytical context</b>.<br>
+<b>For ethnographic observational data:</b> <b>swap the interview-based patty for an observation-based one</b> — quoting the relevant field note, or summarising your observations in one or more sentences.</p>
+</div>
+
+<div class="box eg"><span class="bt">A model paragraph in sandwich form</span>
+<p><b>[Top bun]</b> Households consistently described healthcare decisions as being made by the family rather than the patient, with women's access mediated by the availability of a male escort.</p>
+<p><b>[Notice]</b> Kamlaben (pseudonym), a 52-year-old agricultural labourer from a landless household in the eastern hamlet, described this directly:</p>
+<p><b>[Patty]</b> "The hospital is 40 km away. I have to ask my son to take me on the bike, and he loses a day's wage. So I wait until I really cannot bear it."</p>
+<p><b>[Bottom bun]</b> Eleven of the fourteen women interviewed described a similar calculation, and in each case the deciding factor was not the cost of treatment but the <i>foregone wage of the accompanying male relative</i>. This suggests that transport subsidies alone would not change care-seeking behaviour, which frames the next theme — the gendered organisation of household mobility.</p>
+</div>
+
+<div class="box eg"><span class="bt">The 'Discussion' section — the step after findings</span>
+<p>The findings section reports <b>what you found</b>. The <b>Discussion</b> then: restates the key finding, <b>interprets</b> it, <b>compares it with the existing literature</b> (agreement? contradiction? extension?), states the <b>implications for policy/practice</b>, acknowledges the <b>limitations</b>, and suggests <b>future research</b>. Remember from Module 4: <b>radical recommendations require greater explanation</b>.</p>
+</div>
+
+<!-- ============================ MODULE 8 ============================ -->
+<h2 id="m8"><span class="num">08</span>Ethics in Qualitative Research &amp; PRA Principles and Tools</h2>
+<p class="lede">Sessions 8 &amp; 9. Ethics, reflexivity and positionality; then the full PRA toolkit — the module most directly connected to your VFS and PRA report.</p>
+
+<h3 id="m8-1">8.1 Ethics in research — informed consent</h3>
+<div class="box def"><span class="bt">Definition — informed consent <span class="pill">memorise verbatim</span></span>
+<p>Informed consent is "the <b>knowing consent of individuals to participate</b> as an <b>exercise of their choice</b>, <b>free from any element of fraud, deceit, duress, or similar unfair inducement or manipulation</b>."</p>
+<p>It may be <b>verbal or written</b>.</p>
+</div>
+<div class="box exam"><span class="bt">How consent works in your VFS fieldwork — two levels</span>
+<ol>
+<li><b>Permission from the village leader</b> to conduct the larger research.</li>
+<li><b>Individual consent</b> when you plan to conduct <b>formal audio-recorded interviews</b>.</li>
+</ol>
+<p>Permission at the community level does <b>not</b> substitute for consent at the individual level. Note the link to <b>gatekeepers</b> (Module 6.3) — the sarpanch grants access, but each participant grants consent.</p>
+</div>
+
+<h3 id="m8-2">8.2 Reflexivity and Positionality <span class="pill">high yield — often asked together</span></h3>
+<p>The problem being solved: <b>the researcher's identity can influence all aspects of research — including the research question, study design, data collection and data analysis.</b> How do we handle that? Two answers: reflexivity and positionality.</p>
+
+<div class="box def"><span class="bt">Reflexivity</span>
+<p>Reflexivity is "a <b>second-order questioning and challenging of one's own thoughts and beliefs</b>."</p>
+<ul>
+<li>It is a <b>process we engage in throughout the research</b> — <b>from conception through to dissemination</b>.</li>
+<li><b>Aim: producing a more trustworthy and honest account of the research.</b></li>
+</ul>
+</div>
+
+<div class="box def"><span class="bt">Positionality</span>
+<p>Positionality is "our <b>understanding of ourselves — of who we are and what we bring to our research</b>."</p>
+<ul>
+<li>The <b>positionality statement</b> in a publication is "a <b>summary of that understanding of ourselves, to highlight how our very being may have shaped our work</b>."</li>
+<li>Researchers must be <b>forthright about what influenced their research</b> and about their <b>interpretations of social reality that are influenced by their positionality</b>.</li>
+<li><b>Being candid about our positionality increases the credibility of our research and provides context for users of our research.</b></li>
+</ul>
+</div>
+
+<div class="box exam"><span class="bt">How to write a positionality statement — what to include</span>
+<p>Writing one helps you <b>intentionally reflect on your identity, life history, experiences, values and the things/issues that are important to you</b>. This reflection helps you determine <b>what aspect of your identity is of broader sociological interest</b>, which is useful in <b>narrowing your research interests</b>. Even if you already know your topic, it helps <b>focus your research on issues important to who you are</b> or to your political/world views. Include:</p>
+<ul>
+<li><b>Identity characteristics</b> — age, gender, sexuality, ethnicity, social class, disability status, citizenship, immigration status, religion, marital status, etc.</li>
+<li><b>Life experiences</b> — previous or current job, volunteering activities, membership in advocacy groups, etc.</li>
+<li><b>Political, philosophical and theoretical beliefs</b> — the lens through which you view and interpret the world.</li>
+<li><b>Relationship to the phenomenon of interest</b> — your <b>insider and/or outsider status</b>.</li>
+</ul>
+<p><i>Applied to you: an IRMA student doing PRA in a village is, typically, an urban-educated outsider, younger than most respondents, associated in villagers' minds with an institution and possibly with benefits — all of which shapes what people tell you.</i></p>
+</div>
+
+<div class="box mnem"><span class="bt">Three easily-confused terms — get them straight</span>
+<div class="tw" style="margin:8px 0 0"><table>
+<thead><tr><th style="width:20%">Term</th><th style="width:22%">Belongs to</th><th>What the researcher does with their self</th></tr></thead>
+<tbody>
+<tr><td><b>Bracketing</b></td><td>Phenomenology (Module 5)</td><td><b>Sets it aside</b> — puts preconceptions on hold so they don't bias observation</td></tr>
+<tr><td><b>Reflexivity</b></td><td>Ethics / all qualitative research</td><td><b>Continuously questions and challenges it</b>, throughout the study</td></tr>
+<tr><td><b>Positionality</b></td><td>Ethics / write-up</td><td><b>Declares it publicly</b> in a statement, so readers can contextualise the findings</td></tr>
+</tbody></table></div>
+</div>
+
+<h3 id="m8-3">8.3 PRA: Participatory Rural Appraisal</h3>
+<div class="box def"><span class="bt">RRA vs PRA <span class="pill">classic comparison question</span></span>
+<p><b>Rapid Rural Appraisal (RRA)</b> is "a <b>condensed version of PRA designed for situations where time is of the essence</b>." It <b>aims to gather essential information quickly</b>, often in response to specific development challenges or opportunities. It is <b>EXTRACTIVE</b> — <b>information is used as per the project staff's needs</b>.</p>
+<p><b>Participatory Rural Appraisal (PRA)</b> represents a <b>shift from extractive survey questionnaires (RRA) to EXPERIENCE SHARING by local people</b>. Developed in the <b>early 1990s</b>, with a <b>considerable paradigm shift from a top-down to a bottom-up approach</b>.</p>
+<p><b>One-line difference:</b> in RRA, <b>outsiders extract information</b>; in PRA, <b>local people generate, own and analyse the information</b>.</p>
+</div>
+
+<h4>Unpacking the name P-R-A</h4>
+<ul>
+<li><b>Participatory</b> — <b>people are involved in the process</b>; a <b>"bottom-up" approach</b>.</li>
+<li><b>Rural</b> — <b>though the name suggests rural, the techniques can be used in ANY situation, urban or rural, with both literate and illiterate people</b>. <i>(An easy exam trap — PRA is not restricted to villages.)</i></li>
+<li><b>Appraisal</b> — <b>finding out information about problems, needs and potential in a village</b>. It is <b>the first stage in any project</b>.</li>
+</ul>
+
+<div class="box def"><span class="bt">Robert Chambers — the name to cite <span class="pill">memorise</span></span>
+<p><b>Robert Chambers</b>, <b>Institute of Development Studies, University of Sussex</b>, defined PRA as:</p>
+<p style="margin:8px 0"><b>"An approach and methods for learning about rural life and conditions FROM, WITH and BY rural people."</b></p>
+<p>His central question: <b>"Whose reality counts?"</b></p>
+<p><i>The three prepositions matter: </i>from<i> them (they are the source), </i>with<i> them (they are partners), </i>by<i> them (they are the analysts).</i></p>
+</div>
+<p>PRA is <b>one of the most popular and effective approaches to gather information in rural areas</b>.</p>
+
+<h3 id="m8-4">8.4 The five key principles of PRA <span class="pill">guaranteed question</span></h3>
+<div class="tw"><table>
+<thead><tr><th style="width:20%">Principle</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td><b>1. PARTICIPATION</b></td><td>Designed to <b>involve local people — not only as sources of information, but as PARTNERS in gathering and analyzing the information</b>.</td></tr>
+<tr><td><b>2. FLEXIBILITY</b></td><td>The appropriate <b>combination of techniques</b> is determined by: <b>(a) the size and skill of the PRA team; (b) the time and resources available; (c) the topic and location of the work</b>.</td></tr>
+<tr><td><b>3. TEAMWORK</b></td><td><b>Local language</b>; <b>locals with a very few outsiders</b>; a <b>significant presence of women</b>.</td></tr>
+<tr><td><b>4. OPTIMAL IGNORANCE</b></td><td>To be <b>efficient in terms of both time and money</b>, PRA work intends to <b>gather JUST ENOUGH information to make the necessary recommendations and decisions</b> — no more. <i>(Deliberately not knowing what you don't need to know.)</i></td></tr>
+<tr><td><b>5. SYSTEMATIC</b></td><td><b>Not statistical.</b> Validity comes from <b>inference from other techniques</b> and <b>cross-checking the findings in community meetings</b>.</td></tr>
+</tbody></table></div>
+<div class="box mnem"><span class="bt">Mnemonic</span><p><b>P-F-T-O-S</b> → <b>"Please Follow These Own Steps"</b>. Or note the logic: <b>who</b> is involved (Participation, Teamwork), <b>how</b> you choose tools (Flexibility), <b>how much</b> you collect (Optimal ignorance), <b>how</b> you validate (Systematic).</p></div>
+
+<h3 id="m8-5">8.5 Other principles of PRA, and the facilitator's role</h3>
+<h4>Other principles</h4>
+<ul>
+<li><b>Offsetting biases</b></li>
+<li><b>Reversal of roles</b> — the local person teaches, the outsider learns</li>
+<li><b>Rapid and progressive learning</b></li>
+<li><b>Be gender sensitive</b></li>
+<li><b>Focused learning</b> — relative comparison/ranking rather than absolute measurement</li>
+<li><b>Seeking for diversity/differences</b> — the outlier matters</li>
+<li><b>Be aware of biases</b> — seek opinions from <b>women, the poorest, the power-less</b></li>
+<li><b>"Handing over the stick"</b> — <b>people take the lead</b> (literally: give them the chalk/stick and let them draw the map)</li>
+<li><b>Attitude</b> — <b>respect, humility, patience, and a sense of humour</b></li>
+</ul>
+
+<div class="box exam"><span class="bt">Role of the PRA facilitator — cautions and attitudes <span class="pill">very examinable list</span></span>
+<ul>
+<li><b>Avoid using complex language/words</b>; try to <b>talk in the local language</b>.</li>
+<li><b>Keep a low profile.</b></li>
+<li><b>Listen carefully and do not teach them</b> — <b>do not interrupt</b>.</li>
+<li><b>Stay neutral</b> — <b>do not assume the answer</b>.</li>
+<li><b>Treat and respect people according to local customs and culture.</b></li>
+<li><b>Use secondary information</b> to know more about the village beforehand.</li>
+<li><b>Spell out clearly why you are doing it.</b></li>
+<li><b>Show genuine interest in local issues.</b></li>
+<li><b>Choose a time and venue that are convenient for local people</b> — not for you.</li>
+</ul>
+</div>
+
+<h3 id="m8-6">8.6 The nine PRA tools <span class="pill">THE other most likely long-answer question</span></h3>
+<p>Learn each tool as: <b>what it is → what information it yields → how to facilitate it</b>. Scenario questions ("which tools would you use to study X?") require you to justify the <b>match between the tool and the information</b>.</p>
+
+<div class="tw"><table>
+<thead><tr><th style="width:4%">#</th><th style="width:18%">Tool</th><th>What it does / key information</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Transect walk</b></td><td><b>Spatial</b> — physical layout and resources</td></tr>
+<tr><td>2</td><td><b>Historical map / Timeline</b></td><td><b>Temporal</b> — how the village changed over time</td></tr>
+<tr><td>3</td><td><b>Social map</b></td><td><b>Social</b> — households, facilities, who lives where</td></tr>
+<tr><td>4</td><td><b>Resource map</b></td><td><b>Resources</b> — what exists, who accesses it</td></tr>
+<tr><td>5</td><td><b>Seasonal calendar</b></td><td><b>Annual cycle</b> — how things vary month to month</td></tr>
+<tr><td>6</td><td><b>Time-activity chart</b></td><td><b>Daily cycle</b> — how a day is spent</td></tr>
+<tr><td>7</td><td><b>Venn diagram</b></td><td><b>Institutions</b> — who matters and how close they are</td></tr>
+<tr><td>8</td><td><b>Matrix / Preference ranking</b></td><td><b>Priorities</b> — what matters most</td></tr>
+<tr><td>9</td><td><b>Wealth ranking</b></td><td><b>Stratification</b> — who is rich/average/poor by local perception</td></tr>
+</tbody></table></div>
+
+<h4>1. Transect walk</h4>
+<p>The <b>facilitator and participants walk down through the village</b> to obtain an <b>overall understanding of the village</b>. It explores:</p>
+<ul>
+<li>The <b>spatial dimension</b> — <b>physical build and locations</b></li>
+<li><b>Quality of habitation</b></li>
+<li><b>Geographical stretches</b></li>
+<li><b>Availability of resources</b> — <b>soil type, erosion, land use (forest, waste, grazing, cropping), water, vegetation, crops</b></li>
+<li><b>Problems and priorities</b></li>
+</ul>
+
+<h4>2. Historical mapping / Timeline</h4>
+<ul>
+<li>To understand the <b>historical background — how the village has evolved over time</b>, <b>as per the locals' perception and priorities</b>.</li>
+<li>It is a <b>good way to build rapport</b>.</li>
+<li><b>Basic events, with a timeline, can be shown</b> — events that <b>brought immense changes in village life</b> (a drought, the arrival of electricity/a road/a school, a flood, a factory, a migration wave).</li>
+<li><b>Involve elders</b> in sketching the map.</li>
+<li>Note: <b>there are different types of historical mapping</b> (e.g. a timeline of events vs. a 'then and now' pair of maps vs. a trend line for a specific variable).</li>
+</ul>
+
+<h4>3. Social map</h4>
+<ul>
+<li><b>Sketching/drawing of houses and other social facilities and infrastructure</b> — temple, stores, rice mills, school, pharmacy, trails and roads, water pumps, irrigation and recreation facilities.</li>
+<li>Purpose: <b>to visualize and situate the location of households and other social facilities/infrastructure</b>.</li>
+</ul>
+<p><b>How to facilitate:</b></p>
+<ul>
+<li>Ask participants to <b>draw a map of the village showing all households</b>.</li>
+<li>Discuss whether the <b>total number of households has increased or shrunk</b> in recent years — <b>and why</b>.</li>
+<li>Encourage the group to <b>show which different ethnic groups live in the village</b>; using a <b>common symbol, mark households where minority ethnic groups live</b>.</li>
+<li>Do the same for <b>different religious groups</b>.</li>
+<li>Ask the group to <b>indicate with a symbol all female-headed households</b> — and <b>make sure everybody has the same understanding of what the characteristics of a female-headed household are</b>.</li>
+</ul>
+<p class="src">There are different kinds of social mapping — e.g. mapping by caste, by landholding, by service access, or by vulnerability.</p>
+
+<h4>4. Resource map</h4>
+<ul>
+<li>Helps us <b>learn about a community and its resource base</b>.</li>
+<li><b>The primary concern is NOT to develop an accurate map, but to get useful information about LOCAL PERCEPTIONS of resources.</b> <i>(A very likely exam point.)</i></li>
+</ul>
+<p><b>Key questions:</b></p>
+<ul>
+<li><b>What resources are abundant or scarce?</b></li>
+<li><b>Does everyone have equal access to land?</b> (social hierarchies)</li>
+<li><b>Where do people go to collect water? Who collects water?</b></li>
+<li><b>Where do people go to collect firewood? Who collects firewood?</b></li>
+<li><b>Where do people graze livestock?</b></li>
+<li><b>What development activities do you carry out as a whole community? Where?</b></li>
+<li><b>Which resource do you have the most problem with?</b></li>
+</ul>
+<p><b>How to facilitate:</b> use <b>separate groups of men and women</b> — they <b>may use different resources</b>. Also separate <b>other social groups: caste / ethnicity / religion</b>.</p>
+
+<h4>5. Seasonal map / calendar</h4>
+<ul>
+<li><b>Determines patterns and trends throughout the year.</b></li>
+<li>Purposes: <b>rainfall distribution, food availability, agricultural production, income and expenditures, health problems</b>, and others.</li>
+</ul>
+<p><b>Key questions:</b></p>
+<ul>
+<li><b>What are the busiest months of the year?</b></li>
+<li><b>At what time of year is food scarce?</b></li>
+<li><b>How does income and expenditure vary over the year for men and women?</b></li>
+<li><b>How does rainfall vary over the year?</b></li>
+<li><b>How does water availability for human consumption vary over the year?</b></li>
+<li><b>How does livestock forage availability vary over the year?</b></li>
+<li><b>How does credit availability vary over the year?</b></li>
+</ul>
+<p><b>How to facilitate:</b></p>
+<ul>
+<li>It is <b>usually easiest to start the calendar by asking about rainfall patterns</b> (everyone can answer it, and it anchors the other rows).</li>
+<li>Move to the next topic and ask <b>during which months food is usually scarce — and discuss why</b>.</li>
+<li><b>Make sure your copy of the seasonal calendar has a KEY explaining the different items and symbols used.</b></li>
+</ul>
+<p class="src">Related variants shown in class: the <b>Crop Calendar</b> (sowing/weeding/harvest by crop across months) and the <b>Livelihood Activity Chart</b> (which livelihood activity is pursued in which months, by whom).</p>
+
+<h4>6. Time-activity chart</h4>
+<ul>
+<li>Captures the <b>daily routine</b>.</li>
+<li><b>One can have such charts for different age groups and occupations</b> — and, critically, <b>for men and women separately</b>, which is usually where the finding is.</li>
+</ul>
+
+<h4>7. Venn diagram (Institutional Relationship Diagram)</h4>
+<ul>
+<li><b>Shows institutions, organisations, groups and important individuals found in the village</b>, as well as <b>the villagers' view of their importance in the community</b>.</li>
+<li>It <b>also indicates how close the contact and cooperation between those organisations and groups is</b>.</li>
+</ul>
+<p><b>Key questions:</b></p>
+<ul>
+<li><b>Which organisations/institutions/groups are working in or with the community?</b></li>
+<li><b>Which institutions/groups do the villagers regard as most important, and why?</b></li>
+<li><b>Which groups are addressing household food security and nutrition issues?</b></li>
+<li><b>Which organisations work together?</b></li>
+<li><b>Are there groups meant for women or men only?</b></li>
+<li><b>Are some particular groups or kinds of people excluded from membership of, or from receiving services from, certain institutions?</b></li>
+</ul>
+<div class="box exam"><span class="bt">How to facilitate — the coding of the circles <span class="pill">memorise this</span></span>
+<p>It is good to <b>form separate focus groups</b> because of <b>social hierarchies</b>.</p>
+<p><b>Circle SIZE</b> = importance of the institution. <b>Circle DISTANCE/OVERLAP</b> = degree of contact and co-operation with the community:</p>
+<ul>
+<li><b>Largely distanced circles</b> → <b>no or little contact or co-operation</b></li>
+<li><b>Circles close to each other</b> → <b>only loose contacts exist</b></li>
+<li><b>Touching circles</b> → <b>some co-operation</b></li>
+<li><b>Overlapping circles</b> → <b>close co-operation</b></li>
+</ul>
+</div>
+
+<h4>8. Pair-wise / Matrix / Preference ranking</h4>
+<ul>
+<li><b>Helps villagers to set priorities</b> — problems, needs, actions, etc.</li>
+<li>Ranking can be undertaken <b>with key informants or with a group of villagers representing a good mixture of interests</b> (old, young, men, women, etc.).</li>
+<li><b>How it works:</b> people are <b>presented with a PAIR</b> of preferences/facilities/problems and asked: <b>"Which is preferred between the two, and why?"</b></li>
+<li>At the end, <b>preferences and problems can be counted and ranked</b>.</li>
+<li>A <b>problem matrix</b> can be made for different problems; a <b>solution matrix</b> can also be done for important problems.</li>
+</ul>
+<p class="src">The "and why?" is the qualitative part — the ranking gives you the order, the reasons give you the criteria people actually use.</p>
+
+<h4>9. Wealth ranking</h4>
+<ul>
+<li><b>To determine the economic attributes of households.</b></li>
+<li><b>To determine the extent of poverty in the village.</b></li>
+<li><b>Identify wealth indicators</b> and <b>categorize households into rich, average and poor</b>.</li>
+<li>The opening question: <b>"How can we tell whether a household is relatively rich, average, or poor in this village?"</b></li>
+</ul>
+<div class="box exam"><span class="bt">The card-sorting method (the 'Alternatively' slide) — know these steps</span>
+<ol>
+<li><b>Prepare a list of all household heads. Write their names on separate cards.</b></li>
+<li><b>Define a ranking in discussion with villagers</b> — e.g. <b>1 to 5, where 1 is very poor and 5 is very rich</b>.</li>
+<li><b>Ask each individual to pick a card and give it a rank.</b></li>
+<li><b>Get the average score for each card</b> and <b>arrange them in increasing order</b>.</li>
+<li><b>The highest score is the richest; the least score is the very poorest.</b></li>
+</ol>
+<p><b>KEY POINT (the examinable one):</b> "<b>The ranking is based on the COMMUNITY'S PERCEPTION of relative wealth, rather than on the researcher's own assessment of household income or assets.</b>" This is the emic principle (Module 3) operationalised as a tool.</p>
+</div>
+
+<div class="box eg"><span class="bt">Class activity (5 marks) — "Migration and its effect on everyday lives and livelihoods"</span>
+<p><b>Task:</b> identify the PRA tools you would use; specify what information each yields; explain how they together illuminate the research topic. A model answer:</p>
+<div class="tw" style="margin:8px 0"><table>
+<thead><tr><th style="width:22%">Tool</th><th style="width:38%">Information collected</th><th>How it helps answer the question</th></tr></thead>
+<tbody>
+<tr><td><b>Social map</b></td><td>All households; which are <b>female-headed</b>; which have members away; change in the <b>number of households</b> over recent years and why</td><td>Shows <b>who migrates and who is left behind</b>; the female-headed household symbol directly reveals the <b>feminisation of the village</b></td></tr>
+<tr><td><b>Historical timeline</b></td><td>Key events — drought years, road/rail arrival, closure of a local employer, the first migration wave</td><td>Establishes <b>when and why migration began</b>, in the villagers' own causal account</td></tr>
+<tr><td><b>Seasonal calendar</b></td><td>Months of <b>out-migration and return</b>, against <b>rainfall, agricultural operations, food scarcity, income/expenditure and credit availability</b></td><td>Shows migration as a <b>coping strategy timed to the lean season</b>; links it to <b>food insecurity and debt</b></td></tr>
+<tr><td><b>Time-activity chart</b><br>(men and women separately)</td><td>The daily routine of women in migrant households vs non-migrant households</td><td>Captures the <b>redistribution of work onto those left behind</b> — the everyday-life half of the question</td></tr>
+<tr><td><b>Resource map</b></td><td>Land, water, grazing, fuelwood; who accesses what; <b>land left fallow</b></td><td>Shows the <b>effect of labour loss on resource use and agriculture</b></td></tr>
+<tr><td><b>Wealth ranking</b></td><td>Local wealth categories and which households fall where</td><td>Tests whether migration is a <b>distress strategy of the poorest</b> or an <b>accumulation strategy of the better-off</b> — often the key finding</td></tr>
+<tr><td><b>Venn diagram</b></td><td>Institutions villagers deal with, their importance and closeness</td><td>Reveals whether <b>any institution supports migrants or left-behind families</b>, and who is <b>excluded</b></td></tr>
+<tr><td><b>Preference ranking</b></td><td>Villagers' ranking of the problems migration causes (or of reasons for migrating)</td><td>Establishes <b>community priorities</b> and the <b>criteria</b> behind them, for recommendations</td></tr>
+<tr><td><b>Transect walk</b></td><td>Locked houses, fallow plots, condition of habitation, new pucca houses built with remittances</td><td>Provides <b>physical corroboration</b> — triangulation of what the maps and discussions claim</td></tr>
+</tbody></table></div>
+<p><b>Tie it together:</b> the maps give <b>who and where</b>, the calendars give <b>when</b>, the ranking gives <b>who is affected most</b>, the Venn diagram gives <b>what institutional support exists</b>, and the transect walk <b>triangulates</b> all of it. Supplement with <b>IDIs</b> with left-behind women and returned migrants, and <b>separate FGDs</b> for men and women (social hierarchies). Analyse via <b>thematic analysis</b>.</p>
+</div>
+
+<!-- ============================ MODULE 9 ============================ -->
+<h2 id="m9"><span class="num">09</span>Exam Toolkit</h2>
+<p class="lede">Everything compressed. If you read nothing else the night before, read this module.</p>
+
+<h3 id="m9-1">9.1 The one-page cheat sheet</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:26%">Concept</th><th>The answer, compressed</th></tr></thead>
+<tbody>
+<tr><td>Research (2 conditions)</td><td>(i) Adds to the body of knowledge, (ii) process is scientific. <i>Bhattacherjee (2012)</i></td></tr>
+<tr><td>Science (3 aspects)</td><td>Conceptual (how we know, tentative, method not outcome) · Disciplinary (natural + social + formal) · Comparative (one of 4 ways of knowing)</td></tr>
+<tr><td>4 ways of knowing</td><td><b>Tenacity, Authority, A priori, Science</b> — <i>Peirce, Fixation of Belief (1877)</i></td></tr>
+<tr><td>Scientific method (4 traits)</td><td><b>Replicability, Precision, Falsifiability, Parsimony</b></td></tr>
+<tr><td>Problem</td><td>A gap between <b>what is real and what is ideal/desired</b> — <i>O'Leary (2005)</i></td></tr>
+<tr><td>Unpacking a problem</td><td>3 circles: dominant worldviews · stakeholder perspectives · personal perspectives</td></tr>
+<tr><td>RQ articulation (5 steps)</td><td>Brainstorm (5 prompts) → Generate alternatives → Select → Remove ambiguities → Checklist (6 points)</td></tr>
+<tr><td>Hypothesis</td><td>A <b>logical conjecture</b>; relationship between ≥2 variables as a <b>testable statement</b>. Exploratory qualitative studies need none.</td></tr>
+<tr><td>Phases of research</td><td>I: WHAT (1 step) · II: HOW (4 steps) · III: DOING (3 steps) · IV: ADVOCACY — <i>Kumar (2014)</i></td></tr>
+<tr><td>Induction / Deduction</td><td>Induction = observation → theory (theory <b>building</b>, bottom-up, depth, qualitative). Deduction = theory → test (theory <b>testing</b>, top-down, breadth, quantitative). They form a <b>loop</b>.</td></tr>
+<tr><td>Ontology / Epistemology</td><td>Ontology = nature of <b>reality</b>. Epistemology = how we can <b>know</b> that reality. Same steps + different ontology/epistemology = different study.</td></tr>
+<tr><td>Emic / Etic</td><td>Emic = <b>insider</b>'s perspective (qualitative is emic). Etic = <b>outsider</b>'s.</td></tr>
+<tr><td>Qual validity/reliability</td><td><b>Credibility</b> (trustworthiness/authenticity) and <b>Dependability</b> (transparency about how you did it). Researcher is <b>another research tool</b>.</td></tr>
+<tr><td>Research design</td><td>A <b>blueprint or framework</b> for conducting a study — outlining the approach and methods for collecting and analysing data to answer RQs or test hypotheses.</td></tr>
+<tr><td>4 sampling types</td><td><b>Convenience</b> (accessible; pilots) · <b>Judgement/purposive</b> (most productive) · <b>Theoretical</b> (grounded theory; progressive) · <b>Snowball</b> (referrals; hard-to-reach)</td></tr>
+<tr><td>Sample size</td><td>One that <b>adequately answers the RQ</b> (Marshall 1996). Stop at <b>theoretical/data saturation</b>: no new themes + categories sufficiently developed.</td></tr>
+<tr><td>4 qualitative designs</td><td><b>Grounded theory</b> (why &amp; how → build theory) · <b>Phenomenology</b> (lived experience; bracketing) · <b>Ethnography</b> (describe a culture; immersion) · <b>Action research</b> (co-researchers throughout)</td></tr>
+<tr><td>IDI</td><td>"A <b>conversation with a purpose</b>." 5 features: structure+flexibility, interactive, probes, generative, natural-form data.</td></tr>
+<tr><td>Guide vs Schedule</td><td><b>Guide</b> = keywords, unstructured/qualitative, "guide not script". <b>Schedule</b> = exact wording, structured/quantitative.</td></tr>
+<tr><td>Key informant vs Gatekeeper</td><td>Informant gives <b>information</b> (advisor/supporter). Gatekeeper gives <b>access</b> (authority/control).</td></tr>
+<tr><td>FGD</td><td>Trained <b>moderator</b>, small group, unstructured &amp; natural. <b>6–12 people, 1.5–6 hours, homogeneous, pre-screened.</b> Data generated by <b>interaction between participants</b>.</td></tr>
+<tr><td>FGD moderation (4 dos)</td><td><b>Kindness with firmness · Permissiveness · Involvement · Encouragement</b></td></tr>
+<tr><td>Observation (3 criteria)</td><td>Serves a <b>specific research purpose</b> · <b>systematically planned</b> · <b>systematically recorded</b> (field notes in a field diary)</td></tr>
+<tr><td>Participation continuum</td><td>Non- → Passive → Moderate → Active → Complete (identity unknown). Detachment → Involvement.</td></tr>
+<tr><td>Thick description</td><td>Geertz. Thin = facts only. Thick = <b>context + commentary + interpretation</b>.</td></tr>
+<tr><td>Thematic analysis (6 steps)</td><td>1 Transcription/familiarisation &amp; quotes · 2 Keywords · 3 Coding · 4 Theme development · 5 Conceptualization · 6 Conceptual model</td></tr>
+<tr><td>Keyword/Code/Theme</td><td>Keyword = <b>literal word in the text</b> (index/search). Code = <b>researcher's label on a segment</b> (organise/sort). Theme = <b>cluster of codes forming an argument</b> (insight; becomes your headings).</td></tr>
+<tr><td>3 procedures of all qual analysis</td><td><b>Data reduction · Data display · Conclusion drawing/verifying</b> — <i>Huberman &amp; Miles (1994)</i></td></tr>
+<tr><td>Sandwich method</td><td>Top bun = <b>analytical point/pattern</b> · Patty = <b>quote or field note</b> (with pseudonym + context) · Bottom bun = <b>analytical context</b> situating the example, then transition.</td></tr>
+<tr><td>Informed consent</td><td><b>Knowing consent</b> as an <b>exercise of choice</b>, free from <b>fraud, deceit, duress or unfair inducement/manipulation</b>. Verbal or written.</td></tr>
+<tr><td>Reflexivity / Positionality</td><td>Reflexivity = <b>second-order questioning of one's own thoughts and beliefs</b>, throughout the research. Positionality = <b>understanding of who we are and what we bring</b>, declared in a statement.</td></tr>
+<tr><td>RRA vs PRA</td><td>RRA = <b>condensed, fast, EXTRACTIVE</b> (info used as per project staff needs). PRA = <b>experience sharing by local people</b>, bottom-up, early 1990s.</td></tr>
+<tr><td>PRA (Chambers)</td><td>"An approach and methods for learning about rural life and conditions <b>from, with and by</b> rural people." — <b>"Whose reality counts?"</b></td></tr>
+<tr><td>5 PRA principles</td><td><b>Participation · Flexibility · Teamwork · Optimal ignorance · Systematic</b></td></tr>
+<tr><td>9 PRA tools</td><td>Transect walk · Historical map/timeline · Social map · Resource map · Seasonal calendar · Time-activity chart · Venn diagram · Matrix/preference ranking · Wealth ranking</td></tr>
+</tbody></table></div>
+
+<h3 id="m9-2">9.2 Names, dates and sources worth citing</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:30%">Name</th><th>What to attribute to them</th></tr></thead>
+<tbody>
+<tr><td><b>Charles Peirce</b> (1877)</td><td><i>The Fixation of Belief</i> — the four ways of knowing (tenacity, authority, a priori, science)</td></tr>
+<tr><td><b>Karl Popper</b> (2002)</td><td><i>The Logic of Scientific Discovery</i> — <b>falsifiability</b>; every scientific statement must remain <b>tentative forever</b></td></tr>
+<tr><td><b>Ockham</b></td><td><b>Parsimony</b> (Occam's razor)</td></tr>
+<tr><td><b>Auguste Comte</b> (19th c.)</td><td>The <b>hierarchy of the sciences</b></td></tr>
+<tr><td><b>Bhattacherjee</b> (2012)</td><td>Two conditions for research; precision; falsifiability; parsimony; the induction–deduction cycle</td></tr>
+<tr><td><b>O'Leary</b> (2005)</td><td>Problem as real-vs-ideal gap; unpacking problems; the 5-step RQ process and 6-point checklist; hypothesis as logical conjecture</td></tr>
+<tr><td><b>Kumar</b> (2014)</td><td>4 phases / 8 steps of research; iterative research process; literature review; SLS &amp; passive condensation examples</td></tr>
+<tr><td><b>Privitera</b> (2022)</td><td>The 6 steps in research (identify → plan → conduct → analyse → communicate → generate new ideas); research is cyclical</td></tr>
+<tr><td><b>Hennink et al.</b> (2011, 2015)</td><td>Definition and applications of qualitative research; qual vs quant table; FGD strengths/limitations; the FGD question funnel</td></tr>
+<tr><td><b>Yardley</b> (2024)</td><td>Subjectivity has value; validity/reliability as credibility and dependability; researcher as another research tool</td></tr>
+<tr><td><b>Freese &amp; Peterson</b> (2017)</td><td>Replicability, and why replication is problematic in qualitative research</td></tr>
+<tr><td><b>Kazdin</b> (2016)</td><td>Why research needs a method; testable hypothesis; correlation vs causation</td></tr>
+<tr><td><b>Miles &amp; Huberman</b> (1994)</td><td>The 4 designs for integrating qual and quant; the 3 procedures of qualitative analysis (reduction, display, conclusion)</td></tr>
+<tr><td><b>Clifford Geertz</b></td><td><b>Thick description</b> vs thin description</td></tr>
+<tr><td><b>Braun &amp; Clarke</b> (2006)</td><td>The <b>15-point checklist</b> for good thematic analysis; "themes do not just emerge"</td></tr>
+<tr><td><b>Marshall</b> (1996)</td><td>Appropriate qualitative sample size = one that adequately answers the research question</td></tr>
+<tr><td><b>Robert Chambers</b> (IDS, Sussex)</td><td><b>PRA</b>; "from, with and by rural people"; <b>"Whose reality counts?"</b></td></tr>
+<tr><td><b>Kuznets</b> (1955) / <b>Piketty</b> (2013) / <b>Fogel</b> (1987)</td><td>The original-source cautionary tale — the Kuznets curve "raised to the level of law"</td></tr>
+<tr><td><b>Brij Kothari</b> / <b>Girja Sharan</b></td><td>Same Language Subtitling; Passive Condensation — small idea, large social impact</td></tr>
+<tr><td><b>Booth et al.</b> (2016)</td><td><i>The Craft of Research</i> — research as a "never-ending conversation"</td></tr>
+<tr><td><b>Flick</b> (2014)</td><td>The research question as "the door to a research study"</td></tr>
+<tr><td><b>Easterly</b> (2008)</td><td>MDGs and Africa — same problem, different research questions</td></tr>
+</tbody></table></div>
+
+<h3 id="m9-3">9.3 Confusable pairs — check you can tell these apart</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:30%">Pair</th><th>The distinguishing line</th></tr></thead>
+<tbody>
+<tr><td>Problem vs Research problem</td><td>A problem is a real–ideal gap; a <b>research problem must bridge that gap</b> and be practically researchable</td></tr>
+<tr><td>Literature review vs Summary of literature</td><td>Review <b>synthesises and argues toward a gap</b>; summary <b>lists</b>. "The whole is more than the sum of its parts."</td></tr>
+<tr><td>Induction vs Deduction</td><td>Induction <b>builds</b> theory from observation; deduction <b>tests</b> theory against observation</td></tr>
+<tr><td>Ontology vs Epistemology</td><td>What <b>reality is</b> vs how we can <b>know</b> it</td></tr>
+<tr><td>Emic vs Etic</td><td><b>Insider</b> vs <b>outsider</b> perspective</td></tr>
+<tr><td>Interview guide vs schedule</td><td>Keywords, flexible, qualitative vs exact wording, fixed, quantitative</td></tr>
+<tr><td>Key informant vs Gatekeeper</td><td>Gives <b>information</b> vs gives <b>access</b></td></tr>
+<tr><td>IDI vs FGD</td><td>Individual depth &amp; sensitive topics vs <b>interaction-generated</b> data &amp; collective norms</td></tr>
+<tr><td>Bracketing vs Reflexivity vs Positionality</td><td><b>Set aside</b> your preconceptions (phenomenology) vs <b>continuously question</b> them vs <b>publicly declare</b> them</td></tr>
+<tr><td>Keyword vs Code vs Theme</td><td><b>Literal word</b> vs <b>researcher's label</b> vs <b>cluster of codes making an argument</b></td></tr>
+<tr><td>Thin vs Thick description</td><td>Facts only vs facts + <b>context, commentary, interpretation</b></td></tr>
+<tr><td>Theoretical vs Judgement sampling</td><td>Theoretical is <b>progressive and guided by emerging concepts</b> (grounded theory); judgement/purposive is decided upfront on productive characteristics</td></tr>
+<tr><td>RRA vs PRA</td><td><b>Extractive and fast</b> vs <b>participatory experience-sharing</b>, bottom-up</td></tr>
+<tr><td>Social map vs Resource map</td><td>Households and <b>social facilities</b> (who lives where) vs the <b>resource base</b> and <b>local perceptions</b> of it (who accesses what)</td></tr>
+<tr><td>Seasonal calendar vs Time-activity chart</td><td><b>Annual</b> cycle (months) vs <b>daily</b> cycle (hours)</td></tr>
+<tr><td>Historical map vs Transect walk</td><td><b>Time</b> dimension (how the village changed) vs <b>space</b> dimension (what the village physically contains)</td></tr>
+<tr><td>Reliability vs Validity (qual)</td><td><b>Dependability</b> (transparency of process) vs <b>credibility</b> (trustworthiness of account)</td></tr>
+<tr><td>Type I vs Type II error</td><td>Claiming an effect that isn't there vs missing one that is</td></tr>
+</tbody></table></div>
+
+<h3 id="m9-4">9.4 Likely exam questions, with answer skeletons</h3>
+
+<div class="box exam"><span class="bt">Short answer (2–5 marks) — be able to define in 2–4 lines each</span>
+<p>Research · Science · Tenacity · A priori method · Falsifiability · Parsimony · Optimal ignorance · Emic and etic · Ontology · Epistemology · Bracketing · Theoretical saturation · Snowball sampling · Interview guide · Gatekeeper · Key informant · Probe · Thick description · Codebook · Conceptual framework · Reflexivity · Positionality · Informed consent · Triangulation · Handing over the stick · Transect walk · Wealth ranking · Venn diagram (PRA)</p>
+</div>
+
+<div class="box exam"><span class="bt">Q. "Differentiate between qualitative and quantitative research." (10 marks)</span>
+<p><b>Skeleton:</b> (1) Open with the <b>two foundational similarities</b> — both systematic with established protocols, both built on empirical/observable evidence. (2) State the <b>foundational difference</b> — numerical categories vs the quality/substance of human experience. (3) Give the <b>full comparison table</b> from Module 3.7 (objective, purpose, data, study population, nomenclature, methods, analysis, outcome). (4) Add the <b>strategy difference</b> — confirmatory/deductive vs exploratory/inductive. (5) Add <b>ontology/epistemology</b> as the underlying cause of the divergence. (6) Close with the <b>caution</b>: quantitative is often <i>perceived</i> as better, but this rests on a misunderstanding — plus the <b>four integration designs</b> (Miles &amp; Huberman). (7) Illustrate with the <b>three descriptions of poverty</b>.</p>
+</div>
+
+<div class="box exam"><span class="bt">Q. "Explain the six steps of thematic analysis with an example." (10–15 marks)</span>
+<p><b>Skeleton:</b> (1) Define thematic analysis and <b>thick description</b>. (2) Draw the <b>pipeline diagram</b>. (3) Take each step with its sub-criteria: Step 1 transcription/verbatim/active reading/quotation rules; Step 2 keywords + the 5 selection criteria; Step 3 coding + codebook + the 3 pieces of key advice + the 5 code-selection criteria; Step 4 theme development + the 4 theme-selection criteria; Step 5 conceptualization, the theme's 'story', sub-themes, naming; Step 6 conceptual model/framework definition. (4) Run <b>one worked quote</b> through keyword → code → theme. (5) Close with <b>Braun &amp; Clarke's checklist</b>, especially <b>#15 — themes do not just 'emerge'</b>. (6) If marks allow, add the <b>sandwich method</b> for writing it up.</p>
+</div>
+
+<div class="box exam"><span class="bt">Q. "What is PRA? Explain its principles and tools." (15 marks)</span>
+<p><b>Skeleton:</b> (1) <b>Chambers's definition</b> + "Whose reality counts?" + IDS Sussex. (2) Unpack <b>P-R-A</b> (note: not restricted to rural). (3) <b>RRA vs PRA</b> — extractive vs experience-sharing; early 1990s paradigm shift. (4) The <b>five key principles</b> with explanation. (5) The <b>other principles</b> — especially <b>handing over the stick</b>, <b>reversal of roles</b>, <b>offsetting biases</b>, <b>attitude</b>. (6) The <b>facilitator's cautions</b>. (7) The <b>nine tools</b> — for each: what it is, what information, how to facilitate. (8) Close by noting PRA's link to <b>emic knowledge</b> and to <b>ethics</b> (consent, gatekeepers, giving voice to women/the poorest/the powerless).</p>
+</div>
+
+<div class="box exam"><span class="bt">Q. Scenario-based: "You are asked to study [X] in a village. Design the study." (15 marks)</span>
+<p><b>This is the most likely applied question. Use this template:</b></p>
+<ol>
+<li><b>Unpack the problem</b> — real vs ideal gap; the three circles (dominant worldview, stakeholders, personal); surface the embedded assumptions.</li>
+<li><b>State the research question(s)</b> — apply O'Leary's 5 prompts, give 2–3 alternative questions by nature of enquiry, select one, run the 6-point checklist.</li>
+<li><b>State whether a hypothesis applies</b> — and if it is exploratory, say so explicitly ("no hypothesis — no problem").</li>
+<li><b>Justify the qualitative approach</b> — ontology/epistemology, emic perspective, and what qualitative answers that quantitative cannot here.</li>
+<li><b>Choose a research design</b> — grounded theory / phenomenology / ethnography / action research, with justification.</li>
+<li><b>Sampling</b> — which of the four types and why; mention <b>saturation</b> as the stopping rule.</li>
+<li><b>Data collection</b> — which tools (IDI / FGD / observation / PRA tools) and <b>what each yields</b>; who the <b>key informants</b> and <b>gatekeepers</b> are; separate men's and women's groups because of social hierarchies.</li>
+<li><b>Ethics</b> — informed consent at both levels, confidentiality, pseudonyms, reflexivity and your own positionality.</li>
+<li><b>Analysis</b> — six-step thematic analysis; triangulation across methods.</li>
+<li><b>Write-up</b> — findings organised by theme, sandwich method, then discussion.</li>
+</ol>
+<p><i>Answering in this order shows you can connect all nine modules — that is what a 15-mark answer is testing.</i></p>
+</div>
+
+<div class="box exam"><span class="bt">Other probable long questions</span>
+<ul>
+<li>"Is science the only way of knowing?" — Peirce's four methods, with examples and limitations.</li>
+<li>"Explain the characteristics of the scientific method." — R-P-F-P, plus why replicability is problematic in qualitative work.</li>
+<li>"Trace the journey from a research problem to a hypothesis." — O'Leary's five steps + checklist + when no hypothesis applies.</li>
+<li>"Why is literature review important? Can a review be original research?" — the 7 reasons, review vs summary, the Kanizsa/kaleidoscope argument, the Kuznets original-source lesson.</li>
+<li>"Discuss the types of qualitative sampling." — the four types + saturation.</li>
+<li>"Describe the four qualitative research designs." — grounded theory, phenomenology, ethnography, action research.</li>
+<li>"What makes a good in-depth interview?" — 5 key features + interviewer requirements + question-formulation rules + the four don'ts.</li>
+<li>"Explain FGDs — characteristics, strengths and limitations." — definition, the characteristics table, the funnel, the four dos, strengths/limitations.</li>
+<li>"Discuss observation as a method." — definition, what to observe, 3 criteria, recording, participant observation, the 5-level continuum, strengths/weaknesses.</li>
+<li>"Discuss ethics in qualitative research." — informed consent, confidentiality, reflexivity, positionality, plus data care/authorship/plagiarism from Module 4.</li>
+<li>"How would you write up qualitative findings?" — organise by theme, sandwich method, L-L-F rule, presentation nuances.</li>
+</ul>
+</div>
+
+<div class="box mnem"><span class="bt">Exam-hall tactics</span>
+<ul>
+<li><b>Name-drop precisely.</b> "Peirce (1877)", "Popper", "O'Leary (2005)", "Braun &amp; Clarke (2006)", "Chambers", "Geertz", "Marshall (1996)". Each correct attribution reads as mastery.</li>
+<li><b>Draw the diagrams.</b> The three-circle unpacked problem, the induction–deduction loop, the six-step TA pipeline, the FGD funnel, the PRA Venn diagram, the sandwich. They are fast marks and break up a wall of text.</li>
+<li><b>Always give the course's own example</b>, not a generic one — the toilet-not-used example, the recycling questions, the Tanzania/Jamaica poverty texts, Kuznets, SLS.</li>
+<li><b>Structure every long answer:</b> definition → why it matters → the list/table → an example → a limitation or caution. The caution at the end is what separates a good answer from a complete one.</li>
+<li><b>If the question says "with reference to community research"</b>, bring it back to the village: gatekeepers, gendered FGDs, local language, consent from the village leader plus the individual.</li>
+</ul>
+</div>
+
+<h3 id="m9-5">9.5 Full glossary</h3>
+<div class="tw"><table>
+<thead><tr><th style="width:24%">Term</th><th>Definition</th></tr></thead>
+<tbody>
+<tr><td>A priori method</td><td>Fixing belief on what is agreeable to reason, independent of experience or observation. Risk: impeccable logic on a wrong assumption.</td></tr>
+<tr><td>Action research</td><td>Design in which participants and researcher are <b>co-researchers throughout</b> — jointly determining the problem, methods, analysis and use of results.</td></tr>
+<tr><td>Authority (way of knowing)</td><td>Belief fixed for a community by an expert or institution; useful when we know nothing, but the source must be examined.</td></tr>
+<tr><td>Bracketing</td><td>Setting aside preconceived notions and beliefs about the phenomenon so they do not bias observation (phenomenology).</td></tr>
+<tr><td>Code</td><td>A short descriptive label assigned by the researcher to a segment of data to capture a specific idea or meaning.</td></tr>
+<tr><td>Codebook</td><td>The list of codes and their descriptions.</td></tr>
+<tr><td>Conceptual framework</td><td>A visual or narrative representation of the key concepts/themes in a study and the relationships among them.</td></tr>
+<tr><td>Convenience sampling</td><td>Selecting whoever is most accessible; useful for pilots, risks poor data quality and low credibility.</td></tr>
+<tr><td>Credibility</td><td>Qualitative analogue of validity — the authenticity/trustworthiness of the information.</td></tr>
+<tr><td>Deduction</td><td>Drawing conclusions from theoretical/logical reasons and an initial set of premises; theory testing.</td></tr>
+<tr><td>Dependability</td><td>Qualitative analogue of reliability — transparency about how the finding was arrived at.</td></tr>
+<tr><td>Discourse analysis</td><td>Analysis of how language and communication are used in real social contexts to shape meaning, power and identity.</td></tr>
+<tr><td>Emic</td><td>The insider's perspective. Qualitative research is emic.</td></tr>
+<tr><td>Epistemology</td><td>Assumptions about how we can know reality — what counts as knowledge.</td></tr>
+<tr><td>Ethnography</td><td>A method of describing a culture or society by immersing oneself in a form of life as a member of the group.</td></tr>
+<tr><td>Etic</td><td>The outsider's perspective.</td></tr>
+<tr><td>Falsifiability</td><td>A theory/hypothesis must be stated so that it <b>can be disproved</b> by new data. The line between science and non-science (Popper).</td></tr>
+<tr><td>FGD</td><td>A discussion conducted by a trained moderator among a small (6–12), homogeneous, pre-screened group in an unstructured and natural manner; data come from participant interaction.</td></tr>
+<tr><td>Gatekeeper</td><td>A person holding authority or control over <b>access</b> to individuals of interest.</td></tr>
+<tr><td>Grounded theory</td><td>Design in which data are collected and analysed and then a theory is developed that is <b>grounded in the data</b>; uncovers a process; uses theoretical sampling.</td></tr>
+<tr><td>Handing over the stick</td><td>PRA principle: let local people take the lead — literally hand them the chalk/stick to draw and analyse.</td></tr>
+<tr><td>Hypothesis</td><td>A logical conjecture (educated guess) about the relationship between two or more variables, stated testably.</td></tr>
+<tr><td>In-depth interview (IDI)</td><td>"A conversation with a purpose" — a main qualitative data collection method, combining structure with flexibility.</td></tr>
+<tr><td>Induction</td><td>Drawing conclusions from facts or observed evidence — observing a fact and asking "why is this happening?"; theory building.</td></tr>
+<tr><td>Informed consent</td><td>Knowing consent of individuals to participate as an exercise of their choice, free from fraud, deceit, duress or unfair inducement/manipulation.</td></tr>
+<tr><td>Interview guide</td><td>A small subset of key words/topics for an interview; used in unstructured, qualitative interviews. "A guide, not a script."</td></tr>
+<tr><td>Interview schedule</td><td>A set of questions designed to be asked <b>exactly as worded</b>; used in structured, mainly quantitative interviews.</td></tr>
+<tr><td>Judgement (purposive) sampling</td><td>Selecting the most <b>productive</b> sample for answering the research question, using characteristics beyond simple demographics.</td></tr>
+<tr><td>Key informant</td><td>A person associated with the participants (or an expert) who acts as the researcher's advisor and supporter and provides <b>information</b>.</td></tr>
+<tr><td>Keyword</td><td>A specific, literal word or term appearing directly in the text; used to index, search or measure frequency.</td></tr>
+<tr><td>Leading question</td><td>A question phrased so as to influence the answer; to be avoided — can be neutralised by adding "…or not?".</td></tr>
+<tr><td>Narrative analysis</td><td>Analysis of the meaning respondents give their lives and how they voice their experiences — from individual narratives to a larger common narrative.</td></tr>
+<tr><td>Ontology</td><td>Assumptions about the nature of reality — what we think reality looks like.</td></tr>
+<tr><td>Optimal ignorance</td><td>PRA principle: gather <b>just enough</b> information to make the necessary recommendations and decisions.</td></tr>
+<tr><td>Parsimony</td><td>Preferring the simplest explanation that adequately fits the evidence; how much is explained with how few variables (Ockham).</td></tr>
+<tr><td>Participant observation</td><td>Learning what life is like for an insider while remaining, inevitably, an outsider — experiencing and observing at first hand.</td></tr>
+<tr><td>Phenomenology</td><td>Study of <b>lived experiences</b> and the meaning they hold for those involved; requires dwelling with the descriptions, and bracketing.</td></tr>
+<tr><td>Positionality</td><td>Our understanding of who we are and what we bring to our research, declared in a positionality statement.</td></tr>
+<tr><td>PRA</td><td>Participatory Rural Appraisal — "an approach and methods for learning about rural life and conditions from, with and by rural people" (Chambers).</td></tr>
+<tr><td>Precision</td><td>Defining concepts, variables, instruments, scales and conclusions exactly.</td></tr>
+<tr><td>Probe</td><td>A follow-up intervention used to achieve depth — penetration, exploration and explanation — yielding 'explanatory evidence'.</td></tr>
+<tr><td>Reflexivity</td><td>Second-order questioning and challenging of one's own thoughts and beliefs, throughout the research.</td></tr>
+<tr><td>Replicability</td><td>Others should be able to repeat the study and obtain the same/similar result under the same conditions.</td></tr>
+<tr><td>Research design</td><td>A blueprint/framework for conducting a study — the overall approach and methods for collecting and analysing data.</td></tr>
+<tr><td>Research problem</td><td>A gap between what is real and what is ideal/desired, which the research must bridge.</td></tr>
+<tr><td>RRA</td><td>Rapid Rural Appraisal — a condensed, time-pressed, <b>extractive</b> version of PRA; information used as per project staff needs.</td></tr>
+<tr><td>Saturation (theoretical/data)</td><td>The point at which no new or relevant data/themes emerge and categories are sufficiently developed to support the theoretical explanation.</td></tr>
+<tr><td>Snowball sampling</td><td>Existing participants refer new ones; useful for hard-to-reach populations; fosters trust through acquaintance referrals.</td></tr>
+<tr><td>Social cues</td><td>Verbal and non-verbal signals — facial expressions, body posture, tone of voice — used to share feelings and guide conversation.</td></tr>
+<tr><td>Tenacity</td><td>Accepting belief through familiarity and repetition — "we have always known it to be this way".</td></tr>
+<tr><td>Theme</td><td>A broad interpretive construct combining multiple related codes to tell a larger, coherent story about the data.</td></tr>
+<tr><td>Theoretical sampling</td><td>Theory-driven, progressive selection of participants guided by concepts emerging from ongoing analysis (grounded theory).</td></tr>
+<tr><td>Thick description</td><td>Description going beyond facts to include <b>context, commentary and interpretation</b> (Geertz).</td></tr>
+<tr><td>Thematic analysis</td><td>A foundational qualitative method for identifying and interpreting patterns/themes in a data set.</td></tr>
+<tr><td>Transect walk</td><td>PRA tool: walking through the village with participants to understand its spatial dimension, habitation quality, resources, problems and priorities.</td></tr>
+<tr><td>Triangulation</td><td>Cross-checking findings using multiple methods or data sources — e.g. using observation to interpret interviews and vice versa.</td></tr>
+<tr><td>Wealth ranking</td><td>PRA tool: categorising households as rich/average/poor using <b>the community's own perception</b> of relative wealth and locally identified indicators.</td></tr>
+</tbody></table></div>
+
+<hr>
+<p class="src">Compiled from the QMCR combined course deck (Sessions 1–9, 264 slides) — Soumi Roy Chowdhury, Institute of Rural Management Anand. All definitions, lists and examples above are drawn from the slides; the worked examples, mnemonics, answer skeletons and comparison tables in the Exam Toolkit are study aids built on that material. Good luck.</p>
+
+</main>
+</div>
+<button id="top" onclick="scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
+<script>
+function tgl(){
+  var r=document.documentElement;
+  var cur=r.getAttribute('data-theme');
+  if(!cur){cur=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  var nxt=cur==='dark'?'light':'dark';
+  r.setAttribute('data-theme',nxt);
+  try{localStorage.setItem('qmcr-theme',nxt);}catch(e){}
+}
+try{var s=localStorage.getItem('qmcr-theme'); if(s)document.documentElement.setAttribute('data-theme',s);}catch(e){}
+
+// back-to-top
+var topBtn=document.getElementById('top');
+addEventListener('scroll',function(){
+  topBtn.classList.toggle('show',scrollY>500);
+},{passive:true});
+
+// scroll-spy
+var links=[].slice.call(document.querySelectorAll('#sidebar a[href^="#"]'));
+var map={};
+links.forEach(function(a){
+  var el=document.getElementById(a.getAttribute('href').slice(1));
+  if(el)map[a.getAttribute('href').slice(1)]=a;
+});
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      links.forEach(function(a){a.classList.remove('active');});
+      var a=map[e.target.id];
+      if(a){a.classList.add('active'); if(a.scrollIntoView)a.scrollIntoView({block:'nearest'});}
+    }
+  });
+},{rootMargin:'-70px 0px -75% 0px'});
+Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+</script>
+</body>
+</html>
