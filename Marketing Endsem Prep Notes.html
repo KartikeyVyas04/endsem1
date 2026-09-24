@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing Endsem Prep Notes</title>
+<style>
+  :root{
+    --blue:#1f4fa3; --navy:#0e3a8c; --ink:#1d1d1f; --muted:#555;
+    --line:#d6deec; --th:#e8eef9; --tip-bg:#fff7e0; --tip-bd:#e3a92b; --tip-lb:#9a6a00;
+    --book-bg:#eaf4ec; --book-bd:#4f9a62; --book-lb:#2f6d3f;
+    --bey-bg:#f1f3f8; --bey-bd:#7d8aa6; --bey-lb:#44506b; --case-bg:#f3f6fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#eef0f4;color:var(--ink);
+    font:13.5px/1.55 "Helvetica Neue",Helvetica,Arial,sans-serif;}
+  .page{max-width:880px;margin:24px auto;background:#fff;padding:40px 44px 56px;
+    box-shadow:0 1px 4px rgba(0,0,0,.08);}
+  h1{color:var(--blue);font-size:30px;margin:0 0 10px;letter-spacing:-.3px}
+  .sub{color:var(--muted);margin:0 0 14px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;font-size:12px}
+  .legend span{padding:4px 9px;border-left:3px solid;border-radius:2px}
+  .toc{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .toc a{display:block;border:1px solid var(--line);border-radius:4px;padding:10px 12px;
+    text-decoration:none;color:var(--muted);font-size:12.5px}
+  .toc a b{display:block;color:var(--blue);font-size:14px;margin-bottom:2px}
+  .toc a i{font-style:normal;font-size:11px;color:#fff;background:var(--navy);padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:1px}
+  .toc a i.f{background:#6b7a96}
+  .toc-label{font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--muted);margin:18px 0 8px}
+  .chapter{background:var(--navy);color:#fff;padding:12px 14px;margin:38px 0 18px;
+    font-size:19px;border-radius:2px}
+  .chapter span{font-weight:300;opacity:.9;margin-right:6px}
+  .chapter.found{background:#4b5d7a}
+  .badge{float:right;font-size:11px;background:rgba(255,255,255,.18);padding:3px 8px;
+    border-radius:3px;margin-top:3px;font-weight:normal}
+  h2{color:var(--blue);font-size:16.5px;margin:26px 0 10px;padding-bottom:5px;
+    border-bottom:1px solid var(--line)}
+  h3{font-size:13.5px;margin:16px 0 6px;color:#333}
+  .ref{font-size:11px;font-weight:normal;color:#8a93a6;margin-left:6px;white-space:nowrap}
+  p{margin:6px 0 10px}
+  ul,ol{margin:4px 0 10px;padding-left:20px}
+  li{margin:2px 0}
+  table{width:100%;border-collapse:collapse;margin:8px 0 14px;font-size:12.5px}
+  th{background:var(--th);color:var(--navy);text-align:left;padding:7px 8px;
+    border:1px solid var(--line);font-weight:bold}
+  td{padding:7px 8px;border:1px solid var(--line);vertical-align:top}
+  td:first-child{font-weight:bold}
+  table.plain td:first-child{font-weight:normal}
+  .tip{background:var(--tip-bg);border-left:3px solid var(--tip-bd);padding:9px 12px;margin:10px 0 14px;font-size:12.8px}
+  .tip b.l{color:var(--tip-lb)}
+  .book{background:var(--book-bg);border-left:3px solid var(--book-bd);padding:9px 12px;margin:10px 0 14px;font-size:12.8px}
+  .book b.l{color:var(--book-lb)}
+  .beyond{background:var(--bey-bg);border-left:3px solid var(--bey-bd);padding:9px 12px;margin:10px 0 14px;font-size:12.6px}
+  .beyond b.l{color:var(--bey-lb)}
+  .beyond table,.book table{background:#fff}
+  .ex{font-size:12.3px;color:#444}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .formula{font-family:"SF Mono",Menlo,Consolas,monospace;background:#f4f6fa;padding:1px 5px;border-radius:3px;font-size:12px}
+  .flow{background:#f4f6fa;border:1px solid var(--line);padding:8px 12px;margin:8px 0 12px;font-weight:bold;color:var(--navy);font-size:12.8px}
+  details.case{background:var(--case-bg);border:1px solid var(--line);border-radius:4px;padding:10px 14px;margin:10px 0}
+  details.case summary{cursor:pointer;font-weight:bold;color:var(--navy)}
+  details.case .q{margin:8px 0}
+  details.case .a{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+  .src{font-size:11.5px;color:#777;margin-top:30px;border-top:1px solid var(--line);padding-top:10px}
+  @media (max-width:640px){
+    .page{padding:22px 16px;margin:0}
+    .toc,.two{grid-template-columns:1fr}
+    table{font-size:12px} th,td{padding:5px}
+    .badge{float:none;display:inline-block;margin-left:6px}
+  }
+  @media print{
+    body{background:#fff;font-size:12px}
+    .page{box-shadow:none;margin:0;max-width:none;padding:0}
+    .chapter{page-break-before:always}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    h2,h3{page-break-after:avoid;break-after:avoid}
+    tr,.tip,.book{page-break-inside:avoid}
+    @page{size:A4;margin:14mm}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Marketing Management — Endsem Prep Notes</h1>
+<p class="sub">Session-by-session notes that follow the <b>order of the class PPTs</b>. In each session, the <b>slides are the primary source</b> and appear in slide order; slide numbers are shown next to each heading. The <b>course book</b> (<i>Basics of Marketing</i>, Dr. Abhinav Srivastava) supports the slides where it covers the same topic. The <b>endsem focus is Sessions 10–18</b>. Sessions 1–7 are included because case reasoning builds on them.</p>
+<div class="legend">
+  <span style="background:var(--tip-bg);border-color:var(--tip-bd)"><b>Exam tip</b>: how to use it in answers</span>
+  <span style="background:var(--book-bg);border-color:var(--book-bd)"><b>Course book</b>: supporting material from the concise book</span>
+  <span style="background:var(--bey-bg);border-color:var(--bey-bd)"><b>Beyond the slides</b>: standard Kotler/Keller material, secondary</span>
+</div>
+
+<div class="toc-label">Foundation sessions (basis for case reasoning)</div>
+<div class="toc">
+  <a href="#s1"><b>Session 1 — Intro &amp; Core Concepts <i class="f">Foundation</i></b>Marketing concepts (production → marketing), myopia, definitions, customer value, value triad, needs–wants–demand</a>
+  <a href="#s2"><b>Sessions 2–3 — Consumer Behaviour <i class="f">Foundation</i></b>Consumer characteristics &amp; psychology, decision process, buying behaviour grid, choice sets, B2B buying</a>
+  <a href="#s4"><b>Sessions 4–5 — Environment &amp; Research <i class="f">Foundation</i></b>MIS, macro (DENPST) and task environment, Porter's five forces, research process, market demand</a>
+  <a href="#s6"><b>Sessions 6–7 — STP <i class="f">Foundation</i></b>Segmentation criteria &amp; bases, ISEC, VALS, usage variables, targeting strategies, positioning steps</a>
+</div>
+<div class="toc-label">Endsem core sessions</div>
+<div class="toc">
+  <a href="#s10"><b>Session 10 — Product Strategy <i>Core</i></b>Goods–services continuum, 5 product levels, differentiation, product mix, line strategies, co-branding, packaging</a>
+  <a href="#s11"><b>Session 11 — Pricing &amp; Sales Promotion <i>Core</i></b>Price psychology, 2 scenarios, 6 steps, methods, discrimination, product-mix pricing, price changes, incentives</a>
+  <a href="#s13"><b>Session 13 — Distribution Management <i>Core</i></b>Channel flows, 4 channel decisions, power, VMS/HMS, retailing, omnichannel, channel conflict</a>
+  <a href="#s14"><b>Session 14 — Communicating Value <i>Core</i></b>Macro/micro models, 6-step programme, budgets, message &amp; ADPLAN, media mix, IMC, media plan, measurement</a>
+  <a href="#s16"><b>Session 16 — Services &amp; Branding <i>Core</i></b>Service features, gaps, RATER, support &amp; self-service; brand roles, equity, measurement, resonance, architecture</a>
+  <a href="#s18"><b>Session 18 — Marketing Strategies <i>Core</i></b>5Cs, Porter generic, SWOT, BCG, Ansoff, leader/challenger/follower strategies, PLC strategies</a>
+</div>
+<div class="toc-label">Exam toolkit</div>
+<div class="toc">
+  <a href="#k1"><b>Case-Answering Framework</b>A 6-step structure for case answers and a table of case clues → session concepts</a>
+  <a href="#k2"><b>Practice Cases, Formulas &amp; Revision</b>12 cases with model answers, formula sheet, and one-line revision by session</a>
+</div>
+
+<!-- ============================ SESSION 1 ============================ -->
+<div class="chapter found" id="s1"><span>Session 1</span><b>Introduction &amp; Core Concepts</b><span class="badge">Domain, Scope, Core Concepts</span></div>
+
+<h2>How marketing thinking evolved<span class="ref">Slides 2–7</span></h2>
+<p>The session opens with "What do you think is marketing?" and "Since when has marketing existed?" It then traces four concepts (orientations) in sequence:</p>
+<table>
+  <tr><th>Concept</th><th>What the slide says</th><th>Period (slide)</th></tr>
+  <tr><td>Production concept</td><td>Consumers prefer products that are <b>widely available and inexpensive/highly affordable</b>. The hallmarks of industrial production: <b>mass production, scale economies, division of labour</b></td><td>1850s – 1900s</td></tr>
+  <tr><td>Product concept</td><td>Consumers favour products that are <b>superlative in quality, performance and new features</b>. Managers focus entirely on quality and feature enhancement</td><td>1900s – 1930s</td></tr>
+  <tr><td>Selling concept</td><td>Successor of the product era, at the peak of the Industrial Revolution. <b>Kotler &amp; Armstrong:</b> companies can sell any product by <b>persuading customers through advertising and personal selling</b></td><td>1930s – 1950s</td></tr>
+  <tr><td>Marketing concept</td><td>"Find the <b>right products for customers</b> rather than customers for products." Theodore Levitt's <b>Marketing Myopia</b>: define the business on the basis of customer needs</td><td>1950s – early 21st century</td></tr>
+</table>
+
+<div class="book"><b class="l">Course book (BM.1, BM.3):</b> The book adds examples and two more stages.
+<ul>
+  <li><b>Production</b> is useful in fast-growing industries, but firms "overly focused on cheap production can lose touch with the needs of the customer."</li>
+  <li><b>Product:</b> Apple, whose fans wait for launches even when cheaper look-alikes exist. The risk is losing buyers who are driven by availability and price.</li>
+  <li><b>Selling:</b> Coca-Cola keeps spending heavily on ads even though everyone knows the brand. Selling "doesn't usually lead to repeat purchases."</li>
+  <li><b>Marketing:</b> the "customer-first approach", e.g., Glossier built skincare-friendly, easy make-up around unmet needs.</li>
+  <li><b>Societal concept</b> (not on the slide): marketers have a moral responsibility to promote <b>society's welfare</b>. Fast food meets demand but harms health and the environment.</li>
+  <li><b>Digital era:</b> data, personalisation and real-time feedback change the execution, not the principles.</li>
+  <li>The big shift is from <b>inside-out</b> (what we can produce and sell) to <b>outside-in</b> (what participants value).</li>
+  <li><b>Choosing an orientation (BM.3):</b> firms rarely use a single philosophy. Production-driven firms measure <i>efficiency</i>, selling-driven firms measure <i>conversion</i>, and marketing-driven firms measure <i>retention and satisfaction</i>.</li>
+</ul>
+<i>Note:</i> the book dates the production concept to the 1950s. For exams, <b>use the slide periods</b>.</div>
+
+<h2>Marketing Myopia (Theodore Levitt)<span class="ref">Slide 8</span></h2>
+<p>The growth of businesses and industries declines, slows or stops because of:</p>
+<ul>
+  <li><b>Management failure</b>, not because the market was saturated</li>
+  <li>Failure to define the business from the viewpoint of <b>customer needs</b></li>
+  <li>Inability to gauge <b>obsolescence due to technological change</b></li>
+</ul>
+<p>Businesspeople ought to understand that:</p>
+<ul>
+  <li>Industry is a <b>customer-satisfying process, not a goods-producing process</b>.</li>
+  <li>Industry <b>begins with the customer</b> and their needs.</li>
+  <li>Industry should start by delivering customer satisfaction and then <b>work backwards to create the products</b>.</li>
+</ul>
+<div class="tip"><b class="l">Exam tip:</b> When a firm in a case loses to a <i>new kind</i> of substitute (OTT vs cinema, UPI vs cards, EV vs petrol), diagnose <b>myopia</b> and redefine the business by the need it serves ("entertainment", "payments", "mobility"). This links to the <b>threat of substitutes</b> (S4–5) and <b>bypass attacks</b> (S18).</div>
+
+<h2>Defining Marketing and Marketing Management<span class="ref">Slides 9–10</span></h2>
+<ul>
+  <li><b>Marketing (AMA):</b> "the activity, set of institutions, and processes for <b>creating, communicating, delivering, and exchanging</b> offerings that have value for customers, clients, partners, and society at large."</li>
+  <li><b>Marketing management:</b> "the art and science of <b>choosing target markets</b> and <b>getting, keeping, and growing customers</b> through creating, delivering, and communicating <b>superior customer value</b>."</li>
+  <li><b>In simple terms (slide 10):</b> Create, communicate and deliver… <b>customer value</b>… <b>profitably</b>.</li>
+</ul>
+<div class="book"><b class="l">Course book (BM.4, BM.5):</b>
+<ul>
+  <li><b>Kotler:</b> "the science and art of exploring, creating and delivering value to satisfy the needs of a target market at a profit." Marketing creates <b>place, time, possession and awareness utilities</b>.</li>
+  <li><b>Seven aspects of modern marketing:</b> it is a societal process; it deals with needs, wants, products, pricing, distribution and promotion; it delivers value and satisfaction; it facilitates satisfying exchange relationships; it takes place in a dynamic environment; it is used by both for-profit and not-for-profit organisations; and it is important to business and the economy.</li>
+  <li><b>Selling vs marketing:</b> selling focuses on short-term targets, on-the-spot persuasion, direct techniques (personal selling, cold calling, promotions) and quotas. Marketing focuses on long-term growth, brand awareness and trust, research and digital tools, and lasting relationships. <b>Marketing generates leads and demand; selling converts leads.</b> They align through communication, lead qualification and consistent messaging.</li>
+  <li><b>Marketing mix (Kotler):</b> "the set of controllable variables the firm can use to influence the buyer's response": <b>Product</b> (a bundle of benefits: you buy comfort, not shoes), <b>Price</b> (the amount charged, set with demand, cost, ability to pay, competition and regulation in mind), <b>Place</b> (the distribution network), <b>Promotion</b>.</li>
+</ul></div>
+
+<h2>Customer Value<span class="ref">Slides 11–14, 17</span></h2>
+<p><b>Customer value / customer-perceived value (CPV)</b> = the difference between the customer's evaluation of <b>all the benefits and all the costs</b> of an offering <b>compared with perceived alternatives</b>.</p>
+<p class="flow">CPV = Total customer benefit − Total customer cost</p>
+<table>
+  <tr><th>Total customer benefit</th><th>Total customer cost</th></tr>
+  <tr><td>Product benefit</td><td>Monetary cost</td></tr>
+  <tr><td>Services benefit</td><td>Time cost</td></tr>
+  <tr><td>Personnel benefit</td><td>Energy cost</td></tr>
+  <tr><td>Image benefit</td><td>Psychological cost</td></tr>
+</table>
+<p class="ex">Slide 13 compares a Swiggy listing (Chai Coffi, Colaba) with a café photo: the same "coffee" delivers different benefits and costs depending on the setting. That difference is what CPV measures.</p>
+<p><b>Customer value triad (slide 14):</b> <b>Quality · Service · Price</b>. <b>Customer satisfaction</b> = the customer's judgment of <b>product performance against expectations</b>.</p>
+<div class="book"><b class="l">Course book (BM.6):</b> Value = Total benefits − Total costs. Value is <i>constructed in perception</i>, not inherent in the product. <b>Four types of value:</b> <b>functional</b> (what it lets you do reliably), <b>financial</b> (savings, efficiency), <b>social</b> (recognition, belonging), <b>psychological</b> (confidence, identity, peace of mind). <b>Value delivery sequence:</b> <b>Choose</b> the value → <b>Provide</b> the value → <b>Communicate</b> the value. Communication must focus on the participant's priorities, not internal features.</div>
+<div class="tip"><b class="l">Exam tip:</b> CPV is the <b>root logic of every case answer</b>. You can raise value by adding benefits (product, service, personnel, image) or by cutting costs (money, time, energy, psychological). Name the lever your recommendation pulls.</div>
+
+<h2>Needs, Wants and Demand<span class="ref">Slides 15–16, 18</span></h2>
+<table>
+  <tr><th>Term</th><th>Slide definition</th><th>Slide examples</th></tr>
+  <tr><td>Needs</td><td>Basic requirements</td><td>Food, shelter, education, status</td></tr>
+  <tr><td>Wants</td><td>Needs shaped by societal factors</td><td>Milk, 2BHK flat, MBA, expensive car</td></tr>
+  <tr><td>Demand</td><td>Wants backed by purchasing power</td><td>Amul Taaza, flat in Hiranandani, MBA @ IRMA, Mercedes-Benz</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.2):</b> Marketing <b>does not create needs</b>; it identifies and responds to them. The book adds these core concepts: <b>Value</b> (a judgment of what you receive vs what you give), <b>Satisfaction</b> (the evaluation after use: expected vs realised value), <b>Exchange</b> (obtaining an offering by giving something in return; it must be voluntary), <b>Market</b> (participants who share needs and will exchange; physical or digital), and <b>Relationship</b> (lifetime value over single transactions).
+<div class="flow" style="margin-bottom:0">Need → Want → Demand → Exchange → Value → Satisfaction (→ future demand)</div></div>
+<div class="beyond"><b class="l">Beyond the slides: the Session 1 "self-study" topic (types of needs and demand, from Kotler)</b>
+<table>
+  <tr><th>5 types of needs</th><th>Car-buyer example</th></tr>
+  <tr><td>Stated</td><td>"An inexpensive car"</td></tr>
+  <tr><td>Real</td><td>Low operating cost, not a low initial price</td></tr>
+  <tr><td>Unstated</td><td>Good service from the dealer</td></tr>
+  <tr><td>Delight</td><td>A free navigation system</td></tr>
+  <tr><td>Secret</td><td>Being seen by friends as a savvy buyer</td></tr>
+</table>
+<table>
+  <tr><th>8 demand states</th><th>Meaning → marketing task</th></tr>
+  <tr><td>Negative</td><td>Consumers dislike the product and may pay to avoid it (vaccines, dental work) → <b>conversional</b> marketing</td></tr>
+  <tr><td>Nonexistent</td><td>Unaware or uninterested → <b>stimulational</b></td></tr>
+  <tr><td>Latent</td><td>A strong need no current product meets → <b>developmental</b></td></tr>
+  <tr><td>Declining</td><td>Buying less → <b>remarketing</b></td></tr>
+  <tr><td>Irregular</td><td>Varies by season or hour → <b>synchromarketing</b></td></tr>
+  <tr><td>Full</td><td>Buying everything offered → <b>maintenance</b></td></tr>
+  <tr><td>Overfull</td><td>More demand than can be met → <b>demarketing</b></td></tr>
+  <tr><td>Unwholesome</td><td>Harmful products (tobacco) → <b>counter-marketing</b></td></tr>
+</table>
+<p style="margin:0"><b>Also useful:</b> <b>holistic marketing</b> = relationship + integrated + internal + performance marketing. <b>Customer lifetime value (CLV)</b> = the present value of future profits from a customer; retention is usually far cheaper than acquisition. <b>NPS</b> = % promoters − % detractors.</p></div>
+
+<!-- ============================ SESSIONS 2-3 ============================ -->
+<div class="chapter found" id="s2"><span>Sessions 2–3</span><b>Consumer Behaviour</b><span class="badge">B2C + B2B buying</span></div>
+
+<h2>What is Consumer Behaviour?<span class="ref">Slides 2–3</span></h2>
+<p><b>Consumer behaviour</b> is the study of how <b>individuals, groups, or organisations select, buy, use and dispose of</b> products to satisfy their needs and wants.</p>
+<table>
+  <tr><th>Layer (slide 3)</th><th>Meaning</th></tr>
+  <tr><td>Beliefs</td><td>Conviction that something is true</td></tr>
+  <tr><td>Values</td><td>Stable, long-lasting beliefs about what is important</td></tr>
+  <tr><td>Attitude</td><td>A mental positive or negative disposition</td></tr>
+  <tr><td>Behaviour</td><td>Actions resulting from attitudes</td></tr>
+</table>
+<p>Consumer behaviour is shaped by two groups of forces (slides 4–5): <b>consumer characteristics</b> (cultural, social, personal factors) and <b>consumer psychology</b> (motivation, perception, emotions, memory).</p>
+
+<h2>Consumer Characteristics<span class="ref">Slides 6–7</span></h2>
+<table>
+  <tr><th>Factor</th><th>Elements (slide)</th></tr>
+  <tr><td>Cultural</td><td>Culture, sub-culture; social class</td></tr>
+  <tr><td>Social</td><td>Reference groups: <b>primary</b> (family, friends, neighbours: frequent, informal contact), <b>secondary</b> (religious, professional, trade groups: more formal), <b>aspirational</b> (groups one hopes to join), <b>dissociative</b> (groups whose values one rejects)</td></tr>
+  <tr><td>Personal</td><td>Age and stage in life cycle; occupation and economic situation; personality and self-concept; lifestyle and values</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.7): four factors with examples.</b> <b>Personal</b> (age, income, occupation shape what, when and how people buy: personalised campaigns) · <b>Psychological</b> (motivation, perception and attitudes: reviews make a product seem high-quality; address perceived risk) · <b>Social</b> (family, friends, Instagram and TikTok influencers: use social proof) · <b>Cultural</b> (McDonald's adapts menus to regional tastes; Coca-Cola modifies flavours and marketing locally).</div>
+
+<h2>Consumer Psychology<span class="ref">Slides 8–18</span></h2>
+<h3>Motivation</h3>
+<table>
+  <tr><th>Theory</th><th>Slide content</th><th>Marketing implication</th></tr>
+  <tr><td>Maslow's hierarchy of needs</td><td>Humans meet needs of different levels one after another, from biological to psychological: <b>physiological → safety → social → esteem → self-actualisation</b></td><td>Position on the need level the target is trying to satisfy (luxury = esteem)</td></tr>
+  <tr><td>Freud's theory</td><td><b>Unconscious</b> psychological forces shape behaviour. They are uncovered through <b>laddering</b> and <b>projective techniques</b> (word association, picture interpretation, sentence completion, role playing)</td><td>Motivation research; symbolic cues (shape, colour, scent)</td></tr>
+  <tr><td>Herzberg's two-factor theory</td><td><b>Hygiene factors</b> (dissatisfiers) and <b>motivators</b> (satisfiers)</td><td>Remove dissatisfiers (e.g., a poor warranty), <i>and</i> supply motivators to win the sale</td></tr>
+</table>
+<h3>Perception</h3>
+<p><b>Perception</b> = the process by which we <b>select, organise and interpret</b> information inputs to create a meaningful picture of the world. Perceptual processes (slide 14): <b>selective attention</b> (including <b>subliminal perception</b>) and <b>selective distortion</b>. Slides 15–16 contrast a cinema hall with a theatre auditorium: similar spaces, but perceived differently. <i>In marketing, perception matters more than reality.</i></p>
+<h3>Emotions</h3>
+<p>Mental states that arise <b>spontaneously</b> rather than through conscious effort. Brands develop an <b>emotional connection</b> through emotion-filled brand stories, and emotional states influence judgements and decisions.</p>
+<h3>Memory</h3>
+<p>The brain's ability to <b>record, store and retrieve</b> information. <b>Memory model:</b> <b>nodes and links</b> (associative network). <b>Memory processes:</b> <b>encoding</b> and <b>retrieval</b>. For example, brand associations are linked to the brand node and retrieved by certain stimuli. This is the basis of <b>brand equity</b> (S16).</p>
+<div class="beyond"><b class="l">Beyond the slides:</b> <b>selective retention</b> (remembering only information that supports one's beliefs) is the third perceptual process. <b>Learning</b> works through drive → cue → response → reinforcement. <b>Generalisation</b> is the logic behind brand extensions; <b>discrimination</b> is the logic behind PODs. <b>Self-concept</b> can be actual, ideal or others' view. <b>Lifestyle</b> is measured by AIO (activities, interests, opinions).</div>
+
+<h2>Purchase Decision Process<span class="ref">Slides 20–21</span></h2>
+<div class="flow">Problem recognition → Information search → Evaluation of alternatives → Purchase intention → Purchase decision</div>
+<div class="book"><b class="l">Course book (BM.7): the five stages, with a fifth stage for post-purchase.</b>
+<ol style="margin-bottom:0">
+  <li><b>Need recognition:</b> a gap between the current and desired state, triggered by <b>internal</b> stimuli (hunger) or <b>external</b> ones (ads, social influence). Example: an old, slow phone. Marketers use awareness campaigns.</li>
+  <li><b>Information search:</b> personal contacts, reviews, social media, websites. <b>87% of shoppers start online</b>, so SEO and content matter.</li>
+  <li><b>Evaluation of alternatives:</b> comparing features, price, quality and reputation. Research reveals the criteria that matter (e.g., sustainability).</li>
+  <li><b>Purchase decision:</b> influenced by emotion, perceived value, promotions, availability, and friends and family. Make purchasing seamless (UX, payment options).</li>
+  <li><b>Post-purchase behaviour:</b> expectations vs reality lead to repeat purchase and loyalty, or returns and negative reviews. Use follow-ups, feedback and loyalty programmes.</li>
+</ol></div>
+
+<h2>Types of Buying Behaviour<span class="ref">Slide 22</span></h2>
+<p>The slide plots <b>involvement in the buying decision</b> (low/high) against <b>perceived difference between brands</b> (low/high):</p>
+<table>
+  <tr><th></th><th>High difference between brands</th><th>Low difference between brands</th></tr>
+  <tr><td>High involvement</td><td><b>Complex buying</b></td><td><b>Information seeking</b> (the textbook calls this <b>dissonance-reducing</b>)</td></tr>
+  <tr><td>Low involvement</td><td><b>Variety seeking</b></td><td><b>Habitual buying</b></td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.7): each type with its strategy.</b>
+<ul style="margin-bottom:0">
+  <li><b>Complex:</b> expensive, infrequent, risky (a first car). The buyer forms beliefs → attitudes → a thoughtful choice. <i>Strategy:</i> knowledgeable staff; ads that shape beliefs and attitudes.</li>
+  <li><b>Dissonance-reducing:</b> high involvement but few differences and limited choice (a camping table). <i>Strategy:</i> after-sales support that reassures the buyer about the choice.</li>
+  <li><b>Habitual:</b> low involvement, routine items (an energy drink, chocolates). Bought from familiarity, with no real loyalty. <i>Strategy:</i> repetitive ads (radio, TV, print), visual symbols, price-drop and sales promotions for trial.</li>
+  <li><b>Variety-seeking:</b> low involvement, significant differences, low switching cost (cookies). Switching comes from curiosity, not dissatisfaction. <i>Strategy:</i> the <b>leader</b> dominates shelf space, avoids stock-outs and advertises frequently; <b>challengers</b> use lower prices, deals, coupons and free samples.</li>
+</ul></div>
+
+<h2>Product / Brand Choice Decisions<span class="ref">Slide 23</span></h2>
+<div class="flow">Total set → Awareness set → Consideration set → Choice set → Choice (…other considerations)</div>
+<p class="ex">The marketer's job is to get the brand from the total set into the <b>consideration set</b> and then into the <b>choice set</b>, and to know which rival brands sit in each set.</p>
+
+<div class="beyond"><b class="l">Beyond the slides: decision process detail (Kotler)</b>
+<ul style="margin-bottom:0">
+  <li><b>Information sources:</b> personal (the most influential), commercial (the most exposure), public, experiential.</li>
+  <li><b>Evaluation:</b> the <b>expectancy-value model</b> (attitude = Σ importance × belief) is compensatory. Non-compensatory shortcuts are <b>conjunctive</b> (a cut-off on every attribute), <b>lexicographic</b> (best on the most important attribute) and <b>elimination-by-aspects</b>.</li>
+  <li><b>Between intention and decision:</b> the <b>attitudes of others</b> and <b>unanticipated situational factors</b> intervene.</li>
+  <li><b>Perceived risk:</b> functional, physical, financial, social, psychological, time. Reduce it with guarantees, trials and brand trust.</li>
+  <li><b>Biases:</b> anchoring (an MRP anchor), framing, mental accounting, the decoy effect.</li>
+  <li><b>Household buying roles:</b> initiator, influencer, decider, buyer, user.</li>
+</ul></div>
+<div class="book"><b class="l">Course book (BM.7): emerging trends.</b> (1) <b>Digital and mobile:</b> over 76% of shoppers use mobile to purchase; 54% of social users research products on social media, so a mobile-first approach and influencer marketing matter. (2) <b>Sustainability and ethics:</b> over 60% would pay a premium for sustainable packaging (McKinsey); fair labour and animal welfare matter; CSR. (3) <b>Personalisation:</b> data-driven insights and customised products.</div>
+
+<h2>Business / Institutional Buying Behaviour<span class="ref">Slides 24–30</span></h2>
+<p><b>Business markets</b> consist of all organisations that purchase goods and services for producing goods and services that are <b>sold, rented, or supplied to others</b>.</p>
+<h3>Buying decisions (slide 26)</h3>
+<table>
+  <tr><th>Buy class</th><th>Meaning</th><th>Seller implication</th></tr>
+  <tr><td>New buy (new task)</td><td>First-time purchase; high risk, and the most people and information involved</td><td>Reach all influencers; supply information and support</td></tr>
+  <tr><td>Straight rebuy</td><td>Routine reorder from approved suppliers</td><td>The in-supplier maintains quality; an out-supplier offers something new to get in</td></tr>
+  <tr><td>Modified rebuy</td><td>The buyer wants to change specs, price, terms or supplier</td><td>An opportunity for out-suppliers; the in-supplier must defend</td></tr>
+</table>
+<h3>Major characteristics of business markets (slide 27)</h3>
+<ul>
+  <li>A <b>smaller number of big buyers</b></li>
+  <li><b>Geographic concentration</b> of buyers</li>
+  <li><b>Professional</b>, process- and SOP-based purchase decisions</li>
+  <li><b>Multiple buying influences</b></li>
+  <li><b>Derived demand</b> (it derives from demand for consumer goods)</li>
+  <li><b>Inelastic demand</b> (in the short run)</li>
+  <li><b>Direct purchasing</b> (without intermediaries)</li>
+</ul>
+<h3>The buying centre (slide 28)</h3>
+<p>The decision-making unit of a buying organisation: <b>Initiators</b> (request the purchase) · <b>Users</b> (use the product; often initiate) · <b>Influencers</b> (help define specs, e.g., technical staff) · <b>Deciders</b> (choose the requirements or supplier) · <b>Approvers</b> (authorise the proposal) · <b>Buyers</b> (formal authority to select the supplier and negotiate) · <b>Gatekeepers</b> (control the flow of information to others).</p>
+<h3>Business buying process (slide 29)</h3>
+<div class="flow">Problem recognition → Need description → Product specification → Supplier search → Proposal solicitation → Supplier selection → Contract negotiation → Performance review</div>
+<h3>Managing B2B relationships (slide 30)</h3>
+<ul>
+  <li><b>Understanding buyer-seller relationships:</b> routine exchange → collaborative relationship → partnership.</li>
+  <li><b>Managing corporate trust, credibility and reputation.</b></li>
+  <li><b>Risks and opportunism:</b> <b>asset specificity</b> (investments tied to one partner create vulnerability) is handled through <b>contracts and monitoring</b>.</li>
+</ul>
+<div class="tip"><b class="l">Exam tip:</b> The slide-22 grid tells you the <b>communication mix</b> (S14): complex buying calls for informational appeals and personal selling; habitual buying for repetition, shelf presence and sales promotion. In B2B cases, name the <b>buy class</b> and the <b>buying-centre roles</b>, and recommend <b>personal selling</b> and relationship building.</div>
+
+<!-- ============================ SESSIONS 4-5 ============================ -->
+<div class="chapter found" id="s4"><span>Sessions 4–5</span><b>Marketing Environment &amp; Marketing Research</b></div>
+
+<h2>Why Scan the Marketing Environment?<span class="ref">Slides 2–5</span></h2>
+<p><b>Features of the marketing environment:</b> a source of <b>opportunities and threats</b>; it is <b>sensitive</b>, <b>complex</b> and <b>dynamic</b>.</p>
+<p>Marketers must collect, filter and analyse data from the environment to make decisions. A <b>Marketing Information System (MIS)</b> consists of <b>people, equipment and procedures</b> to <b>gather, sort, analyse, evaluate and share</b> needed, timely and accurate information with marketing decision makers.</p>
+<table>
+  <tr><th>Source of information</th><th>What it reflects</th><th>Sources (slide)</th></tr>
+  <tr><td>Internal / company records</td><td>Usually the <b>"results" of past action</b></td><td>All documents in the <b>order-to-payment cycle</b>, sales information, browser cookies</td></tr>
+  <tr><td>Marketing intelligence</td><td><b>Current happenings</b> in the industry</td><td>Real-time: newspapers, industry magazines, channel members, customers, other companies' managers, social media</td></tr>
+  <tr><td>Marketing research</td><td>Helps <b>analyse the reasons</b> behind past activities, and helps <b>forecasting</b></td><td>Designed studies (see below)</td></tr>
+</table>
+
+<h2>Components of the Marketing Environment<span class="ref">Slides 6–11</span></h2>
+<ul>
+  <li><b>Broad / macro environment:</b> <b>external</b> factors that influence the task environment: Demographic, Economic, Natural, Politico-legal, Socio-cultural, Technological.</li>
+  <li><b>Task environment:</b> <b>actors</b> who influence production, distribution and promotion: <b>suppliers, distributors, target customers, competitors</b>.</li>
+</ul>
+<table>
+  <tr><th>D-E-N-P-S-T</th><th>Slide content</th></tr>
+  <tr><td>Demographic</td><td>Population size; population composition: age, gender, race, ethnicity, religion</td></tr>
+  <tr><td>Economic</td><td>Credit availability, interest rates, government funding, global economic conditions</td></tr>
+  <tr><td>Natural</td><td>Geographic location (for resources and consumers), climate, environmental conditions</td></tr>
+  <tr><td>Politico-legal</td><td>Political stability, legal and regulatory structures, ease of compliance</td></tr>
+  <tr><td>Socio-cultural</td><td>Values, beliefs and opinions of people; communities; interaction among individuals and groups</td></tr>
+  <tr><td>Technological</td><td>Ease and availability of technology; technological developments; usability</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.6 strategic tools): PESTLE, the same idea with marketing implications.</b>
+<table>
+  <tr><th>Factor</th><th>Marketing implication</th><th>Book example</th></tr>
+  <tr><td>Political</td><td>Market entry, pricing, sourcing, distribution</td><td>Higher import duties raise prices and cut demand</td></tr>
+  <tr><td>Economic</td><td>Demand, pricing strategy, product mix, promotion intensity</td><td>Inflation pushes consumers toward value brands</td></tr>
+  <tr><td>Social</td><td>Segmentation, positioning, branding, tone</td><td>Health consciousness boosts organic products</td></tr>
+  <tr><td>Technological</td><td>New channels, personalisation, cost efficiency</td><td>E-commerce expands reach</td></tr>
+  <tr><td>Legal</td><td>Permissible claims, data use, pricing transparency</td><td>Data-protection laws limit targeted ads</td></tr>
+  <tr><td>Environmental</td><td>Green marketing, sustainable products, reputation</td><td>Eco-friendly packaging improves perception</td></tr>
+</table>
+<p style="margin:0"><b>Planning sequence in the book:</b> PESTLE → SWOT → TOWS → STP → Marketing mix.</p></div>
+
+<h2>Porter's Five Forces: Analysing the Competitive Environment<span class="ref">Slides 12–15</span></h2>
+<table>
+  <tr><th>Force</th><th>Drivers listed on the slide</th></tr>
+  <tr><td>Intra-industry competition (rivalry)</td><td>Number of competitors · industry growth · fixed costs · exit barriers · low cooperation among players</td></tr>
+  <tr><td>Threat of new entrants</td><td>Economies of scale · product differentiation · capital requirement · access to distribution · customer switching costs</td></tr>
+  <tr><td>Threat of substitutes</td><td>Relative price-performance · product similarity</td></tr>
+  <tr><td>Bargaining power of suppliers</td><td>Number of suppliers · uniqueness of supplies · switching costs · scope for forward integration</td></tr>
+  <tr><td>Bargaining power of customers</td><td>Number of buyers · size of buyers and orders · switching costs · price sensitivity</td></tr>
+</table>
+<p class="ex"><b>How to read it:</b> each force is <b>stronger</b> when the drivers favour it. For example, entry threat is high when scale economies, differentiation, capital needs and switching costs are low and distribution is easy to access. Strong forces mean a less attractive industry.</p>
+
+<h2>Overarching Outcomes of an Environment Scan<span class="ref">Slide 16</span></h2>
+<p>Identify <b>fads, trends and megatrends</b> · evaluate <b>industry attractiveness</b> · identify avenues for <b>competitive advantage</b> · develop a <b>strategic response to each force</b> · assess <b>opportunities and threats</b>, all leading to <b>decisions</b>.</p>
+<div class="beyond"><b class="l">Beyond the slides:</b> a <b>fad</b> is short-lived with no lasting significance; a <b>trend</b> has momentum and durability; a <b>megatrend</b> is a large change lasting 7–10+ years (digitisation, urbanisation). <b>Levels of competition:</b> brand (Pepsi vs Coke) → industry (all soft drinks) → form (juices, water) → generic (all uses of the same money).</div>
+
+<h2>Marketing Research<span class="ref">Slides 17–22</span></h2>
+<p><b>Definition (slide 18):</b> the function that <b>links the consumer, customer and public to the marketer through information</b>. That information is used to (1) identify and define marketing opportunities and problems; (2) generate, refine and evaluate marketing actions; (3) monitor marketing performance; and (4) improve understanding of marketing as a process.</p>
+<div class="flow">Define the problem → Develop the research plan → Collect the information → Analyse the information → Make the decision</div>
+<table>
+  <tr><th>Stage</th><th>Slide content</th></tr>
+  <tr><td>Research plan</td><td><b>Data sources:</b> secondary, primary · <b>Research approaches:</b> observational, focus group, survey, behavioural (experimental) · <b>Research instruments:</b> questionnaire, qualitative techniques, technological devices</td></tr>
+  <tr><td>Collecting information</td><td><b>Sampling:</b> sampling unit (whom to survey), sample size (how many), sampling procedure (how to choose) · <b>Contact methods:</b> online, in person, mail/email, telephone · <b>Data mining</b></td></tr>
+  <tr><td>Analysing information</td><td>Past-sales analysis, survey of buyers' intentions, market testing / test marketing; hypothesis testing and sensitivity analysis with statistical tools</td></tr>
+</table>
+<p class="ex"><b>Slide 22, sample research projects (Amul):</b> market research in edible oils (Assam); consumer feedback for the newly launched Amul Organic; lead generation and onboarding for Amul Preferred Outlets (Guwahati and Silchar); a study of the rice-bran oil market in Delhi; strengthening sales and distribution through sales enablers and technology.</p>
+<div class="beyond"><b class="l">Beyond the slides:</b> research can be <b>exploratory</b> (define the problem), <b>descriptive</b> (quantify) or <b>causal</b> (test cause and effect). Question formats include <b>closed-ended</b> (dichotomous, multiple choice, Likert, semantic differential) and <b>open-ended</b> (word association, sentence completion). Sampling can be <b>probability</b> (simple random, stratified, cluster) or <b>non-probability</b> (convenience, judgement, quota).</div>
+
+<h2>Measures of Market Demand<span class="ref">Slides 23–25</span></h2>
+<p><b>Market demand</b> = the total amount of a product that could be purchased (1) by a <b>defined customer group</b>, (2) in a <b>defined geographic area</b>, (3) in a <b>defined time period</b>, (4) under a <b>defined marketing environment</b>, (5) through a <b>defined marketing programme</b>.</p>
+<p><b>Market potential</b> = the <b>maximum</b> market demand, i.e., the highest demand reached as industry marketing expenditure approaches infinity.</p>
+<table>
+  <tr><th>Estimation method</th><th>How it works</th><th>Example</th></tr>
+  <tr><td>Chain-ratio method</td><td>Multiply a base number by a chain of adjusting percentages</td><td>Adult population × % who drink juice × % who buy packaged juice × average spend</td></tr>
+  <tr><td>Market / area build-up method</td><td>Identify all potential buyers in each market, estimate their purchases, and add up</td><td>Number of hospitals per district × expected annual order</td></tr>
+</table>
+
+<h2>Utility of Environment Scanning and Research<span class="ref">Slides 26–27</span></h2>
+<table>
+  <tr><th>Broad type of opportunity</th><th>What it covers</th></tr>
+  <tr><td>Estimating demand</td><td>Market potential, market size, market growth</td></tr>
+  <tr><td>Forecasting</td><td>Sales (industry and company), market share</td></tr>
+  <tr><td>Measuring productivity of marketing activities</td><td>Marketing metrics, marketing-mix effectiveness</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.6): SWOT, the internal-external tool that follows PESTLE.</b>
+<table>
+  <tr><th>Element</th><th>Includes</th><th>Implication / example</th></tr>
+  <tr><td>Strengths (internal)</td><td>Brand equity, distribution reach, technology, skilled sales force, cost efficiency</td><td>Leverage for differentiation; a strong brand allows premium pricing</td></tr>
+  <tr><td>Weaknesses (internal)</td><td>Low awareness, weak service, high costs, limited reach</td><td>Fix or mitigate; poor after-sales service hurts repeat purchase</td></tr>
+  <tr><td>Opportunities (external)</td><td>Market growth, policy support, tech adoption, lifestyle change</td><td>Basis for expansion; e.g., growth of digital payments</td></tr>
+  <tr><td>Threats (external)</td><td>Competition, regulation, substitutes, slowdown</td><td>Defensive or adaptive strategies; global entrants squeeze margins</td></tr>
+</table>
+<p style="margin:0">The book's other analysis tools: <b>Competitor Profile Matrix</b> (compare rivals on weighted key success factors), <b>market segmentation</b>, and <b>customer persona</b>.</p></div>
+
+<!-- ============================ SESSIONS 6-7 ============================ -->
+<div class="chapter found" id="s6"><span>Sessions 6–7</span><b>Segmentation, Targeting &amp; Positioning</b></div>
+
+<h2>Segmentation and Target Market<span class="ref">Slides 2–4</span></h2>
+<ul>
+  <li><b>Segmentation</b> = dividing a market into well-defined slices or groups of customers who share a similar set of needs and wants.</li>
+  <li><b>Target market</b> = a set of buyers who share common needs and wants that a company <b>decides to serve</b>.</li>
+</ul>
+<p><b>Why segmentation is important (slide 3):</b> it is difficult to contact all customers in large, diverse markets; groups with distinct needs can be served more effectively; and it requires strategic planning and an understanding of consumer behaviour.</p>
+<p><b>Segmentation criteria (slide 4):</b> <b>Differentiable</b> (segments respond differently) · <b>Measurable</b> (size and purchasing power can be measured) · <b>Substantial</b> (large or profitable enough) · <b>Accessible</b> (can be reached and served) · <b>Actionable</b> (effective programmes can be designed for it).</p>
+
+<h2>Bases for Market Segmentation<span class="ref">Slides 5–10</span></h2>
+<table>
+  <tr><th>Base</th><th>Variables (slide)</th></tr>
+  <tr><td>Geographic</td><td>Nation, state, region, city/town, rural/urban</td></tr>
+  <tr><td>Demographic</td><td>Age, life stage, gender, family size, income, occupation, education, SEC</td></tr>
+  <tr><td>Psychographic</td><td>Personality and lifestyle (<b>VALS framework</b>, slide 7)</td></tr>
+  <tr><td>Behavioural</td><td>Needs and benefits; decision roles; user and usage variables</td></tr>
+</table>
+<p><b>Indian Socio-Economic Classification (ISEC), slide 6:</b> developed by <b>MRSI</b>. It classifies the population into <b>12 classes of households</b> based on (1) the education of the <b>best-educated female adult</b>, (2) the education of the <b>best-educated male adult</b>, and (3) the <b>occupation of the chief earner</b>. It is a <b>single system for urban and rural India</b>.</p>
+<p class="ex"><b>Slide 8, needs and benefits:</b> the Surf Excel range (Matic front-load, Matic top-load, liquid, Quick Wash, Easy Wash, bar) shows one brand segmented by <b>benefit and usage need</b>: machine type, speed and fabric care.</p>
+<table>
+  <tr><th>User and usage variable (slide 9)</th><th>Categories</th></tr>
+  <tr><td>Occasions</td><td>Festive, business, life events</td></tr>
+  <tr><td>User status</td><td>Non-users, past users, potential users, first-time users, regular users</td></tr>
+  <tr><td>Usage rate</td><td>Light, medium, heavy users</td></tr>
+  <tr><td>Loyalty status</td><td><b>Hard-core loyals</b> (one brand always), <b>split loyals</b> (two or three brands), <b>shifting loyals</b> (move from one brand to another), <b>switchers</b> (no loyalty)</td></tr>
+  <tr><td>Attitude</td><td>Enthusiastic, positive, indifferent, negative, hostile</td></tr>
+  <tr><td>Buyer-readiness stage</td><td>Aware, interested, purchasers, repeat purchasers</td></tr>
+</table>
+<div class="beyond"><b class="l">Beyond the slides: the 8 VALS groups.</b> <b>Innovators</b> (high resources); the ideals-motivated <b>Thinkers</b> and <b>Believers</b>; the achievement-motivated <b>Achievers</b> and <b>Strivers</b>; the self-expression-motivated <b>Experiencers</b> and <b>Makers</b>; and <b>Survivors</b> (low resources). <b>Before targeting, evaluate each segment</b> on: size and growth; structural attractiveness (the five forces within the segment); and fit with company objectives and resources.</div>
+
+<h2>Targeting Strategies<span class="ref">Slides 11–13</span></h2>
+<table>
+  <tr><th>Strategy (slide 11)</th><th>Also called</th><th>Meaning</th></tr>
+  <tr><td>Mass marketing</td><td>Full market coverage, undifferentiated</td><td>One offer for the whole market</td></tr>
+  <tr><td>Single-segment targeting</td><td>Concentrated, niche marketing</td><td>Focus all resources on one segment or niche</td></tr>
+  <tr><td>Multiple-segment targeting</td><td>Differentiated targeting</td><td>Separate offers for several segments</td></tr>
+  <tr><td>Mass customisation</td><td>Local marketing, individual marketing</td><td>Tailoring to localities or individuals at scale</td></tr>
+</table>
+<p><b>Choosing a targeting strategy depends on (slide 12):</b> the company's <b>resources</b> (business infrastructure, technology, skills, strong brands, collaborator networks) · extent of <b>product variability</b> · <b>product/industry life-cycle stage</b> · <b>market variability</b> · <b>competitors' marketing strategy</b>.</p>
+<p><b>Operationalising targeting (slide 13):</b> (1) define the customer profile using demographic, geographic, behavioural and psychographic variables; (2) develop a <b>target customer persona</b> with pictures and names to improve the customer experience; (3) align the profile with the customer's <b>observable and unobservable values</b>.</p>
+<div class="book"><b class="l">Course book (STP):</b> <b>Targeting</b> = evaluating segments and choosing the best, which decides the target audience and how intensively to target it. New products are usually launched to a <b>single target</b> first, and more targets mean higher costs. Example: <b>Nike</b> targets people interested in getting fitter. <b>Segmentation</b> example: the <b>Volkswagen Group</b> (Audi, Porsche, Lamborghini, Ducati) serves distinct segments profitably.</div>
+
+<h2>Positioning<span class="ref">Slides 14–18</span></h2>
+<ul>
+  <li><b>Positioning</b> = designing a company's offering and image to occupy a <b>distinctive place in the minds</b> of the target market.</li>
+  <li>A firm delivers specific, unique benefits through <b>differentiated customer value (differentiation)</b> and positioning. Together they provide <b>competitive advantage</b>, which should be crafted so it <b>cannot easily be copied</b>.</li>
+  <li><b>Sustainable competitive advantage</b> comes from (1) <b>differentiating an existing attribute</b>, (2) <b>introducing a new attribute</b>, or (3) <b>building a strong brand</b>.</li>
+</ul>
+<table>
+  <tr><th>Positioning step (slides 16–17)</th><th>What it involves</th></tr>
+  <tr><td>1. Determine the competitive frame of reference</td><td>Set the frame of brands that compete with ours; establish <b>category membership</b>; identify competitors</td></tr>
+  <tr><td>2. Identify points of parity and points of difference</td><td><b>POPs</b> = attributes or benefits the brand <b>shares</b> with others in the frame. <b>PODs</b> = attributes <b>unique</b> to the brand that consumers strongly associate with it. PODs must be <b>desirable, deliverable, differentiable</b></td></tr>
+  <tr><td>3. Craft the positioning statement / brand mantra</td><td>Indicates the <b>brand essence or brand promise</b>. A <b>3–5-word phrase</b> capturing the brand's "heart and soul". Criteria: <b>clarity of communication, simplicity, inspiration</b></td></tr>
+</table>
+<p class="ex"><b>Slide 18 examples:</b> <b>Snickers</b> (a chocolate bar positioned against hunger: "You're not you when you're hungry"), <b>Mahindra Scorpio</b> (a rugged, powerful SUV), <b>Appy Fizz</b> (a sparkling apple drink framed as a cool adult party drink, not a kids' juice).</p>
+<div class="book"><b class="l">Course book (STP):</b> Factors that affect positioning: a larger target market makes positioning harder; with no competition the firm can create a completely new position; existing brand value helps position new products; lower prices than rivals give an advantage. <b>Starbucks</b> positioned itself as the <b>"third place"</b> between home and work, for medium-to-high-income customers. <b>McDonald's full STP:</b> segments by demographics (Happy Meals for kids, value meals), psychographics (healthy options, late-night hours) and behaviour (regulars vs occasional visitors); targets families, young adults, teens and children; positions on <b>convenience, affordability, variety, consistency</b>. <b>Bank example:</b> segment by demographics and behaviour → target young professionals new to investing → position as a friendly, educational resource. <b>Benefits of STP:</b> sharper customer focus, marketing efficiency, engagement, distinct brand positioning, data-driven decisions.</div>
+<div class="beyond"><b class="l">Beyond the slides:</b> <b>POP types:</b> category, correlational, competitive. <b>Differentiation bases:</b> product, services, personnel, channel, image. <b>Value propositions:</b> more for more, more for the same, same for less, less for much less, more for less. <b>Positioning errors:</b> under-, over-, confused and doubtful positioning. A <b>perceptual map</b> plots brands on two attributes to reveal gaps.</div>
+<div class="tip"><b class="l">Exam tip:</b> Start every case recommendation with <b>STP</b>: who exactly is the target, and what is the POD for them? A 4P plan without a clear segment and position is the most common weak answer.</div>
+
+<!-- ============================ SESSION 10 ============================ -->
+<div class="chapter" id="s10"><span>Session 10</span><b>Product Strategy</b><span class="badge">Endsem core</span></div>
+
+<h2>What is a Product?<span class="ref">Slides 2–3</span></h2>
+<p><b>Product</b> is the <b>value proposition or value offering</b> made to the consumer to satisfy their needs and wants. Products could be <b>goods, services, events, experiences, ideas, information, people, places, properties and organisations</b>.</p>
+<table>
+  <tr><th>Goods–services continuum (slide 3)</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>Pure tangible goods</td><td>No service accompanies the product</td><td>Salt, soap, toothpaste</td></tr>
+  <tr><td>Tangible good with accompanying service</td><td>Services enhance the good's appeal</td><td>Cars (warranty, service), computers</td></tr>
+  <tr><td>Hybrid</td><td>Equal parts goods and services</td><td>Restaurants</td></tr>
+  <tr><td>Major service accompanying minor goods</td><td>Mainly a service, with supporting goods</td><td>Air travel (snacks, drinks)</td></tr>
+  <tr><td>Pure service</td><td>Primarily intangible</td><td>Babysitting, psychotherapy, massage</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.5):</b> a product is "a <b>bundle of benefits</b> that a marketer offers to the consumer for a price." We pay for the <b>benefit</b>, not the tangible item: shoes buy comfort for the feet, and lipstick buys beauty. Examples of products: a pair of shoes, a plate of dahi-vada, a lipstick.</div>
+
+<h2>Five Levels of Product<span class="ref">Slide 4</span></h2>
+<table>
+  <tr><th>Level</th><th>Meaning</th><th>Hotel example</th></tr>
+  <tr><td>1. Core benefit</td><td>The fundamental need or benefit the customer is really buying</td><td>Rest and sleep</td></tr>
+  <tr><td>2. Basic product</td><td>The core benefit turned into a basic offering</td><td>Bed, bathroom, towels</td></tr>
+  <tr><td>3. Expected product</td><td>Attributes buyers normally expect</td><td>Clean bed, fresh towels, quiet</td></tr>
+  <tr><td>4. Augmented product</td><td>Exceeds expectations; this is where brands compete</td><td>Free breakfast, spa, fast Wi-Fi</td></tr>
+  <tr><td>5. Potential product</td><td>All possible future augmentations and transformations</td><td>Smart rooms, AI concierge</td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> In mature markets, competition happens at the <b>augmented</b> level, and <b>today's augmentations become tomorrow's expectations</b>. This explains why a firm's "extra" eventually stops differentiating it, and why it must keep innovating toward the <b>potential</b> product.</div>
+
+<h2>Product Differentiation<span class="ref">Slide 5</span></h2>
+<table>
+  <tr><th>Basis</th><th>Meaning</th></tr>
+  <tr><td>Form</td><td>Size, shape or physical structure</td></tr>
+  <tr><td>Features</td><td>Elements that supplement the basic function</td></tr>
+  <tr><td>Performance quality</td><td>The level at which the primary characteristics operate (low / average / high / superior)</td></tr>
+  <tr><td>Conformance quality</td><td>The degree to which all units are identical and meet the promised specifications</td></tr>
+  <tr><td>Durability</td><td>Expected operating life under normal or stressful conditions</td></tr>
+  <tr><td>Reliability</td><td>Probability the product will not malfunction or fail within a period</td></tr>
+  <tr><td>Repairability</td><td>Ease of fixing the product when it fails</td></tr>
+  <tr><td>Style</td><td>The product's look and feel to the buyer (hard to copy)</td></tr>
+  <tr><td>Customisation</td><td>Tailoring the product to individual customers (mass customisation)</td></tr>
+  <tr><td>Design</td><td>The <b>integrating force</b>: the totality of features that affect how the product looks, feels and functions</td></tr>
+</table>
+<div class="tip"><b class="l">Common trap:</b> <b>Performance</b> = how <i>well</i> it works vs <b>Conformance</b> = how <i>consistently</i> units match specs. <b>Durability</b> = how <i>long</i> it lasts vs <b>Reliability</b> = how <i>rarely</i> it fails.</div>
+
+<h2>Elements of Product Strategy: the Product Mix<span class="ref">Slides 6–10</span></h2>
+<p><b>Product mix / product portfolio</b> = the set of <b>all products and items</b> a seller has on offer.</p>
+<table>
+  <tr><th>Term (slide 8)</th><th>Definition</th><th>Strategic use</th></tr>
+  <tr><td>Product line</td><td>A group of products within a category that are closely related and perform a similar function</td><td>—</td></tr>
+  <tr><td>Product length</td><td>Total number of items in a product line</td><td>↑ = full-line company</td></tr>
+  <tr><td>Product width</td><td>Number of different product lines</td><td>↑ = diversification into new lines</td></tr>
+  <tr><td>Product depth</td><td>Total number of variants for each item in a line</td><td>↑ = serve more tastes and segments</td></tr>
+  <tr><td>Product consistency</td><td>How closely related the lines are in <b>end use, production requirements or distribution channels</b></td><td>High = strong reputation in one field</td></tr>
+</table>
+<h3>Daimler product mix (slide 9)</h3>
+<table class="plain">
+  <tr><th>Passenger cars</th><th>Trucks</th><th>Vans</th><th>Buses</th><th>Services</th></tr>
+  <tr><td>A, B, C, E, S, V, X Class<br>Maybach<br>Mercedes-AMG</td><td>MB Trucks<br>Freightliner<br>Western Star<br>Fuso<br>BharatBenz</td><td>Sprinter<br>Vito panel van<br>Citan<br>V-Class<br>Marco Polo<br>X-Class pickup</td><td>Thomas Built<br>Regular service<br>Rural service<br>Touring coaches<br>Mini buses</td><td>Financing<br>Insurance<br>Leasing<br>Fleet management<br>Operations<br>Digital mobility</td></tr>
+</table>
+<p class="ex"><b>Reading it:</b> <b>width</b> = 5 lines; <b>length</b> = all the items counted across lines; <b>depth</b> = the variants of each model (engines, trims); <b>consistency</b> is fairly high (all mobility-related, with shared technology and dealers). <b>Hindustan Unilever (slide 10):</b> Food &amp; Beverage, Soaps, Deodorants, Toothpaste, Water purifiers: a <b>wide</b> mix with <b>lower consistency</b> in production, though the lines share FMCG distribution.</p>
+
+<h2>Product Line Strategies<span class="ref">Slide 11</span></h2>
+<h3>Product line analysis</h3>
+<ul>
+  <li><b>Sales and profits:</b> each item's percentage contribution to the line's total sales and profits. A few items often carry the line, so protect them, and consider pruning items with low contribution.</li>
+  <li><b>Market profile and image:</b> how the line is positioned against competitors' lines (using product maps) to spot gaps and threats.</li>
+</ul>
+<h3>Line lengthening</h3>
+<table>
+  <tr><th>Strategy</th><th>What it means</th><th>Why / risk</th></tr>
+  <tr><td>Down-market stretch</td><td>Add lower-priced items</td><td>Tap low-end growth, block low-end rivals, attract value buyers. <i>Risk:</i> cannibalisation, diluting a premium image</td></tr>
+  <tr><td>Up-market stretch</td><td>Add higher-priced items</td><td>Higher margins, prestige, a full-line image. <i>Risk:</i> buyers may not believe a mass brand can go premium</td></tr>
+  <tr><td>Two-way stretch</td><td>Stretch up and down</td><td>Cover the whole market (Marriott: Fairfield → Courtyard → Marriott → Ritz-Carlton)</td></tr>
+  <tr><td>Line filling</td><td>Add items within the present range</td><td>Extra profit, use excess capacity, satisfy dealers, plug gaps against rivals. <i>Risk:</i> cannibalisation and confusion; each item must be <b>noticeably different</b></td></tr>
+</table>
+<h3>Line modernising, featuring and pruning</h3>
+<ul>
+  <li><b>Modernising:</b> update the line's styling or technology, piece by piece (to test reactions) or all at once (so competitors can't see the moves coming).</li>
+  <li><b>Featuring:</b> promote one or a few items: a low-end item as a <b>traffic builder</b>, or a high-end item to lend <b>prestige</b>.</li>
+  <li><b>Pruning:</b> remove weak or low-profit items to focus resources.</li>
+</ul>
+
+<h2>Other Product-Related Strategies<span class="ref">Slide 12</span></h2>
+<table>
+  <tr><th>Strategy</th><th>Meaning (slide and notes)</th><th>Example / note</th></tr>
+  <tr><td>Co-branding</td><td>Two or more brands collaborate to create a product or service that <b>features both brands prominently</b></td><td>Taco Bell × Doritos; co-branded credit cards. It borrows equity from both; the risks are loss of control and one brand hurting the other</td></tr>
+  <tr><td>Ingredient branding</td><td>Highlights a <b>specific component or ingredient</b> that is <b>branded separately</b>. It emphasises the ingredient's quality and value, which raises the perceived value of the final product</td><td>Intel Inside, Gore-Tex, Dolby</td></tr>
+  <tr><td>Packaging</td><td>Designing and producing the container: primary, secondary and shipping levels</td><td>Identifies the brand, informs, protects, aids transport and use; the "silent salesperson" on the shelf</td></tr>
+  <tr><td>Labelling</td><td>Identifies, grades, describes and promotes the product</td><td>Indian legal requirements: MRP, net quantity, manufacture/expiry dates, veg/non-veg mark</td></tr>
+  <tr><td>Warranties and guarantees</td><td><b>Warranty</b> = a formal statement of expected performance (express or implied). <b>Guarantee</b> = a general assurance ("money back if not satisfied")</td><td>Both reduce perceived risk. They matter most when the firm is new or quality is superior</td></tr>
+</table>
+
+<div class="beyond"><b class="l">Beyond the slides: other product concepts from Kotler</b>
+<ul style="margin-bottom:0">
+  <li><b>Consumer goods classification:</b> <b>convenience</b> (staple, impulse, emergency: soap), <b>shopping</b> (compared on quality and price: appliances), <b>specialty</b> (buyers make a special effort: luxury cars), <b>unsought</b> (insurance). This links to distribution intensity in S13: convenience goods need intensive, shopping goods selective, and specialty goods exclusive distribution.</li>
+  <li><b>Industrial goods:</b> materials and parts; capital items (installations, equipment); supplies and business services (MRO).</li>
+  <li><b>Product hierarchy:</b> need family → product family → class → line → type → item (SKU).</li>
+  <li><b>New product development:</b> idea generation → screening (avoid drop-errors and go-errors) → concept development and testing → marketing strategy → business analysis → product development → market testing → commercialisation.</li>
+  <li><b>Adoption speeds up with:</b> relative advantage, compatibility, low complexity, divisibility (trialability) and communicability (observability).</li>
+  <li><b>Sachets in India</b> made brands affordable for daily-wage consumers. This cut the monetary cost per purchase, which is the CPV logic from S1.</li>
+</ul></div>
+<div class="tip"><b class="l">Exam tip:</b> The <b>product life cycle</b> is covered in <b>Session 18</b> (PLC marketing strategies), since that is the deck it appears in. Link the two: line pruning is a <b>decline-stage</b> move, and line filling and stretching are <b>growth- and maturity-stage</b> moves.</div>
+
+<!-- ============================ SESSION 11 ============================ -->
+<div class="chapter" id="s11"><span>Session 11</span><b>Pricing &amp; Sales Promotions</b><span class="badge">Endsem core</span></div>
+
+<h2>Basics of Price<span class="ref">Slide 2</span></h2>
+<ul>
+  <li>Price is the <b>only element of the 4Ps that generates revenue</b>; all the others lead to costs.</li>
+  <li>Price shows up in many forms: <b>wage, rent, commission, toll, tariff, tuition, fare</b>, etc.</li>
+  <li>Pricing decisions are complex and must take into account the <b>company</b> (costs), <b>customers</b> (their assessment of price), <b>competition</b> (prices), and the <b>marketing environment</b>.</li>
+</ul>
+<div class="book"><b class="l">Course book (BM.8):</b> Pricing = determining the right value a customer pays in exchange for a product. It balances profitability, satisfaction and competitiveness, and it considers production cost, demand, competitor pricing and perceived value.
+<table>
+  <tr><th>Objectives of pricing (book)</th><th>Meaning</th></tr>
+  <tr><td>Revenue generation</td><td>Maximise total revenue by balancing price and volume</td></tr>
+  <tr><td>Market leadership</td><td>Dominate through competitive, affordable-yet-profitable prices; builds recognition and loyalty</td></tr>
+  <tr><td>Survival</td><td>In unstable or competitive markets (and downturns), cover costs and keep cash flowing</td></tr>
+  <tr><td>Profit maximisation</td><td>Optimise the cost–price–demand relationship</td></tr>
+  <tr><td>Customer attraction and retention</td><td>Fair prices acquire and retain customers, giving long-term revenue</td></tr>
+</table>
+<p style="margin:0"><b>Importance of pricing (book):</b> (1) it creates the <b>first impression</b>; (2) it ensures the <b>right price level</b> (wrong prices can even close a business); (3) it <b>promotes sales growth</b> (discounts clear inventory); (4) it gives <b>flexibility</b> (the most flexible P); (5) it drives <b>profit</b>; (6) it builds a <b>competitive edge</b> (value-based pricing stresses uniqueness); (7) it <b>manages demand</b> (off-season discounts, peak prices).</p></div>
+
+<h2>Consumer Psychology and Pricing<span class="ref">Slide 3</span></h2>
+<p>Buyers are <b>not mere "price takers"</b>. They <b>process price information and draw inferences</b> about quality, about whether the price is appropriate, and so on.</p>
+<table>
+  <tr><th>Concept</th><th>Explanation</th></tr>
+  <tr><td>Reference prices</td><td>The internal or external benchmark a buyer compares against: fair price, typical price, last price paid, upper and lower bounds, competitor price, expected future price, usual discounted price. Sellers set references by showing an "MRP / was ₹X" beside the selling price</td></tr>
+  <tr><td>Image pricing (price–quality inferences)</td><td>Price is used as a <b>signal of quality</b>, especially when other information is missing (perfume, wine, luxury cars). A higher price can <i>raise</i> perceived quality</td></tr>
+  <tr><td>Pricing cues</td><td><b>Price endings</b> (₹199 feels far below ₹200: the left-digit effect; round prices signal quality) and <b>"sale"</b> signs, was/now comparisons, limited-time offers. They work best when used <b>sparingly</b></td></tr>
+</table>
+
+<h2>Scenarios Governing Pricing Decisions<span class="ref">Slide 4</span></h2>
+<table>
+  <tr><th>Setting the price for the first time</th><th>Managing set prices</th></tr>
+  <tr><td style="font-weight:normal">New product launch · entry into a new geography or distribution channel</td><td>Price changes · responding to competition</td></tr>
+</table>
+
+<h2>Setting the Price: 6 Steps<span class="ref">Slides 5–7</span></h2>
+<div class="flow">1. Select the pricing objective → 2. Determine demand at different prices → 3. Estimate costs → 4. Analyse competitors' costs, prices and offers → 5. Select a pricing method → 6. Select the final price</div>
+
+<h3>Step 1: Select the pricing objective (slide 6)</h3>
+<table>
+  <tr><th>Objective</th><th>Meaning / when it works</th></tr>
+  <tr><td>Short-term profit / maximise current profit</td><td>Choose the price that maximises current profit and cash flow. It ignores long-run effects and competitor reactions</td></tr>
+  <tr><td>Market penetration (maximise market share)</td><td>A low price to build volume and share. Works when the market is highly <b>price-sensitive</b>, <b>costs fall with volume</b>, and a low price <b>discourages competitors</b></td></tr>
+  <tr><td>Market skimming</td><td>A high launch price, reduced over time to "skim" successive layers. Works when there are enough buyers with high demand, small-volume costs aren't too high, the high price won't attract rivals, and it signals a superior product</td></tr>
+  <tr><td>Quality leadership</td><td>Premium quality at a premium but reachable price ("affordable luxury": Starbucks, Apple)</td></tr>
+</table>
+<h3>Step 2: Determine demand: price elasticity (slide 6)</h3>
+<p class="flow">Price elasticity of demand = % change in quantity demanded ÷ % change in price</p>
+<p><b>Elastic</b> (|E| &gt; 1): price cuts raise revenue. <b>Inelastic</b> (|E| &lt; 1): price rises raise revenue. Demand is <b>less elastic</b> when there are few substitutes, buyers don't notice the price, habits are slow to change, higher prices seem justified, or the price is a small share of total cost.</p>
+<h3>Step 3: Estimate costs (slide 6)</h3>
+<ul>
+  <li><b>Fixed costs</b> (don't vary with output: rent, salaries), <b>variable costs</b> (vary with output: materials), <b>total costs</b> = FC + VC.</li>
+  <li><b>Experience curve:</b> average cost falls as accumulated production experience grows. <b>Experience-curve pricing</b> means pricing low to build volume and move down the curve faster than rivals. <i>Risks:</i> a cheap image, rivals leapfrogging to lower-cost technology, price wars.</li>
+</ul>
+<h3>Step 4: Analyse competitors' prices (slide 7)</h3>
+<p><b>Understand competitors' costs and prices</b> (add value for your superior features, subtract for inferior ones) and <b>assess their possible reactions</b>.</p>
+<h3>Step 5: Select a pricing method (slide 7)</h3>
+<table>
+  <tr><th>Method</th><th>How it works</th></tr>
+  <tr><td>Mark-up pricing</td><td>Add a standard mark-up to cost. <span class="formula">Unit cost = VC + FC ÷ unit sales</span>; <span class="formula">Mark-up price = Unit cost ÷ (1 − desired return on sales)</span>. Simple, but ignores demand and competition</td></tr>
+  <tr><td>Target-rate-of-return pricing</td><td><span class="formula">Price = Unit cost + (Desired ROI × Invested capital) ÷ Unit sales</span>. Check the <b>break-even volume</b>: <span class="formula">BEV = FC ÷ (Price − VC)</span></td></tr>
+  <tr><td>Economic-Value-to-Customer (EVC) pricing</td><td>Price based on the value the customer perceives relative to the <b>next-best alternative</b> (performance, service, brand), not on cost</td></tr>
+  <tr><td>Competitive / going-rate pricing</td><td>Price largely based on competitors' prices (same, higher or lower). Common in commodities and oligopolies</td></tr>
+  <tr><td>Auction pricing</td><td><b>English</b> (ascending bids), <b>Dutch</b> (descending: starts high and falls; or one buyer and many sellers), <b>sealed-bid</b> (tenders)</td></tr>
+</table>
+<div class="tip"><b class="l">Worked example:</b> VC = ₹10, FC = ₹3,00,000, expected sales 50,000 → unit cost = 10 + 6 = <b>₹16</b>. A 20% mark-up on sales gives 16 ÷ 0.8 = <b>₹20</b>. Target 20% ROI on ₹10 lakh → 16 + (0.2 × 10,00,000) ÷ 50,000 = <b>₹20</b>. Break-even at ₹20 = 3,00,000 ÷ (20 − 10) = <b>30,000 units</b>.</div>
+<div class="book"><b class="l">Course book (BM.8), classic pricing methods:</b> (1) <b>Cost-based:</b> sale price = cost price + % profit. Simple, but it may ignore perceived value and market conditions. (2) <b>Competition-based</b> ("competency-based" in the book): adjust to competitors' prices. Ideal in saturated markets, but risky if perceived value is ignored. (3) <b>Demand-based:</b> prices rise when demand is high and fall when it is low.</div>
+
+<h3>Step 6: Set the final price: price discrimination (slide 7)</h3>
+<p><b>Price discrimination</b> = selling a product at two or more prices that do <b>not</b> reflect a proportional difference in costs.</p>
+<table>
+  <tr><th>Degree</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>First degree</td><td>A separate price for each customer, based on their willingness to pay</td><td>Negotiation, personalised online prices, auctions</td></tr>
+  <tr><td>Second degree</td><td>Lower prices for buyers of larger volumes</td><td>Bulk discounts, family packs</td></tr>
+  <tr><td>Third degree</td><td>Different prices for different classes of buyers</td><td>Student and senior fares; peak vs off-peak (time); theatre seats (location); channel; product-form; image pricing</td></tr>
+</table>
+
+<h2>Product-Mix Pricing<span class="ref">Slide 8</span></h2>
+<p>When marketers offer a product mix, pricing focuses on <b>maximising profit on the total mix</b>, not on each item.</p>
+<table>
+  <tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>Loss-leader pricing</td><td>A popular item priced very low (even below cost) to pull in traffic that buys other items</td><td>Supermarket sugar or milk</td></tr>
+  <tr><td>Optional-feature pricing</td><td>Optional products or features offered with the main product</td><td>Car accessories, sunroof</td></tr>
+  <tr><td>Captive pricing</td><td>The main product is cheap; the required consumables are priced high</td><td>Razor–blades, printer–ink</td></tr>
+  <tr><td>Two-part pricing</td><td>A fixed fee plus a variable usage fee (services)</td><td>Phone plan + extra usage; park entry + rides</td></tr>
+  <tr><td>By-product pricing</td><td>Selling by-products recovers cost and lowers the main product's price</td><td>Sugar mill sells bagasse and molasses</td></tr>
+  <tr><td>Product-bundling pricing</td><td><b>Pure</b> (sold only as a bundle) or <b>mixed</b> (items sold alone and as a cheaper bundle)</td><td>Combo meals, OTT bundles</td></tr>
+</table>
+
+<h2>Initiating and Responding to Price Changes<span class="ref">Slide 9</span></h2>
+<div class="two">
+<div>
+<h3>Initiating price cuts (slide)</h3>
+<ul>
+  <li>Clearing <b>excess inventory</b> or capacity</li>
+  <li>Other marketing strategies have <b>little effect on sales</b></li>
+</ul>
+<p class="ex"><b>Traps:</b> the <b>low-quality</b> trap (cheap looks poor), the <b>fragile-market-share</b> trap (buys share, not loyalty), the <b>shallow-pockets</b> trap (richer rivals outlast you), and the <b>price-war</b> trap.</p>
+</div>
+<div>
+<h3>Initiating price increases (slide)</h3>
+<ul>
+  <li><b>Managing inflation</b> (cost increases)</li>
+  <li><b>Rise in demand</b> (over-demand)</li>
+  <li><b>Product improvement</b></li>
+</ul>
+<p class="ex"><b>Ways to raise prices:</b> delayed quotation pricing, escalator clauses, unbundling, reducing discounts. <b>Alternatives:</b> a smaller pack (shrinkflation), cheaper materials, dropping features.</p>
+</div>
+</div>
+<h3>Responding to competitors' price changes (slide)</h3>
+<p><b>Options:</b> maintain the price (and margin) · maintain the price and <b>add value</b> · reduce the price · <b>raise the price and improve quality</b> · launch a <b>low-price fighter line</b>. <b>Consider:</b> the product's PLC stage, its importance in the portfolio, the competitor's intent and resources, the market's price and value sensitivity, and whether the move is temporary or permanent.</p>
+<div class="tip"><b class="l">Exam tip:</b> When a strong brand faces a cheap attacker, don't cut the flagship's price (the traps above, plus lost image-pricing value). Better: <b>add value</b>, <b>raise quality</b>, or launch a <b>fighter brand</b> (the flank defence in S18). Cut price only if demand is elastic <i>and</i> you have the cost advantage.</div>
+
+<h2>Sales Promotions: Managing Incentives<span class="ref">Slides 10–12</span></h2>
+<p><b>Sales promotion</b> = short-term incentives to encourage trial or purchase. <i>Advertising gives a reason to buy; sales promotion gives an incentive to buy.</i></p>
+<h3>Major incentive decisions (slide 11)</h3>
+<ol>
+  <li><b>Establish the objectives of incentives</b>
+    <ul>
+      <li><b>Consumer incentives:</b> trial by non-users, attracting switchers, more frequent or higher-volume purchases</li>
+      <li><b>Trade incentives:</b> getting outlets to carry the brand and to display or feature it</li>
+      <li><b>Sales-force incentives:</b> implementing sales-strategy activities; sales numbers</li>
+    </ul></li>
+  <li><b>Define the size and approach of incentives:</b> <b>push, pull and their proportion</b>.</li>
+</ol>
+<table>
+  <tr><th>Consumer incentives (slide 12)</th><th>Trade incentives</th><th>Sales-force incentives</th></tr>
+  <tr><td style="font-weight:normal"><b>Discounts</b> (general or seasonal)<br><b>Coupons</b> (certificates for savings)<br><b>Cash refunds</b> (a rebate after purchase)<br><b>Price packs</b> ("₹10 off", 2-for-1 banded packs)<br><b>Premiums</b> (a free or low-cost gift)<br><b>Frequency programmes</b> (loyalty points)<br><b>Prizes</b> (contests, sweepstakes, games)<br><b>Tie-in promotions</b> (two brands team up)</td>
+      <td style="font-weight:normal"><b>Allowances</b> (advertising and display allowances)<br><b>Free goods</b> (extra cases)<br><b>Discounts</b>: off list price, cash discount, volume discount</td>
+      <td style="font-weight:normal"><b>Monetary</b> (bonus, commission)<br><b>Trips</b><br><b>Gifts</b><br><b>Points</b></td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> <b>Push</b> = manufacturer → trade (trade incentives, personal selling); suits low brand loyalty and impulse items. <b>Pull</b> = manufacturer → consumer (ads, consumer incentives), so consumers ask the retailer for the product; suits high involvement and loyalty. Heavy consumer deals on a premium brand can <b>erode equity</b> and train buyers to wait for discounts.</div>
+
+<div class="beyond"><b class="l">Beyond the slides: further pricing concepts (Kotler)</b>
+<ul style="margin-bottom:0">
+  <li><b>Price-sensitivity factors (Nagle):</b> buyers are less sensitive when the product is unique, substitutes are unknown or hard to compare, the spend is small, the cost is shared or sunk, the price signals quality, or the product can't be stored.</li>
+  <li><b>Price adaptation:</b> <b>geographical</b> pricing (including countertrade: barter, compensation deal, buyback, offset) · <b>discounts and allowances</b> (cash, quantity, functional/trade, seasonal, trade-in) · <b>promotional</b> pricing (special events, 0% EMI, psychological discounting) · <b>differentiated</b> pricing (segment, form, image, channel, location, time).</li>
+  <li><b>EDLP</b> (DMart) vs <b>high-low</b> pricing. <b>Dynamic pricing</b> (Uber surge), <b>freemium</b> and <b>subscription</b> models.</li>
+  <li><b>How buyers read a price cut:</b> a new model is coming; the product is faulty; the firm is in trouble; the price will fall further; quality has dropped.</li>
+  <li><b>Sales promotion pros and cons:</b> it induces trial, rewards loyal users and wins trade support, but it is short-lived, erodes equity, and encourages forward-buying by the trade.</li>
+</ul></div>
+
+<!-- ============================ SESSION 13 ============================ -->
+<div class="chapter" id="s13"><span>Session 13</span><b>Distribution Management</b><span class="badge">Endsem core</span></div>
+
+<h2>Distribution Channels<span class="ref">Slide 2</span></h2>
+<ul>
+  <li><b>Distribution (marketing) channels</b> are "<b>sets of interdependent organisations</b> participating in the process of making a product or service available for use or consumption."</li>
+  <li>They <b>move products from producers to consumers</b> (delivering value).</li>
+  <li>They help overcome the gaps of <b>time, place and possession</b>.</li>
+  <li>Distribution involves a set of intermediaries: <b>merchants</b> (buy, take title and resell: wholesalers, retailers), <b>agents</b> (search for customers and negotiate but <i>don't take title</i>: brokers), and <b>facilitators</b> (assist without taking title or negotiating: transporters, warehouses, banks).</li>
+</ul>
+<div class="book"><b class="l">Course book (BM.10):</b> A distribution channel is the <b>network that moves goods from producers to end consumers</b>: wholesalers, retailers, distributors and digital platforms.
+<ul style="margin-bottom:0">
+  <li><b>Direct channel:</b> the manufacturer sells directly to the consumer. It is shorter and can mean lower costs for consumers.</li>
+  <li><b>Indirect channel:</b> sold through a wholesaler or retailer (typical of brick-and-mortar goods).</li>
+  <li><b>Hybrid channel:</b> both direct and indirect.</li>
+  <li><b>Digital technology</b> lets even small firms reach consumers directly through e-commerce.</li>
+  <li><b>Choosing a channel:</b> consider consumer preferences, speed to market, the value intermediaries add, and the <b>potential for channel conflict</b>.</li>
+</ul></div>
+
+<h2>Functions of Distribution Channels (Flows)<span class="ref">Slide 3</span></h2>
+<table>
+  <tr><th>Flow</th><th>Functions (slide)</th></tr>
+  <tr><td>Physical flow</td><td>Place orders; carry out the actual transfer of products in the channel</td></tr>
+  <tr><td>Title flow</td><td>Transfer ownership and risk from one entity to another in the channel</td></tr>
+  <tr><td>Payment flow</td><td>Provide financing and facilitate payments; acquire funds to finance inventories at different levels of the channel</td></tr>
+  <tr><td>Information flow</td><td>Gather information about customers and competitors; negotiate price and other terms of transfer of ownership or possession</td></tr>
+  <tr><td>Promotion flow</td><td>Develop and disseminate communication to stimulate purchase; enable display and stocking at points of purchase</td></tr>
+</table>
+<p class="ex"><b>Key idea:</b> you can eliminate an intermediary but <b>not its functions</b>; someone must still perform them. Intermediaries exist because they perform these flows more efficiently. For example, 3 producers × 3 customers need 9 contacts directly, but only 6 through one distributor.</p>
+
+<h2>Channel Management Decisions: 4 Steps<span class="ref">Slides 4–5</span></h2>
+<h3>1. Establish channel objectives</h3>
+<ul>
+  <li><b>Customers to serve</b></li>
+  <li><b>Service outputs</b> customers want: <b>lot size</b> (the number of units a customer can buy on one occasion), <b>waiting and delivery time</b>, <b>spatial convenience</b> (ease of reaching outlets), <b>product variety</b> (breadth of assortment), <b>service backup</b> (installation, repair, credit)</li>
+  <li><b>Costs and support</b> required</li>
+</ul>
+<h3>2. Identify channel alternatives and select channel members</h3>
+<ul>
+  <li><b>Direct vs indirect</b></li>
+  <li><b>Exclusive, selective, intensive</b> distribution (the number of intermediaries)</li>
+  <li><b>Franchising</b>: the franchisor licenses its brand, format and systems to franchisees for a fee and royalty (McDonald's, Domino's)</li>
+</ul>
+<table>
+  <tr><th>Intensity</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>Exclusive</td><td>Very few outlets, often with exclusive dealing. Gives control, dealer effort and prestige</td><td>Luxury cars, Rolex</td></tr>
+  <tr><td>Selective</td><td>More than a few, but not all willing outlets; good coverage with control</td><td>Appliances, apparel brands</td></tr>
+  <tr><td>Intensive</td><td>As many outlets as possible</td><td>Soap, soft drinks, snacks</td></tr>
+</table>
+<h3>3. Motivate channel members</h3>
+<table>
+  <tr><th>Channel power (slide)</th><th>Basis</th></tr>
+  <tr><td>Coercive</td><td>Threatening to withdraw a resource or end the relationship (it breeds resentment)</td></tr>
+  <tr><td>Reward</td><td>Extra benefits for performing specific acts (margins, incentives)</td></tr>
+  <tr><td>Legal (legitimate)</td><td>Requesting behaviour that is warranted under the contract</td></tr>
+  <tr><td>Expert</td><td>Special knowledge the intermediary values (training, technology)</td></tr>
+  <tr><td>Referent</td><td>The manufacturer is so respected that members are proud to be associated</td></tr>
+</table>
+<p><b>Channel partnerships:</b></p>
+<ul>
+  <li><b>Vertical Marketing System (VMS):</b> producer, wholesaler(s) and retailer(s) act as a <b>unified system</b> (unlike a conventional channel, where each member maximises only its own profit).
+    <ul>
+      <li><b>Coordinated (corporate)</b> VMS: combines successive stages under <b>single ownership</b> (Zara, Amul parlours).</li>
+      <li><b>Administered</b> VMS: coordinated by the <b>size and power</b> of one member (HUL and P&amp;G get displays and shelf space).</li>
+      <li><b>Contractual</b> VMS: independent firms bound by <b>contracts</b> (wholesaler-sponsored voluntary chains, retailer co-operatives, <b>franchises</b>).</li>
+    </ul></li>
+  <li><b>Horizontal Marketing System:</b> two or more unrelated firms <b>at the same level</b> pool resources (bank ATMs inside supermarkets, cafés inside bookstores).</li>
+</ul>
+<h3>4. Evaluate channel members</h3>
+<p>Evaluate against set standards of <b>sales achievement</b>, <b>stock holding</b>, <b>customer delivery time</b>, <b>treatment of damaged and lost goods</b>, and <b>cooperation in promotion and training</b>.</p>
+
+<h2>Retailing<span class="ref">Slides 6–10</span></h2>
+<p><b>Retailing</b> includes all activities involved in selling goods or services <b>to final consumers for personal, non-business use</b>.</p>
+<table>
+  <tr><th>The retailing environment (slide 8)</th><th>Explanation</th></tr>
+  <tr><td>New retailing forms and combinations</td><td>Store-within-store, pop-ups, kiosks, dark stores</td></tr>
+  <tr><td>Retailer consolidation</td><td>Large chains gain power over manufacturers</td></tr>
+  <tr><td>Mobile retailing</td><td>Shopping via smartphones and apps</td></tr>
+  <tr><td>Omnichannel retailing</td><td>A seamless experience across channels</td></tr>
+  <tr><td>Fast retailing (quick commerce)</td><td>10–30 minute delivery (Blinkit, Zepto, Instamart)</td></tr>
+  <tr><td>Greater role of technology</td><td>AI, analytics, self-checkout, AR</td></tr>
+</table>
+<p><b>Key retailing decisions (slide 9):</b> <b>target market</b> (drives everything else) · <b>product assortment and procurement</b> (breadth and depth; private labels) · <b>services</b>: <i>self-service</i> (customers locate, compare and select themselves), <i>limited service</i> (some assistance, credit, returns), <i>full service</i> (salespeople assist at every step) · <b>store atmosphere</b> (layout, lighting, music, scent) · <b>pricing</b> (EDLP vs high-low) · <b>consumer incentives</b> · <b>communications</b>.</p>
+<table>
+  <tr><th>Evolution of omnichannel retailing (slide 10)</th><th>Key idea</th></tr>
+  <tr><td>Brick-and-mortar retailers</td><td>"<b>Location is paramount</b>": central business districts (CBDs), shopping centres, store-within-a-store</td></tr>
+  <tr><td>Online retailers</td><td>Compete on <b>variety, price and convenience</b>. Models: <b>affiliates</b> (earn commission for referring buyers), <b>market makers</b> (platforms matching buyers and sellers), <b>infomediaries</b> (collect and organise information, e.g., price comparison), <b>customer communities</b></td></tr>
+  <tr><td>Omnichannel retailing</td><td>A <b>seamless buying experience</b> between offline and online stores (buy online and pick up in store, showrooming and webrooming, unified inventory)</td></tr>
+</table>
+
+<h2>Channel Conflict<span class="ref">Slides 11–12</span></h2>
+<p>Channel conflict arises when one member's actions prevent another member from achieving its goals.</p>
+<table>
+  <tr><th>Type</th><th>Between</th><th>Example</th></tr>
+  <tr><td>Horizontal</td><td>Members at the <b>same level</b></td><td>Two dealers of a brand undercutting each other</td></tr>
+  <tr><td>Vertical</td><td>Members at <b>different levels</b></td><td>Manufacturer vs distributor over margins</td></tr>
+  <tr><td>Multichannel</td><td><b>Two or more channels</b> selling to the same market</td><td>A brand's own site selling cheaper than its dealers</td></tr>
+</table>
+<p><b>Causes (slide):</b> <b>goal incompatibility</b> · <b>unclear roles and rights</b> · <b>differences in strategies and tactics</b> · <b>power imbalance</b>.</p>
+<table>
+  <tr><th>Managing conflict (slide)</th><th>What it means</th></tr>
+  <tr><td>Strategic justification</td><td>Show that the channels serve distinct segments, so they don't compete as much as members think</td></tr>
+  <tr><td>Dual compensation</td><td>Pay existing channels for sales made through new channels</td></tr>
+  <tr><td>Superordinate goals</td><td>Agree on a shared fundamental goal (survival, market share, customer satisfaction)</td></tr>
+  <tr><td>Employee exchange</td><td>Swap people between channel levels to build understanding</td></tr>
+  <tr><td>Joint memberships</td><td>Membership in trade associations together</td></tr>
+  <tr><td>Co-optation</td><td>Win the support of the other side's leaders by including them on advisory boards</td></tr>
+  <tr><td>Diplomacy – mediation – arbitration</td><td>The parties negotiate / a neutral third party <b>suggests</b> a solution / a third party <b>decides</b> (binding)</td></tr>
+  <tr><td>Legal recourse</td><td>Courts, as a last resort</td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> "Pay dealers a commission on online orders in their area" = <b>dual compensation</b>. "Put a dealer leader on the company's advisory board" = <b>co-optation</b>. "Online sells different pack sizes to a different segment" = <b>strategic justification</b>.</div>
+
+<div class="beyond"><b class="l">Beyond the slides: distribution concepts from Kotler</b>
+<ul style="margin-bottom:0">
+  <li><b>Channel levels:</b> zero-level (direct) → one-level (retailer) → two-level (wholesaler + retailer) → three-level (plus a jobber or stockist; typical of Indian FMCG: C&amp;F agent → distributor → retailer).</li>
+  <li><b>Evaluating channel alternatives:</b> <b>economic</b> (sales vs cost), <b>control</b>, <b>adaptive</b> (flexibility) criteria.</li>
+  <li><b>Retailer types:</b> specialty store, department store, supermarket, convenience store (kirana), discount store (DMart), off-price retailer, hypermarket. <b>Non-store:</b> direct selling, direct marketing, vending. <b>Private labels</b> give retailers margin and bargaining power.</li>
+  <li><b>Market logistics:</b> order processing, warehousing, inventory, transportation.</li>
+  <li><b>Legal issues:</b> exclusive dealing, exclusive territories, tying agreements (Competition Act, 2002).</li>
+</ul></div>
+
+<!-- ============================ SESSION 14 ============================ -->
+<div class="chapter" id="s14"><span>Session 14</span><b>Communicating Value</b><span class="badge">Endsem core</span></div>
+
+<h2>What is Marketing Communication?<span class="ref">Slide 2</span></h2>
+<p>Marketing communication is the means by which firms attempt to <b>inform, persuade, and remind</b> consumers, <b>directly or indirectly</b>, about the products and brands they sell. It is the "voice" of the brand.</p>
+
+<h2>Communication Process Models<span class="ref">Slides 3–5</span></h2>
+<h3>Macromodel (slide 3)</h3>
+<div class="flow">Sender → Encoding → Message → Media → Decoding → Receiver → Response → Feedback (with Noise throughout)</div>
+<p>The sender's <b>encoding</b> must match the receiver's <b>decoding</b>. <b>Noise</b> (competing messages, distractions) distorts the message, and consumers' <b>selective attention and distortion</b> (S2–3) filter it.</p>
+<h3>Micromodel: response hierarchy models (slide 4)</h3>
+<table>
+  <tr><th>Stage</th><th>AIDA</th><th>Hierarchy-of-effects</th><th>Innovation-adoption</th><th>Communications</th></tr>
+  <tr><td>Cognitive (think)</td><td>Attention</td><td>Awareness → Knowledge</td><td>Awareness</td><td>Exposure → Reception → Cognitive response</td></tr>
+  <tr><td>Affective (feel)</td><td>Interest → Desire</td><td>Liking → Preference → Conviction</td><td>Interest → Evaluation</td><td>Attitude → Intention</td></tr>
+  <tr><td>Behavioural (do)</td><td>Action</td><td>Purchase</td><td>Trial → Adoption</td><td>Behaviour</td></tr>
+</table>
+<p class="ex">High-involvement products follow <b>learn → feel → do</b>; low-involvement products often follow <b>learn → do → feel</b>.</p>
+
+<h2>Developing an Effective Communication Programme: 6 Steps<span class="ref">Slides 6–7</span></h2>
+<div class="flow">1. Set the communication objective → 2. Identify the audience → 3. Craft the message → 4. Decide on the media mix → 5. Develop a media plan → 6. Measure the performance</div>
+
+<h3>Step 1: Set the communication objective (slide 8)</h3>
+<ul>
+  <li><b>What is to be achieved?</b> Create <b>brand awareness</b> → build <b>brand attitude / preference</b> → influence <b>brand purchase</b>.</li>
+  <li><b>Set benchmarks and measures:</b> <b>quantitative</b> (level of awareness, strength of consumer preference) and <b>temporal</b> (the time within which the outcome should be achieved).</li>
+  <li><b>Determine the budget</b> (below).</li>
+</ul>
+<table>
+  <tr><th>Budget method (slide)</th><th>How</th><th>Drawback</th></tr>
+  <tr><td>Competitive-parity</td><td>Match competitors' spending</td><td>Assumes competitors know best; firms differ</td></tr>
+  <tr><td>Objective-task</td><td>Define objectives → the tasks needed → cost them</td><td>Most logical; harder to do</td></tr>
+  <tr><td>Percentage-of-sales</td><td>A fixed % of current or expected sales</td><td>Treats sales as the cause of promotion, not its result</td></tr>
+  <tr><td>Affordability</td><td>Spend what the firm can afford</td><td>Ignores promotion's effect on sales; unstable</td></tr>
+</table>
+<p><b>The budget is influenced by (slide):</b> <b>stage in the PLC</b> (launches need more) · <b>product differentiation</b> (commodities need more) · <b>market share</b> (high-share brands need less as a % of sales) · <b>message complexity</b> · <b>reach</b> · <b>competitive communication</b> (clutter) · <b>available resources</b>.</p>
+
+<h3>Step 2: Identify the audience (slide 9)</h3>
+<p>How is the target audience defined? <b>New vs existing users</b> · <b>heavy vs light users</b> · <b>loyal to us vs loyal to a competitor</b>, etc. This links directly to the <b>user and usage segmentation</b> in S6–7.</p>
+
+<h3>Step 3: Craft the message (slide 10)</h3>
+<ul>
+  <li><b>Craft the message:</b> identify <b>one or two USPs</b>; decide the ideas that establish the <b>points of parity and points of difference</b>.</li>
+  <li><b>Determine the message appeal:</b>
+    <ul>
+      <li><b>Informational appeal:</b> a product benefit or attribute (problem-solution, demonstration, comparison, testimonial).</li>
+      <li><b>Transformative appeal:</b> a <b>non-product benefit</b> that motivates purchase (emotion: fear, humour, love, pride, joy, social approval).</li>
+    </ul></li>
+  <li><b>Select the message source:</b> <b>expertise</b>, <b>likeability</b>, <b>trustworthiness</b> (the basis for choosing celebrity or expert endorsers).</li>
+  <li><b>Creative execution: ADPLAN</b> (a framework to evaluate an ad):</li>
+</ul>
+<table>
+  <tr><th>ADPLAN</th><th>Question to ask of the ad</th></tr>
+  <tr><td>Attention</td><td>Does it break through the clutter and get noticed?</td></tr>
+  <tr><td>Distinction</td><td>Is it different from competitors' ads?</td></tr>
+  <tr><td>Positioning</td><td>Does it communicate and reinforce the brand's position (frame, POD)?</td></tr>
+  <tr><td>Linkage</td><td>Will people remember the <b>brand</b>, not just the ad?</td></tr>
+  <tr><td>Amplification</td><td>Are the thoughts it triggers positive and brand-building?</td></tr>
+  <tr><td>Net equity</td><td>Does it fit and strengthen the brand's long-term equity?</td></tr>
+</table>
+
+<h3>Step 4: Decide the media mix (slide 11)</h3>
+<table>
+  <tr><th>Medium</th><th>Key traits</th></tr>
+  <tr><td>Advertising</td><td>Paid, non-personal, identified sponsor; pervasive, expressive, controllable; builds long-term image</td></tr>
+  <tr><td>Online and social media communication</td><td>Timely, customised, interactive, measurable</td></tr>
+  <tr><td>Mobile communication</td><td>Personal, real-time, location-aware</td></tr>
+  <tr><td>Direct communication</td><td>Mail, email, telemarketing to specific people: customised, up to date</td></tr>
+  <tr><td>Events and experiences</td><td>Relevant, engaging, an implicit "soft sell"</td></tr>
+  <tr><td>Word of mouth</td><td>The most trusted: buzz, viral, influencers</td></tr>
+  <tr><td>Publicity and public relations</td><td>Unpaid coverage and image programmes; high credibility, reaches hard-to-reach buyers</td></tr>
+  <tr><td>Personal selling</td><td>Face-to-face, builds relationships, requires a response; the most costly per contact</td></tr>
+  <tr><td>Packaging</td><td>The last communication at the shelf</td></tr>
+</table>
+<p class="ex"><b>Choosing the mix:</b> consumer markets lean on advertising and promotion, while B2B leans on personal selling. By buyer-readiness stage, awareness needs ads and PR, conviction needs personal selling, and reorder needs promotion and reminders. By PLC stage, introduction needs heavy ads and PR plus sampling, and decline needs minimal spend.</p>
+
+<h2>Integrated Marketing Communication (IMC)<span class="ref">Slide 12</span></h2>
+<p><b>IMC</b> is an approach to managing a communication campaign through the <b>coordinated use of different communication tools</b> that <b>work in concert and reinforce one another</b>, so the company achieves its strategic goals.</p>
+<table>
+  <tr><th>Criteria to ensure integration (slide)</th><th>Meaning</th></tr>
+  <tr><td>Coverage</td><td>The share of the audience reached by each option, and the overlap between options</td></tr>
+  <tr><td>Contribution</td><td>A channel's effect on its own (without exposure to the others)</td></tr>
+  <tr><td>Commonality</td><td>The extent to which common associations are reinforced across channels</td></tr>
+  <tr><td>Complementarity</td><td>Different channels emphasise different associations or effects</td></tr>
+  <tr><td>Conformability</td><td>The option works across different audiences and situations (robust)</td></tr>
+  <tr><td>Cost</td><td>Efficiency relative to effectiveness</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BM.11): IMC in detail.</b> IMC combines advertising, PR, direct marketing, sales promotion and digital channels to create a <b>cohesive, consistent brand message</b> across all touchpoints.
+<ul>
+  <li><b>Why IMC is important (7 reasons):</b> constant brand communication · improved consumer participation · efficient resource allocation (no duplication) · better ROI (synergy) · enhanced brand loyalty · flexibility in changing markets (real-time data) · competitive advantage.</li>
+  <li><b>10 components:</b> advertising · PR (media relations, sponsorships, influencers) · direct marketing (email, SMS, telemarketing) · sales promotion · virtual/digital marketing (SEO, PPC, social) · content marketing (blogs, videos, podcasts) · social media marketing · partnerships and sponsorships · <b>internal communication</b> (employees as brand ambassadors) · digital tools (CRM, analytics, automation).</li>
+  <li><b>Examples:</b> Coca-Cola <b>"Share a Coke"</b> (names on bottles + #ShareACoke + PR + experiential); Nike <b>"Just Do It"</b> (print, social, athletes, events); <b>Apple launch events</b> (teasers, media invites, live streams); <b>Red Bull</b> content marketing (Red Bull Media House, extreme sports, festivals); Dove <b>"Real Beauty"</b> (ads, social, PR, user-generated content).</li>
+</ul>
+<div class="flow" style="margin-bottom:0">IMC planning: Analyse the problem → Set goals → Identify the audience → Develop key messages → Choose channels → Develop strategy → Execute → Monitor results → Revise</div></div>
+
+<h3>Step 5: Develop the media plan (slide 13)</h3>
+<ul>
+  <li>Weigh <b>audience size, composition and media cost</b>, measured as <b>cost per thousand persons reached (CPM)</b>: <span class="formula">CPM = Media cost × 1,000 ÷ Audience reached</span>.</li>
+  <li>Also weigh <b>audience quality</b>, <b>audience attention</b>, <b>editorial quality</b>, <b>ad-placement policies</b> and <b>extra services</b>.</li>
+  <li>Determine <b>reach</b> (R: % of the target exposed at least once), <b>frequency</b> (F: average number of exposures) and <b>impact</b> (I: the qualitative value of an exposure in a given medium).</li>
+</ul>
+<p class="flow">Exposure (Gross Rating Points, GRP) = R × F  ·  Weighted exposure = R × F × I</p>
+<p class="ex"><b>Example:</b> reach 60%, frequency 3 → GRP = 180. With impact 1.5, weighted exposure = 270. A launch needs <b>reach</b>; a complex message, low loyalty or frequent purchase needs <b>frequency</b>. A fixed budget forces a trade-off between the two.</p>
+
+<h3>Step 6: Measure the performance (slide 14)</h3>
+<table>
+  <tr><th>Supply side</th><th>Demand side</th></tr>
+  <tr><td style="font-weight:normal">Assessment of <b>media coverage</b>: the number of seconds the ad is visible, column inches of a print ad</td><td style="font-weight:normal">Effect on the target audience: <b>recall of the ad</b>, <b>change in attitude</b> toward the brand, <b>change in purchase intent</b></td></tr>
+</table>
+<div class="tip"><b class="l">Common trap:</b> The <b>slides use 6 steps</b>, while Kotler's textbook uses 8 (audience → objectives → design → channels → budget → mix → measure → manage IMC). In the exam, use the <b>slide sequence</b> and note that the budget sits inside step 1.</div>
+
+<div class="beyond"><b class="l">Beyond the slides: communication concepts from Kotler</b>
+<ul style="margin-bottom:0">
+  <li><b>Rossiter–Percy objectives:</b> category need, brand awareness (recognition vs recall), brand attitude, purchase intention. <b>DAGMAR:</b> set specific, measurable communication goals.</li>
+  <li><b>Message structure:</b> one-sided arguments suit favourable audiences; two-sided arguments suit educated or opposed audiences. Fear appeals work at moderate levels when a solution is offered. <b>Celebrity risks:</b> overshadowing the brand, overexposure, scandal.</li>
+  <li><b>Media timing:</b> continuity, concentration, flighting (bursts and gaps), pulsing (a low base plus bursts).</li>
+  <li><b>Paid, owned and earned media</b>; buzz and viral marketing; micro-influencers. <b>PR functions:</b> press relations, product publicity, corporate communication, lobbying, counselling.</li>
+  <li><b>Sales force:</b> structure (territorial, product, market, complex), size (workload approach), compensation (fixed, variable, expenses, benefits). <b>Selling steps:</b> prospecting → pre-approach → presentation → objections → close → follow-up.</li>
+  <li><b>Measurement:</b> copy testing (pre/post), sales-effect research, share of voice, digital metrics (CTR, CPC, CPA, ROAS).</li>
+</ul></div>
+
+<!-- ============================ SESSION 16 ============================ -->
+<div class="chapter" id="s16"><span>Session 16</span><b>Services Marketing &amp; Brand Management</b><span class="badge">Endsem core</span></div>
+
+<h2>Part A — Services Marketing: What is a Service?<span class="ref">Slides 1–3</span></h2>
+<p>A <b>service</b> is any act or performance one party can offer to another that is <b>essentially intangible</b> and <b>does not result in the ownership of anything</b>. Services are often a <b>minor or major component</b> of the total customer offering. See the goods–services continuum (repeated from S10): pure tangible goods → good with accompanying service → hybrid → major service with minor goods → pure service.</p>
+
+<h2>Distinct Features of Services and How to Manage Them<span class="ref">Slides 4–5</span></h2>
+<table>
+  <tr><th>Feature</th><th>Meaning</th><th>Marketing response (slide)</th></tr>
+  <tr><td>Intangibility</td><td>Can't be seen, tasted or touched before purchase; buyers look for cues of quality</td><td><b>Make the intangible tangible</b> using <b>place, people, symbols, communication material, equipment, price</b></td></tr>
+  <tr><td>Inseparability</td><td>Produced and consumed at the same time; the provider is part of the service</td><td><b>Work with groups</b> (serve larger groups at once); <b>have more service providers</b> (train more staff)</td></tr>
+  <tr><td>Variability</td><td>Quality depends on who, when, where and how</td><td><b>Invest in training</b>; <b>standardise the service-performance process</b>; <b>monitor customer satisfaction</b></td></tr>
+  <tr><td>Perishability</td><td>Can't be stored; unused capacity is lost</td><td><i>Demand side:</i> <b>differential pricing, boosting non-peak demand, complementary services, reservations</b>. <i>Supply side:</i> <b>part-time employees, consumer participation, shared services</b></td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> "Matinée tickets cheaper" = perishability (differential pricing). "Uniformed staff, a clean lobby, glossy brochures" = intangibility. "SOPs and training so every outlet gives the same haircut" = variability. "Self-checkout" = perishability (consumer participation). "Group yoga classes" = inseparability (work with groups).</div>
+
+<h2>The Changing Face of Services<span class="ref">Slides 6–7</span></h2>
+<ul>
+  <li><b>Technology as service provider</b> (apps, chatbots, kiosks).</li>
+  <li><b>Digital and social media</b> make customers demanding and vocal: <b>empowered customers</b>.</li>
+  <li>Customers have <b>high expectations</b>, which leads to <b>customer co-production</b> (customers help create the service).</li>
+  <li><b>Satisfying employees to satisfy customers</b> (internal marketing). Happy, trained staff deliver better service.</li>
+</ul>
+
+<h2>Delivering Services: Managing Customer Expectations (Gaps)<span class="ref">Slides 8–10</span></h2>
+<p>Address the gaps that can affect service delivery:</p>
+<table>
+  <tr><th>Gap between…</th><th>What goes wrong</th><th>Fix</th></tr>
+  <tr><td>1. Consumer expectation and management perception</td><td>Management doesn't correctly know what customers expect</td><td>Research, complaint analysis, listen to front-line staff</td></tr>
+  <tr><td>2. Management perception and service-quality specification</td><td>Management knows the need but sets vague or unrealistic standards</td><td>Clear, customer-defined standards</td></tr>
+  <tr><td>3. Service-quality specification and service delivery</td><td>Staff are untrained, overloaded or unwilling to meet the standard</td><td>Training, empowerment, technology, teamwork</td></tr>
+  <tr><td>4. Service delivery and external communication</td><td>Ads and promises create expectations the delivery doesn't meet</td><td>Promise only what you deliver</td></tr>
+  <tr><td>5. Perceived and expected service</td><td>The customer perceives quality below expectations (the net result of gaps 1–4)</td><td>Close gaps 1–4</td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> In a service case, <b>name the gap</b>. "The ad promised 10-minute delivery; it takes 25" = gap 4. "Staff ignore the SOP" = gap 3. "Managers assumed customers wanted low prices, but they want reliability" = gap 1.</div>
+
+<h2>Managing Service Quality: RATER<span class="ref">Slide 11</span></h2>
+<table>
+  <tr><th>Attribute</th><th>Meaning</th></tr>
+  <tr><td>Reliability</td><td>Ability to perform the promised service <b>dependably and accurately</b> (usually the most important)</td></tr>
+  <tr><td>Responsiveness</td><td>Willingness to help customers and provide <b>prompt</b> service</td></tr>
+  <tr><td>Assurance</td><td>Employees' knowledge and courtesy; ability to convey <b>trust and confidence</b></td></tr>
+  <tr><td>Empathy</td><td><b>Caring, individualised attention</b> to customers</td></tr>
+  <tr><td>Tangibles</td><td>Appearance of <b>physical facilities, equipment, personnel</b> and communication materials</td></tr>
+</table>
+
+<h2>Managing Product-Support Services<span class="ref">Slide 12</span></h2>
+<ul>
+  <li><b>Identify and satisfy customer needs related to products:</b> reliability and failure frequency, downtime, service dependability.</li>
+  <li><b>Product-support services as a differentiator:</b> ease of ordering · delivery, installation, maintenance and repair · customer training · customer consulting · service contracts and extended warranties. (This is the <b>augmented product</b> from S10.)</li>
+</ul>
+<h2>Managing Self-Service<span class="ref">Slide 13</span></h2>
+<p><b>Convenience</b> (technology for any-time self-service) · <b>streamlined operations and efficiency</b> · <b>familiarising customers</b> with the technology (self-service fails if customers aren't taught how to use it).</p>
+
+<h2>Achieving Excellence: Best Practices of Top Service Companies<span class="ref">Slides 14–15</span></h2>
+<ol>
+  <li><b>Service as a strategic concept</b>: the service is central to the firm's positioning.</li>
+  <li><b>Top-management commitment</b>: leaders track service performance, not just finances.</li>
+  <li><b>High service-quality standards</b>: precise, demanding targets.</li>
+  <li><b>Profit tiers of consumers</b>: serve customer tiers according to their value.</li>
+  <li><b>Develop monitoring systems</b>: mystery shopping, surveys, audits.</li>
+  <li><b>Satisfying customer complaints</b>: good service recovery can make a customer more loyal than before.</li>
+</ol>
+<div class="beyond"><b class="l">Beyond the slides: services concepts from Kotler</b>
+<ul style="margin-bottom:0">
+  <li><b>7Ps of services:</b> the 4Ps plus <b>People, Process, Physical evidence</b>.</li>
+  <li><b>Search, experience and credence qualities:</b> services are high in experience and credence qualities, so they carry more perceived risk and rely on WOM.</li>
+  <li><b>Service-profit chain:</b> internal quality → satisfied employees → service value → loyal customers → profit.</li>
+  <li><b>Service blueprint:</b> customer actions, onstage and backstage actions, the line of visibility, fail points.</li>
+  <li><b>Zone of tolerance:</b> the range between adequate and desired service.</li>
+  <li><b>Sasser's full supply-side list</b> also includes peak-time efficiency routines and facilities for future expansion.</li>
+</ul></div>
+
+<h2>Part B — Brand Management: What is a Brand?<span class="ref">Slides 16–18</span></h2>
+<p><b>Brand</b> (AMA): "a <b>name, term, sign, symbol, or design</b>, or a combination of them, intended to <b>identify</b> the goods or services of one seller or group of sellers and to <b>differentiate</b> them from those of competitors." <b>Branding</b> is the process of <b>endowing products and services with the power of a brand</b>.</p>
+<p class="ex"><b>Slide 18 logos:</b> <b>Asian Paints, Titan, SBI</b> (corporate names used as brands) and <b>Unilever → Lux</b> (a corporate parent behind a separately named product brand). These preview the brand architecture choices on slide 25.</p>
+<div class="book"><b class="l">Course book (BM.9):</b> A brand is the <b>idea or image</b> people hold about a company's products, both <b>practical</b> ("the shoe is lightweight") and <b>emotional</b> ("it makes me feel powerful"). It is triggered by the name, logo, visual identity or message. <b>A product can be copied, but a brand is unique:</b> Pepsi and Coca-Cola taste similar, yet people connect with one or the other. <b>Water brands</b> give the same product different meanings: <b>Evian</b> makes you feel young, <b>Perrier</b> is refreshing, bubbly and sexy, and <b>Fiji</b> is pure, healthy and natural. <b>A product is what you sell, a brand is the perceived image of what you sell, and branding is the strategy to create that image.</b></div>
+
+<h2>Role of Brands<span class="ref">Slide 19</span></h2>
+<table>
+  <tr><th>For consumers</th><th>For firms</th></tr>
+  <tr><td style="font-weight:normal"><b>Promise</b> of the firm<br>A set of <b>desirable benefits</b><br><b>Predictability and reliability</b> (lower risk and search cost)<br><b>Personal meaning</b>, part of identity</td>
+      <td style="font-weight:normal"><b>Operational simplification</b> (handling, tracing)<br>Source of <b>legal protection</b> for unique aspects (trademarks, patents)<br><b>Consumer loyalty</b> and <b>willingness to pay a premium</b><br><b>Competitive advantage</b></td></tr>
+</table>
+
+<h2>Brand Equity<span class="ref">Slide 20</span></h2>
+<p><b>Brand equity</b>, also known as <b>customer-based brand equity (CBBE)</b>, is the <b>differential effect</b> that <b>brand knowledge</b> has on the way consumers <b>think, feel and act</b> with respect to the brand or its marketing activity. Brand knowledge = <b>brand awareness</b> (recognition, recall) + <b>brand image</b> (strong, favourable, unique associations).</p>
+<p><b>A brand with high equity leads to (slide):</b></p>
+<ul>
+  <li>Improved <b>perception of product performance</b></li>
+  <li>Greater <b>customer loyalty</b></li>
+  <li><b>Less effect of competitors' marketing activity</b> (less vulnerability)</li>
+  <li>Greater <b>cooperation by the trade</b></li>
+  <li>Greater <b>financial returns</b></li>
+</ul>
+
+<h2>Measuring Brand Equity<span class="ref">Slide 21</span></h2>
+<table>
+  <tr><th>Approach / tool</th><th>Meaning</th></tr>
+  <tr><td>Direct approach</td><td>Measures the <b>actual impact</b> of brand knowledge on consumer response (e.g., branded vs blind tests)</td></tr>
+  <tr><td>Indirect approach</td><td>Identifies and tracks consumer brand knowledge to understand the <b>sources</b> of brand equity</td></tr>
+  <tr><td>Brand audit</td><td>A series of procedures to <b>assess the health</b> of the brand, uncover the sources of brand equity, and identify ways to improve and leverage it</td></tr>
+  <tr><td>Brand tracking</td><td>Using the brand audit results as a <b>baseline</b>, collects consumer data to see how the brand <b>performs over time</b></td></tr>
+</table>
+
+<h2>Brand Valuation<span class="ref">Slide 22</span></h2>
+<p><b>Financial brand equity</b> = the monetary value of the brand. Brand equity is included as <b>goodwill</b> in financial accounting (the monetary value of intangible assets).</p>
+<table>
+  <tr><th>Approach</th><th>Logic</th></tr>
+  <tr><td>Cost approach</td><td>What it cost (or would cost) to build or replace the brand</td></tr>
+  <tr><td>Market approach</td><td>The value of comparable brands in market transactions</td></tr>
+  <tr><td>Financial (income) approach</td><td>The present value of future earnings attributable to the brand (Interbrand-style)</td></tr>
+</table>
+
+<h2>Building Strong Brands: Brand Resonance Model<span class="ref">Slide 23</span></h2>
+<table>
+  <tr><th>Stage (bottom to top)</th><th>Building block(s)</th><th>Goal</th></tr>
+  <tr><td>1. Identity: "Who are you?"</td><td><b>Salience</b>: how often and easily the brand is evoked</td><td>Deep, broad brand awareness</td></tr>
+  <tr><td>2. Meaning: "What are you?"</td><td><b>Performance</b> (functional) + <b>Imagery</b> (psychological and social)</td><td>Strong, favourable, unique associations (POPs and PODs)</td></tr>
+  <tr><td>3. Response: "What about you?"</td><td><b>Judgments</b> (quality, credibility, consideration, superiority) + <b>Feelings</b> (warmth, fun, excitement, security, social approval, self-respect)</td><td>Positive, accessible reactions</td></tr>
+  <tr><td>4. Relationship: "What about you and me?"</td><td><b>Resonance</b>: behavioural loyalty, attitudinal attachment, sense of community, active engagement</td><td>Intense, active loyalty</td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> The left side (performance → judgments) is the <b>rational</b> route; the right side (imagery → feelings) is the <b>emotional</b> route. Diagnose the weak block. For example, a brand with high awareness but no loyalty is stuck at meaning or response, so the remedy is imagery-building (transformational ads, events, community).</div>
+
+<h2>Designing and Managing Brands: Brand Architecture<span class="ref">Slides 24–25</span></h2>
+<p><b>Brand architecture</b> = the firm's branding-strategy guidelines, and <b>which brand elements to apply</b> across new and existing products and services.</p>
+<table>
+  <tr><th>Topic (slide 25)</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>House of brands</td><td>Separate brand names for each product; the corporate name stays in the background</td><td>Unilever → Lux, Surf, Dove</td></tr>
+  <tr><td>Branded house</td><td>One corporate brand across everything (instant recognition, cheaper launches; one failure hurts all)</td><td>Asian Paints, SBI, Tata</td></tr>
+  <tr><td>Sub-brand strategy</td><td>Corporate or parent name + individual name: the parent <i>legitimises</i>, the sub-brand <i>individualises</i></td><td>Titan Raga, Surf Excel Matic</td></tr>
+  <tr><td>Co-branding and ingredient branding</td><td>Combining brands / branding a component (see S10)</td><td>Intel Inside</td></tr>
+  <tr><td>Brand reinforcement</td><td>Consistently convey the brand's meaning (what it is, which benefits, why it is superior) and keep innovating</td><td>Amul's consistent topical ads</td></tr>
+  <tr><td>Brand revitalisation / repositioning</td><td>Recover lost equity: new uses, new users, refreshed image</td><td>Old Spice; Cadbury "Kuch Meetha Ho Jaye"</td></tr>
+  <tr><td>Brand extensions</td><td>Using an established brand to launch a new product: <b>line extension</b> (same category) or <b>category extension</b> (a new category)</td><td>Diet Coke; Patanjali across categories</td></tr>
+</table>
+<p class="ex"><b>Brand extensions: pros and cons.</b> Pros: a higher chance of success, lower launch cost, lower consumer risk, positive feedback to the parent. Cons: <b>dilution</b>, cannibalisation, confusion, a failure hurting the parent, and a lost chance to build a new brand. Success needs <b>fit</b> between the parent and the extension.</p>
+<div class="beyond"><b class="l">Beyond the slides: brand concepts from Kotler/Keller</b>
+<ul style="margin-bottom:0">
+  <li><b>Three drivers of brand equity:</b> brand elements (chosen on six criteria: memorable, meaningful, likable, transferable, adaptable, protectable); marketing activities; and <b>secondary associations</b> (company, country of origin, channels, other brands, celebrities, events, causes, third parties).</li>
+  <li><b>Other equity models:</b> <b>Aaker</b> (awareness, perceived quality, associations, loyalty, other assets); <b>BAV</b> (differentiation, relevance, esteem, knowledge).</li>
+  <li><b>Brand value chain:</b> programme → customer mindset → market performance → shareholder value.</li>
+  <li><b>Brand personality:</b> sincerity, excitement, competence, sophistication, ruggedness.</li>
+  <li><b>Portfolio roles:</b> flanker, cash cow, low-end entry, high-end prestige.</li>
+  <li><b>Crisis management:</b> respond swiftly and sincerely (Maggi 2015, Cadbury 2003).</li>
+</ul></div>
+<div class="tip"><b class="l">Exam tip:</b> A <b>premium brand going down-market</b> should use a <b>sub-brand or separate brand</b> to avoid dilution; this links to down-market stretch in S10. A <b>mass brand going premium</b> often needs a new name.</div>
+
+<!-- ============================ SESSION 18 ============================ -->
+<div class="chapter" id="s18"><span>Session 18</span><b>Marketing Strategies</b><span class="badge">Endsem core</span></div>
+
+<h2>Broad Outline of Marketing Strategy<span class="ref">Slide 2</span></h2>
+<div class="two">
+<div><p><b>Analyse the 5Cs:</b></p>
+<ul>
+  <li><b>Customer</b>: needs, segments, behaviour (S2–3, S6–7)</li>
+  <li><b>Company</b>: resources, capabilities, goals</li>
+  <li><b>Competition</b>: rivals and substitutes (five forces)</li>
+  <li><b>Collaborators</b>: suppliers, channel partners, agencies</li>
+  <li><b>Context</b>: the macro environment (DENPST)</li>
+</ul></div>
+<div><p><b>Then design the mix:</b></p>
+<ul>
+  <li><b>Value creation</b>: Product, Place, Promotion</li>
+  <li><b>Value capture</b>: Price</li>
+</ul>
+<p class="ex">This ties the whole course together: the 5Cs feed STP, and STP drives the 4Ps.</p></div>
+</div>
+
+<h2>Generic Strategies: Michael Porter<span class="ref">Slides 3–4</span></h2>
+<table>
+  <tr><th>Strategy</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>Overall cost leadership</td><td>The lowest production and distribution cost, so the firm can price lower than rivals and win share</td><td>DMart, Walmart</td></tr>
+  <tr><td>Differentiation</td><td>Superior performance on a benefit that a large part of the market values, which supports a premium</td><td>Apple, Titan</td></tr>
+  <tr><td>Focus</td><td>Target <b>one or more narrow segments</b> and pursue <b>cost leadership or differentiation</b> within them</td><td>Rolls-Royce (differentiation focus); a regional budget brand (cost focus)</td></tr>
+</table>
+<p class="ex">Firms that pursue no clear strategy are "<b>stuck in the middle</b>": they have neither the lowest cost nor true differentiation.</p>
+
+<h2>Strategies Based on SWOT<span class="ref">Slide 5</span></h2>
+<p>Assess the <b>internal</b> environment (assets, resources, capabilities, competencies → strengths and weaknesses) and the <b>external</b> environment (marketing environment, industry competitiveness → opportunities and threats). Then <b>evolve strategies</b>:</p>
+<table>
+  <tr><th></th><th>Opportunities</th><th>Threats</th></tr>
+  <tr><td>Strengths</td><td><b>S–O:</b> What strengths exist to make use of existing or emerging opportunities?</td><td><b>S–T:</b> What strengths enable us to face existing or upcoming threats?</td></tr>
+  <tr><td>Weaknesses</td><td><b>W–O:</b> What weaknesses make it difficult to use the opportunities?</td><td><b>W–T:</b> What weaknesses can amplify the threats?</td></tr>
+</table>
+<div class="book"><b class="l">Course book:</b> SWOT sits in the flow <b>PESTLE → SWOT → TOWS → STP → Marketing Mix</b>. It helps marketers align strengths with opportunities, avoid strategies that expose weaknesses, anticipate threats with contingency plans, and support decisions on STP, branding, pricing and channels. The four cells above are the <b>TOWS</b> matrix.</div>
+
+<h2>Market Growth Strategies<span class="ref">Slides 6–8</span></h2>
+<h3>BCG matrix: based on product portfolio analysis (slide 7)</h3>
+<table>
+  <tr><th>Cell</th><th>Market growth / market share</th><th>Cash logic</th><th>Strategy</th></tr>
+  <tr><td>Stars</td><td>High / High</td><td>High cash use and generation</td><td>Invest to grow and defend leadership</td></tr>
+  <tr><td>Cash cows</td><td>Low / High</td><td>Generate surplus cash</td><td>Maintain or harvest; fund other units</td></tr>
+  <tr><td>Question marks</td><td>High / Low</td><td>Consume cash</td><td>Invest heavily to build share, or divest</td></tr>
+  <tr><td>Dogs</td><td>Low / Low</td><td>Low cash generation</td><td>Divest, or keep for a niche</td></tr>
+</table>
+<div class="book"><b class="l">Course book (BCG):</b> The core idea is that cash generation and consumption depend on <b>market growth</b> and <b>competitive strength (share)</b>. Marketing implications: stars get aggressive promotion, capacity expansion and innovation; cash cows get brand maintenance and an efficiency focus; question marks get heavy spend to build share, or an exit; dogs get minimal spend and portfolio rationalisation. <b>Why it matters:</b> it allocates marketing budgets rationally, balances short-term cash with long-term growth, and avoids over-investing in low-potential products.</div>
+<h3>Ansoff matrix: based on product–market dynamics (slide 8)</h3>
+<table>
+  <tr><th></th><th>Existing products</th><th>New products</th></tr>
+  <tr><td>Existing markets</td><td><b>Market penetration</b></td><td><b>Product development</b></td></tr>
+  <tr><td>New markets</td><td><b>Market development</b></td><td><b>Diversification</b></td></tr>
+</table>
+<div class="book"><b class="l">Course book (Ansoff):</b>
+<table>
+  <tr><th>Strategy</th><th>Risk</th><th>Marketing implications</th><th>Book example</th></tr>
+  <tr><td>Market penetration</td><td>Lowest</td><td>Price promotions, more advertising, higher usage, loyalty programmes</td><td>An FMCG brand raising consumption frequency</td></tr>
+  <tr><td>Product development</td><td>Medium</td><td>Innovation, brand and line extensions</td><td>A new flavour for existing customers</td></tr>
+  <tr><td>Market development</td><td>Medium</td><td>New segments, geographies, channels</td><td>Rural or international entry</td></tr>
+  <tr><td>Diversification</td><td>Highest</td><td>New capabilities and positioning; high uncertainty</td><td>Entering a completely new business</td></tr>
+</table>
+<p><b>GE–McKinsey matrix (book):</b> prioritises units using <b>industry attractiveness</b> (size, growth, profitability, rivalry, entry barriers, regulation) × <b>business strength</b> (brand equity, share, loyalty, cost position, reach, innovation). Zones: <b>Invest/Grow</b> (high-high: heavy brand building), <b>Selective/Hold</b> (medium: targeted marketing), <b>Harvest/Divest</b> (low-low: minimal promotion). It is more realistic than BCG because it uses many factors.</p>
+<p style="margin:0"><b>Book's summary:</b> "<b>Ansoff answers: how should we grow? BCG and GE answer: where should we invest?</b>" Full flow: PESTLE → SWOT → Ansoff (how to grow) → BCG/GE (where to invest).</p></div>
+
+<h2>Competition-Based Marketing Strategies<span class="ref">Slides 9–12</span></h2>
+<h3>Market leader strategies (slide 10)</h3>
+<table>
+  <tr><th>Goal</th><th>Slide content</th></tr>
+  <tr><td>1. Expand total market demand</td><td><b>Increase the customer base</b>: new segments, new geographies. <b>Increase product usage</b>: alternative or new uses of existing products. (The leader gains most when the category grows)</td></tr>
+  <tr><td>2. Protect market share</td><td><b>Proactive marketing</b>: <i>responsive anticipation</i> (see a change coming and respond before it hits) and <i>creative anticipation</i> (create solutions customers haven't asked for). <b>Defensive marketing</b>: position, flank, pre-emptive, counteroffensive, mobile, contraction defences</td></tr>
+  <tr><td>3. Increase market share</td><td>Acquisitions, price cuts, etc. <b>But ask:</b> repercussions? cost? profitability? <b>legal action</b> (antitrust)? Higher share doesn't automatically mean higher profit</td></tr>
+</table>
+<table>
+  <tr><th>Defence (slide)</th><th>Meaning</th><th>Example</th></tr>
+  <tr><td>Position</td><td>Fortify the current position; occupy the most desirable place in consumers' minds</td><td>Coca-Cola as "the original"</td></tr>
+  <tr><td>Flank</td><td>Guard weak spots with new brands or offers (fighter brands)</td><td>A premium airline launching a low-cost carrier</td></tr>
+  <tr><td>Pre-emptive</td><td>Attack first, before the competitor moves (product proliferation, signals)</td><td>Flooding shelves with variants</td></tr>
+  <tr><td>Counteroffensive</td><td>Hit back: meet the attack head-on or attack the attacker's core market</td><td>Price-matching in the rival's home city</td></tr>
+  <tr><td>Mobile</td><td>Stretch into new territories as future bases (market broadening, diversification)</td><td>"Oil company" → "energy company"</td></tr>
+  <tr><td>Contraction</td><td>Strategic withdrawal from weaker markets to concentrate strength</td><td>Exiting unprofitable regions or SKUs</td></tr>
+</table>
+
+<h3>Market challenger strategies (slide 11)</h3>
+<ol>
+  <li><b>Define the strategic objective and the opponent:</b> attack the <b>market leader</b> (high risk, high payoff; best when the leader serves the market poorly), <b>similar-sized firms</b> that are not strong, or <b>small regional and local firms</b>.</li>
+  <li><b>Choose a general attack strategy:</b></li>
+</ol>
+<table>
+  <tr><th>Attack</th><th>Meaning</th><th>When it suits</th></tr>
+  <tr><td>Frontal</td><td>Match the opponent's product, price, promotion and distribution head-on</td><td>Only with superior resources</td></tr>
+  <tr><td>Flank</td><td>Attack the opponent's <b>weak spots</b>: underserved geographies or segments</td><td>Unmet needs the leader ignores (Nirma vs Surf in the low-price segment)</td></tr>
+  <tr><td>Encirclement</td><td>Attack on several fronts at once</td><td>Superior resources; a quick win</td></tr>
+  <tr><td>Bypass</td><td>Go around the opponent: unrelated products, new markets, or <b>leapfrog technology</b></td><td>Avoids direct confrontation (Jio's 4G-only network)</td></tr>
+  <tr><td>Guerrilla</td><td>Small, intermittent attacks: selective price cuts, promotional blitzes</td><td>Small, under-resourced challengers</td></tr>
+</table>
+<p>3. <b>Adopt a specific attack strategy</b>: price discounts, cheaper goods, prestige goods, product proliferation, product innovation, improved services, distribution innovation, manufacturing-cost reduction, intensive advertising.</p>
+
+<h3>Market follower strategies (slide 12)</h3>
+<table>
+  <tr><th>Strategy</th><th>Slide definition</th></tr>
+  <tr><td>Counterfeiting</td><td>An exact or highly similar <b>duplicate</b> of the market leader's product. Typically <b>illegal</b></td></tr>
+  <tr><td>Cloning</td><td>Copying the market leader's or dominant player's product <b>with subtle differences, if any</b></td></tr>
+  <tr><td>Imitating</td><td>Making a <b>cheap or extremely low-cost copy</b> of the market leader's or dominant player's product</td></tr>
+  <tr><td>Adapting</td><td>Copying <b>certain elements</b> of the competitor's products into one's own</td></tr>
+</table>
+<div class="beyond"><b class="l">Beyond the slides: competition concepts from Kotler</b>
+<ul style="margin-bottom:0">
+  <li><b>Market nichers</b> (the ~10% role) specialise by end use, customer size, geography, product, quality-price or channel. They earn <b>high margins</b>, while mass marketers earn high volume. The risk is that the niche dries up, so nichers should work multiple niches.</li>
+  <li><b>Competitor tracking:</b> share of market, <b>share of mind</b> (first brand named), <b>share of heart</b> (preferred brand).</li>
+  <li><b>Blue Ocean strategy</b> (from the book's tools list): create uncontested market space using the <b>ERRC grid</b> (Eliminate, Reduce, Raise, Create).</li>
+  <li><b>Growth routes:</b> intensive (Ansoff); integrative (backward, forward, horizontal); diversification (concentric, horizontal, conglomerate).</li>
+  <li><b>Disruptive innovation:</b> a cheap, "good-enough" entrant moves up-market and displaces incumbents.</li>
+</ul></div>
+
+<h2>Product Life Cycle Marketing Strategies<span class="ref">Slides 13–15</span></h2>
+<p>The PLC curve (slide 14): <b>sales</b> follow an S-curve through Introduction → Growth → Maturity → Decline. <b>Profit</b> is negative at first, peaks in late growth or early maturity, and falls before sales do.</p>
+<table>
+  <tr><th></th><th>Introduction</th><th>Growth</th><th>Maturity</th><th>Decline</th></tr>
+  <tr><td colspan="5" style="background:#f4f6fa;color:var(--navy)">Characteristics</td></tr>
+  <tr><td>Sales</td><td>Low sales</td><td>Rapidly rising sales</td><td>Peak sales</td><td>Declining sales</td></tr>
+  <tr><td>Costs</td><td>High cost per customer</td><td>Average cost per customer</td><td>Low cost per customer</td><td>Low cost per customer</td></tr>
+  <tr><td>Profits</td><td>Negative</td><td>Rising profits</td><td>High profits</td><td>Declining profits</td></tr>
+  <tr><td>Customers</td><td>Innovators</td><td>Early adopters</td><td>Middle majority</td><td>Laggards</td></tr>
+  <tr><td>Competitors</td><td>Few</td><td>Growing number</td><td>Stable number, beginning to decline</td><td>Declining number</td></tr>
+  <tr><td colspan="5" style="background:#f4f6fa;color:var(--navy)">Marketing objectives</td></tr>
+  <tr><td>Objective</td><td>Create product awareness and trial</td><td>Maximise market share</td><td>Maximise profit while defending market share</td><td>Reduce expenditure and milk the brand</td></tr>
+  <tr><td colspan="5" style="background:#f4f6fa;color:var(--navy)">Strategies</td></tr>
+  <tr><td>Product</td><td>Offer a basic product</td><td>Offer product extensions, service, warranty</td><td>Diversify brands and item models</td><td>Phase out weak products</td></tr>
+  <tr><td>Price</td><td>Charge cost-plus</td><td>Price to penetrate the market</td><td>Price to match or beat competitors</td><td>Cut price</td></tr>
+  <tr><td>Distribution</td><td>Build selective distribution</td><td>Build intensive distribution</td><td>Build more intensive distribution</td><td>Go selective: phase out unprofitable outlets</td></tr>
+  <tr><td>Communications</td><td>Build product awareness and trial among early adopters and dealers</td><td>Build awareness and interest in the mass market</td><td>Stress brand differences and benefits; encourage brand switching</td><td>Reduce to the minimal level needed to retain hard-core loyals</td></tr>
+</table>
+<div class="tip"><b class="l">Exam tip:</b> <b>Identify the PLC stage first</b> in any case. It fixes the objective and the default settings for the product (S10), price (S11), distribution intensity (S13) and communication mix and budget (S14). Maturity options: <b>modify the market</b> (new users, new uses, higher usage), <b>modify the product</b> (quality, features, style), or <b>modify the marketing mix</b>. Adopter shares: innovators 2.5%, early adopters 13.5%, early majority 34%, late majority 34%, laggards 16%.</div>
+
+<!-- ============================ TOOLKIT ============================ -->
+<div class="chapter" id="k1"><span>Toolkit</span><b>Case-Answering Framework</b><span class="badge">Use in every case</span></div>
+
+<h2>A 6-Step Structure for Any Case</h2>
+<table>
+  <tr><th>Step</th><th>What to write</th><th>Pull concepts from</th></tr>
+  <tr><td>1. Diagnose</td><td>The real problem in one line: <i>symptom</i> (falling sales) vs <i>cause</i> (wrong channel, gap 4, dilution)</td><td>S1 (CPV, myopia), S16 (gaps)</td></tr>
+  <tr><td>2. Situate</td><td>Customer and involvement, company strengths, competitor role, context, <b>PLC stage</b></td><td>S18 (5Cs, PLC), S2–3, S4–5</td></tr>
+  <tr><td>3. Frame</td><td>Name the 1–2 frameworks that fit and apply them explicitly</td><td>Clue table below</td></tr>
+  <tr><td>4. Options</td><td>2–3 alternatives with pros and cons</td><td>S11 price responses, S18 attacks and defences, S13 conflict tools</td></tr>
+  <tr><td>5. Recommend</td><td><b>STP first</b>, then specific 4P (or 7P) actions</td><td>S6–7, S10–S14</td></tr>
+  <tr><td>6. Measure &amp; risks</td><td>KPIs (share, recall, repeat rate, BEV, GRP) and the main risk with its mitigation</td><td>S14 measurement, S16 brand tracking</td></tr>
+</table>
+
+<h2>Clue in the Case → Concept → Session</h2>
+<table>
+  <tr><th>If the case says…</th><th>Use…</th></tr>
+  <tr><td>"Losing to a new kind of substitute"</td><td>Marketing myopia (S1); threat of substitutes (S4–5); bypass attack / mobile defence (S18)</td></tr>
+  <tr><td>"Sales flat, market saturated, look-alike brands"</td><td>PLC maturity (S18); Ansoff penetration or development; stress PODs (S6–7); expand total demand (S18)</td></tr>
+  <tr><td>"A cheaper rival is stealing share from our premium brand"</td><td>Responding to price cuts (S11); flank defence / fighter brand (S18); avoid price-cut traps</td></tr>
+  <tr><td>"Small player wants to take on the leader"</td><td>Challenger: choose the opponent, then flank, bypass or guerrilla over frontal (S18); focus strategy (Porter)</td></tr>
+  <tr><td>"Launching an innovative, high-tech product"</td><td>Skimming conditions (S11); PLC introduction (S18); complex buying (S2–3); selective distribution (S13)</td></tr>
+  <tr><td>"Launching a mass FMCG product"</td><td>Penetration pricing (S11); intensive distribution (S13); push + pull; habitual or variety-seeking buyers (S2–3)</td></tr>
+  <tr><td>"Brand starts selling online / D2C; dealers are angry"</td><td>Multichannel conflict → strategic justification, dual compensation, superordinate goals (S13); omnichannel</td></tr>
+  <tr><td>"Distributors aren't pushing our product"</td><td>Channel power (reward and expert over coercive); administered VMS; trade incentives (S11, S13)</td></tr>
+  <tr><td>"Luxury brand wants to reach wider markets"</td><td>Down-market stretch (S10); sub-brand or house of brands (S16); exclusive → selective distribution (S13)</td></tr>
+  <tr><td>"Brand wants to enter a new category"</td><td>Brand extensions and fit (S16); Ansoff diversification risk (S18)</td></tr>
+  <tr><td>"Brand is well known, but customers aren't loyal"</td><td>Resonance pyramid (S16); loyalty-status segments (S6–7); frequency programmes (S11)</td></tr>
+  <tr><td>"Old brand seen as outdated"</td><td>Brand revitalisation (S16); line modernising (S10); transformational appeals (S14)</td></tr>
+  <tr><td>"Service quality varies; complaints are rising"</td><td>Variability, gaps model, RATER, complaint handling (S16)</td></tr>
+  <tr><td>"Empty seats or rooms off-peak"</td><td>Perishability (S16); third-degree price discrimination, time-based (S11)</td></tr>
+  <tr><td>"The ad is liked, but sales don't move"</td><td>ADPLAN: linkage and positioning (S14); response hierarchy stuck at the affective stage; demand-side measurement</td></tr>
+  <tr><td>"Limited promotion budget"</td><td>Objective-task method; reach vs frequency; CPM (S14)</td></tr>
+  <tr><td>"Several businesses; where to invest?"</td><td>BCG / GE (S18); cash cows fund question marks</td></tr>
+  <tr><td>"New regulation, technology or trend"</td><td>DENPST/PESTLE → SWOT/TOWS (S4–5, S18)</td></tr>
+  <tr><td>"Selling to businesses or institutions"</td><td>Buy classes, buying centre, buying process, B2B relationships (S2–3); personal selling (S14)</td></tr>
+  <tr><td>"Want to enter rural India"</td><td>Market development (S18); sachets (affordability, the CPV cost side, S1); intensive distribution; ISEC (S6–7)</td></tr>
+</table>
+
+<!-- ============================ PRACTICE ============================ -->
+<div class="chapter" id="k2"><span>Toolkit</span><b>Practice Cases, Formulas &amp; Revision</b></div>
+<h2>Practice Cases (click to reveal model answers)</h2>
+<p class="ex">These are hypothetical cases in an endsem style. Outline your own answer with the 6 steps before opening the model answer.</p>
+
+<details class="case"><summary>Case 1 — Premium café chain vs a ₹99-coffee attacker (S11, S18, S6–7)</summary>
+<div class="q">BrewNest (a premium café with a ₹250 average ticket) is losing young customers to a ₹99-coffee kiosk chain. The board wants a 40% price cut.</div>
+<div class="a"><p><b>Diagnose:</b> the price-sensitive youth segment is defecting; experience-seekers are not. <b>Don't cut the flagship's price:</b> it triggers the low-quality, shallow-pockets and price-war traps and destroys image pricing (S11).</p>
+<p><b>Options (S11 responses):</b> maintain price and add value (loyalty programme, work-friendly spaces); a <b>fighter sub-brand</b> ("BrewNest Go" kiosks at ₹120), which is a <b>flank defence</b> (S18); third-degree pricing (student off-peak offers).</p>
+<p><b>Recommend:</b> add value on the flagship plus the fighter sub-brand. Keep the two positions separate (S6–7), and use selective kiosks near colleges (S13). <b>Measure:</b> flagship margin, sub-brand cannibalisation, repeat visits.</p></div></details>
+
+<details class="case"><summary>Case 2 — FMCG brand goes D2C; distributors revolt (S13)</summary>
+<div class="q">A snack brand's website sells 15% cheaper. Distributors and kiranas have cut its shelf space and are pushing a rival.</div>
+<div class="a"><p><b>Diagnose:</b> <b>multichannel</b> and vertical conflict, caused by <b>goal incompatibility</b> and <b>unclear rights</b>.</p>
+<p><b>Fix (slide tools):</b> price parity online; <b>strategic justification</b> (online-only combos and subscriptions for a different segment); <b>dual compensation</b> (credit distributors for online orders in their territory); <b>superordinate goal</b> (beat the rival brand); <b>co-optation</b> (a distributor advisory council). Use <b>reward and expert power</b>, not coercive power. Add <b>trade incentives</b> (display allowances, free goods: S11) to win back shelf space. This matters because intensive FMCG distribution depends on the trade.</p></div></details>
+
+<details class="case"><summary>Case 3 — Launching a patented AI hearing aid (S11, S13, S14, S18)</summary>
+<div class="q">A startup has a far superior, patent-protected hearing aid. Advise on price and go-to-market.</div>
+<div class="a"><p><b>Situate:</b> PLC introduction; <b>complex buying</b>; patents block rivals.</p>
+<p><b>Price:</b> <b>skimming</b> (all four slide conditions hold) using EVC against the next-best alternative, with a guarantee and a trial period to cut perceived risk. <b>Place:</b> <b>selective</b> distribution through audiologists and ENT clinics (service backup). <b>Promotion:</b> informational appeal, expert source (doctors), PR, demonstrations; objective = awareness → preference. <b>Budget:</b> objective-task.</p></div></details>
+
+<details class="case"><summary>Case 4 — Hotel chain with inconsistent service (S16)</summary>
+<div class="q">A mid-range chain advertises "5-star comfort at 3-star prices." Reviews cite slow check-in, rude staff, and rooms unlike the photos.</div>
+<div class="a"><p><b>Gaps:</b> the over-promising ad = <b>gap 4</b>; slow check-in and rude staff = <b>gap 3</b>; no check-in standard = <b>gap 2</b>. <b>Variability fixes:</b> training, standardised processes, satisfaction monitoring. <b>RATER:</b> reliability (rooms as shown), responsiveness (check-in), assurance and empathy (staff), tangibles. <b>Best practices:</b> high standards, monitoring systems, handling every complaint, satisfying employees to satisfy customers. Reposition honestly, and <b>measure</b> review ratings and repeat stays.</p></div></details>
+
+<details class="case"><summary>Case 5 — Premium watch brand wants a ₹2,000 range (S10, S16)</summary>
+<div class="q">A premium Indian watch brand (₹15,000+) wants to enter the ₹2,000 youth segment.</div>
+<div class="a"><p><b>Concepts:</b> <b>down-market stretch</b> (growth, but a risk of dilution and cannibalisation) and brand-extension fit (S16).</p>
+<p><b>Recommend:</b> a <b>sub-brand or separate brand</b> with light parent endorsement (the Titan → Fastrack logic). Give it its own youth imagery and distinct distribution, and keep the parent's premium position intact. <b>Mix:</b> penetration-leaning price, transformational appeals, social media.</p></div></details>
+
+<details class="case"><summary>Case 6 — Regional detergent challenging the national leader (S18, S2–3)</summary>
+<div class="q">A regional detergent brand strong in two states, with a limited budget, wants to grow against the national leader.</div>
+<div class="a"><p><b>Avoid a frontal attack.</b> Use a <b>flank</b> attack (underserved small towns and villages; a hard-water formula; ₹5 packs) and <b>guerrilla</b> tactics (local promotions, retailer schemes).</p>
+<p><b>Porter:</b> cost focus. <b>Ansoff:</b> market development into neighbouring states. <b>Buyers</b> are habitual or variety-seeking, so strong <b>push</b> and trade incentives, shelf presence and sampling. <b>Measure:</b> district share, numeric distribution, trial and repeat rates.</p></div></details>
+
+<details class="case"><summary>Case 7 — Legacy biscuit brand losing relevance (S16, S10, S14)</summary>
+<div class="q">A 60-year-old biscuit brand has near-universal awareness, but young consumers see it as old-fashioned.</div>
+<div class="a"><p><b>Diagnose:</b> high <b>salience</b>, weak <b>imagery and feelings</b> (resonance pyramid). This is a <b>revitalisation</b> problem, not an awareness problem.</p>
+<p><b>Actions:</b> new usage occasions; <b>line modernising</b> and a modern pack (S10); <b>transformational</b> appeals; co-branding with a youth brand. Keep the core POPs (taste, trust). <b>Test the creative with ADPLAN</b>, especially <b>linkage</b>. <b>Measure</b> through brand tracking of youth imagery.</p></div></details>
+
+<details class="case"><summary>Case 8 — Pricing numerical (S11)</summary>
+<div class="q">VC = ₹40, FC = ₹6,00,000, expected sales 20,000 units, investment ₹20 lakh. Find (a) the mark-up price at a 25% return on sales, (b) the target-return price at 15% ROI, and (c) the BEV at (b).</div>
+<div class="a"><p>Unit cost = 40 + 30 = <b>₹70</b>. (a) 70 ÷ 0.75 = <b>₹93.33</b>. (b) 70 + (0.15 × 20,00,000) ÷ 20,000 = <b>₹85</b>. (c) 6,00,000 ÷ (85 − 40) = <b>13,333 units</b>.</p>
+<p class="ex">Elasticity check: if a 10% price cut raises volume by 25%, E = −2.5 (elastic), so the cut increases revenue.</p></div></details>
+
+<details class="case"><summary>Case 9 — Shampoo brand going rural (S6–7, S13, S18, S1)</summary>
+<div class="q">An urban shampoo brand (₹180 bottles) has 3% rural penetration and wants rural growth without hurting its urban image.</div>
+<div class="a"><p><b>Ansoff:</b> market development. <b>CPV:</b> cut the monetary cost per purchase with ₹2–₹5 <b>sachets</b>. <b>Segmentation:</b> geographic (rural) plus ISEC classes. <b>Distribution:</b> intensive rural reach (hub-and-spoke, haats, women-entrepreneur networks). <b>Promotion:</b> sampling for trial, and regional-language, low-literacy media. Keep the pack formats and messages distinct so the urban positioning is protected (strategic justification).</p></div></details>
+
+<details class="case"><summary>Case 10 — B2B software firm losing tenders (S2–3, S14)</summary>
+<div class="q">A mid-sized ERP firm with strong features keeps losing large tenders. Buyers say, "We weren't sure you could support us."</div>
+<div class="a"><p><b>Diagnose:</b> a <b>new buy</b> with high risk. The <b>buying centre</b> values credibility and support over features. <b>Actions:</b> map the roles (users: ease of use; influencers: technical fit; deciders and approvers: ROI and risk; gatekeepers: procurement); provide reference clients; offer pilots and service guarantees; build a <b>trust, credibility and reputation</b> strategy (slide 30); use personal and consultative selling and PR. <b>Measure:</b> shortlist rate, win rate.</p></div></details>
+
+<details class="case"><summary>Case 11 — Multiplex with empty weekday seats (S16, S11)</summary>
+<div class="q">A multiplex runs at 85% weekend occupancy but 20% on weekday afternoons, with uniform prices.</div>
+<div class="a"><p><b>Perishability.</b> <b>Demand side:</b> differential pricing (₹99 weekday matinées, which is third-degree, time-based pricing); boost non-peak demand (student and senior shows, corporate bookings, live-sports screenings); complementary services (food and drink combos, i.e., bundling); reservations and subscription passes (two-part pricing). <b>Supply side:</b> part-time staff at weekends. <b>Measure:</b> weekday occupancy, revenue per seat.</p></div></details>
+
+<details class="case"><summary>Case 12 — Media-plan numerical (S14)</summary>
+<div class="q">Budget ₹2 crore. Option A: TV (reach 70%, frequency 2, cost ₹1.8 cr, impact 1.2). Option B: digital + outdoor (reach 45%, frequency 5, cost ₹1.5 cr, impact 1.0). The product is a new energy drink for youth.</div>
+<div class="a"><p>GRP: A = 140, B = 225. Weighted exposure: A = 168, B = 225. Cost per weighted GRP: A ≈ ₹1.07 lakh, B ≈ ₹0.67 lakh. <b>B</b> is more efficient, reaches the youth target, and leaves ₹50 lakh for sampling (trial). A would be better only if the goal were broad mass <b>reach</b>. Measure ad recall and trial rate.</p></div></details>
+
+<h2>Formula Sheet</h2>
+<table>
+  <tr><th>Concept</th><th>Formula</th><th>Session</th></tr>
+  <tr><td>Customer-perceived value</td><td><span class="formula">Total customer benefit − Total customer cost</span></td><td>S1</td></tr>
+  <tr><td>Price elasticity</td><td><span class="formula">%ΔQ ÷ %ΔP</span></td><td>S11</td></tr>
+  <tr><td>Unit cost</td><td><span class="formula">VC + FC ÷ Unit sales</span></td><td>S11</td></tr>
+  <tr><td>Mark-up price</td><td><span class="formula">Unit cost ÷ (1 − return on sales)</span></td><td>S11</td></tr>
+  <tr><td>Target-return price</td><td><span class="formula">Unit cost + (ROI × Capital) ÷ Unit sales</span></td><td>S11</td></tr>
+  <tr><td>Break-even volume</td><td><span class="formula">FC ÷ (Price − VC)</span></td><td>S11</td></tr>
+  <tr><td>Cost-based price (book)</td><td><span class="formula">Cost price + % profit</span></td><td>S11</td></tr>
+  <tr><td>CPM</td><td><span class="formula">Media cost × 1,000 ÷ Audience reached</span></td><td>S14</td></tr>
+  <tr><td>GRP (exposure)</td><td><span class="formula">Reach × Frequency</span></td><td>S14</td></tr>
+  <tr><td>Weighted exposure</td><td><span class="formula">Reach × Frequency × Impact</span></td><td>S14</td></tr>
+  <tr><td>Chain-ratio demand</td><td><span class="formula">Base number × % × % × …</span></td><td>S4–5</td></tr>
+  <tr><td>Market share</td><td><span class="formula">Company sales ÷ Market sales</span></td><td>S4–5, S18</td></tr>
+</table>
+
+<h2>One-Line Revision, by Session</h2>
+<table>
+  <tr><th>Session</th><th>Remember as</th></tr>
+  <tr><td>S1 Concepts</td><td>Production → Product → Selling → Marketing (+ Societal, from the book)</td></tr>
+  <tr><td>S1 Myopia</td><td>Customer-satisfying, not goods-producing; start with the customer and work backwards</td></tr>
+  <tr><td>S1 Value</td><td>CPV = benefits (product, service, personnel, image) − costs (money, time, energy, psychological); triad = quality · service · price</td></tr>
+  <tr><td>S1 Need–want–demand</td><td>Requirement → shaped by society → backed by purchasing power</td></tr>
+  <tr><td>S2–3 Layers</td><td>Beliefs → Values → Attitude → Behaviour</td></tr>
+  <tr><td>S2–3 Psychology</td><td>Motivation (Maslow, Freud, Herzberg) · Perception · Emotions · Memory (nodes and links)</td></tr>
+  <tr><td>S2–3 Reference groups</td><td>Primary · Secondary · Aspirational · Dissociative</td></tr>
+  <tr><td>S2–3 Buying grid</td><td>Complex · Information-seeking (dissonance-reducing) · Variety-seeking · Habitual</td></tr>
+  <tr><td>S2–3 Choice sets</td><td>Total → Awareness → Consideration → Choice → Decision</td></tr>
+  <tr><td>S2–3 B2B</td><td>New buy · Straight rebuy · Modified rebuy; 8-step buying process; derived and inelastic demand</td></tr>
+  <tr><td>S4–5 Info sources</td><td>Internal records (past) · Intelligence (current) · Research (why and forecasting)</td></tr>
+  <tr><td>S4–5 Macro</td><td>Demographic · Economic · Natural · Politico-legal · Socio-cultural · Technological</td></tr>
+  <tr><td>S4–5 Five forces</td><td>Rivalry · New entrants · Substitutes · Supplier power · Buyer power</td></tr>
+  <tr><td>S4–5 Research</td><td>Problem → Plan → Collect → Analyse → Decide</td></tr>
+  <tr><td>S4–5 Demand methods</td><td>Chain-ratio · Market build-up</td></tr>
+  <tr><td>S6–7 Criteria</td><td>Differentiable · Measurable · Substantial · Accessible · Actionable</td></tr>
+  <tr><td>S6–7 ISEC</td><td>MRSI · 12 classes · female education + male education + chief earner's occupation</td></tr>
+  <tr><td>S6–7 Loyalty status</td><td>Hard-core · Split · Shifting · Switchers</td></tr>
+  <tr><td>S6–7 Targeting</td><td>Mass · Single segment · Multiple segment · Mass customisation</td></tr>
+  <tr><td>S6–7 Positioning</td><td>Frame → POP/POD (desirable, deliverable, differentiable) → Mantra (3–5 words)</td></tr>
+  <tr><td>S10 Continuum</td><td>Pure good → Good + service → Hybrid → Service + minor good → Pure service</td></tr>
+  <tr><td>S10 Levels</td><td>Core → Basic → Expected → Augmented → Potential</td></tr>
+  <tr><td>S10 Mix</td><td>Width (lines) · Length (items) · Depth (variants) · Consistency</td></tr>
+  <tr><td>S10 Line strategies</td><td>Analysis · Stretch (down, up, two-way) · Filling · Modernising · Featuring · Pruning</td></tr>
+  <tr><td>S11 Psychology</td><td>Reference prices · Image pricing · Pricing cues</td></tr>
+  <tr><td>S11 Steps</td><td>Objective → Demand → Costs → Competitors → Method → Final price</td></tr>
+  <tr><td>S11 Methods</td><td>Mark-up · Target return · EVC · Going-rate · Auction</td></tr>
+  <tr><td>S11 Discrimination</td><td>1st: each buyer · 2nd: volume · 3rd: segments</td></tr>
+  <tr><td>S11 Mix pricing</td><td>Loss-leader · Optional · Captive · Two-part · By-product · Bundling</td></tr>
+  <tr><td>S11 Incentives</td><td>Consumer · Trade · Sales force; push vs pull</td></tr>
+  <tr><td>S13 Flows</td><td>Physical · Title · Payment · Information · Promotion</td></tr>
+  <tr><td>S13 Service outputs</td><td>Lot size · Waiting time · Spatial convenience · Variety · Service backup</td></tr>
+  <tr><td>S13 Power</td><td>Coercive · Reward · Legal · Expert · Referent</td></tr>
+  <tr><td>S13 VMS</td><td>Coordinated (corporate) · Administered · Contractual; plus HMS</td></tr>
+  <tr><td>S13 Omnichannel</td><td>Brick-and-mortar (location) → Online (variety, price, convenience) → Omnichannel (seamless)</td></tr>
+  <tr><td>S13 Conflict</td><td>Horizontal · Vertical · Multichannel; 4 causes; 8 remedies</td></tr>
+  <tr><td>S14 Programme</td><td>Objective → Audience → Message → Media mix → Media plan → Measure</td></tr>
+  <tr><td>S14 Budget</td><td>Competitive parity · Objective-task · % of sales · Affordability</td></tr>
+  <tr><td>S14 ADPLAN</td><td>Attention · Distinction · Positioning · Linkage · Amplification · Net equity</td></tr>
+  <tr><td>S14 IMC criteria</td><td>Coverage · Contribution · Commonality · Complementarity · Conformability · Cost</td></tr>
+  <tr><td>S14 Media plan</td><td>CPM · GRP = R × F · Weighted = R × F × I</td></tr>
+  <tr><td>S16 Service features</td><td>Intangibility · Inseparability · Variability · Perishability</td></tr>
+  <tr><td>S16 Gaps</td><td>Expectation ↔ management perception ↔ specs ↔ delivery ↔ communication; perceived vs expected</td></tr>
+  <tr><td>S16 RATER</td><td>Reliability · Responsiveness · Assurance · Empathy · Tangibles</td></tr>
+  <tr><td>S16 Brand equity</td><td>Differential effect of brand knowledge; measured directly or indirectly, through audits and tracking</td></tr>
+  <tr><td>S16 Valuation</td><td>Cost · Market · Financial approach</td></tr>
+  <tr><td>S16 Resonance</td><td>Salience → Performance/Imagery → Judgments/Feelings → Resonance</td></tr>
+  <tr><td>S16 Architecture</td><td>House of brands · Branded house · Sub-brands · Co-/ingredient branding · Reinforce · Revitalise · Extend</td></tr>
+  <tr><td>S18 Outline</td><td>5Cs → value creation (Product, Place, Promotion) + value capture (Price)</td></tr>
+  <tr><td>S18 Porter</td><td>Cost leadership · Differentiation · Focus</td></tr>
+  <tr><td>S18 Growth</td><td>BCG (Stars, Cows, ?, Dogs) · Ansoff (Penetration, Product dev., Market dev., Diversification)</td></tr>
+  <tr><td>S18 Leader</td><td>Expand demand · Protect share (6 defences) · Increase share (with caution)</td></tr>
+  <tr><td>S18 Challenger</td><td>Frontal · Flank · Encirclement · Bypass · Guerrilla</td></tr>
+  <tr><td>S18 Follower</td><td>Counterfeiting · Cloning · Imitating · Adapting</td></tr>
+  <tr><td>S18 PLC objectives</td><td>Awareness and trial → Max share → Max profit + defend → Cut spend and milk</td></tr>
+</table>
+
+<p class="src"><b>Primary source:</b> session slides S1, S2–3, S4–5, S6–7, S10, S11, S13, S14, S16, S18 (MBA02), including the image-only slides (Daimler mix, Surf Excel range, brand logos, PLC curve and strategy table). <b>Supporting source:</b> course book <i>Basics of Marketing</i> (Dr. Abhinav Srivastava), sections BM.1–BM.11. <b>"Beyond the slides" boxes:</b> Kotler, Keller, Chernev, Sheth &amp; Shainesh, <i>Marketing Management</i> (Pearson India). Practice cases are hypothetical.</p>
+
+</div>
+<script>
+  window.addEventListener('beforeprint',()=>document.querySelectorAll('details').forEach(d=>d.open=true));
+</script>
+</body>
+</html>
