@@ -1,0 +1,1948 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head><body><title>IGB End-Term Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F4F6F9; --surface:#FFFFFF; --sunk:#EEF1F5; --ink:#1A2130; --muted:#5A6376; --line:#DCE1E8;
+  --accent:#1E5A86; --accent-soft:#E4EEF7;
+  --def:#1E5A86; --def-bg:#EEF4FA;
+  --eg:#2F7A4E; --eg-bg:#EDF6F0;
+  --tip:#A8650A; --tip-bg:#FFF5E3;
+  --more:#6B7285; --more-bg:#F2F3F6;
+  --hl:#FFE69A; --hl-ink:#1A2130;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#11151C; --surface:#171C25; --sunk:#1D232E; --ink:#E4E8EF; --muted:#9BA4B5; --line:#2A3140;
+    --accent:#8BBBE0; --accent-soft:#1C2A39;
+    --def:#8BBBE0; --def-bg:#18232F;
+    --eg:#72C497; --eg-bg:#152219;
+    --tip:#E9AC52; --tip-bg:#261F12;
+    --more:#A3AABA; --more-bg:#1C2029;
+    --hl:#5A4A12; --hl-ink:#FFF3C4;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#11151C; --surface:#171C25; --sunk:#1D232E; --ink:#E4E8EF; --muted:#9BA4B5; --line:#2A3140;
+  --accent:#8BBBE0; --accent-soft:#1C2A39;
+  --def:#8BBBE0; --def-bg:#18232F;
+  --eg:#72C497; --eg-bg:#152219;
+  --tip:#E9AC52; --tip-bg:#261F12;
+  --more:#A3AABA; --more-bg:#1C2029;
+  --hl:#5A4A12; --hl-ink:#FFF3C4;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.68;margin:0}
+.wrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:44px;max-width:1080px;margin:0 auto;padding-inline:24px;padding-block:28px 96px}
+
+/* sidebar */
+.toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);align-self:start;max-height:calc(100vh - 40px);overflow:auto;font-size:13.5px;line-height:1.4}
+.toc summary{display:none}
+.toc .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc > div > ol > li{margin-bottom:2px}
+.toc a{display:block;color:var(--ink);text-decoration:none;border-radius:5px;padding:5px 8px}
+.toc a:hover,.toc a:focus-visible{background:var(--accent-soft);outline:none}
+.toc .s > a{font-weight:600}
+.toc .s > a .n{display:block;font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--muted);letter-spacing:.04em}
+.toc .s.active > a{background:var(--accent-soft)}
+.toc .s.done > a .t{color:var(--muted);text-decoration:line-through}
+.toc .sub{display:none;margin:2px 0 8px 8px;border-left:1px solid var(--line)}
+.toc .s.active .sub{display:block}
+.toc .sub a{padding:3px 8px;color:var(--muted);font-size:12.5px}
+.toc .sub a:hover{color:var(--ink)}
+.toc .sub a.on{color:var(--accent);font-weight:500}
+
+/* content */
+main{min-width:0;max-width:740px}
+header.top{padding-bottom:8px}
+header.top h1{font-family:var(--serif);font-weight:650;font-size:clamp(34px,5vw,46px);line-height:1.08;margin:0 0 12px;text-wrap:balance}
+header.top p{color:var(--muted);margin:0 0 8px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;font-size:13px}
+.legend span{border-left:3px solid;padding:3px 10px;border-radius:0 4px 4px 0}
+.legend .l-def{border-color:var(--def);background:var(--def-bg)}
+.legend .l-eg{border-color:var(--eg);background:var(--eg-bg)}
+.legend .l-tip{border-color:var(--tip);background:var(--tip-bg)}
+.legend .l-more{border-color:var(--more);background:var(--more-bg)}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
+
+section.session{border-top:2px solid var(--ink);margin-top:56px;padding-top:22px;scroll-margin-top:16px}
+section.session > header h2{font-family:var(--serif);font-weight:650;font-size:36px;line-height:1.12;margin:0 0 8px;text-wrap:balance}
+section.session > header p.sub{color:var(--muted);margin:0 0 10px}
+.faculty{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:3px;padding:1px 6px;margin-left:6px;vertical-align:3px;white-space:nowrap}
+.done-toggle{display:inline-flex;gap:8px;align-items:center;font-size:13px;color:var(--muted);cursor:pointer;user-select:none}
+.done-toggle input{accent-color:var(--accent);margin:0;width:15px;height:15px}
+
+article.topic{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:26px 30px 22px;margin-top:22px;scroll-margin-top:16px}
+article.topic h3{font-family:var(--serif);font-weight:650;font-size:25px;line-height:1.25;margin:0 0 12px;text-wrap:balance;display:flex;gap:12px;align-items:baseline}
+article.topic h3 .num{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--accent);flex:none}
+h4{font-size:13px;font-family:var(--mono);font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:22px 0 8px}
+p{margin:0 0 12px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin:5px 0}
+li > ul{margin:4px 0 4px}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 3px;border-radius:3px}
+b,strong{font-weight:600}
+
+.box{border-left:3px solid;padding:12px 16px 12px;border-radius:0 7px 7px 0;margin:16px 0}
+.box > .k{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;margin-bottom:5px}
+.box > :last-child{margin-bottom:0}
+.box.def{border-color:var(--def);background:var(--def-bg)} .box.def > .k{color:var(--def)}
+.box.eg{border-color:var(--eg);background:var(--eg-bg)} .box.eg > .k{color:var(--eg)}
+.box.tip{border-color:var(--tip);background:var(--tip-bg)} .box.tip > .k{color:var(--tip)}
+.box.more{border-color:var(--more);background:var(--more-bg)} .box.more > .k{color:var(--more)}
+
+.tbl{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:7px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.5;font-variant-numeric:tabular-nums}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line)}
+thead th{background:var(--sunk);font-weight:600;font-size:13.5px}
+tbody th{font-weight:600;background:var(--sunk)}
+tr:last-child td,tr:last-child th{border-bottom:0}
+
+.flow{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:stretch;margin:14px 0 16px;font-size:14px;line-height:1.4}
+.flow span{border:1px solid var(--line);background:var(--sunk);border-radius:6px;padding:7px 11px}
+.flow i{align-self:center;color:var(--muted);font-style:normal}
+.fig{overflow-x:auto;margin:14px 0 16px}
+.fig svg{display:block;max-width:100%;height:auto;color:var(--ink)}
+svg text{fill:var(--ink);font-family:var(--sans)}
+
+.tk{display:grid;grid-template-columns:auto 1fr 1fr;gap:6px;margin:14px 0 16px;font-size:14px;max-width:520px}
+.cap{color:var(--muted);font-size:14px}
+.tk .cell{border:1px solid var(--line);background:var(--sunk);border-radius:6px;padding:12px;text-align:center}
+.tk .cell b{display:block;font-size:16px}
+.tk .cell small{color:var(--muted)}
+.tk .cell.win{background:var(--eg-bg);border-color:var(--eg)}
+.tk .ax-y{grid-row:1 / 4;writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;color:var(--muted);font-size:12.5px}
+.tk .ax-x{grid-column:2 / 4;text-align:center;color:var(--muted);font-size:12.5px}
+.tk .mid{grid-column:2 / 4;border:1px dashed var(--accent);border-radius:6px;padding:10px;text-align:center;background:var(--surface)}
+.tk .mid b{display:block;font-size:16px}
+.tk .mid small{color:var(--muted)}
+
+.recall{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px 30px}
+.recall h3{font-family:var(--serif);font-weight:650;font-size:22px;margin:0 0 10px}
+details.q{border-top:1px solid var(--line)}
+details.q:last-child{border-bottom:1px solid var(--line)}
+details.q summary{cursor:pointer;padding:10px 0;font-weight:500;list-style-position:outside}
+details.q summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+details.q > div{padding:0 0 12px 18px;color:var(--ink)}
+details.q > div > :last-child{margin-bottom:0}
+
+@media (max-width:880px){
+  .wrap{grid-template-columns:1fr;gap:0;padding-inline:16px}
+  .toc{position:static;max-height:none;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:0;margin-bottom:10px}
+  .toc summary{display:block;cursor:pointer;padding:12px 14px;font-weight:600}
+  .toc > div{padding:0 10px 10px}
+  .toc .lbl{display:none}
+  .toc .sub{display:none!important}
+  article.topic{padding:20px 18px}
+  .recall{padding:18px}
+  section.session > header h2{font-size:30px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<details class="toc" id="toc" open>
+<summary>Contents</summary>
+<div>
+<p class="lbl">Sessions</p>
+<ol id="tocList"></ol>
+</div>
+</details>
+
+<main>
+<header class="top">
+  <p class="eyebrow">Individual &amp; Group Behaviour · Dr. Poonam Barhoi</p>
+  <h1>IGB End-Term Notes</h1>
+  <p>Sessions 11 to 18 in teaching order. Every topic is numbered and follows the same layout, so you always know where to look.</p>
+  <p>Sessions marked <span class="faculty">Faculty pick</span> contain the topics the faculty suggested. All other topics are covered in the same depth.</p>
+  <div class="legend">
+    <span class="l-def">Definition</span>
+    <span class="l-eg">Example</span>
+    <span class="l-tip">Exam tip</span>
+    <span class="l-more">Beyond the slides (textbook detail)</span>
+  </div>
+</header>
+
+<!-- ===================== SESSION 11 ===================== -->
+<section class="session" id="s11" data-n="Session 11" data-t="Stress at Work">
+<header>
+  <p class="eyebrow">Session 11</p>
+  <h2>Stress at Work</h2>
+  <p class="sub">What stress is, where it comes from, what it does to people and performance, and how individuals and organisations can manage it.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s11" data-s="s11"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t11-1" data-t="Why stress matters">
+  <h3><span class="num">11.1</span>Why stress at work matters</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Stress</b> is a person's response to demands placed on them. Whether that response helps or harms depends on how intense the demand is, how long it lasts, and how well the person can cope.</p></div>
+  <h4>Explanation</h4>
+  <p>Stress is not a rare problem. The American Psychological Association's <i>Stress in America</i> survey (2015) asked people which area of life causes them the most stress. Work came second, just behind money, and ahead of family and health. Because people spend most of their waking hours at work, the way work is designed has a large effect on their well-being.</p>
+  <p>The causes of stress also differ across cultures. American employees are stressed mostly by a <b>lack of control</b> over their work. Chinese employees are stressed mostly by <b>job evaluations and a lack of training</b>. The damage, however, is the same in every culture: stress is equally bad for employees everywhere.</p>
+  <h4>Key points</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Area causing most stress (APA, 2015)</th><th>% of respondents</th></tr></thead>
+    <tbody>
+      <tr><td>Financial worries</td><td>64%</td></tr>
+      <tr><td>Work</td><td>60%</td></tr>
+      <tr><td>Family responsibilities</td><td>47%</td></tr>
+      <tr><td>Health concerns</td><td>46%</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>An American software engineer feels stressed because a manager dictates every detail of how code must be written (lack of control). A Chinese colleague on the same team feels stressed because the quarterly rating decides the bonus and no training was given for a new tool (evaluation and training).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Quote "work 60%, second only to money at 64%" to open any stress answer. Mention the cultural difference as a moderator.</p></div>
+</article>
+
+<article class="topic" id="t11-2" data-t="Demand, appraisal, response">
+  <h3><span class="num">11.2</span>Demand → appraisal → response</h3>
+  <div class="box def"><span class="k">Definition</span><p>Stress unfolds in three steps: a <b>demand</b> creates pressure, the person <b>appraises</b> (interprets) it, and that appraisal decides the <b>response</b>.</p></div>
+  <div class="flow"><span><b>Demand</b><br>task, deadline, conflict, uncertainty, change, responsibility</span><i>→</i><span><b>Appraisal</b><br>challenge, opportunity, threat, or overload?</span><i>→</i><span><b>Response</b><br>energy and focus, or anxiety, exhaustion, withdrawal, lower performance</span></div>
+  <h4>Explanation</h4>
+  <p>The key idea is the middle step. The demand itself does not decide whether stress is good or bad. What matters is how the person reads it. If they see the demand as a <b>challenge</b> or an <b>opportunity</b>, stress gives energy and focus. If they see it as a <b>threat</b> or as <b>overload</b>, the same demand produces anxiety, exhaustion and withdrawal.</p>
+  <p>This explains the slide's message that "not all pressure is harmful". The manager's job is therefore to <mark>create demanding work without creating chronic overload</mark>: keep the challenge, but make sure people have the time, skills and support to see it as manageable.</p>
+  <div class="box eg"><span class="k">Example</span><p>Two analysts get the same two-week deadline for a client report. Riya has done three similar reports and her manager is supportive, so she reads it as a chance to shine and works with focus. Arjun is new, has never used the data tool, and is also caring for a sick parent, so he reads it as a threat. He sleeps badly and makes mistakes. Same demand, different appraisal, different response.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Whenever a question asks "Is stress always bad?", answer with this model: no, it depends on appraisal, intensity, duration and coping.</p></div>
+</article>
+
+<article class="topic" id="t11-3" data-t="Sources and consequences">
+  <h3><span class="num">11.3</span>Model of stress: sources, moderators, consequences</h3>
+  <div class="box def"><span class="k">Definition</span><p>The stress model shows three groups of <b>potential sources</b> passing through <b>individual differences</b> (moderators) to become <b>experienced stress</b>, which then produces three groups of <b>consequences</b>.</p></div>
+  <h4>Explanation</h4>
+  <p><b>Potential sources</b> are called "potential" because they only cause stress if the person actually experiences them as stressful.</p>
+  <ul>
+    <li><b>Environmental factors</b> come from outside the organisation: economic uncertainty (recession, layoffs in the industry), political uncertainty (policy changes, elections), and technological change (AI making skills obsolete).</li>
+    <li><b>Organisational factors</b> come from the job itself: <b>task demands</b> (workload, pace, working conditions), <b>role demands</b> (role conflict, role overload, role ambiguity), and <b>interpersonal demands</b> (lack of support, poor relationships with colleagues or boss).</li>
+    <li><b>Personal factors</b> come from the employee's life outside work: family problems (marriage, children, elderly parents) and economic problems (debt, EMIs).</li>
+  </ul>
+  <p><b>Individual differences</b> act as filters. They explain why two people exposed to the same source feel different levels of stress:</p>
+  <ul>
+    <li><b>Perception:</b> one person sees a restructuring as a threat, another as an opportunity.</li>
+    <li><b>Job experience:</b> experienced employees have learned coping methods.</li>
+    <li><b>Social support:</b> supportive colleagues, family or friends buffer stress.</li>
+    <li><b>Personality traits:</b> for example, people high in neuroticism tend to feel more stress.</li>
+    <li><b>Cultural differences</b> also shape what is felt as stressful (see 11.1).</li>
+  </ul>
+  <p><b>Consequences</b> fall into three groups:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Physiological</th><th>Psychological</th><th>Behavioural</th></tr></thead>
+    <tbody><tr>
+      <td>Immediate effects (heart rate, breathing, headaches)<br>Illness<br>Chronic health conditions (blood pressure, heart disease)</td>
+      <td>Anxiety<br>Lower emotional well-being<br>Lower job satisfaction (the most obvious sign)</td>
+      <td>Lower job performance and productivity<br>Higher absenteeism and turnover<br>Changed eating habits, more smoking or alcohol<br>Rapid speech, fidgeting, sleep disorders</td>
+    </tr></tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>During an industry-wide slowdown (environmental), a sales manager is given a target 40% higher than last year (task demand) and is unclear whether she reports to the regional or national head (role ambiguity). She is also paying a home loan (personal). She has little support at work (moderator). Within months she has frequent headaches (physiological), feels constantly anxious (psychological) and starts taking sick days (behavioural).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Draw the model as three columns joined by arrows. Give one example under every heading. This single diagram earns most of the marks for a "sources and consequences" question.</p></div>
+</article>
+
+<article class="topic" id="t11-4" data-t="Inverted-U">
+  <h3><span class="num">11.4</span>Stress and performance: the inverted-U</h3>
+  <div class="box def"><span class="k">Definition</span><p>The relationship between stress and performance is an <b>inverted U</b>: performance rises as stress moves from low to moderate, peaks, and then falls as stress becomes high.</p></div>
+  <div class="fig"><svg viewBox="0 0 460 210" width="460" role="img" aria-label="Inverted U: performance rises with moderate stress, then falls at high stress">
+    <line x1="50" y1="170" x2="440" y2="170" stroke="currentColor" stroke-opacity=".45"/>
+    <line x1="50" y1="170" x2="50" y2="20" stroke="currentColor" stroke-opacity=".45"/>
+    <path d="M60 160 C150 150,170 32,245 32 C320 32,340 150,430 160" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <text x="245" y="200" text-anchor="middle" font-size="13">Stress: low → high</text>
+    <text x="18" y="96" font-size="13" transform="rotate(-90 18 96)" text-anchor="middle">Performance</text>
+    <text x="80" y="135" font-size="12">Under-stimulated</text>
+    <text x="215" y="22" font-size="12">Optimal zone</text>
+    <text x="355" y="135" font-size="12">Overload</text>
+  </svg></div>
+  <h4>Explanation</h4>
+  <p>With too little stress, people are bored and under-stimulated. With a moderate amount, they are alert and focused, so performance is highest. Beyond that point, stress starts to exceed coping ability and performance drops.</p>
+  <p>Because low-to-moderate stress can be <b>functional</b>, managers may not worry about it. The slide warns of a perception gap: what management sees as "a positive stimulus that keeps the adrenaline running" is very likely to be seen by the employee as <b>"excessive pressure"</b>. Managers are often further up the curve than they think.</p>
+  <div class="box eg"><span class="k">Example</span><p>A student with no exam pressure doesn't study (left side). A week before the exam, moderate pressure makes them study efficiently (peak). If three exams fall on one day and they have not slept, panic sets in and they blank out (right side).</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>This curve is often called the <b>Yerkes-Dodson law</b>.</p></div>
+</article>
+
+<article class="topic" id="t11-5" data-t="Eustress vs distress">
+  <h3><span class="num">11.5</span>Eustress vs distress</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Eustress</b> is positive stress: stress felt as a challenge. <b>Distress</b> is negative stress: persistent stress that exceeds a person's capacity to cope or adapt.</p></div>
+  <h4>Key points</h4>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Eustress (positive)</th><th>Distress (negative)</th></tr></thead>
+    <tbody>
+      <tr><th>Experienced as</th><td>A challenge, not a threat</td><td>More than one can cope with</td></tr>
+      <tr><th>Produces</th><td>Excitement, motivation, fulfilment</td><td>Anxiety, withdrawal, depressive behaviour</td></tr>
+      <tr><th>Supports / leads to</th><td>Self-efficacy, productivity, innovation</td><td>Burnout, declining performance</td></tr>
+      <tr><th>More likely when</th><td>Demands are manageable and meaningful</td><td>Demands are excessive; insecurity, conflict, poor conditions</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>The line between the two is personal. <mark>The same demand can be eustress for one employee and distress for another.</mark> A startup's 60-hour weeks may energise a 24-year-old founder-minded employee and crush a colleague with a newborn. Time also matters: eustress that goes on too long without recovery turns into distress.</p>
+  <div class="box eg"><span class="k">Example</span><p>A consultant is chosen to lead a pitch to a big client. She has two weeks, a good team and her partner's trust: eustress, and she does her best work. Six months later she has led four pitches back-to-back with no break and her team has shrunk: the same kind of demand is now distress, and she is close to burnout.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Write the sentence "The same demand can be eustress for one employee and distress for another", then explain it using appraisal (11.2) and moderators (11.3).</p></div>
+</article>
+
+<article class="topic" id="t11-6" data-t="Case: Amazon">
+  <h3><span class="num">11.6</span>Case: Amazon's high-pressure culture</h3>
+  <h4>Explanation</h4>
+  <p>The case describes Amazon's demanding performance culture and asks whether it produces eustress or distress. The answer is: <b>both</b>, for different employees.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>The performance model</th><th>Why some employees thrived</th></tr></thead>
+    <tbody><tr>
+      <td>Strong customer focus and relentless ambition<br>Long hours and expectations of rapid response<br>Employees encouraged to be highly critical of ideas and performance<br>Rigorous selection and performance management<br>"Working on the edge" linked with innovation and high standards</td>
+      <td>Passionate employees felt pressure as a challenge<br>Cutting-edge projects created meaning and excitement<br>High performers gained status and felt part of an elite workforce<br>For them, the environment produced <b>eustress</b></td>
+    </tr></tbody>
+  </table></div>
+  <p>For other employees, the same features became <b>distress</b>: indefinite overtime, fear-driven comparison with colleagues, criticism used to undermine rather than improve, and little room for family or health needs. These people moved toward exit or neglect (see 11.7).</p>
+  <h4>Solution 1: keep the challenge, remove chronic overload</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Calibrate demands</th><th>Increase control</th><th>Protect recovery</th></tr></thead>
+    <tbody><tr>
+      <td>Set ambitious but realistic workloads<br>Avoid indefinite overtime as the default<br>Build recovery time into intense project cycles</td>
+      <td>Give autonomy over how work is done<br>Clarify goals and role expectations<br>Provide meaningful feedback and resources</td>
+      <td>Treat rest, family and health needs as legitimate<br>Monitor workload and early signs of burnout<br>Use social support as a coping resource</td>
+    </tr></tbody>
+  </table></div>
+  <h4>Solution 2: redesign the HR system</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Performance management</th><th>Employee voice and communication</th></tr></thead>
+    <tbody><tr>
+      <td>Replace fear-driven comparison with clear, developmental goals<br>Make expectations and evaluation criteria transparent<br>Use feedback to improve work, not to undermine colleagues<br>Balance accountability with learning and development</td>
+      <td>Give a confidential channel to report problems<br>Increase formal communication to reduce ambiguity and conflict<br>Involve employees in decisions that affect their work<br>Track everyday experience, satisfaction and stress signals</td>
+    </tr></tbody>
+  </table></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Structure a case answer as: (1) what the culture is, (2) why it creates eustress for some, (3) why it creates distress for others, (4) EVLN responses, (5) the two solutions. Do not argue for removing the challenge; the point is to keep the challenge and remove the overload.</p></div>
+</article>
+
+<article class="topic" id="t11-7" data-t="EVLN model">
+  <h3><span class="num">11.7</span>EVLN model: how employees respond to dissatisfaction</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>EVLN model</b> sorts employee responses to dissatisfaction on two dimensions, <b>active vs passive</b> and <b>constructive vs destructive</b>, giving four responses: <b>Exit, Voice, Loyalty, Neglect</b>.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Active</th><th>Passive</th></tr></thead>
+    <tbody>
+      <tr><th>Constructive</th><td><b>Voice</b>: actively try to improve the situation. Raise concerns, suggest solutions, seek organisational change.</td><td><b>Loyalty</b>: wait patiently and stay supportive, expecting conditions to improve. Stay committed, give the organisation time, defend it.</td></tr>
+      <tr><th>Destructive</th><td><b>Exit</b>: actively leave or seek alternatives. Resign, transfer, look for another job.</td><td><b>Neglect</b>: passively let conditions get worse. Reduce effort, disengage, ignore problems, more absenteeism.</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>"Active" means the employee does something; "passive" means they wait or withdraw. "Constructive" responses help the organisation; "destructive" ones hurt it. Voice and loyalty let the organisation recover. Exit costs it talent. Neglect is the most hidden and damaging: the person stays but stops trying.</p>
+  <p>The practical lesson is that organisations should make <b>voice</b> easy and safe. When voice is blocked, stressed employees drift toward exit or neglect.</p>
+  <div class="box eg"><span class="k">Example</span><p>Four overworked employees in the same team: Neha writes to HR proposing no-meeting Fridays (Voice). Sameer keeps working and tells juniors things will settle after the peak season (Loyalty). Karthik accepts an offer from a competitor (Exit). Pooja starts logging in late, does the minimum and stops attending optional meetings (Neglect).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Draw the 2×2 grid with both axes labelled. The most common mistake is swapping Loyalty and Neglect: both are passive, but loyalty is constructive and neglect is destructive.</p></div>
+</article>
+
+<article class="topic" id="t11-8" data-t="Managing stress">
+  <h3><span class="num">11.8</span>Managing stress: individual and organisational approaches</h3>
+  <h4>Explanation</h4>
+  <p>Stress can be managed at two levels. <b>Individuals</b> can change how they handle demands. <b>Organisations</b> can change the demands themselves, because many causes of stress (task and role demands) are controlled by management.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Individual approaches</th><th>Organisational approaches</th></tr></thead>
+    <tbody><tr>
+      <td>Time-management techniques<br>Increased physical exercise<br>Relaxation training (meditation, breathing)<br>Expanded social support networks</td>
+      <td>Better onboarding and training<br>Goal-setting<br>Redesigning jobs<br>Employee involvement<br>Organisational communication<br>Employee sabbaticals<br>Wellness programmes</td>
+    </tr></tbody>
+  </table></div>
+  <h4>Key organisational strategies explained</h4>
+  <ul>
+    <li><b>Goal-setting:</b> clear goals reduce stress as well as motivate. Employees who are committed to their goals and see purpose in their jobs feel less stress, because they know what "done" looks like.</li>
+    <li><b>Redesigning jobs:</b> giving more responsibility, more meaningful work, more autonomy and more feedback reduces stress. These give employees greater <b>control</b> over their work and make them less dependent on others.</li>
+    <li><b>Employee involvement:</b> letting people take part in decisions that affect them increases their sense of control.</li>
+    <li><b>Organisational communication:</b> more formal communication reduces uncertainty by lowering <b>role ambiguity</b> (not knowing what is expected) and <b>role conflict</b> (facing contradictory expectations). Managers can also use communication to shape how employees perceive events, for example explaining a reorganisation as a growth move.</li>
+    <li><b>Sabbaticals:</b> extended paid or unpaid time off lets employees recover and return refreshed.</li>
+    <li><b>Wellness programmes:</b> workshops to quit smoking, control alcohol, lose weight, eat better and exercise regularly. They focus on the employee's total physical and mental condition.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>A bank's loan officers are stressed by unclear targets and constant escalations. The bank sets monthly targets with each officer (goal-setting), lets them approve small loans without the branch manager (job redesign, more control), sends a weekly note on policy changes (communication), and offers a gym subsidy (wellness). Individually, one officer blocks the first hour of the day for planning (time management).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Always give both levels. Then say which one matters more: organisational, because it removes the cause instead of only helping people cope.</p></div>
+</article>
+
+<article class="topic" id="t11-9" data-t="Stress vs depression">
+  <h3><span class="num">11.9</span>Stress vs depression, and managing depression</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Stress</b> is a response to a specific demand or situation. <b>Depression</b> is a mental health condition involving persistent changes in mood, thinking and functioning.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Stress</th><th>Depression</th></tr></thead>
+    <tbody>
+      <tr><td>Response to a specific demand, pressure or situation</td><td>Persistent changes in mood, thinking and functioning</td></tr>
+      <tr><td>Linked to identifiable stressors: deadlines, conflict, uncertainty</td><td>May occur with or without an obvious external trigger</td></tr>
+      <tr><td>Can be positive (eustress) or negative (distress)</td><td>Involves significant emotional and functional difficulties</td></tr>
+      <tr><td>Often improves when the stressor is removed or reduced</td><td>Symptoms can persist even when circumstances improve</td></tr>
+      <tr><td>Feeling tense, overwhelmed, worried, irritable, unable to relax</td><td>Persistent sadness or emptiness, loss of interest or pleasure, hopelessness, low energy, difficulty concentrating</td></tr>
+      <tr><td>Does not necessarily mean a negative mental state</td><td>Should not be dismissed as "being stressed" or "having a bad day"</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Managing depression at work</h4>
+  <ul>
+    <li><b>Mental health is part of health.</b> Talking about stress, anxiety, burnout or depression should not be stigmatised.</li>
+    <li>Create an environment where employees can <b>ask for help without fear of judgment</b>.</li>
+    <li><b>Counselling is legitimate support.</b> Encourage use of counsellors, <b>Employee Assistance Programmes (EAPs)</b>, psychologists and other qualified professionals.</li>
+    <li><b>Managers should listen and support, not diagnose.</b></li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>A team member who was always cheerful has seemed flat and withdrawn for two months, even after a tough project ended. The manager does not say "you're just stressed" or try to label it. She asks privately how he is doing, listens, offers flexible hours, and shares the company's confidential EAP counselling number.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>The clearest single difference: stress usually eases when the stressor is removed; depression can persist even after circumstances improve.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 11</h3>
+  <details class="q"><summary>Name the three categories of stress sources, with one example each.</summary><div><p>Environmental (technological change), organisational (role ambiguity), personal (family problems).</p></div></details>
+  <details class="q"><summary>List four individual differences that moderate stress.</summary><div><p>Perception, job experience, social support, personality traits. Culture also moderates.</p></div></details>
+  <details class="q"><summary>Why might managers underestimate employee stress?</summary><div><p>What management sees as "a positive stimulus that keeps the adrenaline running" is likely seen by employees as "excessive pressure".</p></div></details>
+  <details class="q"><summary>Which EVLN response is passive and destructive?</summary><div><p>Neglect.</p></div></details>
+  <details class="q"><summary>How does redesigning jobs reduce stress?</summary><div><p>More responsibility, meaningful work, autonomy and feedback give employees greater control and less dependence on others.</p></div></details>
+  <details class="q"><summary>What is the manager's role with a possibly depressed employee?</summary><div><p>Listen and support, point to EAPs or professionals, and do not diagnose.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSION 12 ===================== -->
+<section class="session" id="s12" data-n="Session 12" data-t="Communication">
+<header>
+  <p class="eyebrow">Session 12</p>
+  <h2>Communication <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">How a message travels, which direction it flows, how group networks differ, which channel to choose, what gets in the way, and how culture changes meaning.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s12" data-s="s12"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t12-1" data-t="Communication process">
+  <h3><span class="num">12.1</span>The communication process</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Communication</b> is the transfer and understanding of meaning. The <b>communication process</b> is the sequence of steps from sender to receiver that makes this happen.</p></div>
+  <div class="flow"><span>Sender: message to be sent</span><i>→</i><span>Encoding</span><i>→</i><span>Channel</span><i>→</i><span>Receiver: message received</span><i>→</i><span>Decoding</span><i>→</i><span>Feedback to sender</span></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li><b>Sender</b> has an idea to share.</li>
+    <li><b>Encoding:</b> the sender converts the idea into symbols: words, tone, gestures, charts.</li>
+    <li><b>Channel:</b> the medium that carries the message: email, meeting, phone, notice board.</li>
+    <li><b>Receiver</b> gets the message.</li>
+    <li><b>Decoding:</b> the receiver interprets the symbols back into meaning.</li>
+    <li><b>Feedback:</b> the receiver's response, which tells the sender whether the message was understood.</li>
+    <li><b>Noise:</b> anything that distorts the message at any stage: jargon, emotions, assumptions, cultural differences, information overload, a bad network line.</li>
+  </ul>
+  <p>Communication succeeds only when the meaning <em>decoded</em> matches the meaning <em>encoded</em>. Feedback is the only step that lets the sender check this, which is why one-way communication fails so often.</p>
+  <div class="box eg"><span class="k">Example</span><p>A manager emails "Please prioritise the client report." She means "finish it today". The analyst decodes "prioritise" as "do it before your other tasks this week". The noise is an ambiguous word. If the analyst had replied "Will send by Friday, OK?" (feedback), the gap would have been caught at once.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Draw the process with noise affecting every step and a feedback arrow back to the sender. Use it to explain any case where "people didn't do what was asked", such as DRW (12.11).</p></div>
+</article>
+
+<article class="topic" id="t12-2" data-t="Downward, upward, lateral">
+  <h3><span class="num">12.2</span>Direction of communication: downward, upward, lateral</h3>
+  <div class="box def"><span class="k">Definition</span><p>Communication in organisations flows <b>downward</b> (to a lower level), <b>upward</b> (to a higher level) or <b>laterally</b> (among people at the same level).</p></div>
+  <h4>Explanation</h4>
+  <p><b>Downward communication</b> flows from one level of a group or organisation to a lower level. Leaders use it to assign goals, give instructions, explain policies and procedures, and give feedback. It must explain <b>why</b> a decision was made; people follow a decision more willingly when they understand the reason. Its major limitation is that it is <b>one-way</b>: managers tell but rarely ask for input.</p>
+  <p><b>Upward communication</b> flows to a higher level. Employees use it to give feedback to their bosses, report progress and raise current problems. Because senior managers have little time, the slide gives three rules:</p>
+  <ul>
+    <li>Communicate in <b>headlines, not paragraphs</b>.</li>
+    <li>Support your headlines with <b>actionable items</b>.</li>
+    <li>Prepare an <b>agenda</b> so you use your boss's attention well.</li>
+  </ul>
+  <p><b>Lateral communication</b> takes place among members of the same work group, among work groups at the same level, among managers at the same level, or among any horizontally equivalent people. It saves time and helps coordination, and it may be formally sanctioned. But it can create <b>dysfunctional conflict</b> when it bypasses the formal chain and managers learn about decisions after the fact.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Downward</th><th>Upward</th><th>Lateral</th></tr></thead>
+    <tbody>
+      <tr><th>Flows</th><td>Higher → lower level</td><td>Lower → higher level</td><td>Same level</td></tr>
+      <tr><th>Purpose</th><td>Goals, instructions, policies, feedback</td><td>Feedback, progress, problems</td><td>Save time, coordinate</td></tr>
+      <tr><th>Watch out for</th><td>One-way; must explain why</td><td>Keep it short: headlines + actions</td><td>Can cause dysfunctional conflict</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p><b>Downward:</b> HR announces a new hybrid-work policy and explains that it is to cut office costs while keeping collaboration days. <b>Upward:</b> a team lead messages the VP: "Project 2 weeks late. Cause: vendor delay. Need: approval for a second vendor by Monday." <b>Lateral:</b> the marketing and sales managers fix launch dates directly between themselves, and the product head is annoyed at not being consulted.</p></div>
+</article>
+
+<article class="topic" id="t12-3" data-t="Small-group networks">
+  <h3><span class="num">12.3</span>Small-group networks: chain, wheel, all-channel</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Small-group networks</b> are the patterns through which messages move among members of a group.</p></div>
+  <div class="fig"><svg viewBox="0 0 540 170" width="540" role="img" aria-label="Chain, wheel and all-channel networks">
+    <g stroke="var(--accent)" stroke-width="1.6" fill="none">
+      <path d="M40 120 L60 70 L100 40 L140 70 L160 120"/>
+      <path d="M270 90 L230 60 M270 90 L310 60 M270 90 L240 130 M270 90 L300 130 M270 90 L270 40"/>
+      <path d="M450 40 L410 70 L425 125 L475 125 L490 70 Z M450 40 L425 125 M450 40 L475 125 M410 70 L490 70 M410 70 L475 125 M490 70 L425 125"/>
+    </g>
+    <g fill="var(--accent)">
+      <circle cx="40" cy="120" r="8"/><circle cx="60" cy="70" r="8"/><circle cx="100" cy="40" r="8"/><circle cx="140" cy="70" r="8"/><circle cx="160" cy="120" r="8"/>
+      <circle cx="270" cy="90" r="9"/><circle cx="230" cy="60" r="8"/><circle cx="310" cy="60" r="8"/><circle cx="240" cy="130" r="8"/><circle cx="300" cy="130" r="8"/><circle cx="270" cy="40" r="8"/>
+      <circle cx="450" cy="40" r="8"/><circle cx="410" cy="70" r="8"/><circle cx="490" cy="70" r="8"/><circle cx="425" cy="125" r="8"/><circle cx="475" cy="125" r="8"/>
+    </g>
+    <text x="100" y="160" text-anchor="middle" font-size="13">Chain</text>
+    <text x="270" y="160" text-anchor="middle" font-size="13">Wheel</text>
+    <text x="450" y="160" text-anchor="middle" font-size="13">All-channel</text>
+  </svg></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li><b>Chain:</b> follows the formal chain of command. Each person passes information only to the next. Found in rigid hierarchies.</li>
+    <li><b>Wheel:</b> all communication passes through one central person, who acts as the hub. Found in teams with a strong leader.</li>
+    <li><b>All-channel:</b> every member communicates freely with every other member. Found in self-managed teams.</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Criterion</th><th>Chain</th><th>Wheel</th><th>All-channel</th></tr></thead>
+    <tbody>
+      <tr><th>Speed</th><td>Moderate</td><td>Fast</td><td>Fast</td></tr>
+      <tr><th>Accuracy</th><td>Moderate</td><td>High</td><td>Moderate</td></tr>
+      <tr><th>Emergence of a leader</th><td>Moderate</td><td>High</td><td>None</td></tr>
+      <tr><th>Member satisfaction</th><td>Moderate</td><td>Low</td><td>High</td></tr>
+    </tbody>
+  </table></div>
+  <p>No single network is best. The wheel is fast and accurate because one person controls the flow, but members feel left out, so satisfaction is low. The all-channel network is fast and satisfying because everyone participates, but with many voices accuracy is only moderate and no leader emerges. The chain is middle on everything.</p>
+  <div class="box eg"><span class="k">Example</span><p>During a factory fire, the plant manager acts as the hub and every supervisor reports only to him (wheel: fast, accurate, clear leader). A startup's product team brainstorming new features uses a group chat where anyone can reply to anyone (all-channel: high satisfaction, many ideas). A government file moving from clerk to section officer to under-secretary to joint secretary follows a chain.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Memorise the table. For "which network should the team use?", match the goal: accuracy and control → wheel; satisfaction and creativity → all-channel.</p></div>
+</article>
+
+<article class="topic" id="t12-4" data-t="Grapevine and rumours">
+  <h3><span class="num">12.4</span>Informal communication: the grapevine, gossip and rumours</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>grapevine</b> is the informal communication network in a group or organisation.</p></div>
+  <h4>Explanation</h4>
+  <p>The grapevine exists in every organisation and cannot be shut down. Instead of fighting it, managers can learn from it. The grapevine:</p>
+  <ul>
+    <li>gives managers a feel for the <b>morale</b> of the organisation,</li>
+    <li>identifies <b>issues employees consider important</b>,</li>
+    <li>helps managers tap into <b>employee anxieties</b>.</li>
+  </ul>
+  <p>Rumours spread fastest when a situation is important, ambiguous and anxiety-provoking, for example layoffs, mergers or leadership changes. The best cure is accurate, timely information.</p>
+  <h4>Four steps for dealing with gossip and rumours</h4>
+  <ol>
+    <li><b>Share the information you have, and the information you don't.</b> If you don't know something people are asking about, say when you will know, and follow up.</li>
+    <li><b>Explain, explain, explain.</b> As a manager, discuss what decisions were made, why they were made, and the plan going forward.</li>
+    <li><b>Respond to rumours noncommittally, then verify for yourself</b> the truths you can. Gather all sides of the story.</li>
+    <li><b>Invite employees to discuss</b> their concerns, ideas, suggestions, thoughts and feelings. Help them turn their thoughts into more objective viewpoints.</li>
+  </ol>
+  <div class="box eg"><span class="k">Example</span><p>A rumour spreads that the Pune office will close. The branch head calls a meeting: "No closure decision has been made (step 1). Leadership reviews all locations in March; I will update you by 15 March (step 1). Here is why the review is happening: rent costs rose 30% (step 2). I've heard various stories; I'll check with head office and come back to you (step 3). Tell me what worries you most (step 4)."</p></div>
+</article>
+
+<article class="topic" id="t12-5" data-t="Nonverbal communication">
+  <h3><span class="num">12.5</span>Nonverbal communication</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Nonverbal communication</b> is meaning conveyed without words: tone of voice, emphasis, facial expression, body movement, eye contact and physical distance.</p></div>
+  <h4>Explanation: intonation changes meaning</h4>
+  <p>The same sentence means different things depending on which word is stressed. The slide uses "Why don't I take you to dinner tonight?"</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Stressed word</th><th>What it really means</th></tr></thead>
+    <tbody>
+      <tr><td><b>Why</b> don't I take you to dinner tonight?</td><td>I'm trying to find a reason why I shouldn't take you.</td></tr>
+      <tr><td>Why <b>don't</b> I take you to dinner tonight?</td><td>Do you have a problem with me?</td></tr>
+      <tr><td>Why don't <b>I</b> take you to dinner tonight?</td><td>Instead of the guy you were going with.</td></tr>
+      <tr><td>Why don't I <b>take</b> you to dinner tonight?</td><td>Instead of going on your own.</td></tr>
+      <tr><td>Why don't I take <b>you</b> to dinner tonight?</td><td>I was going to take someone else.</td></tr>
+      <tr><td>Why don't I take you to <b>dinner</b> tonight?</td><td>Instead of lunch tomorrow.</td></tr>
+      <tr><td>Why don't I take you to dinner <b>tonight</b>?</td><td>Not tomorrow night.</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Key points</h4>
+  <ul>
+    <li><b>Physical distance</b> has meaning. Proper spacing depends on cultural norms. Distance can signal aggressiveness or sexual interest (too close), or disinterest or displeasure with what is being said (too far).</li>
+    <li><b>Eye contact</b> is important in business. It shows attention and confidence, but constant staring feels aggressive.</li>
+    <li>Looking at body parts or clothes instead of the face can be <b>perceived as sexual harassment</b>.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>A manager says "Great job on the presentation" while looking at his phone in a flat tone. The words say praise; the nonverbal cues say "I don't care". Employees believe the nonverbal message.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>When words and nonverbal cues conflict, receivers usually trust the nonverbal cues. Use this to explain why email (no tone) is often misread.</p></div>
+</article>
+
+<article class="topic" id="t12-6" data-t="Channel richness">
+  <h3><span class="num">12.6</span>Choosing a communication channel: channel richness</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Channel richness</b> is the amount of information a channel can carry during one communication episode. Rich channels can handle several cues at once, give immediate feedback, and are personal.</p></div>
+  <div class="flow"><span>Formal reports, bulletins</span><i>→</i><span>Memos, letters</span><i>→</i><span>Prerecorded speeches</span><i>→</i><span>E-mail</span><i>→</i><span>Online discussion groups</span><i>→</i><span>Voice mail</span><i>→</i><span>Live speeches</span><i>→</i><span>Telephone</span><i>→</i><span>Video conferences</span><i>→</i><span>Face-to-face</span></div>
+  <p class="cap">Low channel richness on the left, high on the right (Daft &amp; Noe).</p>
+  <h4>Explanation</h4>
+  <p>Face-to-face conversation is the richest channel: you get words, tone, facial expressions and body language, and you can respond instantly. Formal reports and bulletins are the leanest: one-way, impersonal and slow to get a reply.</p>
+  <p>The right channel depends on whether the message is <b>routine</b> or <b>nonroutine</b>:</p>
+  <ul>
+    <li><b>Routine messages</b> are straightforward and have minimal ambiguity. A lean channel works well and is efficient.</li>
+    <li><b>Nonroutine messages</b> are complicated, ambiguous or emotional. Choose <b>oral</b> communication when you need to <b>gauge the receiver's receptivity</b>, i.e. see how they react.</li>
+    <li><b>Written</b> communication is more reliable for <b>complex and lengthy</b> messages, because the reader can refer back to it.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>Change in canteen timings → email (routine). Telling an employee their role is being eliminated → face-to-face (nonroutine, emotional; you need to see their reaction). A detailed new travel reimbursement policy → a written document, followed by a short meeting for questions.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>A common case error is announcing a major change by email. Criticise it using channel richness: the message was nonroutine, so it needed a rich, two-way channel.</p></div>
+</article>
+
+<article class="topic" id="t12-7" data-t="Automatic vs controlled processing">
+  <h3><span class="num">12.7</span>Persuasive communication: automatic vs controlled processing</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Automatic processing</b> is a relatively superficial consideration of evidence and information. <b>Controlled processing</b> is a detailed consideration of evidence and information relying on facts, figures and logic.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Automatic processing</th><th>Controlled processing</th></tr></thead>
+    <tbody>
+      <tr><th>Depth</th><td>Superficial</td><td>Detailed</td></tr>
+      <tr><th>Effort and time</th><td>Little</td><td>Needs effort and energy</td></tr>
+      <tr><th>Relies on</th><td>Surface cues: a cute jingle, a glamorous photo, a celebrity</td><td>Facts, figures and logic</td></tr>
+      <tr><th>Risk</th><td>Easily fooled by tricks</td><td>Harder to fool</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>The slide's rule is <b>match your message to your audience</b>. When the audience is interested, informed and has time, they will use controlled processing, so bring evidence and logic. When the audience is busy, uninterested or low on knowledge, they will use automatic processing, so a simple, vivid, emotionally appealing message works better.</p>
+  <div class="box eg"><span class="k">Example</span><p>Pitching a new software tool to the CFO (high interest, will scrutinise) → a business case with cost savings and payback period (controlled). Persuading all 2,000 employees to use the new expense app → a 30-second video with a catchy tagline and one clear benefit (automatic).</p></div>
+</article>
+
+<article class="topic" id="t12-8" data-t="Barriers to communication">
+  <h3><span class="num">12.8</span>Barriers to effective communication</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Barriers</b> are factors that distort or block the message between sender and receiver. They are the "noise" in the communication process.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Barrier</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Filtering</b></td><td>The sender manipulates information so it looks more favourable to the receiver</td><td>A team lead reports "minor delays" when the project is six weeks behind</td></tr>
+      <tr><td><b>Selective perception</b></td><td>Receivers see and hear based on their own needs, motivations, experience and expectations</td><td>An employee hoping for a raise hears "good year" and misses "budget freeze"</td></tr>
+      <tr><td><b>Information overload</b></td><td>The information to be processed exceeds a person's capacity</td><td>With 200 unread emails, the one urgent client email is missed</td></tr>
+      <tr><td><b>Emotions</b></td><td>How the receiver feels at the time changes how the message is interpreted</td><td>After a bad review, neutral feedback is heard as a personal attack</td></tr>
+      <tr><td><b>Language</b></td><td>Words mean different things to different people; jargon</td><td>"ASAP" means today to one person and this week to another</td></tr>
+      <tr><td><b>Silence</b></td><td>Not speaking up; withholding information</td><td>Junior staff notice a safety issue but say nothing</td></tr>
+      <tr><td><b>Communication apprehension</b></td><td>Undue tension and anxiety about oral or written communication</td><td>A capable analyst avoids presenting in meetings and sends long emails instead</td></tr>
+      <tr><td><b>Lying</b></td><td>Deliberate misrepresentation of information</td><td>Inflating sales numbers in a status report</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Filtering happens at the <b>sender's</b> end; selective perception at the <b>receiver's</b> end. Examiners often test this difference.</p></div>
+</article>
+
+<article class="topic" id="t12-9" data-t="Culture and context">
+  <h3><span class="num">12.9</span>Cultural barriers and high- vs low-context cultures</h3>
+  <div class="box def"><span class="k">Definition</span><p>In <b>high-context cultures</b>, meaning depends heavily on nonverbal cues, shared history and implicit meaning, and communication is indirect. In <b>low-context cultures</b>, meaning is carried mainly by explicit, direct and detailed words.</p></div>
+  <h4>Four causes of cultural barriers</h4>
+  <ul>
+    <li><b>Semantics:</b> words mean different things to different people.</li>
+    <li><b>Word connotations:</b> words imply different things in different languages.</li>
+    <li><b>Tone differences:</b> some cultures expect formal language in business, others informal.</li>
+    <li><b>Tolerance for conflict</b> and methods of resolving it differ: some cultures confront openly, others avoid direct disagreement.</li>
+  </ul>
+  <h4>The context scale</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Level</th><th>Style</th><th>Countries</th></tr></thead>
+    <tbody>
+      <tr><td>Highly high-context</td><td>Extremely indirect; relies heavily on nonverbal cues, status and hierarchy</td><td>Japan, China, Saudi Arabia</td></tr>
+      <tr><td>Moderately high-context</td><td>Layered and relational; strong emphasis on reading between the lines</td><td>India, Brazil, Mexico, UAE</td></tr>
+      <tr><td>Middle / mixed</td><td>Balances implicit social manners with clear verbal delivery, depending on the situation</td><td>France, Spain, Italy</td></tr>
+      <tr><td>Moderately low-context</td><td>Direct and explicit, but keeps basic conversational nuance and rhetorical style</td><td>UK, Australia, Canada</td></tr>
+      <tr><td>Highly low-context</td><td>Strictly literal; needs absolute clarity, repetition, precise verbal skills and detailed written documentation</td><td>USA, Germany</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>In a high-context culture, <em>who</em> says something, <em>how</em> they say it and <em>what is left unsaid</em> matter as much as the words. A "yes" may mean "I heard you", not "I agree". In a low-context culture, people say exactly what they mean and expect contracts and written agreements to spell everything out. Misunderstandings happen when each side reads the other using its own rules.</p>
+  <div class="box eg"><span class="k">Example</span><p>An Indian vendor tells a German client, "We will try our best to look into this." In India this is often a polite way of saying "probably not". The German client reads it literally as a commitment and is angry when nothing happens. The fix: the vendor states clearly what can and cannot be done, and the client confirms in writing.</p></div>
+</article>
+
+<article class="topic" id="t12-10" data-t="Kotter's eight steps">
+  <h3><span class="num">12.10</span>Kotter's eight-step plan for implementing change (1996)</h3>
+  <div class="box def"><span class="k">Definition</span><p>John Kotter's eight steps are a sequence for leading organisational change. Several of the steps are about communication.</p></div>
+  <ol>
+    <li><b>Establish a sense of urgency</b> by creating a compelling reason why change is needed.</li>
+    <li><b>Form a coalition</b> with enough power to lead the change.</li>
+    <li><b>Create a new vision</b> to direct the change, and strategies for achieving it.</li>
+    <li><b>Communicate the vision</b> throughout the organisation.</li>
+    <li><b>Empower others to act</b> on the vision by removing barriers to change.</li>
+    <li><b>Plan for, create and reward short-term "wins"</b>.</li>
+    <li><b>Consolidate improvements</b>, reassess changes and make necessary adjustments.</li>
+    <li><b>Reinforce the changes</b> by showing the link between new behaviours and organisational success.</li>
+  </ol>
+  <h4>Explanation</h4>
+  <p>Kotter's point is that change usually fails not because the idea is bad but because the early steps are skipped: people don't see why change is needed, no powerful group backs it, and the vision is announced once and never explained. Steps 1–4 prepare people, steps 5–6 help them act, and steps 7–8 make the change stick.</p>
+  <div class="box eg"><span class="k">Example</span><p>A hospital introducing electronic patient records: shows data on errors from handwritten files (urgency); gets the medical director and senior nurses on board (coalition); "Every patient's history on one screen" (vision); town halls and ward visits (communicate); trains staff and gives tablets (empower); celebrates the first ward to go paperless (short-term win); extends ward by ward, fixing problems (consolidate); links it to fewer errors in the annual review (reinforce).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Memory aid: <b>U-C-V-C-E-W-C-R</b> (Urgency, Coalition, Vision, Communicate, Empower, Wins, Consolidate, Reinforce). Use it as the solution framework for the DRW case.</p></div>
+</article>
+
+<article class="topic" id="t12-11" data-t="Case: DRW Technologies">
+  <h3><span class="num">12.11</span>Case: DRW Technologies</h3>
+  <h4>Explanation</h4>
+  <p>In the case, Claiborne introduces a new policy, but the teams do not submit any contracts under it. The class used the case to practise a structured diagnosis:</p>
+  <div class="flow"><span>Case facts</span><i>→</i><span>What is the problem?</span><i>→</i><span>Diagnosis: symptoms</span><i>→</i><span>Root-cause analysis</span><i>→</i><span>Solution</span></div>
+  <h4>Questions raised in class</h4>
+  <ul>
+    <li>Is there a problem? Is not receiving any contracts a problem?</li>
+    <li>Why are teams not submitting contracts? Is it deliberate, or are they confused?</li>
+    <li>Will Claiborne take responsibility for the policy failure? Why did Claiborne not discuss the policy first?</li>
+    <li>Is this about a change in organisational culture? Is it about communication?</li>
+    <li>Workplace dynamics (power and politics): Hilgard and Claiborne, Claiborne and Debby, Claiborne and the procurement managers.</li>
+    <li>What can be done now?</li>
+  </ul>
+  <h4>How to build the answer</h4>
+  <ul>
+    <li><b>Symptom:</b> no contracts are coming in under the new policy.</li>
+    <li><b>Root causes to test:</b>
+      <ul>
+        <li>Communication was <b>downward and one-way</b>, without explaining why (12.2).</li>
+        <li>A <b>lean channel</b> was probably used for a nonroutine change (12.6).</li>
+        <li>No <b>feedback</b> loop, so confusion went unnoticed (12.1).</li>
+        <li>No <b>coalition</b> or buy-in from the managers affected; Kotter steps 1–4 skipped (12.10).</li>
+        <li><b>Power and politics</b>: people who lost control over contracts may resist (16.10–16.12).</li>
+      </ul>
+    </li>
+    <li><b>Solution:</b> Claiborne owns the problem; holds face-to-face meetings with procurement managers to explain why and listen (rich, two-way channel); builds a coalition with Hilgard and key managers; simplifies the process and removes barriers; celebrates the first teams that comply.</li>
+  </ul>
+  <div class="box tip"><span class="k">Exam tip</span><p>Use the same five-step structure (facts → problem → symptoms → root cause → solution) for every case question in this course.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 12</h3>
+  <details class="q"><summary>Which network is fastest and most accurate, and what is its drawback?</summary><div><p>Wheel: fast, high accuracy, a leader emerges; but member satisfaction is low.</p></div></details>
+  <details class="q"><summary>What is the main limitation of downward communication?</summary><div><p>It is one-way. It should also explain why decisions were made.</p></div></details>
+  <details class="q"><summary>Give three rules for upward communication.</summary><div><p>Headlines not paragraphs; support headlines with actionable items; prepare an agenda.</p></div></details>
+  <details class="q"><summary>Which channel would you use to announce a restructuring, and why?</summary><div><p>Face-to-face, the richest channel. The message is nonroutine and emotional, so you need to gauge reactions and answer questions.</p></div></details>
+  <details class="q"><summary>Distinguish filtering from selective perception.</summary><div><p>Filtering: the sender makes information look more favourable. Selective perception: the receiver interprets based on their own needs and expectations.</p></div></details>
+  <details class="q"><summary>Place Japan, India, UK and Germany on the context scale.</summary><div><p>Japan: highly high. India: moderately high. UK: moderately low. Germany: highly low.</p></div></details>
+  <details class="q"><summary>List Kotter's eight steps.</summary><div><p>Urgency, coalition, vision, communicate the vision, empower, short-term wins, consolidate, reinforce.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSION 13 ===================== -->
+<section class="session" id="s13" data-n="Session 13" data-t="FIRO-B &amp; Johari Window">
+<header>
+  <p class="eyebrow">Session 13</p>
+  <h2>FIRO-B and the Johari Window <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">Two tools for understanding interpersonal relationships: FIRO-B shows what you need from other people; the Johari Window shows how much of you is known to yourself and to others.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s13" data-s="s13"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t13-1" data-t="What is FIRO-B?">
+  <h3><span class="num">13.1</span>What is FIRO-B?</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>FIRO-B</b> (Fundamental Interpersonal Relations Orientation – Behaviour), developed by <b>William Schutz in 1958</b>, is a personality assessment that measures how you typically behave toward other people and how you want them to behave toward you.</p></div>
+  <h4>Explanation</h4>
+  <p>Schutz argued that everyone has three basic interpersonal needs: <b>Inclusion</b>, <b>Control</b> and <b>Affection</b>. People differ in how strongly they feel each need, and in whether they mostly <em>give</em> it to others or <em>want</em> it from others. FIRO-B measures both sides.</p>
+  <p>FIRO-B helps you understand:</p>
+  <ul>
+    <li>how you come across to others, and why this may not be the way you see yourself;</li>
+    <li>how and why conflict develops between well-meaning people;</li>
+    <li>your own needs as you interact with others;</li>
+    <li>how to manage those needs in most interpersonal interactions.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>Two well-meaning teammates clash. One keeps organising and assigning tasks (high expressed control). The other hates being told what to do (low wanted control). Neither is a bad person; their needs simply don't fit. FIRO-B makes this visible so they can adjust.</p></div>
+</article>
+
+<article class="topic" id="t13-2" data-t="Six cells">
+  <h3><span class="num">13.2</span>Three needs × two dimensions = six scores</h3>
+  <div class="box def"><span class="k">Definition</span><p>Each need is measured on two dimensions. <b>Expressed (e)</b> is how much you act this way toward others. <b>Wanted (w)</b> is how much you want others to act this way toward you.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Inclusion</th><th>Control</th><th>Affection</th></tr></thead>
+    <tbody>
+      <tr><th>Expressed</th><td><b>eI</b>: how much you make an effort to include others in your activities, join and belong to groups, and be with people</td><td><b>eC</b>: how much you try to control and influence others or situations, organise and direct others, and take responsibility</td><td><b>eA</b>: how much you try to get close to people and engage them personally; how comfortable you are being open with and supportive of others</td></tr>
+      <tr><th>Wanted</th><td><b>wI</b>: how much you want others to include you and invite you to join groups; how much you want to be noticed</td><td><b>wC</b>: how comfortable you are working in well-defined situations with clear expectations and instructions</td><td><b>wA</b>: how much you want others to be warm toward you, take a personal interest in you, share things with you and encourage you</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>The two dimensions can be very different for the same person. Someone may rarely invite others out (low eI) but badly want to be invited (high wI). They will often feel left out, while others think they prefer to be alone. Comparing <em>one person's expressed</em> score with <em>another person's wanted</em> score is how FIRO-B predicts fit and friction.</p>
+  <div class="box tip"><span class="k">Exam tip</span><p>Note that <b>wanted control</b> is defined differently from the others: it is comfort with clear structure and instructions, i.e. willingness to be directed.</p></div>
+</article>
+
+<article class="topic" id="t13-3" data-t="Inclusion">
+  <h3><span class="num">13.3</span>Inclusion</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Inclusion</b> is "the need to establish and maintain satisfactory interactions and associations with other people", and "a recognition of the significance and importance of the self and of others as unique individuals."</p></div>
+  <h4>Key points</h4>
+  <ul>
+    <li><b>Core question:</b> "Am I <b>in or out</b>?"</li>
+    <li><b>Indicates:</b> the <b>amount</b> of interaction a person wants.</li>
+    <li>The extent of prominence and significance a person seeks.</li>
+    <li><b>Ultimate realisation:</b> <mark>Fame</mark>. <b>Underlying need:</b> <mark>Significance</mark>.</li>
+  </ul>
+  <h4>Explanation</h4>
+  <p>Inclusion is about belonging and being noticed at the <b>group</b> level. A high-inclusion person wants to be part of things, invited to meetings, known by name. A low-inclusion person is content working alone and may find constant socialising draining.</p>
+  <div class="box eg"><span class="k">Example</span><p>A new joiner who is not added to the team WhatsApp group feels hurt and ignored. This is an inclusion issue: they are asking "Am I in or out?"</p></div>
+</article>
+
+<article class="topic" id="t13-4" data-t="Control">
+  <h3><span class="num">13.4</span>Control</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Control</b> is "the degree to which one desires to influence or direct the behaviour of others." It describes behaviour around responsibility, power, influence and decision-making, and "the extent to which a person wants to be seen as competent, decisive and in charge."</p></div>
+  <h4>Key points</h4>
+  <ul>
+    <li><b>Core question:</b> "How much <b>control</b> do I possess in the relationship?"</li>
+    <li><b>Indicates:</b> the need for control of the interaction.</li>
+    <li><b>Driven by:</b> feelings of respect and competence.</li>
+    <li><b>Ultimate realisation:</b> <mark>Power</mark>. <b>Underlying need:</b> <mark>Competence</mark>.</li>
+  </ul>
+  <h4>Explanation</h4>
+  <p>Control is about who decides and who follows. High expressed control means taking charge, organising and directing. High wanted control means preferring clear instructions and being comfortable when someone else leads.</p>
+  <div class="box eg"><span class="k">Example</span><p>In a group project, one member immediately makes the plan and assigns sections (high eC). Another member is relieved to be told exactly what to do (high wC). They work well together.</p></div>
+</article>
+
+<article class="topic" id="t13-5" data-t="Affection">
+  <h3><span class="num">13.5</span>Affection</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Affection</b> describes a person's behaviour in forming close, personal relationships with others. It applies mainly to <b>one-to-one</b> interaction and describes how much people need to feel liked and appreciated.</p></div>
+  <h4>Key points</h4>
+  <ul>
+    <li><b>Core question:</b> "Am I <b>close or far</b> in relationship to you?"</li>
+    <li><b>Indicates:</b> the <b>depth</b> of interaction.</li>
+    <li><b>Driven by:</b> feelings of likeability and openness.</li>
+    <li><b>Ultimate realisation:</b> <mark>Love</mark>. <b>Underlying need:</b> <mark>Likeability</mark>.</li>
+  </ul>
+  <h4>Explanation</h4>
+  <p>Affection decides the degree of openness, warmth and personal connection a person seeks. Inclusion is about being <em>in the group</em>; affection is about being <em>close to a particular person</em>. A person can have high inclusion but low affection: they like being at every event but keep conversations light.</p>
+  <div class="box eg"><span class="k">Example</span><p>A colleague who shares personal stories and asks about your family is expressing affection. A colleague who is friendly at team lunches but never discusses anything personal may have high inclusion but low affection.</p></div>
+</article>
+
+<article class="topic" id="t13-6" data-t="Summary and scoring">
+  <h3><span class="num">13.6</span>Comparing the three needs, and scoring</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Inclusion</th><th>Control</th><th>Affection</th></tr></thead>
+    <tbody>
+      <tr><th>Core question</th><td>Am I in or out?</td><td>How much control do I have?</td><td>Am I close or far?</td></tr>
+      <tr><th>Indicates</th><td>Amount of interaction</td><td>Need for control of interaction</td><td>Depth of interaction</td></tr>
+      <tr><th>Level</th><td>Group</td><td>Decisions and responsibility</td><td>One-to-one</td></tr>
+      <tr><th>Ultimate realisation</th><td>Fame</td><td>Power</td><td>Love</td></tr>
+      <tr><th>Underlying need</th><td>Significance</td><td>Competence</td><td>Likeability</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Scoring</h4>
+  <ul>
+    <li>Each of the six cells is scored from <b>0 to 9</b>: <b>Low 0–2</b>, <b>Medium 3–6</b>, <b>High 7–9</b>.</li>
+    <li>The <b>total need score</b> is the sum of all six cells, from <b>0 to 54</b>. It shows overall interpersonal engagement.
+      <ul>
+        <li><b>Low (0–15):</b> a preference for autonomy, privacy and low interpersonal involvement.</li>
+        <li><b>High (27–54):</b> a strong, active need for social interaction and community connection.</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slides give only the low and high bands. A total of 16–26 falls in between and can be read as moderate.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Memory aid: I-C-A → In/out, Control, Affection (close/far) → Fame, Power, Love → Significance, Competence, Likeability.</p></div>
+</article>
+
+<article class="topic" id="t13-7" data-t="Worked example: team scores">
+  <h3><span class="num">13.7</span>Worked example: the team's FIRO-B scores</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Member</th><th>eI</th><th>wI</th><th>eC</th><th>wC</th><th>eA</th><th>wA</th><th>Total</th><th>MBTI</th></tr></thead>
+    <tbody>
+      <tr><td>Mehta</td><td>3</td><td>8</td><td>9</td><td>1</td><td>8</td><td>8</td><td>37</td><td>INTJ</td></tr>
+      <tr><td>Kumar</td><td>5</td><td>8</td><td>6</td><td>3</td><td>6</td><td>5</td><td>33</td><td>ESFJ</td></tr>
+      <tr><td>Mudit</td><td>5</td><td>6</td><td>4</td><td>7</td><td>3</td><td>1</td><td>26</td><td>ENFP</td></tr>
+      <tr><td>Hitesh</td><td>4</td><td>0</td><td>3</td><td>3</td><td>5</td><td>7</td><td>22</td><td>ESFJ</td></tr>
+      <tr><td>Manoj</td><td>9</td><td>5</td><td>5</td><td>5</td><td>7</td><td>5</td><td>36</td><td>INTP</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">The "Total" column is the sum of the six cells, added here for you.</p>
+  <h4>Step 1: classify each score</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Member</th><th>eI</th><th>wI</th><th>eC</th><th>wC</th><th>eA</th><th>wA</th></tr></thead>
+    <tbody>
+      <tr><td>Mehta</td><td>Med</td><td>High</td><td>High</td><td>Low</td><td>High</td><td>High</td></tr>
+      <tr><td>Kumar</td><td>Med</td><td>High</td><td>Med</td><td>Med</td><td>Med</td><td>Med</td></tr>
+      <tr><td>Mudit</td><td>Med</td><td>Med</td><td>Med</td><td>High</td><td>Med</td><td>Low</td></tr>
+      <tr><td>Hitesh</td><td>Med</td><td>Low</td><td>Med</td><td>Med</td><td>Med</td><td>High</td></tr>
+      <tr><td>Manoj</td><td>High</td><td>Med</td><td>Med</td><td>Med</td><td>High</td><td>Med</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Step 2: interpret each person</h4>
+  <ul>
+    <li><b>Mehta (total 37, high engagement):</b> eC 9 and wC 1 → strongly wants to direct others and resists being directed (<b>Autocrat + Rebellious</b>). wI 8 but eI 3 → wants to be included but will not make the first move, so may feel left out. High affection both ways (8, 8) → warm and wants warmth back.</li>
+    <li><b>Kumar (33):</b> wI 8 → wants to be included. Moderate control and affection; flexible.</li>
+    <li><b>Mudit (26, moderate):</b> wC 7 → comfortable taking direction (<b>Submissive</b>). wA 1 → does not want personal closeness at work; keeps things professional.</li>
+    <li><b>Hitesh (22, moderate):</b> wI 0 → does not want to be pulled into group activities (<b>Countersocial</b>), yet wA 7 → wants warmth in one-to-one relationships. Easy to misread as "not a team player".</li>
+    <li><b>Manoj (36):</b> eI 9 → the natural includer who pulls people into activities (<b>Oversocial</b>). High eA → warm.</li>
+  </ul>
+  <h4>Step 3: fits and clashes</h4>
+  <ul>
+    <li><b>Mehta leads, Mudit follows:</b> Mehta's high eC matches Mudit's high wC → good fit on control.</li>
+    <li><b>Mehta and Kumar:</b> both have low-to-medium wC and Mehta's eC is very high → watch for friction if Kumar also wants to lead.</li>
+    <li><b>Manoj and Mehta:</b> Manoj's high eI meets Mehta's high wI → Manoj will include Mehta, satisfying his unmet need.</li>
+    <li><b>Mehta and Mudit on affection:</b> Mehta (8, 8) wants closeness; Mudit (3, 1) does not → Mehta's warmth may feel intrusive to Mudit.</li>
+    <li><b>Hitesh:</b> should not be forced into group social events, but one-to-one check-ins will suit him.</li>
+  </ul>
+  <div class="box tip"><span class="k">Exam tip</span><p>For any score table: (1) classify Low/Med/High, (2) name the type using the table in 14.1, (3) compare one person's expressed score with another's wanted score, (4) recommend roles.</p></div>
+</article>
+
+<article class="topic" id="t13-8" data-t="Johari Window">
+  <h3><span class="num">13.8</span>The Johari Window (Joseph Luft &amp; Harry Ingham, 1955)</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>Johari Window</b> is a model of self-awareness that divides information about a person into four panes, based on whether it is <b>known or unknown to the self</b> and <b>known or unknown to others</b>.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Known to self</th><th>Unknown to self</th></tr></thead>
+    <tbody>
+      <tr><th>Known to others</th><td><b>1. Open area</b><br>Information both you and others know: your name, visible skills, how you behave in meetings.</td><td><b>2. Blind area</b><br>Others see it, you don't: a habit of interrupting, a tone that sounds rude, a strength you undervalue.</td></tr>
+      <tr><th>Unknown to others</th><td><b>3. Hidden area</b><br>You know it, others don't: fears, past failures, private ambitions, personal problems.</td><td><b>4. Unknown area</b><br>Nobody knows it yet: untested talents, unconscious motives, how you would react in a crisis.</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation: how the panes change</h4>
+  <ul>
+    <li><b>Feedback</b> (you <b>ask</b> others): moves information from the Blind area into the Open area.</li>
+    <li><b>Self-disclosure</b> (you <b>tell</b> others): moves information from the Hidden area into the Open area.</li>
+    <li><b>Shared discovery</b>: through feedback and disclosure together, parts of the Unknown area become Open.</li>
+    <li><b>Self-discovery</b>: you learn something new about yourself, moving it from Unknown to Hidden, which you can then disclose.</li>
+  </ul>
+  <p>The goal is to <mark>enlarge the Open area</mark>. When more is known on both sides, there is more trust, communication is easier, and fewer misunderstandings arise. A large Blind area causes surprises and conflict; a large Hidden area makes a person seem distant.</p>
+  <div class="box eg"><span class="k">Example</span><p>Priya, a new team member, does not realise she dominates meetings (Blind). A colleague tells her kindly after a meeting (feedback) and it becomes Open. Priya shares that she is nervous about client calls because of a bad experience in her last job (self-disclosure: Hidden → Open), so the team pairs her with a senior. During a crisis, she and the team discover she is excellent at calming angry clients (shared discovery: Unknown → Open).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Draw the 2×2 grid with "Ask / feedback" along the top and "Tell / self-disclosure" down the side. Link it to FIRO-B: people with high expressed affection disclose more easily, so their Open area grows faster.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 13</h3>
+  <details class="q"><summary>Who developed FIRO-B and when?</summary><div><p>William Schutz, 1958.</p></div></details>
+  <details class="q"><summary>Give the core question, realisation and underlying need for each of the three needs.</summary><div><p>Inclusion: in or out? Fame, significance. Control: how much control? Power, competence. Affection: close or far? Love, likeability.</p></div></details>
+  <details class="q"><summary>What does wanted control measure?</summary><div><p>How comfortable you are working in well-defined situations with clear expectations and instructions.</p></div></details>
+  <details class="q"><summary>A person's total is 12. How do you interpret it?</summary><div><p>Low (0–15): preference for autonomy, privacy and low interpersonal involvement.</p></div></details>
+  <details class="q"><summary>Which Johari pane shrinks when you ask for feedback? When you self-disclose?</summary><div><p>Feedback shrinks the Blind area. Self-disclosure shrinks the Hidden area.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSIONS 14–15 ===================== -->
+<section class="session" id="s14" data-n="Sessions 14–15" data-t="Groups &amp; Teams">
+<header>
+  <p class="eyebrow">Sessions 14–15</p>
+  <h2>Groups, Group Dynamics and Teams <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">FIRO-B types and compatibility, how groups form and decay, why people join them, social identity, conformity and groupthink, roles, and what makes teams effective.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s14" data-s="s14"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t14-1" data-t="FIRO-B types">
+  <h3><span class="num">14.1</span>FIRO-B behaviour types</h3>
+  <div class="box def"><span class="k">Definition</span><p>A high or low score in each FIRO-B cell has a name that describes the resulting behaviour.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Inclusion</th><th>Control</th><th>Affection</th></tr></thead>
+    <tbody>
+      <tr><th>High expressed</th><td><b>Oversocial</b>: seeks company and attention, joins everything</td><td><b>Autocrat</b>: dominates, directs, takes charge</td><td><b>Overpersonal</b>: very warm, tries to be close with everyone</td></tr>
+      <tr><th>Low expressed</th><td><b>Undersocial</b>: withdrawn, keeps to self</td><td><b>Abdicrat</b>: avoids responsibility and decisions</td><td><b>Underpersonal</b>: keeps relationships superficial</td></tr>
+      <tr><th>High wanted</th><td><b>Social-compliant</b>: wants to be invited and noticed</td><td><b>Submissive</b>: wants clear direction</td><td><b>Personal-compliant</b>: wants warmth from others</td></tr>
+      <tr><th>Low wanted</th><td><b>Countersocial</b>: resists being included</td><td><b>Rebellious</b>: resists being controlled</td><td><b>Counter-personal</b>: resists closeness</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>Mehta (eC 9, wC 1) is an <b>Autocrat-Rebel</b>: he wants to control others and refuses to be controlled. Mudit (eC 4, wC 7) leans <b>Submissive</b>. Hitesh (wI 0) is <b>Countersocial</b>.</p></div>
+</article>
+
+<article class="topic" id="t14-2" data-t="Compatibility">
+  <h3><span class="num">14.2</span>FIRO-B compatibility</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Compatibility</b> is how well two people's FIRO-B needs fit. There are two kinds: <b>originator compatibility</b> (about control, where opposites attract) and <b>interchange compatibility</b> (about affection, where similar types attract).</p></div>
+  <h4>Originator compatibility: control, "opposites attract"</h4>
+  <ul>
+    <li><b>Compatible:</b> an <b>Autocrat-Rebel</b> (high expressed, low wanted control) with an <b>Abdicrat-Submissive</b> (low expressed, high wanted control). One wants to lead, the other wants to be led.</li>
+    <li><b>Competitive incompatibility:</b> Autocrat-Rebel + Autocrat-Rebel. Both want to lead and neither will follow, so there is a power struggle.</li>
+    <li><b>Apathetic incompatibility:</b> Abdicrat-Submissive + Abdicrat-Submissive. Both wait for someone else to take charge, so nothing happens.</li>
+  </ul>
+  <h4>Interchange compatibility: affection, "opposites attract" does not apply</h4>
+  <ul>
+    <li><b>Compatible with the same type:</b> two people who both want closeness, or two who both prefer distance, get along.</li>
+    <li><b>Incompatible:</b> <b>Overpersonal / Personal-compliant</b> (high expressed, high wanted affection) with <b>Underpersonal / Counter-personal</b> (low expressed, low wanted affection). One wants closeness; the other finds it intrusive.</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Pair</th><th>Type of compatibility</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><td>Autocrat-Rebel + Abdicrat-Submissive</td><td>Originator (control)</td><td>Compatible</td></tr>
+      <tr><td>Autocrat-Rebel + Autocrat-Rebel</td><td>Originator (control)</td><td>Competitive incompatibility</td></tr>
+      <tr><td>Abdicrat-Submissive + Abdicrat-Submissive</td><td>Originator (control)</td><td>Apathetic incompatibility</td></tr>
+      <tr><td>High-affection + high-affection</td><td>Interchange (affection)</td><td>Compatible</td></tr>
+      <tr><td>High-affection + low-affection</td><td>Interchange (affection)</td><td>Incompatible</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>A founder who wants to make every decision (Autocrat-Rebel) hires a co-founder with the same profile. They fight over every decision (competitive incompatibility). If the co-founder were someone happy to execute a clear plan (Abdicrat-Submissive), they would work well together.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Remember: <b>control → opposites attract</b>; <b>affection → similar attract</b>.</p></div>
+</article>
+
+<article class="topic" id="t14-3" data-t="Groups and types">
+  <h3><span class="num">14.3</span>What is a group? Types of groups</h3>
+  <div class="box def"><span class="k">Definition</span><p>A <b>group</b> is two or more individuals, interacting and interdependent, who have come together to achieve particular objectives.</p></div>
+  <h4>Explanation</h4>
+  <p>Three words in the definition matter: <b>interacting</b> (they communicate), <b>interdependent</b> (they rely on each other), and <b>objectives</b> (they share a purpose). A crowd at a bus stop is not a group; a project committee is.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Type</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Formal group</b></td><td>A designated work group defined by the organisation's structure, with assigned authority and responsibility</td><td>The finance department; a project team</td></tr>
+      <tr><td><b>Task group</b> (a kind of formal group)</td><td>People working together to complete a job or task</td><td>A committee organising the college fest</td></tr>
+      <tr><td><b>Informal group</b></td><td>Neither formally structured nor organisationally determined; forms naturally in response to the need for social contact</td><td>Colleagues who have lunch together every day</td></tr>
+      <tr><td><b>Interest group</b> (a kind of informal group)</td><td>People working together to attain a specific objective each of them is concerned with</td><td>Employees campaigning together for an office crèche</td></tr>
+      <tr><td><b>Friendship group</b> (a kind of informal group)</td><td>People brought together because they share one or more common characteristics</td><td>Colleagues from the same hometown; cricket fans</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="topic" id="t14-4" data-t="Why people join groups">
+  <h3><span class="num">14.4</span>Why do people join groups?</h3>
+  <h4>Key points</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Reason</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Security</b></td><td>Feel stronger and less anxious than standing alone</td><td>Joining a union</td></tr>
+      <tr><td><b>Status</b></td><td>Belonging to a group others see as important brings recognition</td><td>Being selected for the CEO's strategy task force</td></tr>
+      <tr><td><b>Self-esteem</b></td><td>Membership gives a feeling of self-worth</td><td>Being chosen for the college's debate team</td></tr>
+      <tr><td><b>Affiliation</b></td><td>Fulfils social needs for companionship</td><td>Office badminton club</td></tr>
+      <tr><td><b>Power</b></td><td>What can't be achieved alone can be achieved together</td><td>Employees jointly asking for a policy change</td></tr>
+      <tr><td><b>Goal achievement</b></td><td>Some tasks need several people's skills</td><td>A cross-functional product launch team</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slide lists only the six reasons. The meanings are the standard textbook explanations.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Memory aid: <b>SSS-APG</b> (Security, Status, Self-esteem, Affiliation, Power, Goal achievement).</p></div>
+</article>
+
+<article class="topic" id="t14-5" data-t="Tuckman's five stages">
+  <h3><span class="num">14.5</span>Tuckman's five-stage model of group development</h3>
+  <div class="box def"><span class="k">Definition</span><p>Bruce <b>Tuckman's model</b> says groups pass through five stages: <b>Forming, Storming, Norming, Performing and Adjourning</b>.</p></div>
+  <h4>Explanation of each stage</h4>
+  <p><b>1. Forming.</b> The team gets acquainted and establishes ground rules. Formalities are preserved and members treat each other as strangers. There is uncertainty about the group's purpose, structure and leadership. Members depend on the leader and test what behaviour is acceptable. The key issues are <b>roles, goals, trust and dependence</b>.</p>
+  <p><b>2. Storming.</b> Members start to communicate their feelings but still see themselves as individuals rather than part of a team. They resist control by group leaders and show hostility. This is the stage of intragroup conflict over who leads and how work is done. Many groups get stuck here.</p>
+  <p><b>3. Norming.</b> People feel part of the team and realise they can achieve their work if they accept other viewpoints. Close relationships and cohesiveness develop, and the group agrees on shared norms. A <b>feeling of team spirit</b> is experienced.</p>
+  <p><b>4. Performing.</b> The team works in an open and trusting atmosphere where flexibility is key and hierarchy is of little importance. There is a climate of open communication, strong cooperation and lots of helping behaviour. Energy goes into the task rather than into getting to know each other.</p>
+  <p><b>5. Adjourning.</b> For temporary groups, the team assesses its work, plans for transitioning roles, and recognises members' contributions. It is a "return to independence". Members may feel pride or sadness.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Stage</th><th>Main feature</th><th>What the leader should do</th></tr></thead>
+    <tbody>
+      <tr><td>Forming</td><td>Strangers, ground rules, dependence</td><td>Give direction; clarify purpose and roles</td></tr>
+      <tr><td>Storming</td><td>Conflict, resisting control</td><td>Surface conflict and manage it; coach</td></tr>
+      <tr><td>Norming</td><td>Cohesion, shared norms, team spirit</td><td>Facilitate; reinforce norms</td></tr>
+      <tr><td>Performing</td><td>Open, trusting, flexible, helping</td><td>Delegate; stay out of the way</td></tr>
+      <tr><td>Adjourning</td><td>Assessment, recognition, transition</td><td>Recognise contributions; capture lessons</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example: a five-member MBA project group</span><p><b>Forming:</b> polite first meeting; everyone agrees to "divide work equally". <b>Storming:</b> two members argue over primary vs secondary data; another feels the self-appointed leader is bossy. <b>Norming:</b> they agree that the data expert decides on data, meetings are every Tuesday, and drafts are shared two days before deadlines. <b>Performing:</b> work is split and merged smoothly; when one member falls ill, others cover without being asked. <b>Adjourning:</b> after submission they thank each other and list what to do differently next term.</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>Tuckman proposed the first four stages in 1965; adjourning was added with Mary Ann Jensen in 1977. The "What the leader should do" column is standard guidance.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>In case questions, identify the stage from the <em>behaviour</em> described: hostility and resisting the leader = storming; "we used to be polite strangers" = forming; agreed rules = norming.</p></div>
+</article>
+
+<article class="topic" id="t14-6" data-t="Group decay">
+  <h3><span class="num">14.6</span>Group decay (McGrew, Bilotta &amp; Deeney, 1999)</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Group decay</b> is the decline of a performing group, passing through three stages: <b>de-norming, de-storming and de-forming</b>. It was observed in a software development team.</p></div>
+  <div class="flow"><span><b>Performing</b></span><i>→</i><span><b>De-norming</b><br>erosion of standards of conduct</span><i>→</i><span><b>De-storming</b><br>discontent surfaces; cohesiveness falls</span><i>→</i><span><b>De-forming</b><br>members care little beyond their own self-imposed borders</span></div>
+  <h4>Explanation</h4>
+  <p>Tuckman's model suggests groups keep improving. McGrew and colleagues showed that high-performing groups can also slide backwards. First the agreed standards slip (people start missing meetings, cutting corners). Then open discontent and conflict return. Finally the group breaks apart into individuals who only look after their own piece of work.</p>
+  <div class="box eg"><span class="k">Example</span><p>A software team that shipped great releases for a year gets a new manager and tighter deadlines. Code reviews get skipped (de-norming). Developers start complaining about each other in stand-ups (de-storming). Eventually each developer only works on their own module and ignores integration bugs (de-forming).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>If a case says "the team used to work well, but now everyone just does their own part", name it <b>group decay</b> and the specific de-stage. Remedy: renew norms and goals.</p></div>
+</article>
+
+<article class="topic" id="t14-7" data-t="Social identity">
+  <h3><span class="num">14.7</span>Social identity, ingroups and outgroups</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Social Identity Theory</b> (Tajfel &amp; Turner, 1979) says that people derive part of their identity from the groups they belong to, which leads to <b>in-group favouritism</b> and <b>out-group discrimination</b>.</p></div>
+  <h4>Explanation</h4>
+  <p>Social identity theory rests on three mental steps:</p>
+  <ol>
+    <li><b>Social categorisation:</b> we sort people, including ourselves, into groups (engineers vs marketers, Mumbai vs Delhi).</li>
+    <li><b>Social identification:</b> we adopt the identity of our group and feel its successes and failures as our own.</li>
+    <li><b>Social comparison:</b> we compare our group with others ("What benefits am I getting?") and want ours to come out ahead.</li>
+  </ol>
+  <div class="box eg"><span class="k">Example</span><p>A cricket fan strongly identifies with their team and views rival fans negatively.</p></div>
+  <p><b>Self-Categorisation Theory</b> (Turner et al., 1987) builds on this. People categorise themselves at different levels depending on the context: as a singular <b>"I"</b> (personal identity) or as a more inclusive <b>"we"</b> (social identity).</p>
+  <div class="box eg"><span class="k">Example</span><p>A person sees themselves as an individual at work, competing for promotion ("I"), but as a team member during a cricket match ("we").</p></div>
+  <h4>Ingroups, outgroups and threat</h4>
+  <ul>
+    <li><b>Ingroup favouritism</b> occurs when we see members of our group as better than other people.</li>
+    <li>Whenever there is an ingroup, there is by necessity an <b>outgroup</b>. It is sometimes "everyone else", but usually a specific group known to the ingroup's members.</li>
+    <li><b>Social identity threat</b> is similar to stereotype threat: the fear of being judged. People believe they will be negatively evaluated because of their association with a particular group, and may lose confidence.</li>
+    <li>People hold <b>multiple identities</b> at once. <b>Intersectionality</b> means these identities combine, each with its own power and status advantages or disadvantages.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>The only woman engineer in a team worries that if she makes a mistake it will be seen as proof that "women aren't good at coding". This anxiety makes her hesitate to speak up. That is social identity threat. If she is also from a small town and the first in her family to attend college, several identities intersect.</p></div>
+</article>
+
+<article class="topic" id="t14-8" data-t="Group vs team">
+  <h3><span class="num">14.8</span>Group vs team</h3>
+  <div class="box def"><span class="k">Definition</span><p>A <b>work group</b> interacts mainly to share information, and its performance is the sum of individual contributions. A <b>work team</b> produces a positive synergy through coordinated effort, so its performance is greater than the sum of the parts.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Group</th><th>Team</th></tr></thead>
+    <tbody>
+      <tr><th>Performance depends on</th><td>Individual contribution</td><td>Individual and collective contribution</td></tr>
+      <tr><th>Accountability rests on</th><td>Individual outcomes</td><td>Mutual outcomes</td></tr>
+      <tr><th>Members are interested in</th><td>Common goals</td><td>Common goals and commitment to purpose</td></tr>
+      <tr><th>Responsive to</th><td>Demands of management</td><td>Self-imposed demands</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>A group of sales reps each chasing their own target is a <b>group</b>: if one fails, the others are unaffected. A surgical team is a <b>team</b>: the outcome depends on the surgeon, anaesthetist and nurses together, and they hold themselves mutually responsible.</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The definition sentences are from Robbins &amp; Judge; the comparison table is from the slide.</p></div>
+</article>
+
+<article class="topic" id="t14-9" data-t="Conformity and Asch">
+  <h3><span class="num">14.9</span>Group conformity and Asch's study</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Group conformity</b> is the tendency of individuals to align their attitudes, beliefs and behaviours with those of a group.</p></div>
+  <h4>Explanation</h4>
+  <p>Conformity happens for three reasons given on the slide: <b>social pressure</b>, the <b>desire to fit in</b>, and the <b>belief that the group is more knowledgeable or correct</b>. It can make group decisions uniform, sometimes at the expense of critical thinking.</p>
+  <h4>Asch's study (Solomon Asch, 1950s)</h4>
+  <ul>
+    <li><b>Aim:</b> to find out how far social pressure from a majority can make a person conform.</li>
+    <li><b>Method:</b> participants matched the length of a line on one card to one of three lines on another card. The right answer was obvious.</li>
+    <li>The other people in the room were <b>confederates</b> of the experimenter who deliberately chose the wrong line, to see if the lone real participant would go along.</li>
+    <li><b>Result:</b> about <mark>75% of participants conformed to the wrong answer at least once</mark>, even when they knew it was wrong.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>A new joiner thinks a proposed campaign is weak, but when five senior colleagues praise it, she says it looks great too. Later she admits she agreed only because everyone else did.</p></div>
+</article>
+
+<article class="topic" id="t14-10" data-t="Groupthink, shift, loafing">
+  <h3><span class="num">14.10</span>Groupthink, polarisation, groupshift and social loafing</h3>
+  <h4>Definitions</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Concept</th><th>Definition</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Groupthink</b></td><td>The norm for consensus overrides the realistic appraisal of alternative courses of action. The group prioritises harmony and consensus over critical evaluation of ideas.</td><td>A board approves an acquisition without proper due diligence because no one wants to challenge the CEO</td></tr>
+      <tr><td><b>Group polarisation</b></td><td>Group discussion leads members to adopt more extreme positions</td><td>Investors who were mildly doubtful about a startup become strongly opposed after discussing it together</td></tr>
+      <tr><td><b>Groupshift</b></td><td>A change between a group's decision and the decision an individual member would make alone. It can be toward greater risk, but it is generally toward a more extreme version of the group's original position.</td><td>Each manager alone would bid ₹50 crore; together they bid ₹80 crore</td></tr>
+      <tr><td><b>Social loafing</b></td><td>The tendency for individuals to put in less effort when working collectively than when working alone</td><td>In a group assignment, one member barely contributes but gets the same grade</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p><b>Conformity</b> is one <em>individual</em> giving in to group pressure. <b>Groupthink</b> is the <em>whole group's decision process</em> failing because harmony beats critical thinking. <b>Polarisation and groupshift</b> describe the <em>direction</em> of the decision: groups often end up more extreme than their members would be alone, partly because responsibility is shared. <b>Social loafing</b> is about <em>effort</em>: when individual contributions can't be seen, some people coast.</p>
+  <h4>Film: 12 Angry Men</h4>
+  <p>Twelve jurors must reach a unanimous verdict in a murder trial. The film shows all five concepts:</p>
+  <ul>
+    <li><b>Conformity:</b> in the first show-of-hands vote, some jurors raise their hands for "guilty" only after seeing others do so.</li>
+    <li><b>Groupthink:</b> most jurors want a quick unanimous verdict and do not examine the evidence until Juror 8 dissents.</li>
+    <li><b>Group polarisation:</b> the jurors who hold out for "guilty" become more extreme and emotional as the discussion continues.</li>
+    <li><b>Groupshift:</b> the final verdict (not guilty) is the opposite of where almost every member started.</li>
+    <li><b>Social loafing:</b> one juror is more interested in reaching a baseball game than in the deliberation, and changes his vote just to end it.</li>
+  </ul>
+  <div class="box more"><span class="k">Beyond the slides</span><p>Film details are from the film itself; the slide only lists the five concepts. Standard ways to prevent groupthink: appoint a devil's advocate, use secret ballots, have the leader speak last, invite outside experts. To reduce social loafing: keep groups small, make individual contributions visible, and assess individuals as well as the group.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>One dissenting voice asking for evidence (Juror 8) can break groupthink. Use this in answers on how to improve group decisions.</p></div>
+</article>
+
+<article class="topic" id="t14-11" data-t="Sociogram">
+  <h3><span class="num">14.11</span>Sociogram</h3>
+  <div class="box def"><span class="k">Definition</span><p>A <b>sociogram</b> is a visual representation of the social relationships within a group. It maps who chooses, likes or rejects whom, showing the patterns of interaction.</p></div>
+  <h4>Explanation</h4>
+  <p>Each person is a node; arrows show choices. Sociograms are used to analyse group dynamics, communication patterns and social influence, and to identify key roles and potential problems.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><b>Star</b></td><td>Receives many choices from others; central, influential, popular or well connected</td></tr>
+      <tr><td><b>Isolate</b></td><td>Receives few or no choices; on the edge of the group, less involved</td></tr>
+      <tr><td><b>Clique</b></td><td>A subgroup whose members all choose each other; tight-knit, often closer to each other than to outsiders</td></tr>
+      <tr><td><b>Mutual choice</b></td><td>Two people choose each other; a reciprocal relationship such as a friendship or strong working partnership</td></tr>
+      <tr><td><b>One-way choice</b></td><td>One person chooses another, but the choice is not returned</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example: the class sociogram</span><p>The slide shows seven people (Joel, Sue, Diane, Cynthia, Lynn, Mark, Bob), with solid arrows for attraction, dotted arrows for rejection, and a crossbar for mutual. Joel sits at the centre receiving the most attraction arrows, so he is the <b>star</b>. The slide title, "the role of dependence in power relationships", makes the link: the star has influence because many people depend on or look to him.</p></div>
+</article>
+
+<article class="topic" id="t14-12" data-t="Roles and Stanford Prison">
+  <h3><span class="num">14.12</span>Roles and the Stanford Prison Experiment</h3>
+  <div class="box def"><span class="k">Definition</span><p>A <b>role</b> is a set of expected behaviour patterns attributed to someone occupying a given position in a social unit.</p></div>
+  <h4>Key terms</h4>
+  <ul>
+    <li><b>Role perception:</b> one's own view of how one is supposed to act.</li>
+    <li><b>Role expectations:</b> how others believe one should act in a given situation. Example: people may expect a female leader to be nurturing and a male leader to be assertive.</li>
+    <li><b>Psychological contract:</b> the unwritten mutual beliefs, perceptions and informal obligations between two parties, such as employer and employee.</li>
+    <li><b>Role conflict:</b> a situation in which an individual faces divergent role expectations.</li>
+    <li><b>Interrole conflict:</b> when the expectations of our different, separate groups are in opposition.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>Psychological contract: an employee works late during a crunch expecting the company to be flexible when they need time off. If the manager later refuses leave, the employee feels the unwritten contract has been broken. Interrole conflict: a manager who is also a parent is expected at a late client call and at their child's school event on the same evening.</p></div>
+  <h4>Stanford Prison Experiment (Philip Zimbardo, 1971)</h4>
+  <ul>
+    <li><b>Aim:</b> to study the psychological effects of perceived power.</li>
+    <li><b>Method:</b> 24 male college students were randomly assigned to be "guards" or "prisoners" in a mock prison.</li>
+    <li>Guards enforced rules; prisoners experienced simulated incarceration. Participants quickly adopted their roles: guards became authoritarian, prisoners showed signs of stress.</li>
+    <li><b>Result:</b> planned for 2 weeks, it was <b>stopped after 6 days</b> because of guards' abusive behaviour and prisoners' emotional breakdowns.</li>
+    <li><b>Finding:</b> power and social roles shape behaviour, leading to dehumanisation and loss of identity.</li>
+  </ul>
+  <div class="box tip"><span class="k">Exam tip</span><p>Use Zimbardo to argue that behaviour at work is shaped by the role and power people are given, not only by their personality.</p></div>
+</article>
+
+<article class="topic" id="t14-13" data-t="Types of teams">
+  <h3><span class="num">14.13</span>Five types of teams</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Problem-solving</b></td><td>Members from the same department meet regularly to suggest improvements in quality, efficiency or the work environment. They suggest but rarely have authority to implement.</td><td>Quality circle on a factory floor</td></tr>
+      <tr><td><b>Self-managed</b></td><td>Take on the responsibilities of their former supervisors: planning, scheduling, assigning tasks and making operating decisions</td><td>A production cell that manages its own shifts and targets</td></tr>
+      <tr><td><b>Cross-functional</b></td><td>Employees at about the same level from different work areas come together to accomplish a task</td><td>A new product team with R&amp;D, marketing and finance members</td></tr>
+      <tr><td><b>Virtual</b></td><td>Use technology to unite physically dispersed members</td><td>A team spread across Bengaluru, London and Austin working over video calls</td></tr>
+      <tr><td><b>Multiteam system</b></td><td>A collection of two or more interdependent teams that share a superordinate goal; a "team of teams"</td><td>Ambulance crew, emergency room, surgery and recovery teams all handling one patient</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slide diagram shows the first four types. The fifth type (multiteam systems) and the descriptions are from Robbins &amp; Judge.</p></div>
+</article>
+
+<article class="topic" id="t14-14" data-t="Team effectiveness">
+  <h3><span class="num">14.14</span>What makes teams effective</h3>
+  <h4>Group size</h4>
+  <p>Productivity rises as members are added, up to a point, and then falls (an inverted U; John, 1996). Large groups suffer from coordination problems and social loafing.</p>
+  <h4>The team effectiveness model</h4>
+  <p>Team effectiveness depends on three sets of factors:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Context</th><th>Composition</th><th>Process</th></tr></thead>
+    <tbody><tr>
+      <td>Adequate resources<br>Leadership and structure<br>Climate of trust<br>Performance evaluation and reward systems</td>
+      <td>Abilities of members<br>Personality<br>Allocating roles<br>Diversity<br>Cultural differences<br>Size of teams<br>Member preferences</td>
+      <td>Common purpose<br>Specific goals<br>Team efficacy<br>Team identity<br>Team cohesion<br>Mental models<br>Conflict levels<br>Social loafing</td>
+    </tr></tbody>
+  </table></div>
+  <ul>
+    <li><b>Context</b> is the environment the organisation provides.</li>
+    <li><b>Composition</b> is who is in the team.</li>
+    <li><b>Process</b> is how the team works together.</li>
+  </ul>
+  <h4>Key team roles</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Role</th><th>What they do</th></tr></thead>
+    <tbody>
+      <tr><td>Creator</td><td>Initiates creative ideas</td></tr>
+      <tr><td>Promoter</td><td>Champions ideas after they're initiated</td></tr>
+      <tr><td>Assessor</td><td>Offers insightful analysis of options</td></tr>
+      <tr><td>Organizer</td><td>Provides structure</td></tr>
+      <tr><td>Producer</td><td>Provides direction and follow-through</td></tr>
+      <tr><td>Controller</td><td>Examines details and enforces rules</td></tr>
+      <tr><td>Maintainer</td><td>Fights external battles</td></tr>
+      <tr><td>Adviser</td><td>Encourages the search for more information</td></tr>
+      <tr><td>Linker</td><td>Coordinates and integrates</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>A startup's launch team fails despite talented members. Using the model: <b>context</b> (no budget, unclear reward), <b>composition</b> (five creators, no controller or producer), <b>process</b> (no specific goals, high relationship conflict). The fix targets each box.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>For "Why did this team fail?", go through Context → Composition → Process and find at least one problem in each.</p></div>
+</article>
+
+<article class="topic" id="t14-15" data-t="Team players and cooperation">
+  <h3><span class="num">14.15</span>Creating team players, when not to use teams, and why cooperation is hard</h3>
+  <h4>Creating team players</h4>
+  <ul>
+    <li><b>Selecting:</b> hire people with team skills.</li>
+    <li><b>Training:</b> build team skills through workshops on problem-solving, communication and conflict.</li>
+    <li><b>Rewarding:</b> give incentives for cooperation, not just individual performance.</li>
+  </ul>
+  <h4>When not to use teams</h4>
+  <p>Teams take more time and resources than individuals. Before forming one, ask:</p>
+  <ol>
+    <li>Can the work be done better by one person?</li>
+    <li>Does the work create a common goal or purpose?</li>
+    <li>Are the members of the group interdependent?</li>
+  </ol>
+  <p>If one person can do it better, or there is no common goal, or members don't depend on each other, use individuals instead.</p>
+  <h4>Compete vs collaborate</h4>
+  <p>In the class game, <b>competing</b> could give one group higher points, but <b>collaborating</b> increased the total points earned by all groups together.</p>
+  <p><b>Why is cooperation so hard?</b></p>
+  <ul>
+    <li><b>Goal incongruence:</b> each group pursues its own objectives.</li>
+    <li><b>Lack of trust:</b> you have no control over the other group's decisions.</li>
+    <li><b>Uncertainty:</b> you are not sure how the others will behave.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>Two regional sales teams could share leads and both grow. But each is rewarded only on its own numbers (goal incongruence), neither trusts the other to share good leads (lack of trust), and neither knows if the other will reciprocate (uncertainty). So both hoard leads and the company loses.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Sessions 14–15</h3>
+  <details class="q"><summary>Name the FIRO-B types for high expressed and low wanted control.</summary><div><p>Autocrat (high expressed) and Rebellious (low wanted).</p></div></details>
+  <details class="q"><summary>Two Abdicrat-Submissives on one team: which compatibility, what result?</summary><div><p>Apathetic incompatibility (originator, control). No one takes charge.</p></div></details>
+  <details class="q"><summary>Name the five Tuckman stages with one feature each.</summary><div><p>Forming (strangers, ground rules), Storming (hostility, resisting control), Norming (team spirit, accepting viewpoints), Performing (open, trusting, flexible), Adjourning (assessment, recognition, transition).</p></div></details>
+  <details class="q"><summary>What are the three stages of group decay?</summary><div><p>De-norming, de-storming, de-forming.</p></div></details>
+  <details class="q"><summary>What are the three components of social identity theory?</summary><div><p>Social categorisation, social identification, social comparison.</p></div></details>
+  <details class="q"><summary>Conformity vs groupthink?</summary><div><p>Conformity: an individual aligns with the group. Groupthink: the group's desire for consensus overrides realistic appraisal of alternatives.</p></div></details>
+  <details class="q"><summary>What did Asch find?</summary><div><p>About 75% conformed to an obviously wrong majority at least once.</p></div></details>
+  <details class="q"><summary>What are the three questions for deciding whether to use a team?</summary><div><p>Can one person do it better? Is there a common goal? Are members interdependent?</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSION 16 ===================== -->
+<section class="session" id="s16" data-n="Session 16" data-t="Leadership &amp; Power">
+<header>
+  <p class="eyebrow">Session 16 · includes Leadership Terminologies</p>
+  <h2>Leadership, Power and Politics <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">The importance of group norms, what leadership is, trait and behavioural theories, leadership styles, situational leadership, bases of power, and organisational politics.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s16" data-s="s16"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t16-1" data-t="Case: Forgotten Team Member">
+  <h3><span class="num">16.1</span>Case: The Forgotten Team Member, and group norms</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Group norms</b> are acceptable standards of behaviour shared by a group's members. They tell members what they ought and ought not to do in certain circumstances.</p></div>
+  <h4>The team</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Member</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>Christine</td><td>Coordinator</td></tr>
+      <tr><td>Janet</td><td>Reliable</td></tr>
+      <tr><td>Steve</td><td>Highly structured and transactional</td></tr>
+      <tr><td>Diane</td><td>Quiet contributor</td></tr>
+      <tr><td>Mike</td><td>The forgotten member</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Discussion questions, and how to answer them</h4>
+  <p><b>Why was Mike absent?</b> Use FIRO-B inclusion. Nobody expressed inclusion toward Mike, and he may not have initiated contact either. With no agreed way of communicating (who informs whom, where updates go), he was simply left out. Consider also that his role was never made clear.</p>
+  <p><b>At what stage is the group?</b> Use Tuckman. The group is doing some work, but it never agreed explicit norms on attendance, communication and roles. So it has not truly reached <b>norming</b>; it is still between forming and storming, even if tension is not visible.</p>
+  <p><b>What should the group do?</b> Hold a meeting to agree explicit norms: meeting times, the channel for updates, how absence is handled, deadlines, and who does what. Give Mike a clear role. Check in with him personally.</p>
+  <p><b>What is the role of leadership?</b> Christine, as coordinator, should notice the missing member, include him, set norms, and balance Steve's task focus with attention to people. Diane (quiet) and Mike (absent) are both at risk of being overlooked.</p>
+  <div class="box tip"><span class="k">Exam tip</span><p>The slide's heading is <b>"Importance of group norms"</b>. Make that your main point, then support it with Tuckman (stage) and FIRO-B (inclusion).</p></div>
+</article>
+
+<article class="topic" id="t16-2" data-t="What is leadership?">
+  <h3><span class="num">16.2</span>What is leadership?</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Leadership</b> is the ability to influence a group toward the achievement of a vision or set of goals.</p></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li><b>Not all leaders are managers, nor are all managers leaders.</b> A manager holds a formal position with authority. A leader influences people, whether or not they have the title. The best managers are also leaders.</li>
+    <li><b>Nonsanctioned leadership</b> (the ability to influence that arises outside the formal structure) is often as important as, or more important than, formal influence.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>In a class project, the group "leader" chosen on paper books rooms and sends reminders. But everyone waits to hear what one respected classmate thinks before agreeing to anything. That classmate is the real, nonsanctioned leader.</p></div>
+</article>
+
+<article class="topic" id="t16-3" data-t="Trait theory">
+  <h3><span class="num">16.3</span>Trait theory: are leaders born?</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Trait theories</b> of leadership focus on personal qualities and characteristics that differentiate leaders from non-leaders.</p></div>
+  <h4>Explanation</h4>
+  <p>This is the oldest approach to leadership research. It searched for personality, social, physical or intellectual attributes that great leaders share, on the assumption that leaders are <b>born</b>. Early lists were long and inconsistent. Organising traits around the Big Five personality model gave clearer results:</p>
+  <ul>
+    <li><b>Extraversion, conscientiousness and openness to experience</b> are the traits most related to leadership.</li>
+    <li>People high in <b>emotional intelligence (EI)</b> are more likely to emerge as leaders, even after taking cognitive ability and personality into account.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>In a new MBA section, the student who speaks up confidently (extraversion), always comes prepared (conscientiousness), suggests fresh ideas (openness) and reads the room well (EI) is often elected class representative.</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>Common criticism: traits predict who <em>emerges</em> as a leader better than who is <em>effective</em>, and they ignore the situation. This gap led to behavioural and contingency theories.</p></div>
+</article>
+
+<article class="topic" id="t16-4" data-t="Behavioural theories">
+  <h3><span class="num">16.4</span>Behavioural theories: leaders are made</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Behavioural theories</b> say effective leadership is <b>learned</b> through actions and habits rather than born traits. They study what effective leaders <em>do</em>.</p></div>
+  <h4>1. Hawthorne Experiments (Elton Mayo, 1920s–1930s)</h4>
+  <p>Found that people have <b>social needs</b>. Supervision, workplace conditions and social rewards affect productivity, not just pay and physical conditions.</p>
+  <h4>2. Ohio State Leadership Studies (1940s)</h4>
+  <ul>
+    <li><b>Initiating structure (task-oriented):</b> the extent to which a leader defines and structures their role and those of subordinates to achieve goals: organising work, setting deadlines, assigning tasks.</li>
+    <li><b>Consideration (people-oriented):</b> the extent to which a leader shows camaraderie, mutual trust, respect for employees' ideas, and regard for their feelings.</li>
+    <li><b>Key takeaway:</b> the <mark>"High-High"</mark> style (high on both) achieved the highest subordinate performance and satisfaction.</li>
+  </ul>
+  <h4>3. University of Michigan Leadership Studies (1950s)</h4>
+  <ul>
+    <li><b>Production-centred (task-oriented):</b> focuses on the technical aspects of the job, keeping employees busy, meeting production schedules.</li>
+    <li><b>Employee-centred (people-oriented):</b> focuses on the human aspects of subordinates.</li>
+    <li><b>Key takeaway:</b> <mark>employee-centred</mark> leaders achieved significantly higher group productivity and job satisfaction.</li>
+  </ul>
+  <div class="tbl"><table>
+    <thead><tr><th>Study</th><th>Task dimension</th><th>People dimension</th><th>Finding</th></tr></thead>
+    <tbody>
+      <tr><td>Ohio State (1940s)</td><td>Initiating structure</td><td>Consideration</td><td>High-High is best</td></tr>
+      <tr><td>Michigan (1950s)</td><td>Production-centred</td><td>Employee-centred</td><td>Employee-centred is best</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>A project manager who sets a clear weekly plan with deadlines (initiating structure) and also checks how team members are coping, listens to their ideas and defends them in front of the client (consideration) is a High-High leader.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Don't mix up the findings: Ohio State says <b>both</b> dimensions high; Michigan says <b>employee-centred</b> wins.</p></div>
+</article>
+
+<article class="topic" id="t16-5" data-t="Task vs people oriented">
+  <h3><span class="num">16.5</span>Task-oriented vs people-oriented leadership</h3>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Task-oriented</th><th>People-oriented</th></tr></thead>
+    <tbody>
+      <tr><th>Core focus</th><td>Task accomplishment and performance</td><td>People, relationships and team well-being</td></tr>
+      <tr><th>Primary concern</th><td>What needs to be done and how effectively</td><td>How people experience work and work together</td></tr>
+      <tr><th>Leader's role</th><td>Set goals, clarify roles, establish procedures, monitor progress</td><td>Build relationships, provide support, develop people, foster trust</td></tr>
+      <tr><th>Motivation</th><td>Goals, standards, deadlines, performance expectations</td><td>Recognition, support, participation, belonging, development</td></tr>
+      <tr><th>Best suited to</th><td>Time-sensitive, structured or highly interdependent tasks</td><td>Situations needing collaboration, trust, development and strong relationships</td></tr>
+      <tr><th>Risk if overused</th><td>Employees feel pressured, undervalued, or treated only as a means to goals</td><td>Accountability, standards or task completion get too little attention</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>An airline operations manager during a storm diverting flights needs a task focus (time-sensitive, interdependent). A manager building a new team after a merger needs a people focus (trust, belonging).</p></div>
+</article>
+
+<article class="topic" id="t16-6" data-t="Leadership styles">
+  <h3><span class="num">16.6</span>Leadership styles</h3>
+  <div class="box def"><span class="k">Definition</span><p>A <b>leadership style</b> is the characteristic way a leader makes decisions, directs work and relates to followers. The slides list nine styles, and the Leadership Terminologies handout adds ethical leadership.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Style</th><th>Meaning</th><th>When useful / example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Autocratic</b></td><td>The leader takes all decisions alone and expects others to follow</td><td>Emergencies or when quick decisions are needed, e.g. evacuating a building</td></tr>
+      <tr><td><b>Democratic</b></td><td>The leader involves team members in discussions and values their suggestions before deciding. Builds trust, ownership and teamwork.</td><td>Setting team goals for the year</td></tr>
+      <tr><td><b>Bureaucratic</b></td><td>The leader strictly follows rules, policies and official procedures, and does not take discretionary decisions even when needed</td><td>Compliance, safety-critical work, government offices</td></tr>
+      <tr><td><b>Servant</b></td><td>The leader puts the needs of people first and helps others grow and succeed. Focuses on humility, service, and developing others before self-interest.</td><td>A manager who removes obstacles and mentors juniors</td></tr>
+      <tr><td><b>Ethical</b></td><td>The leader upholds strong values like honesty, fairness and responsibility. Promotes integrity and public trust.</td><td>Refusing to inflate numbers despite pressure from above</td></tr>
+      <tr><td><b>Authentic</b></td><td>The leader is genuine, self-aware and leads with transparency. Encourages credibility and strong relationships.</td><td>A CEO who openly admits a strategic mistake and explains the fix</td></tr>
+      <tr><td><b>Laissez-faire</b></td><td>The leader gives team members total autonomy to make decisions and manage their own work with minimal supervision</td><td>Expert research teams; risky with inexperienced teams</td></tr>
+      <tr><td><b>Charismatic</b></td><td>Followers attribute heroic or extraordinary abilities to the leader because of their vision, confidence and personal appeal</td><td>A founder whose employees are devoted to their vision</td></tr>
+      <tr><td><b>Transactional</b></td><td colspan="2">Exchange-based leadership. See 16.7.</td></tr>
+      <tr><td><b>Transformational</b></td><td colspan="2">Vision-based, inspiring leadership. See 16.7.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>Charismatic leadership is listed on the slide but not defined there; the definition given is the standard one.</p></div>
+</article>
+
+<article class="topic" id="t16-7" data-t="Transactional vs transformational">
+  <h3><span class="num">16.7</span>Transactional vs transformational leadership</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Transactional leadership</b> is based on an exchange between leaders and followers: leaders clarify expectations, set standards, and use rewards and corrective actions. <b>Transformational leadership</b> inspires followers to go beyond immediate self-interest and contribute to a shared vision and broader organisational goals.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Transactional</th><th>Transformational</th></tr></thead>
+    <tbody>
+      <tr><th>Basis</th><td>Exchange: performance for rewards</td><td>Inspiration toward a shared vision</td></tr>
+      <tr><th>Emphasises</th><td>Clear roles, goals, performance standards, accountability</td><td>Vision, inspiration, personal growth, innovation, organisational change</td></tr>
+      <tr><th>Followers motivated by</th><td><b>Extrinsic</b> rewards, recognition or consequences linked to performance</td><td><b>Intrinsic</b> motivation, shared purpose, commitment, identification with goals</td></tr>
+      <tr><th>Works well when</th><td>Tasks, responsibilities and outcomes are clearly defined and measurable</td><td>The organisation faces change, uncertainty, innovation or needs a new direction</td></tr>
+      <tr><th>Primary focus</th><td>Performance, structure, accountability, goal achievement</td><td>Vision, change, innovation, inspiration, development</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Explanation</h4>
+  <p>The two are not opposites; good leaders use both. Transactional leadership keeps day-to-day performance on track. Transformational leadership builds on it by making people care about the purpose, so they give more than the deal requires.</p>
+  <div class="box eg"><span class="k">Example</span><p><b>Transactional:</b> a call-centre manager gives a bonus for every 100 tickets resolved and a warning for missed targets. <b>Transformational:</b> Ratan Tata inspiring engineers to build an affordable car so that Indian families would not have to ride four to a scooter.</p></div>
+</article>
+
+<article class="topic" id="t16-8" data-t="Styles and DISC">
+  <h3><span class="num">16.8</span>Leadership styles mapped onto DISC personality</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>DISC</b> is a personality model with four quadrants: <b>Dominance, Influence, Steadiness, Conscientiousness</b>. The slide maps each quadrant to the leadership style it naturally leans toward.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Quadrant</th><th>Traits</th><th>Natural style</th></tr></thead>
+    <tbody>
+      <tr><td><b>D</b>: Dominance</td><td>Direct, results-oriented, firm, strong-willed, forceful</td><td>Autocratic</td></tr>
+      <tr><td><b>i</b>: Influence</td><td>Outgoing, enthusiastic, optimistic, high-spirited, lively</td><td>Transformational</td></tr>
+      <tr><td><b>S</b>: Steadiness</td><td>Even-tempered, accommodating, patient, humble, tactful</td><td>Servant, Democratic</td></tr>
+      <tr><td><b>C</b>: Conscientiousness</td><td>Analytical, reserved, precise, private, systematic</td><td>Bureaucratic</td></tr>
+      <tr><td>Between D and C</td><td>Results-focused and systematic</td><td>Transactional</td></tr>
+    </tbody>
+  </table></div>
+  <p>The slide's question, "Do all leaders lead the same way?", is answered here: no. Personality pushes each leader toward a natural style.</p>
+</article>
+
+<article class="topic" id="t16-9" data-t="Situational leadership">
+  <h3><span class="num">16.9</span>Situational leadership (Paul Hersey &amp; Ken Blanchard, 1969)</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Situational leadership</b> says effective leaders adapt their style to each situation.</p></div>
+  <h4>Key points</h4>
+  <ul>
+    <li>No one style is appropriate for all situations.</li>
+    <li>Leaders may use a different style in each situation, even with the same team, followers or employees.</li>
+  </ul>
+  <h4>Explanation</h4>
+  <p>The model focuses on the <b>follower</b>. The right style depends on how ready the follower is to do the task, meaning their ability and willingness.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Follower readiness</th><th>Style</th><th>Leader behaviour</th></tr></thead>
+    <tbody>
+      <tr><td>R1: unable and unwilling</td><td>S1 <b>Telling</b></td><td>High task, low relationship: give specific instructions</td></tr>
+      <tr><td>R2: unable but willing</td><td>S2 <b>Selling</b></td><td>High task, high relationship: explain decisions, coach</td></tr>
+      <tr><td>R3: able but unwilling</td><td>S3 <b>Participating</b></td><td>Low task, high relationship: share decisions, encourage</td></tr>
+      <tr><td>R4: able and willing</td><td>S4 <b>Delegating</b></td><td>Low task, low relationship: hand over responsibility</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The readiness levels and S1–S4 styles are the standard Hersey-Blanchard model; the slide gives only the principle.</p></div>
+  <div class="box eg"><span class="k">Example</span><p>The same manager tells a new intern exactly how to format a report (Telling), coaches an enthusiastic junior through her first client call (Selling), involves a skilled but demotivated senior in planning to re-engage him (Participating), and simply hands a whole project to a star performer (Delegating).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Contrast with Fiedler (17.4): in situational leadership the leader <b>changes style</b>; in Fiedler the style is <b>fixed</b> and you change the situation or the leader.</p></div>
+</article>
+
+<article class="topic" id="t16-10" data-t="Power and dependence">
+  <h3><span class="num">16.10</span>Power and dependence</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Power</b> is a capacity that X has to influence the behaviour of Y so that Y acts in accordance with X's wishes.</p></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li>Power is a <b>capacity</b>: it may exist without being used.</li>
+    <li>The most important aspect of power is that it is a <b>function of dependence</b>. A person can have power over you only if they control something you desire.</li>
+  </ul>
+  <h4>The general dependency postulate</h4>
+  <p>When you possess anything that others require but that <b>you alone control</b>, you make them dependent on you, and you gain power over them. <mark>Dependence is inversely proportional to the alternative sources of supply</mark>: the more alternatives people have, the less they depend on you.</p>
+  <h4>What creates dependence?</h4>
+  <ul>
+    <li><b>Importance:</b> the resource you control must be important to others.</li>
+    <li><b>Scarcity:</b> the resource must be scarce.</li>
+    <li><b>Nonsubstitutability:</b> the fewer substitutes for the resource, the more power you have.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>The only data scientist in a startup who understands the pricing algorithm has a lot of power: the algorithm is important, her skill is scarce, and she cannot easily be replaced. When the company hires two more data scientists and documents the model, her power falls.</p></div>
+</article>
+
+<article class="topic" id="t16-11" data-t="Bases of power">
+  <h3><span class="num">16.11</span>Bases of power: formal and personal</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Bases of power</b> are the sources from which power comes. <b>Formal power</b> comes from a person's position in the organisation. <b>Personal power</b> comes from the individual's own characteristics.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Category</th><th>Base</th><th>Meaning</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td rowspan="3"><b>Formal</b></td><td>Legitimate</td><td>Authority from one's formal position in the hierarchy</td><td>A manager approving leave requests</td></tr>
+      <tr><td>Reward</td><td>Ability to give things others value</td><td>Bonuses, promotions, good assignments</td></tr>
+      <tr><td>Coercive</td><td>Ability to punish or threaten</td><td>Threat of a poor rating or an unwanted transfer</td></tr>
+      <tr><td rowspan="2"><b>Personal</b></td><td>Expert</td><td>Influence from expertise, special skill or knowledge</td><td>The only engineer who understands the legacy system</td></tr>
+      <tr><td>Referent</td><td>Influence because others admire and identify with you</td><td>A well-liked senior everyone wants to impress; celebrity endorsers</td></tr>
+    </tbody>
+  </table></div>
+  <h4>Which bases of power are most effective?</h4>
+  <ul>
+    <li><b>Personal sources are most effective.</b></li>
+    <li><b>Expert and referent power</b> are positively related to employees' satisfaction with supervision, their organisational commitment and their performance.</li>
+    <li><b>Reward and legitimate power</b> seem to be unrelated to these outcomes.</li>
+    <li><b>Coercive power can be damaging.</b></li>
+  </ul>
+  <div class="box more"><span class="k">Beyond the slides</span><p>These five bases come from French &amp; Raven.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Explain why personal power works better: people follow it willingly (commitment), while formal power often produces only compliance, and coercion produces resentment.</p></div>
+</article>
+
+<article class="topic" id="t16-12" data-t="Politics">
+  <h3><span class="num">16.12</span>Organisational politics</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Political behaviour</b> is activity that is not required as part of a person's formal role in the organisation but that influences, or attempts to influence, the distribution of advantages and disadvantages within the organisation. <b>Political skill</b> is the ability to influence others in ways that enhance one's objectives.</p></div>
+  <h4>Explanation</h4>
+  <p>Politics is what happens when people use power outside their job descriptions. It is not automatically bad. Building alliances to get a good idea approved is political; so is spreading rumours about a rival. What makes politics harmful is when it serves narrow self-interest at the organisation's expense.</p>
+  <div class="box eg"><span class="k">Example</span><p>Building a relationship with the CEO's chief of staff to get your project on the board agenda; taking credit for a team success; withholding information from a rival department. None is in anyone's job description, but each affects who gains and who loses.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 16</h3>
+  <details class="q"><summary>What was the key lesson of the Forgotten Team Member case?</summary><div><p>The importance of group norms, supported by inclusion (FIRO-B) and the leader's role.</p></div></details>
+  <details class="q"><summary>Which Big Five traits are most related to leadership?</summary><div><p>Extraversion, conscientiousness and openness to experience. High EI also helps people emerge as leaders.</p></div></details>
+  <details class="q"><summary>Ohio State vs Michigan: dimensions and findings?</summary><div><p>Ohio State: initiating structure and consideration; High-High best. Michigan: production-centred and employee-centred; employee-centred best.</p></div></details>
+  <details class="q"><summary>Transactional vs transformational: what motivates followers?</summary><div><p>Transactional: extrinsic rewards and consequences. Transformational: intrinsic motivation and shared purpose.</p></div></details>
+  <details class="q"><summary>Which DISC quadrant maps to bureaucratic leadership?</summary><div><p>C (Conscientiousness).</p></div></details>
+  <details class="q"><summary>Three things that create dependence?</summary><div><p>Importance, scarcity, nonsubstitutability.</p></div></details>
+  <details class="q"><summary>Which bases of power are most effective?</summary><div><p>Personal (expert and referent). Coercive can be damaging.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSION 17 ===================== -->
+<section class="session" id="s17" data-n="Session 17" data-t="Contemporary Leadership">
+<header>
+  <p class="eyebrow">Session 17</p>
+  <h2>Crisis and Contemporary Leadership <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">Leading in a crisis, Leader-Member Exchange, Path-Goal theory, Fiedler's contingency model in full, and Milgram's study of obedience.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s17" data-s="s17"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t17-1" data-t="Crisis leadership">
+  <h3><span class="num">17.1</span>Crisis leadership</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Crisis leadership</b> is leading an organisation through a sudden, high-stakes event, and through recovery afterwards.</p></div>
+  <h4>During the crisis</h4>
+  <ul>
+    <li><b>The Golden Rule:</b> <mark>tell it all, tell it fast, and tell the truth.</mark> Silence and half-truths let rumours fill the gap and destroy trust.</li>
+    <li><b>Internal vs external messaging:</b> tailor separate communication flows for employees, stakeholders and the public. Each group has different questions.</li>
+    <li><b>Empathy + Action framework:</b> acknowledge that people's anxiety is valid, and clearly outline the immediate next steps.</li>
+  </ul>
+  <h4>Post-crisis recovery and learning</h4>
+  <ul>
+    <li><b>After-action review:</b> a <b>blameless</b> post-mortem to evaluate what worked, what failed and why. "Blameless" means the focus is on fixing systems, not punishing individuals, so people speak honestly.</li>
+    <li><b>Rebuilding trust:</b> restore morale and brand reputation once the immediate threat has passed.</li>
+  </ul>
+  <div class="box eg"><span class="k">Example</span><p>A packaged-food company finds contamination in one batch. The CEO announces a recall the same day with batch numbers (tell it all, fast, truthfully). Employees get a separate note on job security and what to tell customers; distributors get logistics instructions; the public gets a press release (internal vs external). The message says "We know parents are worried; here is how to get a full refund today" (empathy + action). Afterwards, a blameless review finds a gap in supplier testing and fixes it.</p></div>
+</article>
+
+<article class="topic" id="t17-2" data-t="LMX theory">
+  <h3><span class="num">17.2</span>Leader-Member Exchange (LMX) theory (Graen, Dansereau &amp; Haga, 1970)</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>LMX theory</b> says leaders form distinct, individual relationships with each follower, and these relationships shape each follower's performance, job satisfaction and career growth.</p></div>
+  <h4>Explanation</h4>
+  <p>Earlier theories treated a team as one uniform group that the leader treats the same way. LMX recognises that leaders, often early and without meaning to, sort followers into two groups:</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>In-group</th><th>Out-group</th></tr></thead>
+    <tbody>
+      <tr><th>Quality of exchange</th><td>High-quality</td><td>Lower-quality, purely transactional</td></tr>
+      <tr><th>What they receive</th><td>More trust, support, challenging assignments, rewards and face-time with the leader</td><td>Managed through formal rules, policies and basic job descriptions; no extra perks or deep mentoring</td></tr>
+      <tr><th>What they give back</th><td>Higher loyalty, commitment and performance</td><td>What the job requires</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p>A manager always gives high-visibility client pitches to the two analysts she trusts (in-group). Others get routine tasks and formal reviews (out-group). The in-group learns faster and performs better, which confirms her belief. It becomes a self-fulfilling cycle.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Implication: leaders should try to build high-quality relationships with <em>all</em> members, because out-group status lowers satisfaction and feels unfair. Link it to social identity theory (14.7) for extra marks.</p></div>
+</article>
+
+<article class="topic" id="t17-3" data-t="Path-Goal theory">
+  <h3><span class="num">17.3</span>Path-Goal theory (Robert House)</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Path-Goal theory</b> says a leader's core job is to increase followers' motivation and satisfaction by <b>clarifying the path</b> (the behaviours that lead to valued outcomes) and <b>removing obstacles</b> that block that path.</p></div>
+  <h4>Explanation</h4>
+  <p>The name comes from the image of a path to a goal. The leader shows the way and clears it. Unlike Fiedler, House believed the <b>same leader</b> can use four different behaviours depending on the follower and the task:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Behaviour</th><th>What the leader does</th><th>Best when</th></tr></thead>
+    <tbody>
+      <tr><td><b>Directive</b></td><td>Tells followers what is expected, schedules work, gives specific guidance</td><td>The task is ambiguous or the follower is inexperienced</td></tr>
+      <tr><td><b>Supportive</b></td><td>Is friendly and shows concern for followers' needs and well-being</td><td>The task is stressful, boring or frustrating</td></tr>
+      <tr><td><b>Participative</b></td><td>Consults followers and uses their suggestions before deciding</td><td>Followers are experienced and want involvement</td></tr>
+      <tr><td><b>Achievement-oriented</b></td><td>Sets challenging goals and expects followers to perform at their highest level</td><td>Tasks are complex and followers are high achievers</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slide names the four behaviours; the "what the leader does" and "best when" columns are standard textbook detail.</p></div>
+  <div class="box eg"><span class="k">Example</span><p>A new sales rep struggles with the CRM system: the manager shows exactly how to log leads (directive) and gets IT to fix her access (removing an obstacle). A top performer is bored with routine targets: the manager gives him a stretch goal of opening a new region (achievement-oriented).</p></div>
+</article>
+
+<article class="topic" id="t17-4" data-t="Fiedler's contingency model">
+  <h3><span class="num">17.4</span>Fiedler's contingency model (Fred Fiedler, 1964)</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>Fiedler contingency model</b> says there is no single best way to lead. A leader's effectiveness depends on <b>matching their natural leadership style to the right situation</b>.</p></div>
+  <h4>Explanation</h4>
+  <p>The broader <b>contingency approach</b> says the most effective style depends ("is contingent") on the specific situation and factors in the organisation. Fiedler adds a strong assumption: a leader's style is <b>fixed</b>. So if the style does not fit the situation, you must either change the situation or change the leader.</p>
+  <h4>Step 1: identify the leader's style (LPC scale)</h4>
+  <p>The leader fills in the <b>Least Preferred Co-worker (LPC)</b> questionnaire, rating the person they least liked working with.</p>
+  <ul>
+    <li><b>High LPC score</b> (describes even the least-liked co-worker fairly positively) → <b>relationship-oriented</b> leader.</li>
+    <li><b>Low LPC score</b> (describes that co-worker harshly) → <b>task-oriented</b> leader.</li>
+  </ul>
+  <h4>Step 2: assess situational favourableness</h4>
+  <ul>
+    <li><b>Leader-member relations:</b> good or poor. How much members trust, respect and have confidence in the leader.</li>
+    <li><b>Task structure:</b> high or low. How clear and procedural the job is.</li>
+    <li><b>Position power:</b> strong or weak. How much formal power the leader has to hire, fire, reward and punish.</li>
+  </ul>
+  <h4>Step 3: match style to situation</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Octant</th><th>I</th><th>II</th><th>III</th><th>IV</th><th>V</th><th>VI</th><th>VII</th><th>VIII</th></tr></thead>
+    <tbody>
+      <tr><th>Leader-member relations</th><td>Good</td><td>Good</td><td>Good</td><td>Good</td><td>Poor</td><td>Poor</td><td>Poor</td><td>Poor</td></tr>
+      <tr><th>Task structure</th><td>High</td><td>High</td><td>Low</td><td>Low</td><td>High</td><td>High</td><td>Low</td><td>Low</td></tr>
+      <tr><th>Position power</th><td>Strong</td><td>Weak</td><td>Strong</td><td>Weak</td><td>Strong</td><td>Weak</td><td>Strong</td><td>Weak</td></tr>
+      <tr><th>Situation</th><td colspan="2">Favourable</td><td colspan="4">Moderate</td><td colspan="2">Unfavourable</td></tr>
+      <tr><th>Best leader</th><td colspan="2">Task-oriented</td><td colspan="4">Relationship-oriented</td><td colspan="2">Task-oriented</td></tr>
+    </tbody>
+  </table></div>
+  <div class="fig"><svg viewBox="0 0 520 200" width="520" role="img" aria-label="Task-oriented performance is high at both ends; relationship-oriented is high in the middle">
+    <line x1="40" y1="160" x2="510" y2="160" stroke="currentColor" stroke-opacity=".4"/>
+    <line x1="40" y1="160" x2="40" y2="20" stroke="currentColor" stroke-opacity=".4"/>
+    <path d="M60 50 L150 52 C190 54,200 120,240 122 L370 122 C410 120,420 54,460 50 L500 50" fill="none" stroke="var(--accent)" stroke-width="3"/>
+    <path d="M60 130 L150 130 C200 128,210 44,250 44 C300 44,340 130,400 134 L500 134" fill="none" stroke="var(--eg)" stroke-width="3" stroke-dasharray="7 5"/>
+    <g font-size="12" text-anchor="middle">
+      <text x="75" y="180">I</text><text x="130" y="180">II</text><text x="185" y="180">III</text><text x="240" y="180">IV</text><text x="295" y="180">V</text><text x="350" y="180">VI</text><text x="405" y="180">VII</text><text x="460" y="180">VIII</text>
+    </g>
+    <text x="60" y="36" font-size="12">Task-oriented (solid)</text>
+    <text x="270" y="34" font-size="12">Relationship-oriented (dashed)</text>
+    <text x="20" y="95" font-size="12" transform="rotate(-90 20 95)" text-anchor="middle">Performance</text>
+  </svg></div>
+  <p><b>Why this pattern?</b> In very favourable situations, people already trust the leader and the task is clear, so a task leader can simply drive results. In very unfavourable situations, the group needs firm structure and direction, which a task leader provides. In the moderate middle, relationship skills are needed to win cooperation.</p>
+  <div class="box eg"><span class="k">Example</span><p>A newly appointed hospital administrator is distrusted by staff (poor relations), is running an unstructured turnaround (low task structure), and cannot hire or fire (weak power): Octant VIII, so a task-oriented leader fits best. A well-liked supervisor on a routine assembly line with full authority (good, high, strong) is in Octant I: also task-oriented. A respected team lead with a creative, unstructured brief and little formal power (good, low, weak) is in Octant IV: relationship-oriented.</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>In Fiedler's research, task-oriented leaders also still do well in Octant III; the chart's crossover falls around there.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>For a situation question: (1) rate the three factors, (2) name the octant, (3) name the leader type, (4) if the current leader doesn't fit, say "change the leader or change the situation" (e.g. give more position power, restructure the task).</p></div>
+</article>
+
+<article class="topic" id="t17-5" data-t="Milgram experiment">
+  <h3><span class="num">17.5</span>Milgram's obedience experiment (Yale University, 1961–65)</h3>
+  <div class="box def"><span class="k">Definition</span><p>Stanley <b>Milgram's</b> experiments studied <b>obedience to authority</b>: how far ordinary people will go in harming someone when instructed by an authority figure.</p></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li><b>Background:</b> Milgram grew up with relatives who survived the Holocaust, and wanted to understand how ordinary people took part in atrocities.</li>
+    <li><b>Cover story:</b> participants believed they were in a study on the effects of punishment on learning.</li>
+    <li><b>Method:</b> the participant was the "teacher". An authority figure in a <b>lab coat</b> ordered them to give electric shocks to a "learner" (whom they could hear but not see) strapped to a chair. Shocks started at <b>15 volts</b> and rose after each wrong answer up to <b>450 volts</b>. The shocks were not real, but participants did not know that.</li>
+    <li><b>Result:</b> <mark>65% continued to 450 volts</mark> in the baseline study.</li>
+    <li><b>Explanation:</b> obedience to authority overrode participants' ethics, sympathy and moral conduct. This helped explain how atrocities could be committed under the Nazis.</li>
+    <li><b>Implication:</b> power dynamics and authority can make individuals act against their own moral beliefs.</li>
+  </ul>
+  <div class="box eg"><span class="k">Workplace example</span><p>An accountant is told by the CFO to book revenue early to meet quarterly targets. He knows it is wrong, but "the CFO said so". This is the Milgram effect in an office. Ethical leadership and whistle-blower channels are safeguards.</p></div>
+  <h4>Comparing the three classic experiments</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Study</th><th>Year</th><th>Shows the power of</th><th>Key number</th></tr></thead>
+    <tbody>
+      <tr><td>Asch</td><td>1950s</td><td>Peers (conformity)</td><td>~75% conformed at least once</td></tr>
+      <tr><td>Milgram</td><td>1961–65</td><td>Authority (obedience)</td><td>65% went to 450 V</td></tr>
+      <tr><td>Zimbardo (Stanford Prison)</td><td>1971</td><td>Roles and perceived power</td><td>24 students; stopped after 6 days of a planned 14</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 17</h3>
+  <details class="q"><summary>What is the Golden Rule of crisis communication?</summary><div><p>Tell it all, tell it fast, and tell the truth.</p></div></details>
+  <details class="q"><summary>What is an after-action review, and why must it be blameless?</summary><div><p>A post-mortem on what worked, what failed and why. Blameless so people speak honestly and the focus is on fixing systems.</p></div></details>
+  <details class="q"><summary>What do in-group members receive and give under LMX?</summary><div><p>Receive: trust, support, challenging assignments, rewards, face-time. Give: loyalty, commitment, performance.</p></div></details>
+  <details class="q"><summary>Name the four Path-Goal behaviours.</summary><div><p>Directive, supportive, participative, achievement-oriented.</p></div></details>
+  <details class="q"><summary>A low-LPC leader is which type, and in which situations do they do best?</summary><div><p>Task-oriented. Best in very favourable (I–II) and very unfavourable (VII–VIII) situations.</p></div></details>
+  <details class="q"><summary>What three factors decide situational favourableness?</summary><div><p>Leader-member relations, task structure, position power.</p></div></details>
+  <details class="q"><summary>What percentage went to 450 V in Milgram's baseline study?</summary><div><p>65%.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== SESSION 18 ===================== -->
+<section class="session" id="s18" data-n="Session 18" data-t="Conflict &amp; Negotiation">
+<header>
+  <p class="eyebrow">Session 18</p>
+  <h2>Conflict Management and Negotiation <span class="faculty">Faculty pick</span></h2>
+  <p class="sub">Functional and dysfunctional conflict, the three types of conflict, the Thomas-Kilmann model, distributive and integrative negotiation, BATNA and ZOPA, and personality at the bargaining table.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-s18" data-s="s18"> Mark as revised</label>
+</header>
+
+<article class="topic" id="t18-1" data-t="Functional vs dysfunctional">
+  <h3><span class="num">18.1</span>Conflict by its effect: functional vs dysfunctional</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Conflict</b> is a process that begins when one party perceives that another party has negatively affected, or is about to negatively affect, something the first party cares about. <b>Functional conflict</b> supports the group's goals and improves performance. <b>Dysfunctional conflict</b> hinders group performance.</p></div>
+  <h4>Explanation</h4>
+  <p>Conflict is not always bad. Some conflict is necessary: it surfaces different ideas, challenges weak assumptions and prevents groupthink. Conflict becomes dysfunctional when it turns personal, wastes energy and stops people from cooperating.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Functional conflict</th><th>Dysfunctional conflict</th></tr></thead>
+    <tbody><tr>
+      <td>Improves decision quality<br>Stimulates creativity<br>Prevents groupthink<br>Focus stays on the issue</td>
+      <td>Reduces cooperation and communication<br>Damages relationships and cohesion<br>Wastes time and energy<br>Focus shifts to people</td>
+    </tr></tbody>
+  </table></div>
+  <div class="box eg"><span class="k">Example</span><p><b>Functional:</b> two analysts debate the market-entry data, and the final plan is stronger (Scenario 2 in 18.4). <b>Dysfunctional:</b> two managers undermine each other in meetings and stop sharing information (Scenario 3).</p></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slide lists the two terms only. The definitions and the table are standard textbook content (Robbins &amp; Judge).</p></div>
+</article>
+
+<article class="topic" id="t18-2" data-t="Three types of conflict">
+  <h3><span class="num">18.2</span>Three types of conflict: task, relationship, process</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Task conflict</b> relates to the content and goals of the work. <b>Relationship conflict</b> focuses on interpersonal relationships. <b>Process conflict</b> is about how the work gets done.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>Type</th><th>About</th><th>Usually</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td><b>Task</b></td><td>What the work is and what its goals are</td><td>Low-to-moderate levels can be functional</td><td>Launch now or do more research? (Scenario 2)</td></tr>
+      <tr><td><b>Relationship</b></td><td>Interpersonal friction, dislike, hostility</td><td>Almost always dysfunctional</td><td>"You never listen." / "You expect everyone to agree with you." (Scenario 1)</td></tr>
+      <tr><td><b>Process</b></td><td>Who does what, how and when</td><td>Low levels can be functional; high levels cause role confusion</td><td>Who writes which section; who presents to the client</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The "Usually" column is standard research finding (Robbins &amp; Judge).</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>In every conflict case, first name the <b>type</b> of conflict. The type often decides the best handling mode.</p></div>
+</article>
+
+<article class="topic" id="t18-3" data-t="Thomas-Kilmann model">
+  <h3><span class="num">18.3</span>The Thomas-Kilmann conflict model</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>Thomas-Kilmann model</b> classifies conflict-handling into five modes, using two dimensions: concern for <b>our wants and needs</b> (assertiveness) and concern for <b>their wants and needs</b> (cooperativeness).</p></div>
+  <div class="tk" role="img" aria-label="Thomas-Kilmann grid">
+    <div class="ax-y">Our wants and needs (assertiveness) →</div>
+    <div class="cell"><b>Compete</b><small>I win – you lose</small></div>
+    <div class="cell win"><b>Collaborate</b><small>I win – you win</small></div>
+    <div class="mid"><b>Compromise</b><small>I win some, you win some · I lose some, you lose some</small></div>
+    <div class="cell"><b>Avoid</b><small>I lose – you lose</small></div>
+    <div class="cell"><b>Accommodate</b><small>You win – I lose</small></div>
+    <div></div>
+    <div class="ax-x">Their wants and needs (cooperativeness) →</div>
+  </div>
+  <p><b>Compromise</b> sits in the centre of the grid, between all four corners: medium assertiveness and medium cooperativeness.</p>
+  <h4>Each mode explained</h4>
+  <div class="tbl"><table>
+    <thead><tr><th>Mode</th><th>Assertive / cooperative</th><th>Outcome</th><th>Use when</th><th>Risk</th></tr></thead>
+    <tbody>
+      <tr><td><b>Competing</b></td><td>High / Low</td><td>I win, you lose</td><td>Emergencies; unpopular but necessary decisions; protecting yourself from exploitation</td><td>Damages relationships; others feel defeated</td></tr>
+      <tr><td><b>Collaborating</b></td><td>High / High</td><td>Win-win</td><td>Both sides' concerns are too important to compromise; need commitment; time is available</td><td>Takes time and energy</td></tr>
+      <tr><td><b>Compromising</b></td><td>Medium / Medium</td><td>Win some, lose some</td><td>Equal power; time pressure; a temporary fix; collaboration has failed</td><td>No one is fully satisfied</td></tr>
+      <tr><td><b>Avoiding</b></td><td>Low / Low</td><td>Lose-lose</td><td>Trivial issues; tempers need to cool; the cost of conflict exceeds the benefit</td><td>Problem festers and grows</td></tr>
+      <tr><td><b>Accommodating</b></td><td>Low / High</td><td>You win, I lose</td><td>The issue matters much more to the other side; preserving harmony; you realise you are wrong</td><td>Your own needs are ignored; can be exploited</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The "Use when" and "Risk" columns are standard guidance for the model.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>Draw the grid with both axes labelled, put compromise in the middle, and write the win/lose outcome in each box. Then justify your chosen mode using four factors: importance of the issue, importance of the relationship, time available, and relative power.</p></div>
+</article>
+
+<article class="topic" id="t18-4" data-t="Three class scenarios">
+  <h3><span class="num">18.4</span>The three class scenarios</h3>
+  <h4>Scenario 1: Priyam and Karan → Compromise</h4>
+  <p>Priyam and Karan have worked together on several projects. Priyam feels Karan often interrupts her and dismisses her suggestions. Karan believes Priyam gets defensive whenever her ideas are questioned. They now avoid speaking directly and communicate through others. In a meeting, Priyam says "There is no point discussing this with you because you never listen." Karan replies "Maybe the problem is that you expect everyone to agree with you." Their manager wants it resolved before their next project together.</p>
+  <ul>
+    <li><b>Conflict type:</b> relationship conflict (dysfunctional).</li>
+    <li><b>Why compromise:</b> each has a partly valid point and each must change a little. They must keep working together, so a practical give-and-take works: Karan agrees not to interrupt; Priyam agrees to treat questions about her ideas as not personal.</li>
+  </ul>
+  <h4>Scenario 2: Ananya and Rahul → Collaborate</h4>
+  <p>A consulting team is advising a consumer-goods company on entering a new market. Ananya wants to launch immediately to capture market share before competitors grow stronger. Rahul wants to delay until more research is done, because the available data is incomplete. Both have evidence. They challenge each other's assumptions and analysis. The team must submit one recommendation to the client the next day.</p>
+  <ul>
+    <li><b>Conflict type:</b> task conflict (functional).</li>
+    <li><b>Why collaborate:</b> both concerns (first-mover advantage and financial risk) are important and can be combined. For example, a phased or pilot launch in one city while gathering data, with clear go/no-go criteria for full launch.</li>
+  </ul>
+  <h4>Scenario 3: Rohan and Meera → Avoid, Compete or Accommodate?</h4>
+  <p>Rohan and Meera, both senior managers, are competing for the same regional director promotion. Only one can get it; the decision is next week. Meera believes her performance record is stronger; Rohan believes his recent client acquisition makes him better. Their relationship deteriorates: Rohan highlights Meera's past mistakes to their manager; Meera questions Rohan's figures. They stop sharing information and undermine each other in team meetings. Neither will give up, and both cannot get the job.</p>
+  <ul>
+    <li><b>Conflict type:</b> a fixed, zero-sum outcome that has turned into relationship conflict.</li>
+    <li><b>Analysis:</b> collaboration and compromise are impossible on the promotion itself, because it cannot be shared or split.</li>
+    <li><b>Compete</b> fairly on merit, presenting their own records, but stop the sabotage.</li>
+    <li><b>Avoid</b> the personal fight until the decision is made; let the manager decide on evidence.</li>
+    <li><b>Accommodate</b> after the decision: the person who loses supports the winner to protect the working relationship.</li>
+    <li>The <b>manager</b> should also step in: make the selection criteria transparent and stop the information-hoarding.</li>
+  </ul>
+  <div class="box tip"><span class="k">Exam tip</span><p>For any scenario: (1) name the conflict type, (2) say whether it is functional or dysfunctional, (3) pick a mode, (4) justify it, (5) say what the manager should do.</p></div>
+</article>
+
+<article class="topic" id="t18-5" data-t="Distributive vs integrative">
+  <h3><span class="num">18.5</span>Negotiation: distributive vs integrative</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>Negotiation</b> is strategic bargaining between two or more parties who want to find an acceptable solution to a shared problem. <b>Distributive negotiation</b> divides a fixed amount of resources in a win-lose setup. <b>Integrative negotiation</b> seeks to expand the total value available, for a mutually beneficial win-win outcome.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Distributive</th><th>Integrative</th></tr></thead>
+    <tbody>
+      <tr><th>Resources</th><td>Fixed "pie" to divide</td><td>Pie can be expanded</td></tr>
+      <tr><th>Outcome</th><td>Win-lose</td><td>Win-win</td></tr>
+      <tr><th>Focus</th><td>Positions ("I want ₹15 lakh")</td><td>Interests ("I want growth and security")</td></tr>
+      <tr><th>Information sharing</th><td>Low; hide your limits</td><td>High; share needs and priorities</td></tr>
+      <tr><th>Relationship</th><td>Short-term</td><td>Long-term</td></tr>
+      <tr><th>Example</th><td>Haggling over a used car's price</td><td>Salary plus joining bonus, remote days and a training budget</td></tr>
+    </tbody>
+  </table></div>
+  <div class="box more"><span class="k">Beyond the slides</span><p>The slide gives the definitions and the win-lose / win-win outcome. The other rows are standard comparison points.</p></div>
+  <div class="box eg"><span class="k">Example: the orange</span><p>Two chefs both want the last orange. Splitting it 50-50 is distributive: each gets half. If they ask <em>why</em> each wants it, they find one needs the juice and the other needs the peel for a cake. Both can get 100% of what they need. That is integrative negotiation.</p></div>
+</article>
+
+<article class="topic" id="t18-6" data-t="BATNA and ZOPA">
+  <h3><span class="num">18.6</span>BATNA, reservation point and ZOPA</h3>
+  <div class="box def"><span class="k">Definition</span><p><b>BATNA</b> (Best Alternative to a Negotiated Agreement) is your fallback option if the negotiation fails. The <b>reservation point</b> is the worst deal you are willing to accept. <b>ZOPA</b> (Zone of Potential Agreement) is the shared range, or overlap, where the minimum acceptable terms of the two parties meet.</p></div>
+  <h4>Explanation</h4>
+  <ul>
+    <li>A <mark>stronger BATNA gives higher negotiation power</mark>, because you can walk away.</li>
+    <li>The outcome depends on the <b>relative</b> BATNAs of the two sides.</li>
+    <li>In a job offer, the candidate's BATNA is other job offers or their current salary. HR's BATNA is the availability of other candidates and its budget limits.</li>
+  </ul>
+  <h4>Worked example: Aditi's salary</h4>
+  <p>Aditi has an offer from a consulting firm for an MBA graduate position at <b>₹13 lakh</b> a year. She also has an offer from a smaller consulting firm at <b>₹12.5 lakh</b>. She prefers the first company for its larger projects and career opportunities, but will not accept below ₹13 lakh. The HR manager's budget is ₹12–15 lakh, but paying more than <b>₹14.5 lakh</b> would create internal pay inequity, because recent hires earn around that level. The company has two other shortlisted candidates willing to accept ₹13 lakh.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Aditi</th><th>Company</th></tr></thead>
+    <tbody>
+      <tr><th>BATNA</th><td>₹12.5 L: the other offer</td><td>₹13 L: hire another shortlisted candidate</td></tr>
+      <tr><th>Reservation point</th><td>₹13 L: the minimum she will accept</td><td>₹14.5 L: the maximum it will realistically pay</td></tr>
+    </tbody>
+  </table></div>
+  <div class="fig"><svg viewBox="0 0 540 130" width="540" role="img" aria-label="ZOPA from 13 to 14.5 lakh">
+    <line x1="30" y1="60" x2="520" y2="60" stroke="currentColor" stroke-opacity=".5"/>
+    <rect x="215" y="45" width="195" height="30" fill="var(--eg-bg)" stroke="var(--eg)"/>
+    <text x="312" y="65" text-anchor="middle" font-size="13" font-weight="600">ZOPA ₹13–14.5 L</text>
+    <g font-size="12" text-anchor="middle">
+      <line x1="85" y1="52" x2="85" y2="68" stroke="currentColor"/><text x="85" y="95">12</text>
+      <line x1="150" y1="52" x2="150" y2="68" stroke="currentColor"/><text x="150" y="95">12.5</text><text x="150" y="36">Aditi's BATNA</text>
+      <line x1="215" y1="40" x2="215" y2="80" stroke="var(--accent)" stroke-width="2"/><text x="215" y="95">13</text><text x="200" y="115">Aditi's reservation</text>
+      <line x1="345" y1="52" x2="345" y2="68" stroke="currentColor"/><text x="345" y="95">14</text>
+      <line x1="410" y1="40" x2="410" y2="80" stroke="var(--accent)" stroke-width="2"/><text x="410" y="95">14.5</text><text x="430" y="115">Company's reservation</text>
+      <line x1="475" y1="52" x2="475" y2="68" stroke="currentColor"/><text x="475" y="95">15</text>
+    </g>
+  </svg></div>
+  <ul>
+    <li><b>ZOPA:</b> ₹13–14.5 lakh. <b>Negotiation range:</b> ₹1.5 lakh.</li>
+    <li><b>Who has more power?</b> The company. Its BATNA (other candidates at ₹13 L) is strong, so it can hold close to ₹13 L. Aditi's BATNA (₹12.5 L) is below her own reservation point, so walking away costs her.</li>
+    <li><b>How Aditi can do better:</b> strengthen her BATNA (seek a better alternative offer); show unique value so she is less substitutable; and negotiate integratively on non-salary items (joining bonus, early salary review, choice of projects), since salary is capped by internal equity.</li>
+  </ul>
+  <div class="box tip"><span class="k">Exam tip</span><p>Always draw the number line. ZOPA runs from the seller's reservation point (here, Aditi's minimum) to the buyer's reservation point (the company's maximum). If the ranges do not overlap, there is <b>no ZOPA</b> and no deal is possible.</p></div>
+</article>
+
+<article class="topic" id="t18-7" data-t="Big Five in negotiation">
+  <h3><span class="num">18.7</span>Understanding yourself in negotiation: the Big Five</h3>
+  <div class="box def"><span class="k">Definition</span><p>The <b>Big Five</b> personality traits (extraversion, agreeableness, conscientiousness, openness and neuroticism) each affect how a person negotiates.</p></div>
+  <h4>Summary</h4>
+  <ul>
+    <li>Extroverted negotiators focus on possible solutions; introverted negotiators focus on the root cause of the problem.</li>
+    <li>Agreeable negotiators are generally more successful than disagreeable ones.</li>
+    <li>Conscientiousness matters more than any other trait.</li>
+    <li>Anxious, depressed and worried negotiators underperform.</li>
+    <li>A creative personality (openness) brings more alternative ideas for win-win outcomes.</li>
+  </ul>
+  <h4>Each trait in detail</h4>
+  <p><b>Extraversion vs introversion.</b> Extroverts are more influenced than introverts by the opponent's first offer. Introverts bring a valuable skill to the table: <b>listening</b>. They prefer to deliberate privately on important decisions, so they may be less likely to make impulsive, poorly thought-out group decisions.</p>
+  <p><b>Agreeableness.</b> Flexibility, trust and cooperation matter in every successful negotiation. But <b>extreme</b> agreeableness can lead to a <b>lose-win</b> outcome, where you give away too much. Similar pairs reach agreement faster (two highly agreeable negotiators). Disagreeable negotiators do better against other disagreeable negotiators.</p>
+  <p><b>Conscientiousness.</b> Self-discipline, organisation, carefulness and responsibility. This is the trait <b>most closely linked to high negotiation performance</b>. Everyone can behave more conscientiously by taking more time to prepare and improving their organisational skills.</p>
+  <p><b>Openness.</b> Imagination, broad-mindedness and divergent thinking help generate creative solutions by exploring a range of ideas. High-openness negotiators created greater mutual gain in <b>integrative</b> negotiation, but did not perform better in <b>distributive</b> negotiation.</p>
+  <p><b>Neuroticism.</b> A person's general level of anxiety, depression, worry and insecurity. People high on neuroticism tend to get <b>negative outcomes</b> in negotiation.</p>
+  <div class="box eg"><span class="k">Example</span><p>In a salary negotiation, an extroverted candidate may anchor on HR's first number and negotiate around it. An introverted candidate may listen carefully, notice that HR is worried about internal equity, and propose a joining bonus instead of a higher base. That is an integrative solution, helped by listening and openness.</p></div>
+  <div class="box tip"><span class="k">Exam tip</span><p>If asked "Which trait matters most?", answer <b>conscientiousness</b>, because preparation drives results. Mention that openness helps only in integrative, not distributive, negotiation.</p></div>
+</article>
+
+<div class="recall">
+  <h3>Test yourself: Session 18</h3>
+  <details class="q"><summary>Which conflict type is almost always dysfunctional?</summary><div><p>Relationship conflict.</p></div></details>
+  <details class="q"><summary>Which Thomas-Kilmann mode is high assertiveness, low cooperativeness?</summary><div><p>Competing (I win, you lose).</p></div></details>
+  <details class="q"><summary>Which mode is recommended for Scenario 2, and why?</summary><div><p>Collaborate. It is a task conflict where both concerns are important and can be combined, e.g. a pilot launch.</p></div></details>
+  <details class="q"><summary>Distributive vs integrative in one line each.</summary><div><p>Distributive divides a fixed pie (win-lose). Integrative expands the pie (win-win).</p></div></details>
+  <details class="q"><summary>Seller's minimum is ₹40; buyer's maximum is ₹55. What is the ZOPA?</summary><div><p>₹40–55, a range of ₹15.</p></div></details>
+  <details class="q"><summary>Seller's minimum is ₹60; buyer's maximum is ₹55. What happens?</summary><div><p>There is no ZOPA; no agreement is possible unless someone changes their reservation point.</p></div></details>
+  <details class="q"><summary>Which Big Five trait is most linked to negotiation success?</summary><div><p>Conscientiousness.</p></div></details>
+</div>
+</section>
+
+<!-- ===================== REVISION ===================== -->
+<section class="session" id="rev" data-n="Final" data-t="Revision &amp; Practice">
+<header>
+  <p class="eyebrow">Final revision</p>
+  <h2>Revision and Practice</h2>
+  <p class="sub">A summary of names and numbers, a method for case questions, commonly confused pairs, and likely exam questions with answer outlines.</p>
+  <label class="done-toggle"><input type="checkbox" id="done-rev" data-s="rev"> Mark as revised</label>
+</header>
+
+<article class="topic" id="r-1" data-t="Names, dates, numbers">
+  <h3><span class="num">R.1</span>Names, dates and numbers</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Item</th><th>Who / when</th><th>Remember</th><th>See</th></tr></thead>
+    <tbody>
+      <tr><td>Stress survey</td><td>APA, 2015</td><td>Money 64%, work 60%</td><td>11.1</td></tr>
+      <tr><td>Change model</td><td>Kotter, 1996</td><td>8 steps: urgency → reinforce</td><td>12.10</td></tr>
+      <tr><td>FIRO-B</td><td>William Schutz, 1958</td><td>Inclusion, control, affection × expressed, wanted; cells 0–9; total 0–54</td><td>13.1</td></tr>
+      <tr><td>Johari Window</td><td>Luft &amp; Ingham, 1955</td><td>Open, blind, hidden, unknown</td><td>13.8</td></tr>
+      <tr><td>Group development</td><td>Tuckman</td><td>Forming, storming, norming, performing, adjourning</td><td>14.5</td></tr>
+      <tr><td>Group decay</td><td>McGrew, Bilotta &amp; Deeney, 1999</td><td>De-norming, de-storming, de-forming</td><td>14.6</td></tr>
+      <tr><td>Social identity theory</td><td>Tajfel &amp; Turner, 1979</td><td>Categorisation, identification, comparison</td><td>14.7</td></tr>
+      <tr><td>Self-categorisation theory</td><td>Turner et al., 1987</td><td>"I" vs "we"</td><td>14.7</td></tr>
+      <tr><td>Conformity study</td><td>Asch, 1950s</td><td>~75% conformed at least once</td><td>14.9</td></tr>
+      <tr><td>Stanford Prison</td><td>Zimbardo, 1971</td><td>24 students; stopped after 6 days</td><td>14.12</td></tr>
+      <tr><td>Hawthorne</td><td>Elton Mayo, 1920s–30s</td><td>Social needs affect productivity</td><td>16.4</td></tr>
+      <tr><td>Ohio State</td><td>1940s</td><td>Initiating structure + consideration; High-High best</td><td>16.4</td></tr>
+      <tr><td>Michigan</td><td>1950s</td><td>Employee-centred beats production-centred</td><td>16.4</td></tr>
+      <tr><td>Situational leadership</td><td>Hersey &amp; Blanchard, 1969</td><td>Leader adapts style</td><td>16.9</td></tr>
+      <tr><td>LMX</td><td>Graen, Dansereau &amp; Haga, 1970</td><td>In-group vs out-group</td><td>17.2</td></tr>
+      <tr><td>Path-Goal</td><td>Robert House</td><td>Directive, supportive, participative, achievement-oriented</td><td>17.3</td></tr>
+      <tr><td>Contingency model</td><td>Fiedler, 1964</td><td>LPC; relations, task structure, position power</td><td>17.4</td></tr>
+      <tr><td>Obedience study</td><td>Milgram, Yale, 1961–65</td><td>65% went to 450 V</td><td>17.5</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="topic" id="r-2" data-t="Answering case questions">
+  <h3><span class="num">R.2</span>How to answer a case question</h3>
+  <p>This is the method from the DRW slide. Use it for every case: Amazon, DRW, the Forgotten Team Member, and the conflict scenarios.</p>
+  <ol>
+    <li><b>Case facts:</b> two or three lines. Who, what, what happened.</li>
+    <li><b>Problem:</b> state it in one sentence.</li>
+    <li><b>Symptoms:</b> what is visible, e.g. no contracts, an absent member, burnout, arguments.</li>
+    <li><b>Root cause:</b> name the <b>concept</b> that explains it, e.g. one-way downward communication, missing norms, low inclusion, distress, relationship conflict, groupthink, out-group under LMX.</li>
+    <li><b>Solution:</b> specific actions tied to that concept, e.g. Kotter's steps, a richer channel, a team charter, a Thomas-Kilmann mode, calibrating demands.</li>
+  </ol>
+  <div class="box tip"><span class="k">Exam tip</span><p>Marks come from <b>naming the concept</b> and <b>applying it to the case</b>. "The group is in the storming stage because members resist the coordinator's control" scores far more than a paragraph of general advice.</p></div>
+</article>
+
+<article class="topic" id="r-3" data-t="Commonly confused pairs">
+  <h3><span class="num">R.3</span>Commonly confused pairs</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Pair</th><th>Difference</th><th>See</th></tr></thead>
+    <tbody>
+      <tr><td>Eustress vs distress</td><td>Stress felt as a challenge vs stress that exceeds coping</td><td>11.5</td></tr>
+      <tr><td>Stress vs depression</td><td>Response to a stressor vs a persistent mental health condition</td><td>11.9</td></tr>
+      <tr><td>Voice vs loyalty</td><td>Both constructive; voice is active, loyalty is passive</td><td>11.7</td></tr>
+      <tr><td>Filtering vs selective perception</td><td>Sender-side vs receiver-side distortion</td><td>12.8</td></tr>
+      <tr><td>Blind vs hidden area</td><td>Others know, I don't vs I know, others don't</td><td>13.8</td></tr>
+      <tr><td>Expressed vs wanted</td><td>What I do toward others vs what I want from others</td><td>13.2</td></tr>
+      <tr><td>Originator vs interchange compatibility</td><td>Control, opposites attract vs affection, similar types attract</td><td>14.2</td></tr>
+      <tr><td>Group vs team</td><td>Individual vs mutual accountability</td><td>14.8</td></tr>
+      <tr><td>Conformity vs groupthink</td><td>An individual yielding vs the group's decision process failing</td><td>14.10</td></tr>
+      <tr><td>Groupshift vs polarisation</td><td>Group decision differs from individual decisions vs discussion makes views more extreme</td><td>14.10</td></tr>
+      <tr><td>Role conflict vs interrole conflict</td><td>Divergent expectations vs a clash between different groups' expectations</td><td>14.12</td></tr>
+      <tr><td>Ohio State vs Michigan</td><td>High-High best vs employee-centred best</td><td>16.4</td></tr>
+      <tr><td>Situational vs Fiedler</td><td>Leader changes style vs style is fixed, so match the situation</td><td>16.9, 17.4</td></tr>
+      <tr><td>Transactional vs transformational</td><td>Exchange, extrinsic vs vision, intrinsic</td><td>16.7</td></tr>
+      <tr><td>Expert vs referent power</td><td>Knowledge vs admiration</td><td>16.11</td></tr>
+      <tr><td>Compromise vs collaborate</td><td>Split the difference vs meet both sides' needs fully</td><td>18.3</td></tr>
+      <tr><td>BATNA vs reservation point</td><td>Your alternative if talks fail vs your walk-away value in this deal</td><td>18.6</td></tr>
+    </tbody>
+  </table></div>
+</article>
+
+<article class="topic" id="r-4" data-t="Likely exam questions">
+  <h3><span class="num">R.4</span>Likely exam questions with answer outlines</h3>
+  <details class="q"><summary>Explain Tuckman's model and apply it to a team you have worked in. Include group decay.</summary><div>
+    <ul><li>Define a group (14.3).</li><li>Explain all five stages with features (14.5).</li><li>Apply each stage to your own team in one or two lines.</li><li>Add group decay (14.6) and how to prevent it: renew norms and goals.</li><li>Link: the leader moves from directing (forming) to delegating (performing).</li></ul>
+  </div></details>
+  <details class="q"><summary>Using FIRO-B, analyse the given team scores and predict compatibility.</summary><div>
+    <ul><li>Explain the three needs × two dimensions and the 0–9 and 0–54 scales (13.2, 13.6).</li><li>Classify each score as Low/Med/High and name the type (14.1).</li><li>Pair members: originator compatibility on control, interchange compatibility on affection (14.2).</li><li>Recommend roles (see the worked example, 13.7).</li></ul>
+  </div></details>
+  <details class="q"><summary>What is the Johari Window? How can a manager use it to build trust?</summary><div>
+    <ul><li>Draw the 2×2 and define all four panes with examples (13.8).</li><li>Feedback shrinks the blind area; self-disclosure shrinks the hidden area; shared discovery opens the unknown.</li><li>Manager actions: regular two-way feedback, modelling self-disclosure, psychological safety, 360° feedback.</li></ul>
+  </div></details>
+  <details class="q"><summary>Compare communication networks and recommend one for a given situation.</summary><div>
+    <ul><li>Draw chain, wheel and all-channel, and give the four-criterion table (12.3).</li><li>Crisis needing accuracy and a clear leader → wheel. Brainstorming needing satisfaction and ideas → all-channel.</li></ul>
+  </div></details>
+  <details class="q"><summary>Discuss barriers to communication, with special reference to cross-cultural communication.</summary><div>
+    <ul><li>The eight barriers with examples (12.8).</li><li>Four cultural barriers (12.9).</li><li>High- vs low-context scale with countries; an India–Germany example.</li><li>Remedies: confirm understanding through feedback, choose richer channels, avoid jargon, put key points in writing for low-context partners.</li></ul>
+  </div></details>
+  <details class="q"><summary>Trace the development of leadership theories from trait to contingency.</summary><div>
+    <ul><li>Trait: born; Big Five, EI (16.3).</li><li>Behavioural: made; Hawthorne, Ohio State, Michigan (16.4).</li><li>Situational: Hersey-Blanchard (16.9).</li><li>Contingency: Fiedler (17.4).</li><li>Contemporary: LMX, Path-Goal, transformational (17.2, 17.3, 16.7).</li><li>For each: key idea, one finding, one limitation.</li></ul>
+  </div></details>
+  <details class="q"><summary>Explain Fiedler's model. Which leader suits the given situation?</summary><div>
+    <ul><li>LPC: high = relationship-oriented, low = task-oriented.</li><li>Three factors produce eight octants.</li><li>Task-oriented for very favourable and very unfavourable; relationship-oriented for moderate.</li><li>Style is fixed, so change the leader or the situation.</li><li>Rate the given situation, name the octant and the leader type (17.4).</li></ul>
+  </div></details>
+  <details class="q"><summary>Differentiate transactional and transformational leadership, with examples.</summary><div>
+    <ul><li>Use the comparison table (16.7).</li><li>One example of each.</li><li>Transformational suits change; transactional suits clear, measurable tasks; good leaders use both.</li></ul>
+  </div></details>
+  <details class="q"><summary>Explain the bases of power. Why is personal power more effective?</summary><div>
+    <ul><li>Five bases in two categories, with examples (16.11).</li><li>Research: expert and referent linked to satisfaction, commitment and performance; coercive can be damaging.</li><li>Dependency postulate: importance, scarcity, nonsubstitutability (16.10).</li></ul>
+  </div></details>
+  <details class="q"><summary>Using the Thomas-Kilmann model, recommend a conflict-handling mode for a scenario.</summary><div>
+    <ul><li>Draw the grid and define all five modes (18.3).</li><li>Name the conflict type and whether it is functional (18.1, 18.2).</li><li>Choose a mode and justify it: importance of issue, importance of relationship, time, power.</li><li>Use the three class scenarios as models (18.4).</li></ul>
+  </div></details>
+  <details class="q"><summary>Differentiate distributive and integrative negotiation. Work out BATNA and ZOPA for a case.</summary><div>
+    <ul><li>Comparison table and the orange example (18.5).</li><li>Define BATNA, reservation point and ZOPA; draw the number line (18.6).</li><li>Say who has more power (stronger BATNA) and how the weaker party can move to integrative bargaining.</li></ul>
+  </div></details>
+  <details class="q"><summary>What are groupthink and social loafing? How can they be prevented? Refer to Asch and 12 Angry Men.</summary><div>
+    <ul><li>Define conformity, groupthink, polarisation, groupshift and social loafing (14.9, 14.10).</li><li>Asch: ~75% conformed; 12 Angry Men: one dissenter breaks groupthink.</li><li>Prevention: devil's advocate, secret ballots, leader speaks last; for loafing, small groups and visible individual contribution.</li></ul>
+  </div></details>
+  <details class="q"><summary>Discuss the sources and consequences of stress and how organisations can manage it, with reference to Amazon.</summary><div>
+    <ul><li>Model: sources → moderators → consequences; the inverted-U (11.3, 11.4).</li><li>Eustress vs distress; the same demand differs by person (11.5).</li><li>Amazon: why some thrived and others burned out; EVLN responses (11.6, 11.7).</li><li>Solutions: calibrate demands, increase control, protect recovery, redesign HR; individual techniques (11.8).</li></ul>
+  </div></details>
+  <details class="q"><summary>Explain LMX and Path-Goal theory, with examples.</summary><div>
+    <ul><li>LMX: in-group vs out-group, what each receives and gives, risk of unfairness (17.2).</li><li>Path-Goal: clarify the path, remove obstacles; four behaviours matched to follower and task (17.3).</li></ul>
+  </div></details>
+</article>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var KEY='igb-notes-done';
+  var state={};
+  try{ state=JSON.parse(localStorage.getItem(KEY)||'{}')||{}; }catch(e){ state={}; }
+
+  // Build the sidebar from the sections and topics on the page
+  var list=document.getElementById('tocList');
+  var sections=[].slice.call(document.querySelectorAll('section.session'));
+  sections.forEach(function(sec){
+    var li=document.createElement('li'); li.className='s'; li.dataset.s=sec.id;
+    var a=document.createElement('a'); a.href='#'+sec.id;
+    a.innerHTML='<span class="n"></span><span class="t"></span>';
+    a.querySelector('.n').textContent=sec.dataset.n;
+    a.querySelector('.t').textContent=sec.dataset.t;
+    li.appendChild(a);
+    var sub=document.createElement('ol'); sub.className='sub';
+    sec.querySelectorAll('article.topic').forEach(function(t){
+      var tl=document.createElement('li'); var ta=document.createElement('a');
+      ta.href='#'+t.id; ta.dataset.t=t.id;
+      var num=t.querySelector('.num');
+      ta.textContent=(num?num.textContent+'  ':'')+t.dataset.t;
+      tl.appendChild(ta); sub.appendChild(tl);
+    });
+    li.appendChild(sub); list.appendChild(li);
+  });
+
+  function paintDone(){
+    list.querySelectorAll('li.s').forEach(function(li){ li.classList.toggle('done',!!state[li.dataset.s]); });
+  }
+  document.querySelectorAll('.done-toggle input').forEach(function(cb){
+    var s=cb.dataset.s; cb.checked=!!state[s];
+    cb.addEventListener('change',function(){
+      state[s]=cb.checked;
+      try{ localStorage.setItem(KEY,JSON.stringify(state)); }catch(e){}
+      paintDone();
+    });
+  });
+  paintDone();
+
+  // Highlight the current session and topic while scrolling
+  var topics=[].slice.call(document.querySelectorAll('article.topic'));
+  function setActive(){
+    var y=window.innerHeight*0.25, curS=sections[0], curT=null;
+    sections.forEach(function(s){ if(s.getBoundingClientRect().top<=y) curS=s; });
+    topics.forEach(function(t){ if(t.getBoundingClientRect().top<=y) curT=t; });
+    list.querySelectorAll('li.s').forEach(function(li){ li.classList.toggle('active',li.dataset.s===curS.id); });
+    list.querySelectorAll('.sub a').forEach(function(a){ a.classList.toggle('on',!!curT && a.dataset.t===curT.id); });
+  }
+  var ticking=false;
+  window.addEventListener('scroll',function(){ if(!ticking){ ticking=true; requestAnimationFrame(function(){ setActive(); ticking=false; }); } },{passive:true});
+  setActive();
+
+  // Contents panel: always open on wide screens, collapsed on phones
+  var toc=document.getElementById('toc');
+  var mq=window.matchMedia('(max-width:880px)');
+  function syncToc(){ toc.open=!mq.matches; }
+  syncToc();
+  if(mq.addEventListener) mq.addEventListener('change',syncToc);
+  list.addEventListener('click',function(e){ if(mq.matches && e.target.closest('a')) toc.open=false; });
+})();
+</script>
+</body></html>
